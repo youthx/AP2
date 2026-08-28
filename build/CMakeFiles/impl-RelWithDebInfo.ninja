@@ -32,7 +32,7 @@ CONFIGURATION = RelWithDebInfo
 #############################################
 # Include common file.
 
-include CMakeFiles\common.ninja
+include CMakeFiles/common.ninja
 
 # =============================================================================
 # Object build statements for EXECUTABLE target ap2
@@ -41,83 +41,96 @@ include CMakeFiles\common.ninja
 #############################################
 # Order-only phony target for ap2
 
-build cmake_object_order_depends_target_ap2_RELWITHDEBINFO: phony || cmake_object_order_depends_target_glad_RELWITHDEBINFO cmake_object_order_depends_target_glfw_RELWITHDEBINFO cmake_object_order_depends_target_glm_RELWITHDEBINFO
+build cmake_object_order_depends_target_ap2_RELWITHDEBINFO: phony || cmake_object_order_depends_target_glad_RELWITHDEBINFO cmake_object_order_depends_target_glfw_RELWITHDEBINFO
 
-build CMakeFiles\ap2.dir\RelWithDebInfo\src\core\AP2_Error.c.obj: C_COMPILER__ap2_unscanned_RelWithDebInfo C$:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\src\core\AP2_Error.c || cmake_object_order_depends_target_ap2_RELWITHDEBINFO
+build CMakeFiles/ap2.dir/RelWithDebInfo/src/core/AP2_Device.c.obj: C_COMPILER__ap2_unscanned_RelWithDebInfo C$:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/src/core/AP2_Device.c || cmake_object_order_depends_target_ap2_RELWITHDEBINFO
   CONFIG = RelWithDebInfo
-  DEFINES = -DAP2_VERSION=\"0.1.0\" -DAP2_VERSION_MAJOR=0 -DAP2_VERSION_MINOR=1 -DAP2_VERSION_PATCH=0 -DDEBUG=1 -DPROJECT_VERSION=\"0.1.0\" -DPROJECT_VERSION_MAJOR=0 -DPROJECT_VERSION_MINOR=1 -DPROJECT_VERSION_PATCH=0 -DCMAKE_INTDIR=\"RelWithDebInfo\"
-  FLAGS = /DWIN32 /D_WINDOWS /Zi /O2 /Ob1 /DNDEBUG -std:c11 -MD /Od /W4 /Zi /EHsc /GR
-  INCLUDES = -IC:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\include -IC:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build\_deps\glad-src\generated\include -IC:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build\_deps\glfw-src\include -IC:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build\_deps\glm-src
+  DEFINES = -DAP2_VERSION=\"0.1.0\" -DAP2_VERSION_MAJOR=0 -DAP2_VERSION_MINOR=1 -DAP2_VERSION_PATCH=0 -DDEBUG=1 -DPROJECT_VERSION=\"0.1.0\" -DPROJECT_VERSION_MAJOR=0 -DPROJECT_VERSION_MINOR=1 -DPROJECT_VERSION_PATCH=0 -DWIN32 -D_CRT_SECURE_NO_WARNINGS -D_WINDOWS -DCMAKE_INTDIR=\"RelWithDebInfo\"
+  DEP_FILE = CMakeFiles\ap2.dir\RelWithDebInfo\src\core\AP2_Device.c.obj.d
+  FLAGS = -O2 -g -DNDEBUG -std=c17 -Wall -Wextra -g -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glad-src/generated/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-src/include
   OBJECT_DIR = CMakeFiles\ap2.dir\RelWithDebInfo
   OBJECT_FILE_DIR = CMakeFiles\ap2.dir\RelWithDebInfo\src\core
-  TARGET_COMPILE_PDB = CMakeFiles\ap2.dir\RelWithDebInfo\
-  TARGET_PDB = bin\RelWithDebInfo\ap2.pdb
   TARGET_SUPPORT_DIR = CMakeFiles\ap2.dir
 
-build CMakeFiles\ap2.dir\RelWithDebInfo\src\core\AP2_Init.c.obj: C_COMPILER__ap2_unscanned_RelWithDebInfo C$:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\src\core\AP2_Init.c || cmake_object_order_depends_target_ap2_RELWITHDEBINFO
+build CMakeFiles/ap2.dir/RelWithDebInfo/src/core/AP2_Error.c.obj: C_COMPILER__ap2_unscanned_RelWithDebInfo C$:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/src/core/AP2_Error.c || cmake_object_order_depends_target_ap2_RELWITHDEBINFO
   CONFIG = RelWithDebInfo
-  DEFINES = -DAP2_VERSION=\"0.1.0\" -DAP2_VERSION_MAJOR=0 -DAP2_VERSION_MINOR=1 -DAP2_VERSION_PATCH=0 -DDEBUG=1 -DPROJECT_VERSION=\"0.1.0\" -DPROJECT_VERSION_MAJOR=0 -DPROJECT_VERSION_MINOR=1 -DPROJECT_VERSION_PATCH=0 -DCMAKE_INTDIR=\"RelWithDebInfo\"
-  FLAGS = /DWIN32 /D_WINDOWS /Zi /O2 /Ob1 /DNDEBUG -std:c11 -MD /Od /W4 /Zi /EHsc /GR
-  INCLUDES = -IC:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\include -IC:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build\_deps\glad-src\generated\include -IC:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build\_deps\glfw-src\include -IC:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build\_deps\glm-src
+  DEFINES = -DAP2_VERSION=\"0.1.0\" -DAP2_VERSION_MAJOR=0 -DAP2_VERSION_MINOR=1 -DAP2_VERSION_PATCH=0 -DDEBUG=1 -DPROJECT_VERSION=\"0.1.0\" -DPROJECT_VERSION_MAJOR=0 -DPROJECT_VERSION_MINOR=1 -DPROJECT_VERSION_PATCH=0 -DWIN32 -D_CRT_SECURE_NO_WARNINGS -D_WINDOWS -DCMAKE_INTDIR=\"RelWithDebInfo\"
+  DEP_FILE = CMakeFiles\ap2.dir\RelWithDebInfo\src\core\AP2_Error.c.obj.d
+  FLAGS = -O2 -g -DNDEBUG -std=c17 -Wall -Wextra -g -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glad-src/generated/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-src/include
   OBJECT_DIR = CMakeFiles\ap2.dir\RelWithDebInfo
   OBJECT_FILE_DIR = CMakeFiles\ap2.dir\RelWithDebInfo\src\core
-  TARGET_COMPILE_PDB = CMakeFiles\ap2.dir\RelWithDebInfo\
-  TARGET_PDB = bin\RelWithDebInfo\ap2.pdb
   TARGET_SUPPORT_DIR = CMakeFiles\ap2.dir
 
-build CMakeFiles\ap2.dir\RelWithDebInfo\src\core\AP2_List.c.obj: C_COMPILER__ap2_unscanned_RelWithDebInfo C$:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\src\core\AP2_List.c || cmake_object_order_depends_target_ap2_RELWITHDEBINFO
+build CMakeFiles/ap2.dir/RelWithDebInfo/src/core/AP2_Init.c.obj: C_COMPILER__ap2_unscanned_RelWithDebInfo C$:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/src/core/AP2_Init.c || cmake_object_order_depends_target_ap2_RELWITHDEBINFO
   CONFIG = RelWithDebInfo
-  DEFINES = -DAP2_VERSION=\"0.1.0\" -DAP2_VERSION_MAJOR=0 -DAP2_VERSION_MINOR=1 -DAP2_VERSION_PATCH=0 -DDEBUG=1 -DPROJECT_VERSION=\"0.1.0\" -DPROJECT_VERSION_MAJOR=0 -DPROJECT_VERSION_MINOR=1 -DPROJECT_VERSION_PATCH=0 -DCMAKE_INTDIR=\"RelWithDebInfo\"
-  FLAGS = /DWIN32 /D_WINDOWS /Zi /O2 /Ob1 /DNDEBUG -std:c11 -MD /Od /W4 /Zi /EHsc /GR
-  INCLUDES = -IC:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\include -IC:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build\_deps\glad-src\generated\include -IC:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build\_deps\glfw-src\include -IC:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build\_deps\glm-src
+  DEFINES = -DAP2_VERSION=\"0.1.0\" -DAP2_VERSION_MAJOR=0 -DAP2_VERSION_MINOR=1 -DAP2_VERSION_PATCH=0 -DDEBUG=1 -DPROJECT_VERSION=\"0.1.0\" -DPROJECT_VERSION_MAJOR=0 -DPROJECT_VERSION_MINOR=1 -DPROJECT_VERSION_PATCH=0 -DWIN32 -D_CRT_SECURE_NO_WARNINGS -D_WINDOWS -DCMAKE_INTDIR=\"RelWithDebInfo\"
+  DEP_FILE = CMakeFiles\ap2.dir\RelWithDebInfo\src\core\AP2_Init.c.obj.d
+  FLAGS = -O2 -g -DNDEBUG -std=c17 -Wall -Wextra -g -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glad-src/generated/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-src/include
   OBJECT_DIR = CMakeFiles\ap2.dir\RelWithDebInfo
   OBJECT_FILE_DIR = CMakeFiles\ap2.dir\RelWithDebInfo\src\core
-  TARGET_COMPILE_PDB = CMakeFiles\ap2.dir\RelWithDebInfo\
-  TARGET_PDB = bin\RelWithDebInfo\ap2.pdb
   TARGET_SUPPORT_DIR = CMakeFiles\ap2.dir
 
-build CMakeFiles\ap2.dir\RelWithDebInfo\src\core\AP2_Logger.c.obj: C_COMPILER__ap2_unscanned_RelWithDebInfo C$:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\src\core\AP2_Logger.c || cmake_object_order_depends_target_ap2_RELWITHDEBINFO
+build CMakeFiles/ap2.dir/RelWithDebInfo/src/core/AP2_List.c.obj: C_COMPILER__ap2_unscanned_RelWithDebInfo C$:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/src/core/AP2_List.c || cmake_object_order_depends_target_ap2_RELWITHDEBINFO
   CONFIG = RelWithDebInfo
-  DEFINES = -DAP2_VERSION=\"0.1.0\" -DAP2_VERSION_MAJOR=0 -DAP2_VERSION_MINOR=1 -DAP2_VERSION_PATCH=0 -DDEBUG=1 -DPROJECT_VERSION=\"0.1.0\" -DPROJECT_VERSION_MAJOR=0 -DPROJECT_VERSION_MINOR=1 -DPROJECT_VERSION_PATCH=0 -DCMAKE_INTDIR=\"RelWithDebInfo\"
-  FLAGS = /DWIN32 /D_WINDOWS /Zi /O2 /Ob1 /DNDEBUG -std:c11 -MD /Od /W4 /Zi /EHsc /GR
-  INCLUDES = -IC:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\include -IC:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build\_deps\glad-src\generated\include -IC:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build\_deps\glfw-src\include -IC:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build\_deps\glm-src
+  DEFINES = -DAP2_VERSION=\"0.1.0\" -DAP2_VERSION_MAJOR=0 -DAP2_VERSION_MINOR=1 -DAP2_VERSION_PATCH=0 -DDEBUG=1 -DPROJECT_VERSION=\"0.1.0\" -DPROJECT_VERSION_MAJOR=0 -DPROJECT_VERSION_MINOR=1 -DPROJECT_VERSION_PATCH=0 -DWIN32 -D_CRT_SECURE_NO_WARNINGS -D_WINDOWS -DCMAKE_INTDIR=\"RelWithDebInfo\"
+  DEP_FILE = CMakeFiles\ap2.dir\RelWithDebInfo\src\core\AP2_List.c.obj.d
+  FLAGS = -O2 -g -DNDEBUG -std=c17 -Wall -Wextra -g -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glad-src/generated/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-src/include
   OBJECT_DIR = CMakeFiles\ap2.dir\RelWithDebInfo
   OBJECT_FILE_DIR = CMakeFiles\ap2.dir\RelWithDebInfo\src\core
-  TARGET_COMPILE_PDB = CMakeFiles\ap2.dir\RelWithDebInfo\
-  TARGET_PDB = bin\RelWithDebInfo\ap2.pdb
   TARGET_SUPPORT_DIR = CMakeFiles\ap2.dir
 
-build CMakeFiles\ap2.dir\RelWithDebInfo\src\core\AP2_String.c.obj: C_COMPILER__ap2_unscanned_RelWithDebInfo C$:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\src\core\AP2_String.c || cmake_object_order_depends_target_ap2_RELWITHDEBINFO
+build CMakeFiles/ap2.dir/RelWithDebInfo/src/core/AP2_Logger.c.obj: C_COMPILER__ap2_unscanned_RelWithDebInfo C$:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/src/core/AP2_Logger.c || cmake_object_order_depends_target_ap2_RELWITHDEBINFO
   CONFIG = RelWithDebInfo
-  DEFINES = -DAP2_VERSION=\"0.1.0\" -DAP2_VERSION_MAJOR=0 -DAP2_VERSION_MINOR=1 -DAP2_VERSION_PATCH=0 -DDEBUG=1 -DPROJECT_VERSION=\"0.1.0\" -DPROJECT_VERSION_MAJOR=0 -DPROJECT_VERSION_MINOR=1 -DPROJECT_VERSION_PATCH=0 -DCMAKE_INTDIR=\"RelWithDebInfo\"
-  FLAGS = /DWIN32 /D_WINDOWS /Zi /O2 /Ob1 /DNDEBUG -std:c11 -MD /Od /W4 /Zi /EHsc /GR
-  INCLUDES = -IC:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\include -IC:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build\_deps\glad-src\generated\include -IC:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build\_deps\glfw-src\include -IC:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build\_deps\glm-src
+  DEFINES = -DAP2_VERSION=\"0.1.0\" -DAP2_VERSION_MAJOR=0 -DAP2_VERSION_MINOR=1 -DAP2_VERSION_PATCH=0 -DDEBUG=1 -DPROJECT_VERSION=\"0.1.0\" -DPROJECT_VERSION_MAJOR=0 -DPROJECT_VERSION_MINOR=1 -DPROJECT_VERSION_PATCH=0 -DWIN32 -D_CRT_SECURE_NO_WARNINGS -D_WINDOWS -DCMAKE_INTDIR=\"RelWithDebInfo\"
+  DEP_FILE = CMakeFiles\ap2.dir\RelWithDebInfo\src\core\AP2_Logger.c.obj.d
+  FLAGS = -O2 -g -DNDEBUG -std=c17 -Wall -Wextra -g -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glad-src/generated/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-src/include
   OBJECT_DIR = CMakeFiles\ap2.dir\RelWithDebInfo
   OBJECT_FILE_DIR = CMakeFiles\ap2.dir\RelWithDebInfo\src\core
-  TARGET_COMPILE_PDB = CMakeFiles\ap2.dir\RelWithDebInfo\
-  TARGET_PDB = bin\RelWithDebInfo\ap2.pdb
   TARGET_SUPPORT_DIR = CMakeFiles\ap2.dir
 
-build CMakeFiles\ap2.dir\RelWithDebInfo\src\core\AP2_Window.c.obj: C_COMPILER__ap2_unscanned_RelWithDebInfo C$:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\src\core\AP2_Window.c || cmake_object_order_depends_target_ap2_RELWITHDEBINFO
+build CMakeFiles/ap2.dir/RelWithDebInfo/src/core/AP2_String.c.obj: C_COMPILER__ap2_unscanned_RelWithDebInfo C$:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/src/core/AP2_String.c || cmake_object_order_depends_target_ap2_RELWITHDEBINFO
   CONFIG = RelWithDebInfo
-  DEFINES = -DAP2_VERSION=\"0.1.0\" -DAP2_VERSION_MAJOR=0 -DAP2_VERSION_MINOR=1 -DAP2_VERSION_PATCH=0 -DDEBUG=1 -DPROJECT_VERSION=\"0.1.0\" -DPROJECT_VERSION_MAJOR=0 -DPROJECT_VERSION_MINOR=1 -DPROJECT_VERSION_PATCH=0 -DCMAKE_INTDIR=\"RelWithDebInfo\"
-  FLAGS = /DWIN32 /D_WINDOWS /Zi /O2 /Ob1 /DNDEBUG -std:c11 -MD /Od /W4 /Zi /EHsc /GR
-  INCLUDES = -IC:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\include -IC:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build\_deps\glad-src\generated\include -IC:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build\_deps\glfw-src\include -IC:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build\_deps\glm-src
+  DEFINES = -DAP2_VERSION=\"0.1.0\" -DAP2_VERSION_MAJOR=0 -DAP2_VERSION_MINOR=1 -DAP2_VERSION_PATCH=0 -DDEBUG=1 -DPROJECT_VERSION=\"0.1.0\" -DPROJECT_VERSION_MAJOR=0 -DPROJECT_VERSION_MINOR=1 -DPROJECT_VERSION_PATCH=0 -DWIN32 -D_CRT_SECURE_NO_WARNINGS -D_WINDOWS -DCMAKE_INTDIR=\"RelWithDebInfo\"
+  DEP_FILE = CMakeFiles\ap2.dir\RelWithDebInfo\src\core\AP2_String.c.obj.d
+  FLAGS = -O2 -g -DNDEBUG -std=c17 -Wall -Wextra -g -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glad-src/generated/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-src/include
   OBJECT_DIR = CMakeFiles\ap2.dir\RelWithDebInfo
   OBJECT_FILE_DIR = CMakeFiles\ap2.dir\RelWithDebInfo\src\core
-  TARGET_COMPILE_PDB = CMakeFiles\ap2.dir\RelWithDebInfo\
-  TARGET_PDB = bin\RelWithDebInfo\ap2.pdb
   TARGET_SUPPORT_DIR = CMakeFiles\ap2.dir
 
-build CMakeFiles\ap2.dir\RelWithDebInfo\src\main.c.obj: C_COMPILER__ap2_unscanned_RelWithDebInfo C$:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\src\main.c || cmake_object_order_depends_target_ap2_RELWITHDEBINFO
+build CMakeFiles/ap2.dir/RelWithDebInfo/src/core/AP2_Video.c.obj: C_COMPILER__ap2_unscanned_RelWithDebInfo C$:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/src/core/AP2_Video.c || cmake_object_order_depends_target_ap2_RELWITHDEBINFO
   CONFIG = RelWithDebInfo
-  DEFINES = -DAP2_VERSION=\"0.1.0\" -DAP2_VERSION_MAJOR=0 -DAP2_VERSION_MINOR=1 -DAP2_VERSION_PATCH=0 -DDEBUG=1 -DPROJECT_VERSION=\"0.1.0\" -DPROJECT_VERSION_MAJOR=0 -DPROJECT_VERSION_MINOR=1 -DPROJECT_VERSION_PATCH=0 -DCMAKE_INTDIR=\"RelWithDebInfo\"
-  FLAGS = /DWIN32 /D_WINDOWS /Zi /O2 /Ob1 /DNDEBUG -std:c11 -MD /Od /W4 /Zi /EHsc /GR
-  INCLUDES = -IC:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\include -IC:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build\_deps\glad-src\generated\include -IC:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build\_deps\glfw-src\include -IC:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build\_deps\glm-src
+  DEFINES = -DAP2_VERSION=\"0.1.0\" -DAP2_VERSION_MAJOR=0 -DAP2_VERSION_MINOR=1 -DAP2_VERSION_PATCH=0 -DDEBUG=1 -DPROJECT_VERSION=\"0.1.0\" -DPROJECT_VERSION_MAJOR=0 -DPROJECT_VERSION_MINOR=1 -DPROJECT_VERSION_PATCH=0 -DWIN32 -D_CRT_SECURE_NO_WARNINGS -D_WINDOWS -DCMAKE_INTDIR=\"RelWithDebInfo\"
+  DEP_FILE = CMakeFiles\ap2.dir\RelWithDebInfo\src\core\AP2_Video.c.obj.d
+  FLAGS = -O2 -g -DNDEBUG -std=c17 -Wall -Wextra -g -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glad-src/generated/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-src/include
+  OBJECT_DIR = CMakeFiles\ap2.dir\RelWithDebInfo
+  OBJECT_FILE_DIR = CMakeFiles\ap2.dir\RelWithDebInfo\src\core
+  TARGET_SUPPORT_DIR = CMakeFiles\ap2.dir
+
+build CMakeFiles/ap2.dir/RelWithDebInfo/src/core/AP2_Window.c.obj: C_COMPILER__ap2_unscanned_RelWithDebInfo C$:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/src/core/AP2_Window.c || cmake_object_order_depends_target_ap2_RELWITHDEBINFO
+  CONFIG = RelWithDebInfo
+  DEFINES = -DAP2_VERSION=\"0.1.0\" -DAP2_VERSION_MAJOR=0 -DAP2_VERSION_MINOR=1 -DAP2_VERSION_PATCH=0 -DDEBUG=1 -DPROJECT_VERSION=\"0.1.0\" -DPROJECT_VERSION_MAJOR=0 -DPROJECT_VERSION_MINOR=1 -DPROJECT_VERSION_PATCH=0 -DWIN32 -D_CRT_SECURE_NO_WARNINGS -D_WINDOWS -DCMAKE_INTDIR=\"RelWithDebInfo\"
+  DEP_FILE = CMakeFiles\ap2.dir\RelWithDebInfo\src\core\AP2_Window.c.obj.d
+  FLAGS = -O2 -g -DNDEBUG -std=c17 -Wall -Wextra -g -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glad-src/generated/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-src/include
+  OBJECT_DIR = CMakeFiles\ap2.dir\RelWithDebInfo
+  OBJECT_FILE_DIR = CMakeFiles\ap2.dir\RelWithDebInfo\src\core
+  TARGET_SUPPORT_DIR = CMakeFiles\ap2.dir
+
+build CMakeFiles/ap2.dir/RelWithDebInfo/src/main.c.obj: C_COMPILER__ap2_unscanned_RelWithDebInfo C$:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/src/main.c || cmake_object_order_depends_target_ap2_RELWITHDEBINFO
+  CONFIG = RelWithDebInfo
+  DEFINES = -DAP2_VERSION=\"0.1.0\" -DAP2_VERSION_MAJOR=0 -DAP2_VERSION_MINOR=1 -DAP2_VERSION_PATCH=0 -DDEBUG=1 -DPROJECT_VERSION=\"0.1.0\" -DPROJECT_VERSION_MAJOR=0 -DPROJECT_VERSION_MINOR=1 -DPROJECT_VERSION_PATCH=0 -DWIN32 -D_CRT_SECURE_NO_WARNINGS -D_WINDOWS -DCMAKE_INTDIR=\"RelWithDebInfo\"
+  DEP_FILE = CMakeFiles\ap2.dir\RelWithDebInfo\src\main.c.obj.d
+  FLAGS = -O2 -g -DNDEBUG -std=c17 -Wall -Wextra -g -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glad-src/generated/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-src/include
   OBJECT_DIR = CMakeFiles\ap2.dir\RelWithDebInfo
   OBJECT_FILE_DIR = CMakeFiles\ap2.dir\RelWithDebInfo\src
-  TARGET_COMPILE_PDB = CMakeFiles\ap2.dir\RelWithDebInfo\
-  TARGET_PDB = bin\RelWithDebInfo\ap2.pdb
   TARGET_SUPPORT_DIR = CMakeFiles\ap2.dir
 
 
@@ -128,18 +141,16 @@ build CMakeFiles\ap2.dir\RelWithDebInfo\src\main.c.obj: C_COMPILER__ap2_unscanne
 #############################################
 # Link the executable bin\RelWithDebInfo\ap2.exe
 
-build bin\RelWithDebInfo\ap2.exe: CXX_EXECUTABLE_LINKER__ap2_RelWithDebInfo CMakeFiles\ap2.dir\RelWithDebInfo\src\core\AP2_Error.c.obj CMakeFiles\ap2.dir\RelWithDebInfo\src\core\AP2_Init.c.obj CMakeFiles\ap2.dir\RelWithDebInfo\src\core\AP2_List.c.obj CMakeFiles\ap2.dir\RelWithDebInfo\src\core\AP2_Logger.c.obj CMakeFiles\ap2.dir\RelWithDebInfo\src\core\AP2_String.c.obj CMakeFiles\ap2.dir\RelWithDebInfo\src\core\AP2_Window.c.obj CMakeFiles\ap2.dir\RelWithDebInfo\src\main.c.obj | lib\RelWithDebInfo\glad.lib lib\RelWithDebInfo\glfw3.lib lib\RelWithDebInfo\glm.lib || lib\RelWithDebInfo\glad.lib lib\RelWithDebInfo\glfw3.lib lib\RelWithDebInfo\glm.lib
+build bin/RelWithDebInfo/ap2.exe: C_EXECUTABLE_LINKER__ap2_RelWithDebInfo CMakeFiles/ap2.dir/RelWithDebInfo/src/core/AP2_Device.c.obj CMakeFiles/ap2.dir/RelWithDebInfo/src/core/AP2_Error.c.obj CMakeFiles/ap2.dir/RelWithDebInfo/src/core/AP2_Init.c.obj CMakeFiles/ap2.dir/RelWithDebInfo/src/core/AP2_List.c.obj CMakeFiles/ap2.dir/RelWithDebInfo/src/core/AP2_Logger.c.obj CMakeFiles/ap2.dir/RelWithDebInfo/src/core/AP2_String.c.obj CMakeFiles/ap2.dir/RelWithDebInfo/src/core/AP2_Video.c.obj CMakeFiles/ap2.dir/RelWithDebInfo/src/core/AP2_Window.c.obj CMakeFiles/ap2.dir/RelWithDebInfo/src/main.c.obj | lib/RelWithDebInfo/libglad.a lib/RelWithDebInfo/libglfw3.a || lib/RelWithDebInfo/libglad.a lib/RelWithDebInfo/libglfw3.a
   CONFIG = RelWithDebInfo
-  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /O2 /Ob1 /DNDEBUG -MD
-  LINK_FLAGS = /machine:x64 /debug /INCREMENTAL /subsystem:console
-  LINK_LIBRARIES = lib\RelWithDebInfo\glad.lib  lib\RelWithDebInfo\glfw3.lib  lib\RelWithDebInfo\glm.lib  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib
+  FLAGS = -O2 -g -DNDEBUG
+  LINK_LIBRARIES = lib/RelWithDebInfo/libglad.a  lib/RelWithDebInfo/libglfw3.a  -luser32  -lkernel32  -lopengl32  -luser32  -lkernel32  -lopengl32  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\ap2.dir\RelWithDebInfo
   POST_BUILD = cd .
   PRE_LINK = cd .
-  TARGET_COMPILE_PDB = CMakeFiles\ap2.dir\RelWithDebInfo\
   TARGET_FILE = bin\RelWithDebInfo\ap2.exe
-  TARGET_IMPLIB = lib\RelWithDebInfo\ap2.lib
-  TARGET_PDB = bin\RelWithDebInfo\ap2.pdb
+  TARGET_IMPLIB = lib\RelWithDebInfo\libap2.dll.a
+  TARGET_PDB = ap2.exe.dbg
   TARGET_SUPPORT_DIR = CMakeFiles\ap2.dir
 
 # =============================================================================
@@ -151,13 +162,13 @@ build bin\RelWithDebInfo\ap2.exe: CXX_EXECUTABLE_LINKER__ap2_RelWithDebInfo CMak
 #############################################
 # Utility command for uninstall
 
-build _deps\glfw-build\uninstall$:RelWithDebInfo: phony _deps\glfw-build\CMakeFiles\uninstall-RelWithDebInfo
+build _deps/glfw-build/uninstall$:RelWithDebInfo: phony _deps/glfw-build/CMakeFiles/uninstall-RelWithDebInfo
 
 
 #############################################
 # Custom command for _deps\glfw-build\CMakeFiles\uninstall-RelWithDebInfo
 
-build _deps\glfw-build\CMakeFiles\uninstall-RelWithDebInfo | ${cmake_ninja_workdir}_deps\glfw-build\CMakeFiles\uninstall-RelWithDebInfo: CUSTOM_COMMAND
+build _deps/glfw-build/CMakeFiles/uninstall-RelWithDebInfo | ${cmake_ninja_workdir}_deps/glfw-build/CMakeFiles/uninstall-RelWithDebInfo: CUSTOM_COMMAND
   COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build\_deps\glfw-build && "C:\Program Files\CMake\bin\cmake.exe" -P C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-build/cmake_uninstall.cmake"
 
 # =============================================================================
@@ -174,235 +185,214 @@ build _deps\glfw-build\CMakeFiles\uninstall-RelWithDebInfo | ${cmake_ninja_workd
 
 build cmake_object_order_depends_target_glfw_RELWITHDEBINFO: phony || .
 
-build _deps\glfw-build\src\CMakeFiles\glfw.dir\RelWithDebInfo\context.c.obj: C_COMPILER__glfw_unscanned_RelWithDebInfo C$:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build\_deps\glfw-src\src\context.c || cmake_object_order_depends_target_glfw_RELWITHDEBINFO
+build _deps/glfw-build/src/CMakeFiles/glfw.dir/RelWithDebInfo/context.c.obj: C_COMPILER__glfw_unscanned_RelWithDebInfo C$:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-src/src/context.c || cmake_object_order_depends_target_glfw_RELWITHDEBINFO
   CONFIG = RelWithDebInfo
-  DEFINES = -DUNICODE -D_CRT_SECURE_NO_WARNINGS -D_GLFW_WIN32 -D_UNICODE -DCMAKE_INTDIR=\"RelWithDebInfo\"
-  FLAGS = /DWIN32 /D_WINDOWS /Zi /O2 /Ob1 /DNDEBUG -MD /W3
-  INCLUDES = -IC:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build\_deps\glfw-src\include -IC:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build\_deps\glfw-src\src -IC:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build\_deps\glfw-build\src
+  DEFINES = -DUNICODE -D_GLFW_WIN32 -D_UNICODE -DCMAKE_INTDIR=\"RelWithDebInfo\"
+  DEP_FILE = _deps\glfw-build\src\CMakeFiles\glfw.dir\RelWithDebInfo\context.c.obj.d
+  FLAGS = -O2 -g -DNDEBUG -std=c99 -Wall
+  INCLUDES = -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-src/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-src/src -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-build/src
   OBJECT_DIR = _deps\glfw-build\src\CMakeFiles\glfw.dir\RelWithDebInfo
   OBJECT_FILE_DIR = _deps\glfw-build\src\CMakeFiles\glfw.dir\RelWithDebInfo
-  TARGET_COMPILE_PDB = _deps\glfw-build\src\CMakeFiles\glfw.dir\RelWithDebInfo\glfw.pdb
-  TARGET_PDB = lib\RelWithDebInfo\glfw3.pdb
   TARGET_SUPPORT_DIR = _deps\glfw-build\src\CMakeFiles\glfw.dir
 
-build _deps\glfw-build\src\CMakeFiles\glfw.dir\RelWithDebInfo\init.c.obj: C_COMPILER__glfw_unscanned_RelWithDebInfo C$:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build\_deps\glfw-src\src\init.c || cmake_object_order_depends_target_glfw_RELWITHDEBINFO
+build _deps/glfw-build/src/CMakeFiles/glfw.dir/RelWithDebInfo/init.c.obj: C_COMPILER__glfw_unscanned_RelWithDebInfo C$:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-src/src/init.c || cmake_object_order_depends_target_glfw_RELWITHDEBINFO
   CONFIG = RelWithDebInfo
-  DEFINES = -DUNICODE -D_CRT_SECURE_NO_WARNINGS -D_GLFW_WIN32 -D_UNICODE -DCMAKE_INTDIR=\"RelWithDebInfo\"
-  FLAGS = /DWIN32 /D_WINDOWS /Zi /O2 /Ob1 /DNDEBUG -MD /W3
-  INCLUDES = -IC:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build\_deps\glfw-src\include -IC:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build\_deps\glfw-src\src -IC:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build\_deps\glfw-build\src
+  DEFINES = -DUNICODE -D_GLFW_WIN32 -D_UNICODE -DCMAKE_INTDIR=\"RelWithDebInfo\"
+  DEP_FILE = _deps\glfw-build\src\CMakeFiles\glfw.dir\RelWithDebInfo\init.c.obj.d
+  FLAGS = -O2 -g -DNDEBUG -std=c99 -Wall
+  INCLUDES = -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-src/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-src/src -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-build/src
   OBJECT_DIR = _deps\glfw-build\src\CMakeFiles\glfw.dir\RelWithDebInfo
   OBJECT_FILE_DIR = _deps\glfw-build\src\CMakeFiles\glfw.dir\RelWithDebInfo
-  TARGET_COMPILE_PDB = _deps\glfw-build\src\CMakeFiles\glfw.dir\RelWithDebInfo\glfw.pdb
-  TARGET_PDB = lib\RelWithDebInfo\glfw3.pdb
   TARGET_SUPPORT_DIR = _deps\glfw-build\src\CMakeFiles\glfw.dir
 
-build _deps\glfw-build\src\CMakeFiles\glfw.dir\RelWithDebInfo\input.c.obj: C_COMPILER__glfw_unscanned_RelWithDebInfo C$:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build\_deps\glfw-src\src\input.c || cmake_object_order_depends_target_glfw_RELWITHDEBINFO
+build _deps/glfw-build/src/CMakeFiles/glfw.dir/RelWithDebInfo/input.c.obj: C_COMPILER__glfw_unscanned_RelWithDebInfo C$:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-src/src/input.c || cmake_object_order_depends_target_glfw_RELWITHDEBINFO
   CONFIG = RelWithDebInfo
-  DEFINES = -DUNICODE -D_CRT_SECURE_NO_WARNINGS -D_GLFW_WIN32 -D_UNICODE -DCMAKE_INTDIR=\"RelWithDebInfo\"
-  FLAGS = /DWIN32 /D_WINDOWS /Zi /O2 /Ob1 /DNDEBUG -MD /W3
-  INCLUDES = -IC:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build\_deps\glfw-src\include -IC:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build\_deps\glfw-src\src -IC:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build\_deps\glfw-build\src
+  DEFINES = -DUNICODE -D_GLFW_WIN32 -D_UNICODE -DCMAKE_INTDIR=\"RelWithDebInfo\"
+  DEP_FILE = _deps\glfw-build\src\CMakeFiles\glfw.dir\RelWithDebInfo\input.c.obj.d
+  FLAGS = -O2 -g -DNDEBUG -std=c99 -Wall
+  INCLUDES = -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-src/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-src/src -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-build/src
   OBJECT_DIR = _deps\glfw-build\src\CMakeFiles\glfw.dir\RelWithDebInfo
   OBJECT_FILE_DIR = _deps\glfw-build\src\CMakeFiles\glfw.dir\RelWithDebInfo
-  TARGET_COMPILE_PDB = _deps\glfw-build\src\CMakeFiles\glfw.dir\RelWithDebInfo\glfw.pdb
-  TARGET_PDB = lib\RelWithDebInfo\glfw3.pdb
   TARGET_SUPPORT_DIR = _deps\glfw-build\src\CMakeFiles\glfw.dir
 
-build _deps\glfw-build\src\CMakeFiles\glfw.dir\RelWithDebInfo\monitor.c.obj: C_COMPILER__glfw_unscanned_RelWithDebInfo C$:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build\_deps\glfw-src\src\monitor.c || cmake_object_order_depends_target_glfw_RELWITHDEBINFO
+build _deps/glfw-build/src/CMakeFiles/glfw.dir/RelWithDebInfo/monitor.c.obj: C_COMPILER__glfw_unscanned_RelWithDebInfo C$:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-src/src/monitor.c || cmake_object_order_depends_target_glfw_RELWITHDEBINFO
   CONFIG = RelWithDebInfo
-  DEFINES = -DUNICODE -D_CRT_SECURE_NO_WARNINGS -D_GLFW_WIN32 -D_UNICODE -DCMAKE_INTDIR=\"RelWithDebInfo\"
-  FLAGS = /DWIN32 /D_WINDOWS /Zi /O2 /Ob1 /DNDEBUG -MD /W3
-  INCLUDES = -IC:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build\_deps\glfw-src\include -IC:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build\_deps\glfw-src\src -IC:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build\_deps\glfw-build\src
+  DEFINES = -DUNICODE -D_GLFW_WIN32 -D_UNICODE -DCMAKE_INTDIR=\"RelWithDebInfo\"
+  DEP_FILE = _deps\glfw-build\src\CMakeFiles\glfw.dir\RelWithDebInfo\monitor.c.obj.d
+  FLAGS = -O2 -g -DNDEBUG -std=c99 -Wall
+  INCLUDES = -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-src/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-src/src -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-build/src
   OBJECT_DIR = _deps\glfw-build\src\CMakeFiles\glfw.dir\RelWithDebInfo
   OBJECT_FILE_DIR = _deps\glfw-build\src\CMakeFiles\glfw.dir\RelWithDebInfo
-  TARGET_COMPILE_PDB = _deps\glfw-build\src\CMakeFiles\glfw.dir\RelWithDebInfo\glfw.pdb
-  TARGET_PDB = lib\RelWithDebInfo\glfw3.pdb
   TARGET_SUPPORT_DIR = _deps\glfw-build\src\CMakeFiles\glfw.dir
 
-build _deps\glfw-build\src\CMakeFiles\glfw.dir\RelWithDebInfo\platform.c.obj: C_COMPILER__glfw_unscanned_RelWithDebInfo C$:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build\_deps\glfw-src\src\platform.c || cmake_object_order_depends_target_glfw_RELWITHDEBINFO
+build _deps/glfw-build/src/CMakeFiles/glfw.dir/RelWithDebInfo/platform.c.obj: C_COMPILER__glfw_unscanned_RelWithDebInfo C$:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-src/src/platform.c || cmake_object_order_depends_target_glfw_RELWITHDEBINFO
   CONFIG = RelWithDebInfo
-  DEFINES = -DUNICODE -D_CRT_SECURE_NO_WARNINGS -D_GLFW_WIN32 -D_UNICODE -DCMAKE_INTDIR=\"RelWithDebInfo\"
-  FLAGS = /DWIN32 /D_WINDOWS /Zi /O2 /Ob1 /DNDEBUG -MD /W3
-  INCLUDES = -IC:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build\_deps\glfw-src\include -IC:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build\_deps\glfw-src\src -IC:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build\_deps\glfw-build\src
+  DEFINES = -DUNICODE -D_GLFW_WIN32 -D_UNICODE -DCMAKE_INTDIR=\"RelWithDebInfo\"
+  DEP_FILE = _deps\glfw-build\src\CMakeFiles\glfw.dir\RelWithDebInfo\platform.c.obj.d
+  FLAGS = -O2 -g -DNDEBUG -std=c99 -Wall
+  INCLUDES = -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-src/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-src/src -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-build/src
   OBJECT_DIR = _deps\glfw-build\src\CMakeFiles\glfw.dir\RelWithDebInfo
   OBJECT_FILE_DIR = _deps\glfw-build\src\CMakeFiles\glfw.dir\RelWithDebInfo
-  TARGET_COMPILE_PDB = _deps\glfw-build\src\CMakeFiles\glfw.dir\RelWithDebInfo\glfw.pdb
-  TARGET_PDB = lib\RelWithDebInfo\glfw3.pdb
   TARGET_SUPPORT_DIR = _deps\glfw-build\src\CMakeFiles\glfw.dir
 
-build _deps\glfw-build\src\CMakeFiles\glfw.dir\RelWithDebInfo\vulkan.c.obj: C_COMPILER__glfw_unscanned_RelWithDebInfo C$:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build\_deps\glfw-src\src\vulkan.c || cmake_object_order_depends_target_glfw_RELWITHDEBINFO
+build _deps/glfw-build/src/CMakeFiles/glfw.dir/RelWithDebInfo/vulkan.c.obj: C_COMPILER__glfw_unscanned_RelWithDebInfo C$:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-src/src/vulkan.c || cmake_object_order_depends_target_glfw_RELWITHDEBINFO
   CONFIG = RelWithDebInfo
-  DEFINES = -DUNICODE -D_CRT_SECURE_NO_WARNINGS -D_GLFW_WIN32 -D_UNICODE -DCMAKE_INTDIR=\"RelWithDebInfo\"
-  FLAGS = /DWIN32 /D_WINDOWS /Zi /O2 /Ob1 /DNDEBUG -MD /W3
-  INCLUDES = -IC:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build\_deps\glfw-src\include -IC:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build\_deps\glfw-src\src -IC:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build\_deps\glfw-build\src
+  DEFINES = -DUNICODE -D_GLFW_WIN32 -D_UNICODE -DCMAKE_INTDIR=\"RelWithDebInfo\"
+  DEP_FILE = _deps\glfw-build\src\CMakeFiles\glfw.dir\RelWithDebInfo\vulkan.c.obj.d
+  FLAGS = -O2 -g -DNDEBUG -std=c99 -Wall
+  INCLUDES = -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-src/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-src/src -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-build/src
   OBJECT_DIR = _deps\glfw-build\src\CMakeFiles\glfw.dir\RelWithDebInfo
   OBJECT_FILE_DIR = _deps\glfw-build\src\CMakeFiles\glfw.dir\RelWithDebInfo
-  TARGET_COMPILE_PDB = _deps\glfw-build\src\CMakeFiles\glfw.dir\RelWithDebInfo\glfw.pdb
-  TARGET_PDB = lib\RelWithDebInfo\glfw3.pdb
   TARGET_SUPPORT_DIR = _deps\glfw-build\src\CMakeFiles\glfw.dir
 
-build _deps\glfw-build\src\CMakeFiles\glfw.dir\RelWithDebInfo\window.c.obj: C_COMPILER__glfw_unscanned_RelWithDebInfo C$:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build\_deps\glfw-src\src\window.c || cmake_object_order_depends_target_glfw_RELWITHDEBINFO
+build _deps/glfw-build/src/CMakeFiles/glfw.dir/RelWithDebInfo/window.c.obj: C_COMPILER__glfw_unscanned_RelWithDebInfo C$:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-src/src/window.c || cmake_object_order_depends_target_glfw_RELWITHDEBINFO
   CONFIG = RelWithDebInfo
-  DEFINES = -DUNICODE -D_CRT_SECURE_NO_WARNINGS -D_GLFW_WIN32 -D_UNICODE -DCMAKE_INTDIR=\"RelWithDebInfo\"
-  FLAGS = /DWIN32 /D_WINDOWS /Zi /O2 /Ob1 /DNDEBUG -MD /W3
-  INCLUDES = -IC:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build\_deps\glfw-src\include -IC:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build\_deps\glfw-src\src -IC:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build\_deps\glfw-build\src
+  DEFINES = -DUNICODE -D_GLFW_WIN32 -D_UNICODE -DCMAKE_INTDIR=\"RelWithDebInfo\"
+  DEP_FILE = _deps\glfw-build\src\CMakeFiles\glfw.dir\RelWithDebInfo\window.c.obj.d
+  FLAGS = -O2 -g -DNDEBUG -std=c99 -Wall
+  INCLUDES = -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-src/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-src/src -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-build/src
   OBJECT_DIR = _deps\glfw-build\src\CMakeFiles\glfw.dir\RelWithDebInfo
   OBJECT_FILE_DIR = _deps\glfw-build\src\CMakeFiles\glfw.dir\RelWithDebInfo
-  TARGET_COMPILE_PDB = _deps\glfw-build\src\CMakeFiles\glfw.dir\RelWithDebInfo\glfw.pdb
-  TARGET_PDB = lib\RelWithDebInfo\glfw3.pdb
   TARGET_SUPPORT_DIR = _deps\glfw-build\src\CMakeFiles\glfw.dir
 
-build _deps\glfw-build\src\CMakeFiles\glfw.dir\RelWithDebInfo\egl_context.c.obj: C_COMPILER__glfw_unscanned_RelWithDebInfo C$:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build\_deps\glfw-src\src\egl_context.c || cmake_object_order_depends_target_glfw_RELWITHDEBINFO
+build _deps/glfw-build/src/CMakeFiles/glfw.dir/RelWithDebInfo/egl_context.c.obj: C_COMPILER__glfw_unscanned_RelWithDebInfo C$:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-src/src/egl_context.c || cmake_object_order_depends_target_glfw_RELWITHDEBINFO
   CONFIG = RelWithDebInfo
-  DEFINES = -DUNICODE -D_CRT_SECURE_NO_WARNINGS -D_GLFW_WIN32 -D_UNICODE -DCMAKE_INTDIR=\"RelWithDebInfo\"
-  FLAGS = /DWIN32 /D_WINDOWS /Zi /O2 /Ob1 /DNDEBUG -MD /W3
-  INCLUDES = -IC:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build\_deps\glfw-src\include -IC:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build\_deps\glfw-src\src -IC:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build\_deps\glfw-build\src
+  DEFINES = -DUNICODE -D_GLFW_WIN32 -D_UNICODE -DCMAKE_INTDIR=\"RelWithDebInfo\"
+  DEP_FILE = _deps\glfw-build\src\CMakeFiles\glfw.dir\RelWithDebInfo\egl_context.c.obj.d
+  FLAGS = -O2 -g -DNDEBUG -std=c99 -Wall
+  INCLUDES = -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-src/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-src/src -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-build/src
   OBJECT_DIR = _deps\glfw-build\src\CMakeFiles\glfw.dir\RelWithDebInfo
   OBJECT_FILE_DIR = _deps\glfw-build\src\CMakeFiles\glfw.dir\RelWithDebInfo
-  TARGET_COMPILE_PDB = _deps\glfw-build\src\CMakeFiles\glfw.dir\RelWithDebInfo\glfw.pdb
-  TARGET_PDB = lib\RelWithDebInfo\glfw3.pdb
   TARGET_SUPPORT_DIR = _deps\glfw-build\src\CMakeFiles\glfw.dir
 
-build _deps\glfw-build\src\CMakeFiles\glfw.dir\RelWithDebInfo\osmesa_context.c.obj: C_COMPILER__glfw_unscanned_RelWithDebInfo C$:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build\_deps\glfw-src\src\osmesa_context.c || cmake_object_order_depends_target_glfw_RELWITHDEBINFO
+build _deps/glfw-build/src/CMakeFiles/glfw.dir/RelWithDebInfo/osmesa_context.c.obj: C_COMPILER__glfw_unscanned_RelWithDebInfo C$:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-src/src/osmesa_context.c || cmake_object_order_depends_target_glfw_RELWITHDEBINFO
   CONFIG = RelWithDebInfo
-  DEFINES = -DUNICODE -D_CRT_SECURE_NO_WARNINGS -D_GLFW_WIN32 -D_UNICODE -DCMAKE_INTDIR=\"RelWithDebInfo\"
-  FLAGS = /DWIN32 /D_WINDOWS /Zi /O2 /Ob1 /DNDEBUG -MD /W3
-  INCLUDES = -IC:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build\_deps\glfw-src\include -IC:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build\_deps\glfw-src\src -IC:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build\_deps\glfw-build\src
+  DEFINES = -DUNICODE -D_GLFW_WIN32 -D_UNICODE -DCMAKE_INTDIR=\"RelWithDebInfo\"
+  DEP_FILE = _deps\glfw-build\src\CMakeFiles\glfw.dir\RelWithDebInfo\osmesa_context.c.obj.d
+  FLAGS = -O2 -g -DNDEBUG -std=c99 -Wall
+  INCLUDES = -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-src/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-src/src -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-build/src
   OBJECT_DIR = _deps\glfw-build\src\CMakeFiles\glfw.dir\RelWithDebInfo
   OBJECT_FILE_DIR = _deps\glfw-build\src\CMakeFiles\glfw.dir\RelWithDebInfo
-  TARGET_COMPILE_PDB = _deps\glfw-build\src\CMakeFiles\glfw.dir\RelWithDebInfo\glfw.pdb
-  TARGET_PDB = lib\RelWithDebInfo\glfw3.pdb
   TARGET_SUPPORT_DIR = _deps\glfw-build\src\CMakeFiles\glfw.dir
 
-build _deps\glfw-build\src\CMakeFiles\glfw.dir\RelWithDebInfo\null_init.c.obj: C_COMPILER__glfw_unscanned_RelWithDebInfo C$:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build\_deps\glfw-src\src\null_init.c || cmake_object_order_depends_target_glfw_RELWITHDEBINFO
+build _deps/glfw-build/src/CMakeFiles/glfw.dir/RelWithDebInfo/null_init.c.obj: C_COMPILER__glfw_unscanned_RelWithDebInfo C$:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-src/src/null_init.c || cmake_object_order_depends_target_glfw_RELWITHDEBINFO
   CONFIG = RelWithDebInfo
-  DEFINES = -DUNICODE -D_CRT_SECURE_NO_WARNINGS -D_GLFW_WIN32 -D_UNICODE -DCMAKE_INTDIR=\"RelWithDebInfo\"
-  FLAGS = /DWIN32 /D_WINDOWS /Zi /O2 /Ob1 /DNDEBUG -MD /W3
-  INCLUDES = -IC:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build\_deps\glfw-src\include -IC:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build\_deps\glfw-src\src -IC:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build\_deps\glfw-build\src
+  DEFINES = -DUNICODE -D_GLFW_WIN32 -D_UNICODE -DCMAKE_INTDIR=\"RelWithDebInfo\"
+  DEP_FILE = _deps\glfw-build\src\CMakeFiles\glfw.dir\RelWithDebInfo\null_init.c.obj.d
+  FLAGS = -O2 -g -DNDEBUG -std=c99 -Wall
+  INCLUDES = -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-src/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-src/src -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-build/src
   OBJECT_DIR = _deps\glfw-build\src\CMakeFiles\glfw.dir\RelWithDebInfo
   OBJECT_FILE_DIR = _deps\glfw-build\src\CMakeFiles\glfw.dir\RelWithDebInfo
-  TARGET_COMPILE_PDB = _deps\glfw-build\src\CMakeFiles\glfw.dir\RelWithDebInfo\glfw.pdb
-  TARGET_PDB = lib\RelWithDebInfo\glfw3.pdb
   TARGET_SUPPORT_DIR = _deps\glfw-build\src\CMakeFiles\glfw.dir
 
-build _deps\glfw-build\src\CMakeFiles\glfw.dir\RelWithDebInfo\null_monitor.c.obj: C_COMPILER__glfw_unscanned_RelWithDebInfo C$:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build\_deps\glfw-src\src\null_monitor.c || cmake_object_order_depends_target_glfw_RELWITHDEBINFO
+build _deps/glfw-build/src/CMakeFiles/glfw.dir/RelWithDebInfo/null_monitor.c.obj: C_COMPILER__glfw_unscanned_RelWithDebInfo C$:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-src/src/null_monitor.c || cmake_object_order_depends_target_glfw_RELWITHDEBINFO
   CONFIG = RelWithDebInfo
-  DEFINES = -DUNICODE -D_CRT_SECURE_NO_WARNINGS -D_GLFW_WIN32 -D_UNICODE -DCMAKE_INTDIR=\"RelWithDebInfo\"
-  FLAGS = /DWIN32 /D_WINDOWS /Zi /O2 /Ob1 /DNDEBUG -MD /W3
-  INCLUDES = -IC:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build\_deps\glfw-src\include -IC:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build\_deps\glfw-src\src -IC:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build\_deps\glfw-build\src
+  DEFINES = -DUNICODE -D_GLFW_WIN32 -D_UNICODE -DCMAKE_INTDIR=\"RelWithDebInfo\"
+  DEP_FILE = _deps\glfw-build\src\CMakeFiles\glfw.dir\RelWithDebInfo\null_monitor.c.obj.d
+  FLAGS = -O2 -g -DNDEBUG -std=c99 -Wall
+  INCLUDES = -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-src/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-src/src -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-build/src
   OBJECT_DIR = _deps\glfw-build\src\CMakeFiles\glfw.dir\RelWithDebInfo
   OBJECT_FILE_DIR = _deps\glfw-build\src\CMakeFiles\glfw.dir\RelWithDebInfo
-  TARGET_COMPILE_PDB = _deps\glfw-build\src\CMakeFiles\glfw.dir\RelWithDebInfo\glfw.pdb
-  TARGET_PDB = lib\RelWithDebInfo\glfw3.pdb
   TARGET_SUPPORT_DIR = _deps\glfw-build\src\CMakeFiles\glfw.dir
 
-build _deps\glfw-build\src\CMakeFiles\glfw.dir\RelWithDebInfo\null_window.c.obj: C_COMPILER__glfw_unscanned_RelWithDebInfo C$:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build\_deps\glfw-src\src\null_window.c || cmake_object_order_depends_target_glfw_RELWITHDEBINFO
+build _deps/glfw-build/src/CMakeFiles/glfw.dir/RelWithDebInfo/null_window.c.obj: C_COMPILER__glfw_unscanned_RelWithDebInfo C$:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-src/src/null_window.c || cmake_object_order_depends_target_glfw_RELWITHDEBINFO
   CONFIG = RelWithDebInfo
-  DEFINES = -DUNICODE -D_CRT_SECURE_NO_WARNINGS -D_GLFW_WIN32 -D_UNICODE -DCMAKE_INTDIR=\"RelWithDebInfo\"
-  FLAGS = /DWIN32 /D_WINDOWS /Zi /O2 /Ob1 /DNDEBUG -MD /W3
-  INCLUDES = -IC:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build\_deps\glfw-src\include -IC:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build\_deps\glfw-src\src -IC:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build\_deps\glfw-build\src
+  DEFINES = -DUNICODE -D_GLFW_WIN32 -D_UNICODE -DCMAKE_INTDIR=\"RelWithDebInfo\"
+  DEP_FILE = _deps\glfw-build\src\CMakeFiles\glfw.dir\RelWithDebInfo\null_window.c.obj.d
+  FLAGS = -O2 -g -DNDEBUG -std=c99 -Wall
+  INCLUDES = -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-src/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-src/src -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-build/src
   OBJECT_DIR = _deps\glfw-build\src\CMakeFiles\glfw.dir\RelWithDebInfo
   OBJECT_FILE_DIR = _deps\glfw-build\src\CMakeFiles\glfw.dir\RelWithDebInfo
-  TARGET_COMPILE_PDB = _deps\glfw-build\src\CMakeFiles\glfw.dir\RelWithDebInfo\glfw.pdb
-  TARGET_PDB = lib\RelWithDebInfo\glfw3.pdb
   TARGET_SUPPORT_DIR = _deps\glfw-build\src\CMakeFiles\glfw.dir
 
-build _deps\glfw-build\src\CMakeFiles\glfw.dir\RelWithDebInfo\null_joystick.c.obj: C_COMPILER__glfw_unscanned_RelWithDebInfo C$:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build\_deps\glfw-src\src\null_joystick.c || cmake_object_order_depends_target_glfw_RELWITHDEBINFO
+build _deps/glfw-build/src/CMakeFiles/glfw.dir/RelWithDebInfo/null_joystick.c.obj: C_COMPILER__glfw_unscanned_RelWithDebInfo C$:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-src/src/null_joystick.c || cmake_object_order_depends_target_glfw_RELWITHDEBINFO
   CONFIG = RelWithDebInfo
-  DEFINES = -DUNICODE -D_CRT_SECURE_NO_WARNINGS -D_GLFW_WIN32 -D_UNICODE -DCMAKE_INTDIR=\"RelWithDebInfo\"
-  FLAGS = /DWIN32 /D_WINDOWS /Zi /O2 /Ob1 /DNDEBUG -MD /W3
-  INCLUDES = -IC:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build\_deps\glfw-src\include -IC:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build\_deps\glfw-src\src -IC:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build\_deps\glfw-build\src
+  DEFINES = -DUNICODE -D_GLFW_WIN32 -D_UNICODE -DCMAKE_INTDIR=\"RelWithDebInfo\"
+  DEP_FILE = _deps\glfw-build\src\CMakeFiles\glfw.dir\RelWithDebInfo\null_joystick.c.obj.d
+  FLAGS = -O2 -g -DNDEBUG -std=c99 -Wall
+  INCLUDES = -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-src/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-src/src -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-build/src
   OBJECT_DIR = _deps\glfw-build\src\CMakeFiles\glfw.dir\RelWithDebInfo
   OBJECT_FILE_DIR = _deps\glfw-build\src\CMakeFiles\glfw.dir\RelWithDebInfo
-  TARGET_COMPILE_PDB = _deps\glfw-build\src\CMakeFiles\glfw.dir\RelWithDebInfo\glfw.pdb
-  TARGET_PDB = lib\RelWithDebInfo\glfw3.pdb
   TARGET_SUPPORT_DIR = _deps\glfw-build\src\CMakeFiles\glfw.dir
 
-build _deps\glfw-build\src\CMakeFiles\glfw.dir\RelWithDebInfo\win32_module.c.obj: C_COMPILER__glfw_unscanned_RelWithDebInfo C$:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build\_deps\glfw-src\src\win32_module.c || cmake_object_order_depends_target_glfw_RELWITHDEBINFO
+build _deps/glfw-build/src/CMakeFiles/glfw.dir/RelWithDebInfo/win32_module.c.obj: C_COMPILER__glfw_unscanned_RelWithDebInfo C$:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-src/src/win32_module.c || cmake_object_order_depends_target_glfw_RELWITHDEBINFO
   CONFIG = RelWithDebInfo
-  DEFINES = -DUNICODE -D_CRT_SECURE_NO_WARNINGS -D_GLFW_WIN32 -D_UNICODE -DCMAKE_INTDIR=\"RelWithDebInfo\"
-  FLAGS = /DWIN32 /D_WINDOWS /Zi /O2 /Ob1 /DNDEBUG -MD /W3
-  INCLUDES = -IC:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build\_deps\glfw-src\include -IC:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build\_deps\glfw-src\src -IC:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build\_deps\glfw-build\src
+  DEFINES = -DUNICODE -D_GLFW_WIN32 -D_UNICODE -DCMAKE_INTDIR=\"RelWithDebInfo\"
+  DEP_FILE = _deps\glfw-build\src\CMakeFiles\glfw.dir\RelWithDebInfo\win32_module.c.obj.d
+  FLAGS = -O2 -g -DNDEBUG -std=c99 -Wall
+  INCLUDES = -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-src/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-src/src -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-build/src
   OBJECT_DIR = _deps\glfw-build\src\CMakeFiles\glfw.dir\RelWithDebInfo
   OBJECT_FILE_DIR = _deps\glfw-build\src\CMakeFiles\glfw.dir\RelWithDebInfo
-  TARGET_COMPILE_PDB = _deps\glfw-build\src\CMakeFiles\glfw.dir\RelWithDebInfo\glfw.pdb
-  TARGET_PDB = lib\RelWithDebInfo\glfw3.pdb
   TARGET_SUPPORT_DIR = _deps\glfw-build\src\CMakeFiles\glfw.dir
 
-build _deps\glfw-build\src\CMakeFiles\glfw.dir\RelWithDebInfo\win32_time.c.obj: C_COMPILER__glfw_unscanned_RelWithDebInfo C$:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build\_deps\glfw-src\src\win32_time.c || cmake_object_order_depends_target_glfw_RELWITHDEBINFO
+build _deps/glfw-build/src/CMakeFiles/glfw.dir/RelWithDebInfo/win32_time.c.obj: C_COMPILER__glfw_unscanned_RelWithDebInfo C$:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-src/src/win32_time.c || cmake_object_order_depends_target_glfw_RELWITHDEBINFO
   CONFIG = RelWithDebInfo
-  DEFINES = -DUNICODE -D_CRT_SECURE_NO_WARNINGS -D_GLFW_WIN32 -D_UNICODE -DCMAKE_INTDIR=\"RelWithDebInfo\"
-  FLAGS = /DWIN32 /D_WINDOWS /Zi /O2 /Ob1 /DNDEBUG -MD /W3
-  INCLUDES = -IC:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build\_deps\glfw-src\include -IC:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build\_deps\glfw-src\src -IC:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build\_deps\glfw-build\src
+  DEFINES = -DUNICODE -D_GLFW_WIN32 -D_UNICODE -DCMAKE_INTDIR=\"RelWithDebInfo\"
+  DEP_FILE = _deps\glfw-build\src\CMakeFiles\glfw.dir\RelWithDebInfo\win32_time.c.obj.d
+  FLAGS = -O2 -g -DNDEBUG -std=c99 -Wall
+  INCLUDES = -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-src/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-src/src -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-build/src
   OBJECT_DIR = _deps\glfw-build\src\CMakeFiles\glfw.dir\RelWithDebInfo
   OBJECT_FILE_DIR = _deps\glfw-build\src\CMakeFiles\glfw.dir\RelWithDebInfo
-  TARGET_COMPILE_PDB = _deps\glfw-build\src\CMakeFiles\glfw.dir\RelWithDebInfo\glfw.pdb
-  TARGET_PDB = lib\RelWithDebInfo\glfw3.pdb
   TARGET_SUPPORT_DIR = _deps\glfw-build\src\CMakeFiles\glfw.dir
 
-build _deps\glfw-build\src\CMakeFiles\glfw.dir\RelWithDebInfo\win32_thread.c.obj: C_COMPILER__glfw_unscanned_RelWithDebInfo C$:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build\_deps\glfw-src\src\win32_thread.c || cmake_object_order_depends_target_glfw_RELWITHDEBINFO
+build _deps/glfw-build/src/CMakeFiles/glfw.dir/RelWithDebInfo/win32_thread.c.obj: C_COMPILER__glfw_unscanned_RelWithDebInfo C$:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-src/src/win32_thread.c || cmake_object_order_depends_target_glfw_RELWITHDEBINFO
   CONFIG = RelWithDebInfo
-  DEFINES = -DUNICODE -D_CRT_SECURE_NO_WARNINGS -D_GLFW_WIN32 -D_UNICODE -DCMAKE_INTDIR=\"RelWithDebInfo\"
-  FLAGS = /DWIN32 /D_WINDOWS /Zi /O2 /Ob1 /DNDEBUG -MD /W3
-  INCLUDES = -IC:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build\_deps\glfw-src\include -IC:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build\_deps\glfw-src\src -IC:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build\_deps\glfw-build\src
+  DEFINES = -DUNICODE -D_GLFW_WIN32 -D_UNICODE -DCMAKE_INTDIR=\"RelWithDebInfo\"
+  DEP_FILE = _deps\glfw-build\src\CMakeFiles\glfw.dir\RelWithDebInfo\win32_thread.c.obj.d
+  FLAGS = -O2 -g -DNDEBUG -std=c99 -Wall
+  INCLUDES = -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-src/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-src/src -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-build/src
   OBJECT_DIR = _deps\glfw-build\src\CMakeFiles\glfw.dir\RelWithDebInfo
   OBJECT_FILE_DIR = _deps\glfw-build\src\CMakeFiles\glfw.dir\RelWithDebInfo
-  TARGET_COMPILE_PDB = _deps\glfw-build\src\CMakeFiles\glfw.dir\RelWithDebInfo\glfw.pdb
-  TARGET_PDB = lib\RelWithDebInfo\glfw3.pdb
   TARGET_SUPPORT_DIR = _deps\glfw-build\src\CMakeFiles\glfw.dir
 
-build _deps\glfw-build\src\CMakeFiles\glfw.dir\RelWithDebInfo\win32_init.c.obj: C_COMPILER__glfw_unscanned_RelWithDebInfo C$:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build\_deps\glfw-src\src\win32_init.c || cmake_object_order_depends_target_glfw_RELWITHDEBINFO
+build _deps/glfw-build/src/CMakeFiles/glfw.dir/RelWithDebInfo/win32_init.c.obj: C_COMPILER__glfw_unscanned_RelWithDebInfo C$:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-src/src/win32_init.c || cmake_object_order_depends_target_glfw_RELWITHDEBINFO
   CONFIG = RelWithDebInfo
-  DEFINES = -DUNICODE -D_CRT_SECURE_NO_WARNINGS -D_GLFW_WIN32 -D_UNICODE -DCMAKE_INTDIR=\"RelWithDebInfo\"
-  FLAGS = /DWIN32 /D_WINDOWS /Zi /O2 /Ob1 /DNDEBUG -MD /W3
-  INCLUDES = -IC:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build\_deps\glfw-src\include -IC:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build\_deps\glfw-src\src -IC:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build\_deps\glfw-build\src
+  DEFINES = -DUNICODE -D_GLFW_WIN32 -D_UNICODE -DCMAKE_INTDIR=\"RelWithDebInfo\"
+  DEP_FILE = _deps\glfw-build\src\CMakeFiles\glfw.dir\RelWithDebInfo\win32_init.c.obj.d
+  FLAGS = -O2 -g -DNDEBUG -std=c99 -Wall
+  INCLUDES = -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-src/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-src/src -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-build/src
   OBJECT_DIR = _deps\glfw-build\src\CMakeFiles\glfw.dir\RelWithDebInfo
   OBJECT_FILE_DIR = _deps\glfw-build\src\CMakeFiles\glfw.dir\RelWithDebInfo
-  TARGET_COMPILE_PDB = _deps\glfw-build\src\CMakeFiles\glfw.dir\RelWithDebInfo\glfw.pdb
-  TARGET_PDB = lib\RelWithDebInfo\glfw3.pdb
   TARGET_SUPPORT_DIR = _deps\glfw-build\src\CMakeFiles\glfw.dir
 
-build _deps\glfw-build\src\CMakeFiles\glfw.dir\RelWithDebInfo\win32_joystick.c.obj: C_COMPILER__glfw_unscanned_RelWithDebInfo C$:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build\_deps\glfw-src\src\win32_joystick.c || cmake_object_order_depends_target_glfw_RELWITHDEBINFO
+build _deps/glfw-build/src/CMakeFiles/glfw.dir/RelWithDebInfo/win32_joystick.c.obj: C_COMPILER__glfw_unscanned_RelWithDebInfo C$:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-src/src/win32_joystick.c || cmake_object_order_depends_target_glfw_RELWITHDEBINFO
   CONFIG = RelWithDebInfo
-  DEFINES = -DUNICODE -D_CRT_SECURE_NO_WARNINGS -D_GLFW_WIN32 -D_UNICODE -DCMAKE_INTDIR=\"RelWithDebInfo\"
-  FLAGS = /DWIN32 /D_WINDOWS /Zi /O2 /Ob1 /DNDEBUG -MD /W3
-  INCLUDES = -IC:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build\_deps\glfw-src\include -IC:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build\_deps\glfw-src\src -IC:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build\_deps\glfw-build\src
+  DEFINES = -DUNICODE -D_GLFW_WIN32 -D_UNICODE -DCMAKE_INTDIR=\"RelWithDebInfo\"
+  DEP_FILE = _deps\glfw-build\src\CMakeFiles\glfw.dir\RelWithDebInfo\win32_joystick.c.obj.d
+  FLAGS = -O2 -g -DNDEBUG -std=c99 -Wall
+  INCLUDES = -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-src/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-src/src -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-build/src
   OBJECT_DIR = _deps\glfw-build\src\CMakeFiles\glfw.dir\RelWithDebInfo
   OBJECT_FILE_DIR = _deps\glfw-build\src\CMakeFiles\glfw.dir\RelWithDebInfo
-  TARGET_COMPILE_PDB = _deps\glfw-build\src\CMakeFiles\glfw.dir\RelWithDebInfo\glfw.pdb
-  TARGET_PDB = lib\RelWithDebInfo\glfw3.pdb
   TARGET_SUPPORT_DIR = _deps\glfw-build\src\CMakeFiles\glfw.dir
 
-build _deps\glfw-build\src\CMakeFiles\glfw.dir\RelWithDebInfo\win32_monitor.c.obj: C_COMPILER__glfw_unscanned_RelWithDebInfo C$:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build\_deps\glfw-src\src\win32_monitor.c || cmake_object_order_depends_target_glfw_RELWITHDEBINFO
+build _deps/glfw-build/src/CMakeFiles/glfw.dir/RelWithDebInfo/win32_monitor.c.obj: C_COMPILER__glfw_unscanned_RelWithDebInfo C$:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-src/src/win32_monitor.c || cmake_object_order_depends_target_glfw_RELWITHDEBINFO
   CONFIG = RelWithDebInfo
-  DEFINES = -DUNICODE -D_CRT_SECURE_NO_WARNINGS -D_GLFW_WIN32 -D_UNICODE -DCMAKE_INTDIR=\"RelWithDebInfo\"
-  FLAGS = /DWIN32 /D_WINDOWS /Zi /O2 /Ob1 /DNDEBUG -MD /W3
-  INCLUDES = -IC:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build\_deps\glfw-src\include -IC:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build\_deps\glfw-src\src -IC:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build\_deps\glfw-build\src
+  DEFINES = -DUNICODE -D_GLFW_WIN32 -D_UNICODE -DCMAKE_INTDIR=\"RelWithDebInfo\"
+  DEP_FILE = _deps\glfw-build\src\CMakeFiles\glfw.dir\RelWithDebInfo\win32_monitor.c.obj.d
+  FLAGS = -O2 -g -DNDEBUG -std=c99 -Wall
+  INCLUDES = -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-src/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-src/src -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-build/src
   OBJECT_DIR = _deps\glfw-build\src\CMakeFiles\glfw.dir\RelWithDebInfo
   OBJECT_FILE_DIR = _deps\glfw-build\src\CMakeFiles\glfw.dir\RelWithDebInfo
-  TARGET_COMPILE_PDB = _deps\glfw-build\src\CMakeFiles\glfw.dir\RelWithDebInfo\glfw.pdb
-  TARGET_PDB = lib\RelWithDebInfo\glfw3.pdb
   TARGET_SUPPORT_DIR = _deps\glfw-build\src\CMakeFiles\glfw.dir
 
-build _deps\glfw-build\src\CMakeFiles\glfw.dir\RelWithDebInfo\win32_window.c.obj: C_COMPILER__glfw_unscanned_RelWithDebInfo C$:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build\_deps\glfw-src\src\win32_window.c || cmake_object_order_depends_target_glfw_RELWITHDEBINFO
+build _deps/glfw-build/src/CMakeFiles/glfw.dir/RelWithDebInfo/win32_window.c.obj: C_COMPILER__glfw_unscanned_RelWithDebInfo C$:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-src/src/win32_window.c || cmake_object_order_depends_target_glfw_RELWITHDEBINFO
   CONFIG = RelWithDebInfo
-  DEFINES = -DUNICODE -D_CRT_SECURE_NO_WARNINGS -D_GLFW_WIN32 -D_UNICODE -DCMAKE_INTDIR=\"RelWithDebInfo\"
-  FLAGS = /DWIN32 /D_WINDOWS /Zi /O2 /Ob1 /DNDEBUG -MD /W3
-  INCLUDES = -IC:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build\_deps\glfw-src\include -IC:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build\_deps\glfw-src\src -IC:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build\_deps\glfw-build\src
+  DEFINES = -DUNICODE -D_GLFW_WIN32 -D_UNICODE -DCMAKE_INTDIR=\"RelWithDebInfo\"
+  DEP_FILE = _deps\glfw-build\src\CMakeFiles\glfw.dir\RelWithDebInfo\win32_window.c.obj.d
+  FLAGS = -O2 -g -DNDEBUG -std=c99 -Wall
+  INCLUDES = -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-src/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-src/src -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-build/src
   OBJECT_DIR = _deps\glfw-build\src\CMakeFiles\glfw.dir\RelWithDebInfo
   OBJECT_FILE_DIR = _deps\glfw-build\src\CMakeFiles\glfw.dir\RelWithDebInfo
-  TARGET_COMPILE_PDB = _deps\glfw-build\src\CMakeFiles\glfw.dir\RelWithDebInfo\glfw.pdb
-  TARGET_PDB = lib\RelWithDebInfo\glfw3.pdb
   TARGET_SUPPORT_DIR = _deps\glfw-build\src\CMakeFiles\glfw.dir
 
-build _deps\glfw-build\src\CMakeFiles\glfw.dir\RelWithDebInfo\wgl_context.c.obj: C_COMPILER__glfw_unscanned_RelWithDebInfo C$:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build\_deps\glfw-src\src\wgl_context.c || cmake_object_order_depends_target_glfw_RELWITHDEBINFO
+build _deps/glfw-build/src/CMakeFiles/glfw.dir/RelWithDebInfo/wgl_context.c.obj: C_COMPILER__glfw_unscanned_RelWithDebInfo C$:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-src/src/wgl_context.c || cmake_object_order_depends_target_glfw_RELWITHDEBINFO
   CONFIG = RelWithDebInfo
-  DEFINES = -DUNICODE -D_CRT_SECURE_NO_WARNINGS -D_GLFW_WIN32 -D_UNICODE -DCMAKE_INTDIR=\"RelWithDebInfo\"
-  FLAGS = /DWIN32 /D_WINDOWS /Zi /O2 /Ob1 /DNDEBUG -MD /W3
-  INCLUDES = -IC:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build\_deps\glfw-src\include -IC:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build\_deps\glfw-src\src -IC:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build\_deps\glfw-build\src
+  DEFINES = -DUNICODE -D_GLFW_WIN32 -D_UNICODE -DCMAKE_INTDIR=\"RelWithDebInfo\"
+  DEP_FILE = _deps\glfw-build\src\CMakeFiles\glfw.dir\RelWithDebInfo\wgl_context.c.obj.d
+  FLAGS = -O2 -g -DNDEBUG -std=c99 -Wall
+  INCLUDES = -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-src/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-src/src -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-build/src
   OBJECT_DIR = _deps\glfw-build\src\CMakeFiles\glfw.dir\RelWithDebInfo
   OBJECT_FILE_DIR = _deps\glfw-build\src\CMakeFiles\glfw.dir\RelWithDebInfo
-  TARGET_COMPILE_PDB = _deps\glfw-build\src\CMakeFiles\glfw.dir\RelWithDebInfo\glfw.pdb
-  TARGET_PDB = lib\RelWithDebInfo\glfw3.pdb
   TARGET_SUPPORT_DIR = _deps\glfw-build\src\CMakeFiles\glfw.dir
 
 
@@ -411,31 +401,29 @@ build _deps\glfw-build\src\CMakeFiles\glfw.dir\RelWithDebInfo\wgl_context.c.obj:
 
 
 #############################################
-# Link the static library lib\RelWithDebInfo\glfw3.lib
+# Link the static library lib\RelWithDebInfo\libglfw3.a
 
-build lib\RelWithDebInfo\glfw3.lib: C_STATIC_LIBRARY_LINKER__glfw_RelWithDebInfo _deps\glfw-build\src\CMakeFiles\glfw.dir\RelWithDebInfo\context.c.obj _deps\glfw-build\src\CMakeFiles\glfw.dir\RelWithDebInfo\init.c.obj _deps\glfw-build\src\CMakeFiles\glfw.dir\RelWithDebInfo\input.c.obj _deps\glfw-build\src\CMakeFiles\glfw.dir\RelWithDebInfo\monitor.c.obj _deps\glfw-build\src\CMakeFiles\glfw.dir\RelWithDebInfo\platform.c.obj _deps\glfw-build\src\CMakeFiles\glfw.dir\RelWithDebInfo\vulkan.c.obj _deps\glfw-build\src\CMakeFiles\glfw.dir\RelWithDebInfo\window.c.obj _deps\glfw-build\src\CMakeFiles\glfw.dir\RelWithDebInfo\egl_context.c.obj _deps\glfw-build\src\CMakeFiles\glfw.dir\RelWithDebInfo\osmesa_context.c.obj _deps\glfw-build\src\CMakeFiles\glfw.dir\RelWithDebInfo\null_init.c.obj _deps\glfw-build\src\CMakeFiles\glfw.dir\RelWithDebInfo\null_monitor.c.obj _deps\glfw-build\src\CMakeFiles\glfw.dir\RelWithDebInfo\null_window.c.obj _deps\glfw-build\src\CMakeFiles\glfw.dir\RelWithDebInfo\null_joystick.c.obj _deps\glfw-build\src\CMakeFiles\glfw.dir\RelWithDebInfo\win32_module.c.obj _deps\glfw-build\src\CMakeFiles\glfw.dir\RelWithDebInfo\win32_time.c.obj _deps\glfw-build\src\CMakeFiles\glfw.dir\RelWithDebInfo\win32_thread.c.obj _deps\glfw-build\src\CMakeFiles\glfw.dir\RelWithDebInfo\win32_init.c.obj _deps\glfw-build\src\CMakeFiles\glfw.dir\RelWithDebInfo\win32_joystick.c.obj _deps\glfw-build\src\CMakeFiles\glfw.dir\RelWithDebInfo\win32_monitor.c.obj _deps\glfw-build\src\CMakeFiles\glfw.dir\RelWithDebInfo\win32_window.c.obj _deps\glfw-build\src\CMakeFiles\glfw.dir\RelWithDebInfo\wgl_context.c.obj
+build lib/RelWithDebInfo/libglfw3.a: C_STATIC_LIBRARY_LINKER__glfw_RelWithDebInfo _deps/glfw-build/src/CMakeFiles/glfw.dir/RelWithDebInfo/context.c.obj _deps/glfw-build/src/CMakeFiles/glfw.dir/RelWithDebInfo/init.c.obj _deps/glfw-build/src/CMakeFiles/glfw.dir/RelWithDebInfo/input.c.obj _deps/glfw-build/src/CMakeFiles/glfw.dir/RelWithDebInfo/monitor.c.obj _deps/glfw-build/src/CMakeFiles/glfw.dir/RelWithDebInfo/platform.c.obj _deps/glfw-build/src/CMakeFiles/glfw.dir/RelWithDebInfo/vulkan.c.obj _deps/glfw-build/src/CMakeFiles/glfw.dir/RelWithDebInfo/window.c.obj _deps/glfw-build/src/CMakeFiles/glfw.dir/RelWithDebInfo/egl_context.c.obj _deps/glfw-build/src/CMakeFiles/glfw.dir/RelWithDebInfo/osmesa_context.c.obj _deps/glfw-build/src/CMakeFiles/glfw.dir/RelWithDebInfo/null_init.c.obj _deps/glfw-build/src/CMakeFiles/glfw.dir/RelWithDebInfo/null_monitor.c.obj _deps/glfw-build/src/CMakeFiles/glfw.dir/RelWithDebInfo/null_window.c.obj _deps/glfw-build/src/CMakeFiles/glfw.dir/RelWithDebInfo/null_joystick.c.obj _deps/glfw-build/src/CMakeFiles/glfw.dir/RelWithDebInfo/win32_module.c.obj _deps/glfw-build/src/CMakeFiles/glfw.dir/RelWithDebInfo/win32_time.c.obj _deps/glfw-build/src/CMakeFiles/glfw.dir/RelWithDebInfo/win32_thread.c.obj _deps/glfw-build/src/CMakeFiles/glfw.dir/RelWithDebInfo/win32_init.c.obj _deps/glfw-build/src/CMakeFiles/glfw.dir/RelWithDebInfo/win32_joystick.c.obj _deps/glfw-build/src/CMakeFiles/glfw.dir/RelWithDebInfo/win32_monitor.c.obj _deps/glfw-build/src/CMakeFiles/glfw.dir/RelWithDebInfo/win32_window.c.obj _deps/glfw-build/src/CMakeFiles/glfw.dir/RelWithDebInfo/wgl_context.c.obj
   CONFIG = RelWithDebInfo
-  LANGUAGE_COMPILE_FLAGS = /DWIN32 /D_WINDOWS /Zi /O2 /Ob1 /DNDEBUG -MD
-  LINK_FLAGS = /machine:x64
+  LANGUAGE_COMPILE_FLAGS = -O2 -g -DNDEBUG
   OBJECT_DIR = _deps\glfw-build\src\CMakeFiles\glfw.dir\RelWithDebInfo
   POST_BUILD = cd .
   PRE_LINK = cd .
-  TARGET_COMPILE_PDB = _deps\glfw-build\src\CMakeFiles\glfw.dir\RelWithDebInfo\glfw.pdb
-  TARGET_FILE = lib\RelWithDebInfo\glfw3.lib
-  TARGET_PDB = lib\RelWithDebInfo\glfw3.pdb
+  TARGET_FILE = lib\RelWithDebInfo\libglfw3.a
+  TARGET_PDB = glfw3.a.dbg
   TARGET_SUPPORT_DIR = _deps\glfw-build\src\CMakeFiles\glfw.dir
 
 
 #############################################
 # Utility command for update_mappings
 
-build _deps\glfw-build\src\update_mappings$:RelWithDebInfo: phony _deps\glfw-build\src\CMakeFiles\update_mappings-RelWithDebInfo
+build _deps/glfw-build/src/update_mappings$:RelWithDebInfo: phony _deps/glfw-build/src/CMakeFiles/update_mappings-RelWithDebInfo
 
 
 #############################################
 # Custom command for _deps\glfw-build\src\CMakeFiles\update_mappings-RelWithDebInfo
 
-build _deps\glfw-build\src\CMakeFiles\update_mappings-RelWithDebInfo | ${cmake_ninja_workdir}_deps\glfw-build\src\CMakeFiles\update_mappings-RelWithDebInfo: CUSTOM_COMMAND
+build _deps/glfw-build/src/CMakeFiles/update_mappings-RelWithDebInfo | ${cmake_ninja_workdir}_deps/glfw-build/src/CMakeFiles/update_mappings-RelWithDebInfo: CUSTOM_COMMAND
   COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build\_deps\glfw-src\src && "C:\Program Files\CMake\bin\cmake.exe" -P C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-src/CMake/GenerateMappings.cmake mappings.h.in mappings.h"
   DESC = Updating gamepad mappings from upstream repository
 
@@ -443,56 +431,6 @@ build _deps\glfw-build\src\CMakeFiles\update_mappings-RelWithDebInfo | ${cmake_n
 # Write statements declared in CMakeLists.txt:
 # C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-src/CMakeLists.txt
 # =============================================================================
-
-# =============================================================================
-# Write statements declared in CMakeLists.txt:
-# C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/CMakeLists.txt
-# =============================================================================
-
-# =============================================================================
-# Write statements declared in CMakeLists.txt:
-# C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glm-src/CMakeLists.txt
-# =============================================================================
-
-# =============================================================================
-# Object build statements for STATIC_LIBRARY target glm
-
-
-#############################################
-# Order-only phony target for glm
-
-build cmake_object_order_depends_target_glm_RELWITHDEBINFO: phony || .
-
-build _deps\glm-build\glm\CMakeFiles\glm.dir\RelWithDebInfo\detail\glm.cpp.obj: CXX_COMPILER__glm_unscanned_RelWithDebInfo C$:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build\_deps\glm-src\glm\detail\glm.cpp || cmake_object_order_depends_target_glm_RELWITHDEBINFO
-  CONFIG = RelWithDebInfo
-  DEFINES = -DCMAKE_INTDIR=\"RelWithDebInfo\"
-  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /O2 /Ob1 /DNDEBUG -std:c++17 -MD /Za /fp:precise
-  INCLUDES = -IC:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build\_deps\glm-src
-  OBJECT_DIR = _deps\glm-build\glm\CMakeFiles\glm.dir\RelWithDebInfo
-  OBJECT_FILE_DIR = _deps\glm-build\glm\CMakeFiles\glm.dir\RelWithDebInfo\detail
-  TARGET_COMPILE_PDB = _deps\glm-build\glm\CMakeFiles\glm.dir\RelWithDebInfo\glm.pdb
-  TARGET_PDB = lib\RelWithDebInfo\glm.pdb
-  TARGET_SUPPORT_DIR = _deps\glm-build\glm\CMakeFiles\glm.dir
-
-
-# =============================================================================
-# Link build statements for STATIC_LIBRARY target glm
-
-
-#############################################
-# Link the static library lib\RelWithDebInfo\glm.lib
-
-build lib\RelWithDebInfo\glm.lib: CXX_STATIC_LIBRARY_LINKER__glm_RelWithDebInfo _deps\glm-build\glm\CMakeFiles\glm.dir\RelWithDebInfo\detail\glm.cpp.obj
-  CONFIG = RelWithDebInfo
-  LANGUAGE_COMPILE_FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /O2 /Ob1 /DNDEBUG -MD
-  LINK_FLAGS = /machine:x64
-  OBJECT_DIR = _deps\glm-build\glm\CMakeFiles\glm.dir\RelWithDebInfo
-  POST_BUILD = cd .
-  PRE_LINK = cd .
-  TARGET_COMPILE_PDB = _deps\glm-build\glm\CMakeFiles\glm.dir\RelWithDebInfo\glm.pdb
-  TARGET_FILE = lib\RelWithDebInfo\glm.lib
-  TARGET_PDB = lib\RelWithDebInfo\glm.pdb
-  TARGET_SUPPORT_DIR = _deps\glm-build\glm\CMakeFiles\glm.dir
 
 # =============================================================================
 # Write statements declared in CMakeLists.txt:
@@ -508,15 +446,14 @@ build lib\RelWithDebInfo\glm.lib: CXX_STATIC_LIBRARY_LINKER__glm_RelWithDebInfo 
 
 build cmake_object_order_depends_target_glad_RELWITHDEBINFO: phony || .
 
-build _deps\glad-build\CMakeFiles\glad.dir\RelWithDebInfo\src\gl.c.obj: C_COMPILER__glad_unscanned_RelWithDebInfo C$:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build\_deps\glad-src\generated\src\gl.c || cmake_object_order_depends_target_glad_RELWITHDEBINFO
+build _deps/glad-build/CMakeFiles/glad.dir/RelWithDebInfo/src/gl.c.obj: C_COMPILER__glad_unscanned_RelWithDebInfo C$:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glad-src/generated/src/gl.c || cmake_object_order_depends_target_glad_RELWITHDEBINFO
   CONFIG = RelWithDebInfo
   DEFINES = -DCMAKE_INTDIR=\"RelWithDebInfo\"
-  FLAGS = /DWIN32 /D_WINDOWS /Zi /O2 /Ob1 /DNDEBUG -std:c11 -MD
-  INCLUDES = -IC:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build\_deps\glad-src\generated\include
+  DEP_FILE = _deps\glad-build\CMakeFiles\glad.dir\RelWithDebInfo\src\gl.c.obj.d
+  FLAGS = -O2 -g -DNDEBUG -std=c17
+  INCLUDES = -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glad-src/generated/include
   OBJECT_DIR = _deps\glad-build\CMakeFiles\glad.dir\RelWithDebInfo
   OBJECT_FILE_DIR = _deps\glad-build\CMakeFiles\glad.dir\RelWithDebInfo\src
-  TARGET_COMPILE_PDB = _deps\glad-build\CMakeFiles\glad.dir\RelWithDebInfo\glad.pdb
-  TARGET_PDB = lib\RelWithDebInfo\glad.pdb
   TARGET_SUPPORT_DIR = _deps\glad-build\CMakeFiles\glad.dir
 
 
@@ -525,81 +462,63 @@ build _deps\glad-build\CMakeFiles\glad.dir\RelWithDebInfo\src\gl.c.obj: C_COMPIL
 
 
 #############################################
-# Link the static library lib\RelWithDebInfo\glad.lib
+# Link the static library lib\RelWithDebInfo\libglad.a
 
-build lib\RelWithDebInfo\glad.lib: C_STATIC_LIBRARY_LINKER__glad_RelWithDebInfo _deps\glad-build\CMakeFiles\glad.dir\RelWithDebInfo\src\gl.c.obj
+build lib/RelWithDebInfo/libglad.a: C_STATIC_LIBRARY_LINKER__glad_RelWithDebInfo _deps/glad-build/CMakeFiles/glad.dir/RelWithDebInfo/src/gl.c.obj
   CONFIG = RelWithDebInfo
-  LANGUAGE_COMPILE_FLAGS = /DWIN32 /D_WINDOWS /Zi /O2 /Ob1 /DNDEBUG -MD
-  LINK_FLAGS = /machine:x64
+  LANGUAGE_COMPILE_FLAGS = -O2 -g -DNDEBUG
   OBJECT_DIR = _deps\glad-build\CMakeFiles\glad.dir\RelWithDebInfo
   POST_BUILD = cd .
   PRE_LINK = cd .
-  TARGET_COMPILE_PDB = _deps\glad-build\CMakeFiles\glad.dir\RelWithDebInfo\glad.pdb
-  TARGET_FILE = lib\RelWithDebInfo\glad.lib
-  TARGET_PDB = lib\RelWithDebInfo\glad.pdb
+  TARGET_FILE = lib\RelWithDebInfo\libglad.a
+  TARGET_PDB = glad.a.dbg
   TARGET_SUPPORT_DIR = _deps\glad-build\CMakeFiles\glad.dir
 
-build ap2.exe$:RelWithDebInfo: phony bin\RelWithDebInfo\ap2.exe
+build ap2.exe$:RelWithDebInfo: phony bin/RelWithDebInfo/ap2.exe
 
-build ap2$:RelWithDebInfo: phony bin\RelWithDebInfo\ap2.exe
+build ap2$:RelWithDebInfo: phony bin/RelWithDebInfo/ap2.exe
 
-build glad.lib$:RelWithDebInfo: phony lib\RelWithDebInfo\glad.lib
+build glad$:RelWithDebInfo: phony lib/RelWithDebInfo/libglad.a
 
-build glad$:RelWithDebInfo: phony lib\RelWithDebInfo\glad.lib
+build glfw$:RelWithDebInfo: phony lib/RelWithDebInfo/libglfw3.a
 
-build glfw3.lib$:RelWithDebInfo: phony lib\RelWithDebInfo\glfw3.lib
+build libglad.a$:RelWithDebInfo: phony lib/RelWithDebInfo/libglad.a
 
-build glfw$:RelWithDebInfo: phony lib\RelWithDebInfo\glfw3.lib
+build libglfw3.a$:RelWithDebInfo: phony lib/RelWithDebInfo/libglfw3.a
 
-build glm.lib$:RelWithDebInfo: phony lib\RelWithDebInfo\glm.lib
+build uninstall$:RelWithDebInfo: phony _deps/glfw-build/uninstall$:RelWithDebInfo
 
-build glm$:RelWithDebInfo: phony lib\RelWithDebInfo\glm.lib
-
-build uninstall$:RelWithDebInfo: phony _deps\glfw-build\uninstall$:RelWithDebInfo
-
-build update_mappings$:RelWithDebInfo: phony _deps\glfw-build\src\update_mappings$:RelWithDebInfo
+build update_mappings$:RelWithDebInfo: phony _deps/glfw-build/src/update_mappings$:RelWithDebInfo
 
 
 #############################################
 # Folder: C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build
 
-build all$:RelWithDebInfo: phony bin\RelWithDebInfo\ap2.exe _deps\glfw-build\all$:RelWithDebInfo _deps\glm-build\all$:RelWithDebInfo _deps\glad-build\all$:RelWithDebInfo
+build all$:RelWithDebInfo: phony bin/RelWithDebInfo/ap2.exe _deps/glfw-build/all$:RelWithDebInfo _deps/glad-build/all$:RelWithDebInfo
 
 
 #############################################
 # Folder: C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glad-build
 
-build _deps\glad-build\all$:RelWithDebInfo: phony lib\RelWithDebInfo\glad.lib
+build _deps/glad-build/all$:RelWithDebInfo: phony lib/RelWithDebInfo/libglad.a
 
 
 #############################################
 # Folder: C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-build
 
-build _deps\glfw-build\all$:RelWithDebInfo: phony _deps\glfw-build\src\all$:RelWithDebInfo _deps\glfw-build\docs\all$:RelWithDebInfo
+build _deps/glfw-build/all$:RelWithDebInfo: phony _deps/glfw-build/src/all$:RelWithDebInfo _deps/glfw-build/docs/all$:RelWithDebInfo
 
 
 #############################################
 # Folder: C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-build/docs
 
-build _deps\glfw-build\docs\all$:RelWithDebInfo: phony
+build _deps/glfw-build/docs/all$:RelWithDebInfo: phony
 
 
 #############################################
 # Folder: C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-build/src
 
-build _deps\glfw-build\src\all$:RelWithDebInfo: phony lib\RelWithDebInfo\glfw3.lib
-
-
-#############################################
-# Folder: C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glm-build
-
-build _deps\glm-build\all$:RelWithDebInfo: phony _deps\glm-build\glm\all$:RelWithDebInfo
-
-
-#############################################
-# Folder: C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glm-build/glm
-
-build _deps\glm-build\glm\all$:RelWithDebInfo: phony lib\RelWithDebInfo\glm.lib
+build _deps/glfw-build/src/all$:RelWithDebInfo: phony lib/RelWithDebInfo/libglfw3.a
 
 
 #############################################

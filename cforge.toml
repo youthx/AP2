@@ -1,184 +1,175 @@
-# Project configuration for ap2
+# =========================================================
+# AP2 - Aphelion Engine Core
+# =========================================================
 
 [project]
 name = "ap2"
 version = "0.1.0"
-description = "A C project created with cforge"
-cpp_standard = "17"
-c_standard = "11"
-binary_type = "executable"  # executable, shared_lib, static_lib, or header_only
-authors = ["Your Name <your.email@example.com>"]
-homepage = "https://github.com/yourusername/ap2"
-repository = "https://github.com/yourusername/ap2.git"
+description = "Aphelion Engine core library"
+authors = ["Jack Waechter"]
 license = "MIT"
 
+binary_type = "executable"
+
+c_standard = "17"
+cpp_standard = "17"
+
+
+# =========================================================
+# Build
+# =========================================================
+
 [build]
-build_type = "Debug"  # Debug, Release, RelWithDebInfo, MinSizeRel
+build_type = "Debug"
 directory = "build"
-source_dirs = ["src", "src/core"]
-include_dirs = ["include"]
-export_compile_commands = true  # Generate compile_commands.json for IDEs
-# position_independent_code = true  # For shared libraries
-# Uncomment to specify custom source patterns
-# source_patterns = ["src/*.cpp", "src/**/*.cpp"]
-# Uncomment to specify individual source files
-# source_files = ["src/main.cpp", "src/example.cpp"]
+
+source_dirs = [
+    "src",
+    "src/core"
+]
+
+include_dirs = [
+    "include"
+]
+
+export_compile_commands = true
+
+
+# =========================================================
+# Debug
+# =========================================================
 
 [build.config.debug]
-optimize = "debug"      # Portable: maps to /Od (MSVC) or -Og (GCC/Clang)
-debug_info = true        # Portable: maps to /Zi (MSVC) or -g (GCC/Clang)
-warnings = "all"        # Portable: maps to /W4 (MSVC) or -Wall -Wextra (GCC/Clang)
-defines = ["DEBUG=1"]
-# sanitizers = ["address"]  # Enable AddressSanitizer for debug builds
+optimize = ""
+debug_info = true
+warnings = "all"
+
+defines = [
+    "DEBUG=1",
+    "_CRT_SECURE_NO_WARNINGS"
+]
+
+
+# =========================================================
+# Release
+# =========================================================
 
 [build.config.release]
-optimize = "speed"      # Portable: maps to /O2 (MSVC) or -O2 (GCC/Clang)
-warnings = "all"        # Portable: maps to /W4 (MSVC) or -Wall -Wextra (GCC/Clang)
-lto = true              # Link-time optimization: /GL+/LTCG (MSVC) or -flto (GCC/Clang)
-defines = ["NDEBUG"]
+optimize = "speed"
+debug_info = false
+warnings = "all"
+lto = true
+
+defines = [
+    "NDEBUG",
+    "_CRT_SECURE_NO_WARNINGS"
+]
+
+
+# =========================================================
+# RelWithDebInfo
+# =========================================================
 
 [build.config.relwithdebinfo]
 optimize = "speed"
 debug_info = true
 warnings = "all"
-defines = ["NDEBUG"]
+
+defines = [
+    "NDEBUG",
+    "_CRT_SECURE_NO_WARNINGS"
+]
+
+
+# =========================================================
+# MinSizeRel
+# =========================================================
 
 [build.config.minsizerel]
-optimize = "size"       # Portable: maps to /O1 /Os (MSVC) or -Os (GCC/Clang)
-defines = ["NDEBUG"]
+optimize = "size"
+debug_info = false
+warnings = "all"
 
-[test]
-enabled = false
-[package]
-enabled = true
-generators = []  # Package generators
-# Windows generators: ZIP, NSIS
-# Linux generators: TGZ, DEB, RPM
-# macOS generators: TGZ
-vendor = "Your Organization"
-contact = "Your Name <your.email@example.com>"
+defines = [
+    "NDEBUG",
+    "_CRT_SECURE_NO_WARNINGS"
+]
 
-# Dependencies section
-# [dependencies]
 
-# Git dependencies
-# [dependencies.git.json]
-# url = "https://github.com/nlohmann/json.git"
-# tag = "v3.11.2"
-# link = true
-# include = true
+# =========================================================
+# MSVC
+# =========================================================
 
-# vcpkg dependencies
-# [dependencies.vcpkg]
-# path = "C:/vcpkg"  # Optional: path to vcpkg
-# triplet = "x64-windows"  # Optional: vcpkg triplet
-#
-# [dependencies.vcpkg.fmt]
-# version = "9.1.0"
-#
-# [dependencies.vcpkg.curl]
-# version = "7.80.0"
-# features = ["ssl", "http2"]
-# target_name = "CURL::libcurl"
+[compiler.msvc]
+warnings = "all"
 
-# System dependencies (find_package, pkg_config, or manual)
-# [dependencies.system.OpenGL]
-# method = "find_package"  # find_package, pkg_config, or manual
-# required = true
-# components = ["GL", "GLU"]
-#
-# [dependencies.system.custom_lib]
-# method = "manual"
-# include_dirs = ["/usr/local/include/custom"]
-# library_dirs = ["/usr/local/lib"]
-# libraries = ["custom"]
-# platforms = ["linux", "macos"]  # Optional: limit to platforms
+defines = [
+    "_CRT_SECURE_NO_WARNINGS"
+]
 
-# Subdirectory dependencies (for existing CMake projects)
-# [dependencies.subdirectory.spdlog]
-# path = "extern/spdlog"
-# target = "spdlog::spdlog"
-# options = { SPDLOG_BUILD_TESTS = "OFF" }
 
-# Platform-specific configuration
-# Portable options: optimize, warnings, debug_info, sanitizers, lto,
-#                   exceptions, rtti, hardening, visibility
-# [platform.windows]
-# hardening = "full"      # Portable: /GS /sdl /GUARD:CF (MSVC)
-# defines = ["WIN32", "_WINDOWS"]
-# links = ["kernel32", "user32"]
-#
-# [platform.linux]
-# hardening = "basic"     # Portable: -fstack-protector-strong -D_FORTIFY_SOURCE=2
-# defines = ["LINUX"]
-# links = ["pthread", "dl"]
-#
-# [platform.macos]
-# stdlib = "libc++"       # Portable: use libc++ on macOS
-# defines = ["MACOS"]
-# frameworks = ["Cocoa", "IOKit"]
+# =========================================================
+# Windows
+# =========================================================
 
-# Compiler-specific configuration
-# Portable options work here too - they translate to the right flags
-# [compiler.msvc]
-# warnings = "strict"     # Portable: /W4 /WX
-# defines = ["_CRT_SECURE_NO_WARNINGS"]
-#
-# [compiler.gcc]
-# warnings = "pedantic"   # Portable: -Wall -Wextra -Wpedantic -Werror
-#
-# [compiler.clang]
-# warnings = "pedantic"   # Portable: -Wall -Wextra -Wpedantic -Werror
-#
-# [compiler.mingw]
-# warnings = "all"        # Portable: -Wall -Wextra
-# defines = ["MINGW"]
+[platform.windows]
+defines = [
+    "WIN32",
+    "_WINDOWS"
+]
 
-# Platform + Compiler combination
-# [platform.windows.compiler.msvc]
-# flags = ["/W4"]
-# defines = ["_CRT_SECURE_NO_WARNINGS"]
+links = [
+    "user32",
+    "kernel32"
+]
 
-# Cross-compilation (optional)
-# [cross]
-# enabled = true
-#
-# [cross.target]
-# system = "Linux"           # CMAKE_SYSTEM_NAME
-# processor = "aarch64"      # CMAKE_SYSTEM_PROCESSOR
-# toolchain = "path/to/toolchain.cmake"  # Optional
-#
-# [cross.compilers]
-# c = "/usr/bin/aarch64-linux-gnu-gcc"
-# cxx = "/usr/bin/aarch64-linux-gnu-g++"
-#
-# [cross.paths]
-# sysroot = "/path/to/sysroot"
-# find_root = "/path/to/find/root"
-#
-# [cross.variables]  # Custom CMake variables
-# ANDROID_ABI = "arm64-v8a"
-#
-# Cross-compilation profiles (use with: cforge build --profile <name>)
-# [cross.profile.android-arm64]
-# system = "Android"
-# processor = "aarch64"
-# toolchain = "${ANDROID_NDK}/build/cmake/android.toolchain.cmake"
-# variables = { ANDROID_ABI = "arm64-v8a", ANDROID_PLATFORM = "android-24" }
-#
-# [cross.profile.raspberry-pi]
-# system = "Linux"
-# processor = "armv7l"
-# compilers = { c = "arm-linux-gnueabihf-gcc", cxx = "arm-linux-gnueabihf-g++" }
-# sysroot = "/path/to/rpi-sysroot"
 
-# CMake integration
-# [cmake]
-# generator = "Ninja"  # Optional: override CMake generator
-# includes = ["cmake/custom.cmake"]  # Custom CMake files to include
-# module_paths = ["cmake/modules"]  # Custom module paths
+# =========================================================
+# Dependencies
+# =========================================================
+
 
 [dependencies]
 glad = "2.0.8"
 glfw = "3.5.1"
-glm = "1.0.3"
+
+[dependencies.system.OpenGL]
+method = "manual"
+libraries = ["opengl32"]
+
+# =========================================================
+# Tests
+# =========================================================
+
+[test]
+enabled = false
+
+
+# =========================================================
+# Packaging
+# =========================================================
+
+[package]
+enabled = true
+generators = []
+
+vendor = "Aphelion Engine"
+contact = "Jack Waechter"
+
+
+# =========================================================
+# Hot Reload
+# =========================================================
+
+[hot_reload]
+enabled = true
+
+host = "src/main.c"
+module = "src/main.c"
+
+entry_point = "main"
+
+watch_dirs = [
+    "src",
+    "include"
+]

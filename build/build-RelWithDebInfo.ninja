@@ -12,75 +12,65 @@ build package_source: phony package_source$:RelWithDebInfo
 
 build install: phony install$:RelWithDebInfo
 
-build install\local: phony install\local$:RelWithDebInfo
+build install/local: phony install/local$:RelWithDebInfo
 
-build _deps\glfw-build\package: phony _deps\glfw-build\package$:RelWithDebInfo
+build install/strip: phony install/strip$:RelWithDebInfo
 
-build _deps\glfw-build\package_source: phony _deps\glfw-build\package_source$:RelWithDebInfo
+build _deps/glfw-build/package: phony _deps/glfw-build/package$:RelWithDebInfo
 
-build _deps\glfw-build\install: phony _deps\glfw-build\install$:RelWithDebInfo
+build _deps/glfw-build/package_source: phony _deps/glfw-build/package_source$:RelWithDebInfo
 
-build _deps\glfw-build\install\local: phony _deps\glfw-build\install\local$:RelWithDebInfo
+build _deps/glfw-build/install: phony _deps/glfw-build/install$:RelWithDebInfo
 
-build _deps\glfw-build\src\package: phony _deps\glfw-build\src\package$:RelWithDebInfo
+build _deps/glfw-build/install/local: phony _deps/glfw-build/install/local$:RelWithDebInfo
 
-build _deps\glfw-build\src\package_source: phony _deps\glfw-build\src\package_source$:RelWithDebInfo
+build _deps/glfw-build/install/strip: phony _deps/glfw-build/install/strip$:RelWithDebInfo
 
-build _deps\glfw-build\src\install: phony _deps\glfw-build\src\install$:RelWithDebInfo
+build _deps/glfw-build/src/package: phony _deps/glfw-build/src/package$:RelWithDebInfo
 
-build _deps\glfw-build\src\install\local: phony _deps\glfw-build\src\install\local$:RelWithDebInfo
+build _deps/glfw-build/src/package_source: phony _deps/glfw-build/src/package_source$:RelWithDebInfo
 
-build _deps\glfw-build\docs\package: phony _deps\glfw-build\docs\package$:RelWithDebInfo
+build _deps/glfw-build/src/install: phony _deps/glfw-build/src/install$:RelWithDebInfo
 
-build _deps\glfw-build\docs\package_source: phony _deps\glfw-build\docs\package_source$:RelWithDebInfo
+build _deps/glfw-build/src/install/local: phony _deps/glfw-build/src/install/local$:RelWithDebInfo
 
-build _deps\glfw-build\docs\install: phony _deps\glfw-build\docs\install$:RelWithDebInfo
+build _deps/glfw-build/src/install/strip: phony _deps/glfw-build/src/install/strip$:RelWithDebInfo
 
-build _deps\glfw-build\docs\install\local: phony _deps\glfw-build\docs\install\local$:RelWithDebInfo
+build _deps/glfw-build/docs/package: phony _deps/glfw-build/docs/package$:RelWithDebInfo
 
-build _deps\glm-build\package: phony _deps\glm-build\package$:RelWithDebInfo
+build _deps/glfw-build/docs/package_source: phony _deps/glfw-build/docs/package_source$:RelWithDebInfo
 
-build _deps\glm-build\package_source: phony _deps\glm-build\package_source$:RelWithDebInfo
+build _deps/glfw-build/docs/install: phony _deps/glfw-build/docs/install$:RelWithDebInfo
 
-build _deps\glm-build\install: phony _deps\glm-build\install$:RelWithDebInfo
+build _deps/glfw-build/docs/install/local: phony _deps/glfw-build/docs/install/local$:RelWithDebInfo
 
-build _deps\glm-build\install\local: phony _deps\glm-build\install\local$:RelWithDebInfo
+build _deps/glfw-build/docs/install/strip: phony _deps/glfw-build/docs/install/strip$:RelWithDebInfo
 
-build _deps\glm-build\glm\package: phony _deps\glm-build\glm\package$:RelWithDebInfo
+build _deps/glad-build/package: phony _deps/glad-build/package$:RelWithDebInfo
 
-build _deps\glm-build\glm\package_source: phony _deps\glm-build\glm\package_source$:RelWithDebInfo
+build _deps/glad-build/package_source: phony _deps/glad-build/package_source$:RelWithDebInfo
 
-build _deps\glm-build\glm\install: phony _deps\glm-build\glm\install$:RelWithDebInfo
+build _deps/glad-build/install: phony _deps/glad-build/install$:RelWithDebInfo
 
-build _deps\glm-build\glm\install\local: phony _deps\glm-build\glm\install\local$:RelWithDebInfo
+build _deps/glad-build/install/local: phony _deps/glad-build/install/local$:RelWithDebInfo
 
-build _deps\glad-build\package: phony _deps\glad-build\package$:RelWithDebInfo
+build _deps/glad-build/install/strip: phony _deps/glad-build/install/strip$:RelWithDebInfo
 
-build _deps\glad-build\package_source: phony _deps\glad-build\package_source$:RelWithDebInfo
+build ap2: phony bin/RelWithDebInfo/ap2.exe
 
-build _deps\glad-build\install: phony _deps\glad-build\install$:RelWithDebInfo
+build ap2.exe: phony bin/RelWithDebInfo/ap2.exe
 
-build _deps\glad-build\install\local: phony _deps\glad-build\install\local$:RelWithDebInfo
+build glad: phony lib/RelWithDebInfo/libglad.a
 
-build ap2: phony bin\RelWithDebInfo\ap2.exe
+build glfw: phony lib/RelWithDebInfo/libglfw3.a
 
-build ap2.exe: phony bin\RelWithDebInfo\ap2.exe
+build libglad.a: phony lib/RelWithDebInfo/libglad.a
 
-build glad: phony lib\RelWithDebInfo\glad.lib
+build libglfw3.a: phony lib/RelWithDebInfo/libglfw3.a
 
-build glad.lib: phony lib\RelWithDebInfo\glad.lib
+build uninstall: phony _deps/glfw-build/uninstall$:RelWithDebInfo
 
-build glfw: phony lib\RelWithDebInfo\glfw3.lib
-
-build glfw3.lib: phony lib\RelWithDebInfo\glfw3.lib
-
-build glm: phony lib\RelWithDebInfo\glm.lib
-
-build glm.lib: phony lib\RelWithDebInfo\glm.lib
-
-build uninstall: phony _deps\glfw-build\uninstall$:RelWithDebInfo
-
-build update_mappings: phony _deps\glfw-build\src\update_mappings$:RelWithDebInfo
+build update_mappings: phony _deps/glfw-build/src/update_mappings$:RelWithDebInfo
 
 
 #############################################
@@ -92,37 +82,25 @@ build all: phony all$:RelWithDebInfo
 #############################################
 # Folder: C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glad-build
 
-build _deps\glad-build\all: phony _deps\glad-build\all$:RelWithDebInfo
+build _deps/glad-build/all: phony _deps/glad-build/all$:RelWithDebInfo
 
 
 #############################################
 # Folder: C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-build
 
-build _deps\glfw-build\all: phony _deps\glfw-build\all$:RelWithDebInfo
+build _deps/glfw-build/all: phony _deps/glfw-build/all$:RelWithDebInfo
 
 
 #############################################
 # Folder: C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-build/docs
 
-build _deps\glfw-build\docs\all: phony _deps\glfw-build\docs\all$:RelWithDebInfo
+build _deps/glfw-build/docs/all: phony _deps/glfw-build/docs/all$:RelWithDebInfo
 
 
 #############################################
 # Folder: C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-build/src
 
-build _deps\glfw-build\src\all: phony _deps\glfw-build\src\all$:RelWithDebInfo
-
-
-#############################################
-# Folder: C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glm-build
-
-build _deps\glm-build\all: phony _deps\glm-build\all$:RelWithDebInfo
-
-
-#############################################
-# Folder: C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glm-build/glm
-
-build _deps\glm-build\glm\all: phony _deps\glm-build\glm\all$:RelWithDebInfo
+build _deps/glfw-build/src/all: phony _deps/glfw-build/src/all$:RelWithDebInfo
 
 build clean: phony clean$:RelWithDebInfo
 

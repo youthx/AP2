@@ -6,13 +6,16 @@
 #include <GLFW/glfw3.h>
 
 #include <stdlib.h>
+#include <string.h>
 
-/* ---------------------------------------------------------
- * AP_Window
- * --------------------------------------------------------- */
+/* =========================================================
+ * Internal Window Structure
+ * ========================================================= */
 
 struct AP_Window {
   GLFWwindow *handle;
+
+  char *title;
 
   uint32_t width;
   uint32_t height;
@@ -20,83 +23,63 @@ struct AP_Window {
   bool should_close;
 };
 
-/* ---------------------------------------------------------
- * Windowing state
- * --------------------------------------------------------- */
+/* =========================================================
+ * Global State
+ * ========================================================= */
 
 static bool g_windowing_initialized = false;
+
 static AP_Window *g_active_window = NULL;
 
-/* ---------------------------------------------------------
- * GLFW callbacks
- * --------------------------------------------------------- */
+/* =========================================================
+ * GLFW Error Callback
+ * ========================================================= */
 
-static void AP_WindowCloseCallback(GLFWwindow *handle) {
-  if (!handle) {
-    return;
-  }
-
-  AP_Window *window = (AP_Window *)glfwGetWindowUserPointer(handle);
-
-  if (!window) {
-    return;
-  }
-
-  window->should_close = true;
+static void AP_GLFWErrorCallback(int error, const char *description) {
+  AP_ERROR("GLFW error %d: %s", error,
+           description ? description : "Unknown error");
 }
 
-static void AP_WindowFramebufferSizeCallback(GLFWwindow *handle, int width,
-                                             int height) {
-  if (!handle) {
-    return;
-  }
-
-  AP_Window *window = (AP_Window *)glfwGetWindowUserPointer(handle);
-
-  if (!window) {
-    return;
-  }
-
-  if (width >= 0) {
-    window->width = (uint32_t)width;
-  }
-
-  if (height >= 0) {
-    window->height = (uint32_t)height;
-  }
-}
-
-/* ---------------------------------------------------------
- * Windowing subsystem
- * --------------------------------------------------------- */
+/* =========================================================
+ * Windowing Initialization
+ * ========================================================= */
 
 bool AP_WindowingInit(void) {
   if (g_windowing_initialized) {
     return true;
   }
 
-  if (glfwInit() != GLFW_TRUE) {
+  AP_INFO("Initializing GLFW");
+
+  glfwSetErrorCallback(AP_GLFWErrorCallback);
+
+  if (!glfwInit()) {
     AP_SET_ERROR(AP_ERROR_INITIALIZATION_FAILED, "Failed to initialize GLFW");
 
     return false;
   }
 
   g_windowing_initialized = true;
-  g_active_window = NULL;
 
-  AP_INFO("GLFW initialized");
+  AP_INFO("GLFW initialized successfully");
 
   return true;
 }
+
+/* =========================================================
+ * Windowing Shutdown
+ * ========================================================= */
 
 void AP_WindowingClose(void) {
   if (!g_windowing_initialized) {
     return;
   }
 
+  AP_INFO("Shutting down windowing");
+
   /*
-   * AP_Quit() should normally be called after all AP_Window
-   * objects have been destroyed.
+   * The application is expected to destroy its windows
+   * before shutting down AP2.
    */
   g_active_window = NULL;
 
@@ -104,21 +87,14 @@ void AP_WindowingClose(void) {
 
   g_windowing_initialized = false;
 
-  AP_INFO("GLFW terminated");
+  AP_INFO("Windowing shutdown complete");
 }
 
-/* ---------------------------------------------------------
- * Subsystem metadata
- * --------------------------------------------------------- */
+/* =========================================================
+ * Create Window
+ * ========================================================= */
 
-const AP_SubsystemMetadata AP_WindowingSubsystem = {.init = AP_WindowingInit,
-                                                    .close = AP_WindowingClose};
-
-/* ---------------------------------------------------------
- * Window creation
- * --------------------------------------------------------- */
-
-AP_Window *AP_CreateWindow(const char *title, uint32_t width, uint32_t height) {
+AP_Window *AP_CreateWindow(const AP_WindowConfig *config) {
   if (!g_windowing_initialized) {
     AP_SET_ERROR(AP_ERROR_NOT_INITIALIZED,
                  "Windowing subsystem has not been initialized");
@@ -126,75 +102,137 @@ AP_Window *AP_CreateWindow(const char *title, uint32_t width, uint32_t height) {
     return NULL;
   }
 
-  if (!title) {
-    AP_SET_ERROR(AP_ERROR_INVALID_ARGUMENT, "Window title cannot be NULL");
-
-    return NULL;
-  }
-
-  if (width == 0 || height == 0) {
-    AP_SET_ERROR(AP_ERROR_INVALID_ARGUMENT, "Window dimensions cannot be zero");
-
-    return NULL;
-  }
-
-  if (width > INT_MAX || height > INT_MAX) {
+  if (!config) {
     AP_SET_ERROR(AP_ERROR_INVALID_ARGUMENT,
-                 "Window dimensions exceed GLFW limits");
+                 "Window configuration cannot be NULL");
 
     return NULL;
   }
 
-  AP_Window *window = malloc(sizeof(AP_Window));
+  if (config->width == 0 || config->height == 0) {
 
-  if (!window) {
-    AP_SET_ERROR(AP_ERROR_OUT_OF_MEMORY, "Failed to allocate AP_Window");
+    AP_SET_ERROR(AP_ERROR_INVALID_ARGUMENT,
+                 "Window dimensions must be greater than zero");
 
     return NULL;
   }
 
-  window->handle = NULL;
-  window->width = width;
-  window->height = height;
-  window->should_close = false;
+  const char *title = config->title ? config->title : "AP2 Application";
+
+  /* -------------------------------------------------------
+   * GLFW Configuration
+   * ------------------------------------------------------- */
+
+  glfwDefaultWindowHints();
+
+  glfwWindowHint(GLFW_RESIZABLE, config->resizable ? GLFW_TRUE : GLFW_FALSE);
+
+  glfwWindowHint(GLFW_DECORATED, config->decorated ? GLFW_TRUE : GLFW_FALSE);
+
+  glfwWindowHint(GLFW_MAXIMIZED, config->maximized ? GLFW_TRUE : GLFW_FALSE);
 
   /*
-   * Default GLFW window.
+   * For now, AP2 creates an OpenGL context.
    *
-   * Renderer-specific hints should eventually be configured
-   * by the AP2 renderer before creating the window.
+   * This will eventually be controlled by AP_VideoConfig.
    */
-  window->handle = glfwCreateWindow((int)width, (int)height, title, NULL, NULL);
+  glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
 
-  if (!window->handle) {
-    free(window);
+  glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);
 
+  glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+
+  /* -------------------------------------------------------
+   * Fullscreen
+   * ------------------------------------------------------- */
+
+  GLFWmonitor *monitor = NULL;
+
+  if (config->fullscreen) {
+    monitor = glfwGetPrimaryMonitor();
+
+    if (!monitor) {
+      AP_SET_ERROR(AP_ERROR_OPERATION_FAILED,
+                   "Failed to obtain primary monitor");
+
+      return NULL;
+    }
+  }
+
+  /* -------------------------------------------------------
+   * Create GLFW Window
+   * ------------------------------------------------------- */
+
+  GLFWwindow *handle = glfwCreateWindow((int)config->width, (int)config->height,
+                                        title, monitor, NULL);
+
+  if (!handle) {
     AP_SET_ERROR(AP_ERROR_OPERATION_FAILED, "GLFW failed to create window");
 
     return NULL;
   }
 
-  /*
-   * Allow callbacks to retrieve the AP_Window.
-   */
-  glfwSetWindowUserPointer(window->handle, window);
+  /* -------------------------------------------------------
+   * Allocate AP_Window
+   * ------------------------------------------------------- */
+
+  AP_Window *window = calloc(1, sizeof(AP_Window));
+
+  if (!window) {
+    glfwDestroyWindow(handle);
+
+    AP_SET_ERROR(AP_ERROR_OUT_OF_MEMORY, "Failed to allocate AP_Window");
+
+    return NULL;
+  }
+
+  /* -------------------------------------------------------
+   * Copy Title
+   * ------------------------------------------------------- */
+
+  size_t title_length = strlen(title);
+
+  window->title = malloc(title_length + 1);
+
+  if (!window->title) {
+    glfwDestroyWindow(handle);
+    free(window);
+
+    AP_SET_ERROR(AP_ERROR_OUT_OF_MEMORY, "Failed to allocate window title");
+
+    return NULL;
+  }
+
+  memcpy(window->title, title, title_length + 1);
+
+  /* -------------------------------------------------------
+   * Initialize Window State
+   * ------------------------------------------------------- */
+
+  window->handle = handle;
+
+  window->width = config->width;
+  window->height = config->height;
+
+  window->should_close = false;
 
   /*
-   * Register callbacks.
+   * Store AP_Window inside GLFW's user pointer.
+   *
+   * This will be useful once we add resize, keyboard,
+   * mouse, and window callbacks.
    */
-  glfwSetWindowCloseCallback(window->handle, AP_WindowCloseCallback);
+  glfwSetWindowUserPointer(handle, window);
 
-  glfwSetFramebufferSizeCallback(window->handle,
-                                 AP_WindowFramebufferSizeCallback);
-
-  AP_INFO("Created window \"%s\" (%ux%u)", title, width, height);
+  AP_INFO("Created window \"%s\" (%ux%u)", window->title, window->width,
+          window->height);
 
   return window;
 }
 
-/* ---------------------------------------------------------
- * Window destruction
- * --------------------------------------------------------- */
+/* =========================================================
+ * Destroy Window
+ * ========================================================= */
 
 void AP_DestroyWindow(AP_Window *window) {
   if (!window) {
@@ -203,82 +241,71 @@ void AP_DestroyWindow(AP_Window *window) {
 
   if (g_active_window == window) {
     g_active_window = NULL;
+
+    glfwMakeContextCurrent(NULL);
   }
 
   if (window->handle) {
     glfwDestroyWindow(window->handle);
+
     window->handle = NULL;
   }
 
-  AP_DEBUG("Destroyed window");
+  free(window->title);
+
+  window->title = NULL;
 
   free(window);
 }
 
-/* ---------------------------------------------------------
- * Active window
- * --------------------------------------------------------- */
+/* =========================================================
+ * Active Window
+ * ========================================================= */
 
 bool AP_SetActiveWindow(AP_Window *window) {
   if (!window || !window->handle) {
+
     AP_SET_ERROR(AP_ERROR_INVALID_ARGUMENT,
                  "Cannot activate an invalid window");
 
     return false;
   }
 
-  if (!g_windowing_initialized) {
-    AP_SET_ERROR(AP_ERROR_NOT_INITIALIZED,
-                 "Windowing subsystem has not been initialized");
-
-    return false;
-  }
+  glfwMakeContextCurrent(window->handle);
 
   g_active_window = window;
-
-  /*
-   * Currently AP2 uses GLFW/OpenGL-style context handling.
-   *
-   * If AP2 gets Vulkan/D3D/SDL_GPU backends, this should
-   * move into the renderer layer.
-   */
-  glfwMakeContextCurrent(window->handle);
 
   return true;
 }
 
 AP_Window *AP_GetActiveWindow(void) { return g_active_window; }
 
-/* ---------------------------------------------------------
- * Window state
- * --------------------------------------------------------- */
+/* =========================================================
+ * Close State
+ * ========================================================= */
 
 bool AP_WindowShouldClose(const AP_Window *window) {
   if (!window || !window->handle) {
     return true;
   }
 
-  return window->should_close || glfwWindowShouldClose(window->handle);
+  return glfwWindowShouldClose(window->handle);
 }
 
-void AP_WindowGetSize(const AP_Window *window, uint32_t *out_width,
-                      uint32_t *out_height) {
-  if (!window) {
+void AP_WindowSetShouldClose(AP_Window *window, bool should_close) {
+  if (!window || !window->handle) {
     return;
   }
 
-  if (out_width) {
-    *out_width = window->width;
-  }
+  glfwSetWindowShouldClose(window->handle,
+                           should_close ? GLFW_TRUE : GLFW_FALSE);
 
-  if (out_height) {
-    *out_height = window->height;
-  }
+  window->should_close = should_close;
 }
 
-/* ---------------------------------------------------------
- * Event processing
- * --------------------------------------------------------- */
+/* =========================================================
+ * Event Processing
+ * ========================================================= */
 
 void AP_WindowPollEvents(void) {
   if (!g_windowing_initialized) {
@@ -288,9 +315,9 @@ void AP_WindowPollEvents(void) {
   glfwPollEvents();
 }
 
-/* ---------------------------------------------------------
- * Buffer presentation
- * --------------------------------------------------------- */
+/* =========================================================
+ * Buffer Swap
+ * ========================================================= */
 
 void AP_WindowSwapBuffers(AP_Window *window) {
   if (!window || !window->handle) {
@@ -299,3 +326,70 @@ void AP_WindowSwapBuffers(AP_Window *window) {
 
   glfwSwapBuffers(window->handle);
 }
+
+/* =========================================================
+ * Window Size
+ * ========================================================= */
+
+void AP_WindowGetSize(const AP_Window *window, uint32_t *out_width,
+                      uint32_t *out_height) {
+  if (!window || !window->handle) {
+    return;
+  }
+
+  int width = 0;
+  int height = 0;
+
+  glfwGetWindowSize(window->handle, &width, &height);
+
+  if (out_width) {
+    *out_width = (uint32_t)width;
+  }
+
+  if (out_height) {
+    *out_height = (uint32_t)height;
+  }
+}
+
+/* =========================================================
+ * Framebuffer Size
+ * ========================================================= */
+
+void AP_WindowGetFramebufferSize(const AP_Window *window, uint32_t *out_width,
+                                 uint32_t *out_height) {
+  if (!window || !window->handle) {
+    return;
+  }
+
+  int width = 0;
+  int height = 0;
+
+  glfwGetFramebufferSize(window->handle, &width, &height);
+
+  if (out_width) {
+    *out_width = (uint32_t)width;
+  }
+
+  if (out_height) {
+    *out_height = (uint32_t)height;
+  }
+}
+
+/* =========================================================
+ * Window Title
+ * ========================================================= */
+
+const char *AP_WindowGetTitle(const AP_Window *window) {
+  if (!window) {
+    return NULL;
+  }
+
+  return window->title;
+}
+
+/* =========================================================
+ * Subsystem Metadata
+ * ========================================================= */
+
+const AP_SubsystemMetadata AP_WindowingSubsystem = {.init = AP_WindowingInit,
+                                                    .close = AP_WindowingClose};

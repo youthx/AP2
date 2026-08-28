@@ -1,12 +1,26 @@
 #include "AP2/AP2.h"
-#include <stdio.h>
 
 int main() {
-  AP_Init(AP_INIT_ALL);
+  if (!AP_Init(AP_INIT_ALL)) {
+    AP_ERROR("Couldn't initialize AP2");
+    return 1;
+  }
 
-  AP_Window *window = AP_CreateWindow("Blank Window", 800, 600);
+  AP_WindowConfig config = {.title = "Blank Window",
+                            .width = 800,
+                            .height = 600,
 
-  AP_INFO("Successfully created window!");
+                            .resizable = true,
+                            .decorated = true,
+                            .maximized = false,
+                            .fullscreen = false};
+
+  AP_Window *window = AP_CreateWindow(&config);
+  if (!window) {
+    AP_ERROR(AP_GetErrorMessage());
+    AP_Quit();
+    return 1;
+  }
 
   AP_SetActiveWindow(window);
 
@@ -17,5 +31,7 @@ int main() {
   }
 
   AP_DestroyWindow(window);
+  AP_Quit();
+
   return 0;
 }

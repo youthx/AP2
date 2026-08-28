@@ -1,68 +1,241 @@
-#ifndef AP2_INIT_H
-#define AP2_INIT_H
+#include "AP2/AP2_Init.h"
 
-#include <stdbool.h>
-#include <stdint.h>
+#include "AP2/AP2_Error.h"
+#include "AP2/AP2_Logger.h"
+#include "AP2/AP2_Video.h"
+#include "AP2/AP2_Window.h"
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-
-typedef enum AP_Subsystem {
-  AP_SUBSYSTEM_VIDEO = 0,
-  AP_SUBSYSTEM_WINDOWING,
-  AP_SUBSYSTEM_AUDIO,
-
-  AP_SUBSYSTEM_COUNT
-} AP_Subsystem;
+#include <stddef.h>
+#include <string.h>
 
 /* ---------------------------------------------------------
- * Initialization flags
+ * Internal subsystem state
  * --------------------------------------------------------- */
 
-typedef uint32_t AP_InitFlags;
+typedef struct AP_SubsystemEntry {
+  const char *name;
+  AP_SubsystemMetadata metadata;
+  bool registered;
+  bool initialized;
+} AP_SubsystemEntry;
 
-#define AP_INIT_NONE ((AP_InitFlags)0)
-
-#define AP_INIT_VIDEO ((AP_InitFlags)(1u << AP_SUBSYSTEM_VIDEO))
-
-#define AP_INIT_WINDOWING ((AP_InitFlags)(1u << AP_SUBSYSTEM_WINDOWING))
-
-#define AP_INIT_AUDIO ((AP_InitFlags)(1u << AP_SUBSYSTEM_AUDIO))
-
-#define AP_INIT_ALL (AP_INIT_VIDEO | AP_INIT_WINDOWING | AP_INIT_AUDIO)
+static AP_SubsystemEntry g_subsystems[AP_SUBSYSTEM_COUNT];
 
 /* ---------------------------------------------------------
- * Subsystem metadata
+ * Built-in subsystem registration
  * --------------------------------------------------------- */
 
-typedef struct AP_SubsystemMetadata {
-  bool (*init)(void);
-  void (*close)(void);
-} AP_SubsystemMetadata;
+static void AP_RegisterBuiltInSubsystems(void) {
+  /*
+   * Windowing
+   */
+
+  AP_RegisterSubsystem(AP_SUBSYSTEM_WINDOWING, "Windowing",
+                       AP_WindowingSubsystem);
+
+  /*
+   * Video
+   */
+
+  AP_RegisterSubsystem(AP_SUBSYSTEM_VIDEO, "Video", AP_VideoSubsystem);
+
+  /*
+   * Audio is intentionally not registered yet.
+   */
+}
 
 /* ---------------------------------------------------------
- * Subsystems
+ * Register subsystem
  * --------------------------------------------------------- */
 
 bool AP_RegisterSubsystem(AP_Subsystem subsystem, const char *name,
-                          AP_SubsystemMetadata metadata);
+                          AP_SubsystemMetadata metadata) {
+  if (subsystem < 0 || subsystem >= AP_SUBSYSTEM_COUNT) {
 
-bool AP_InitSubsystem(AP_Subsystem subsystem);
+    AP_SET_ERROR(AP_ERROR_INVALID_ARGUMENT, "Invalid subsystem");
 
-bool AP_GetSubsystemInitialized(AP_Subsystem subsystem);
+    return false;
+  }
 
-bool AP_CloseSubsystem(AP_Subsystem subsystem);
+  if (!name) {
+    AP_SET_ERROR(AP_ERROR_INVALID_ARGUMENT, "Subsystem name cannot be NULL");
+
+    return false;
+  }
+
+  if (!metadata.init || !metadata.close) {
+    AP_SET_ERROR(AP_ERROR_INVALID_ARGUMENT,
+                 "Subsystem requires init and close callbacks");
+
+    return false;
+  }
+
+  g_subsystems[subsystem].name = name;
+  g_subsystems[subsystem].metadata = metadata;
+  g_subsystems[subsystem].registered = true;
+  g_subsystems[subsystem].initialized = false;
+
+  return true;
+}
 
 /* ---------------------------------------------------------
- * AP2 lifecycle
+ * Initialize subsystem
  * --------------------------------------------------------- */
 
-bool AP_Init(AP_InitFlags flags);
-void AP_Quit(void);
+bool AP_InitSubsystem(AP_Subsystem subsystem) {
+  if (subsystem < 0 || subsystem >= AP_SUBSYSTEM_COUNT) {
 
-#ifdef __cplusplus
+    AP_SET_ERROR(AP_ERROR_INVALID_ARGUMENT, "Invalid subsystem");
+
+    return false;
+  }
+
+  AP_SubsystemEntry *entry = &g_subsystems[subsystem];
+
+  if (!entry->registered) {
+
+    AP_SET_ERROR(AP_ERROR_NOT_INITIALIZED, "Subsystem has not been registered");
+
+    return false;
+  }
+
+  if (entry->initialized) {
+    return true;
+  }
+
+  AP_INFO("Initializing subsystem: %s", entry->name);
+
+  if (!entry->metadata.init()) {
+
+    AP_ERROR("Failed to initialize subsystem: %s", entry->name);
+
+    return false;
+  }
+
+  entry->initialized = true;
+
+  AP_INFO("Initialized subsystem: %s", entry->name);
+
+  return true;
 }
-#endif
 
-#endif /* AP2_INIT_H */
+/* ---------------------------------------------------------
+ * Query state
+ * --------------------------------------------------------- */
+
+bool AP_GetSubsystemInitialized(AP_Subsystem subsystem) {
+  if (subsystem < 0 || subsystem >= AP_SUBSYSTEM_COUNT) {
+
+    return false;
+  }
+
+  return g_subsystems[subsystem].initialized;
+}
+
+/* ---------------------------------------------------------
+ * Close subsystem
+ * --------------------------------------------------------- */
+
+bool AP_CloseSubsystem(AP_Subsystem subsystem) {
+  if (subsystem < 0 || subsystem >= AP_SUBSYSTEM_COUNT) {
+
+    return false;
+  }
+
+  AP_SubsystemEntry *entry = &g_subsystems[subsystem];
+
+  if (!entry->registered || !entry->initialized) {
+
+    return true;
+  }
+
+  if (entry->metadata.close) {
+    entry->metadata.close();
+  }
+
+  entry->initialized = false;
+
+  return true;
+}
+
+/* ---------------------------------------------------------
+ * AP2 initialization
+ * --------------------------------------------------------- */
+
+bool AP_Init(AP_InitFlags flags) {
+  AP_INFO("Initializing AP2");
+
+  /*
+   * Register all built-in subsystems before attempting
+   * to initialize anything.
+   */
+
+  AP_RegisterBuiltInSubsystems();
+
+  /*
+   * Initialize in dependency order.
+   *
+   * Windowing MUST come before Video because Video's
+   * OpenGL device requires an active GLFW context.
+   */
+
+  AP_Subsystem initialization_order[] = {
+      AP_SUBSYSTEM_WINDOWING, AP_SUBSYSTEM_VIDEO, AP_SUBSYSTEM_AUDIO};
+
+  size_t count = sizeof(initialization_order) / sizeof(initialization_order[0]);
+
+  for (size_t i = 0; i < count; ++i) {
+
+    AP_Subsystem subsystem = initialization_order[i];
+
+    AP_InitFlags flag = ((AP_InitFlags)1u << subsystem);
+
+    if (!(flags & flag)) {
+      continue;
+    }
+
+    /*
+     * Don't fail AP_Init because a subsystem hasn't
+     * been implemented/registered yet.
+     */
+
+    if (!g_subsystems[subsystem].registered) {
+      AP_INFO("Skipping unregistered subsystem: %s",
+              subsystem == AP_SUBSYSTEM_AUDIO ? "Audio" : "Unknown");
+
+      continue;
+    }
+
+    if (!AP_InitSubsystem(subsystem)) {
+
+      AP_ERROR("AP2 initialization failed; rolling back");
+
+      AP_Quit();
+
+      return false;
+    }
+  }
+
+  AP_INFO("AP2 initialized successfully");
+
+  return true;
+}
+
+/* ---------------------------------------------------------
+ * AP2 shutdown
+ * --------------------------------------------------------- */
+
+void AP_Quit(void) {
+  /*
+   * Reverse dependency order.
+   *
+   * Video must close before Windowing.
+   */
+
+  for (int i = AP_SUBSYSTEM_COUNT - 1; i >= 0; --i) {
+
+    AP_CloseSubsystem((AP_Subsystem)i);
+  }
+
+  AP_INFO("AP2 shutdown complete");
+}

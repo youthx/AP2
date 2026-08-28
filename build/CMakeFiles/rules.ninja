@@ -12,26 +12,21 @@
 # =============================================================================
 
 #############################################
-# localized /showIncludes string
-
-msvc_deps_prefix = Note: including file: 
-
-
-#############################################
 # Rule for compiling C files.
 
 rule C_COMPILER__ap2_unscanned_Debug
-  deps = msvc
-  command = ${LAUNCHER}${CODE_CHECK}C:\PROGRA~2\MICROS~2\2022\BUILDT~1\VC\Tools\MSVC\1444~1.352\bin\Hostx64\x64\cl.exe  /nologo $DEFINES $INCLUDES $FLAGS /showIncludes /Fo$out /Fd$TARGET_COMPILE_PDB /FS -c $in
+  depfile = $DEP_FILE
+  deps = gcc
+  command = ${LAUNCHER}${CODE_CHECK}C:\msys64\ucrt64\bin\gcc.exe $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
   description = Building C object $out
 
 
 #############################################
-# Rule for linking CXX executable.
+# Rule for linking C executable.
 
-rule CXX_EXECUTABLE_LINKER__ap2_Debug
-  command = C:\WINDOWS\system32\cmd.exe /C "$PRE_LINK && "C:\Program Files\CMake\bin\cmake.exe" -E vs_link_exe --msvc-ver=1944 --intdir=$OBJECT_DIR --rc=C:\PROGRA~2\WI3CF2~1\10\bin\100261~1.0\x64\rc.exe --mt=C:\PROGRA~2\WI3CF2~1\10\bin\100261~1.0\x64\mt.exe --manifests $MANIFESTS -- C:\PROGRA~2\MICROS~2\2022\BUILDT~1\VC\Tools\MSVC\1444~1.352\bin\Hostx64\x64\link.exe /nologo $in  /out:$TARGET_FILE /implib:$TARGET_IMPLIB /pdb:$TARGET_PDB /version:0.0 $LINK_FLAGS $LINK_PATH $LINK_LIBRARIES && $POST_BUILD"
-  description = Linking CXX executable $TARGET_FILE
+rule C_EXECUTABLE_LINKER__ap2_Debug
+  command = C:\WINDOWS\system32\cmd.exe /C "$PRE_LINK && C:\msys64\ucrt64\bin\gcc.exe $FLAGS $LINK_FLAGS $in -o $TARGET_FILE -Wl,--out-implib,$TARGET_IMPLIB -Wl,--major-image-version,0,--minor-image-version,0 $LINK_PATH $LINK_LIBRARIES && $POST_BUILD"
+  description = Linking C executable $TARGET_FILE
   restat = $RESTAT
 
 
@@ -39,17 +34,18 @@ rule CXX_EXECUTABLE_LINKER__ap2_Debug
 # Rule for compiling C files.
 
 rule C_COMPILER__ap2_unscanned_Release
-  deps = msvc
-  command = ${LAUNCHER}${CODE_CHECK}C:\PROGRA~2\MICROS~2\2022\BUILDT~1\VC\Tools\MSVC\1444~1.352\bin\Hostx64\x64\cl.exe  /nologo $DEFINES $INCLUDES $FLAGS /showIncludes /Fo$out /Fd$TARGET_COMPILE_PDB /FS -c $in
+  depfile = $DEP_FILE
+  deps = gcc
+  command = ${LAUNCHER}${CODE_CHECK}C:\msys64\ucrt64\bin\gcc.exe $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
   description = Building C object $out
 
 
 #############################################
-# Rule for linking CXX executable.
+# Rule for linking C executable.
 
-rule CXX_EXECUTABLE_LINKER__ap2_Release
-  command = C:\WINDOWS\system32\cmd.exe /C "$PRE_LINK && "C:\Program Files\CMake\bin\cmake.exe" -E vs_link_exe --msvc-ver=1944 --intdir=$OBJECT_DIR --rc=C:\PROGRA~2\WI3CF2~1\10\bin\100261~1.0\x64\rc.exe --mt=C:\PROGRA~2\WI3CF2~1\10\bin\100261~1.0\x64\mt.exe --manifests $MANIFESTS -- C:\PROGRA~2\MICROS~2\2022\BUILDT~1\VC\Tools\MSVC\1444~1.352\bin\Hostx64\x64\link.exe /nologo $in  /out:$TARGET_FILE /implib:$TARGET_IMPLIB /pdb:$TARGET_PDB /version:0.0 $LINK_FLAGS $LINK_PATH $LINK_LIBRARIES && $POST_BUILD"
-  description = Linking CXX executable $TARGET_FILE
+rule C_EXECUTABLE_LINKER__ap2_Release
+  command = C:\WINDOWS\system32\cmd.exe /C "$PRE_LINK && C:\msys64\ucrt64\bin\gcc.exe $FLAGS $LINK_FLAGS $in -o $TARGET_FILE -Wl,--out-implib,$TARGET_IMPLIB -Wl,--major-image-version,0,--minor-image-version,0 $LINK_PATH $LINK_LIBRARIES && $POST_BUILD"
+  description = Linking C executable $TARGET_FILE
   restat = $RESTAT
 
 
@@ -57,17 +53,18 @@ rule CXX_EXECUTABLE_LINKER__ap2_Release
 # Rule for compiling C files.
 
 rule C_COMPILER__ap2_unscanned_RelWithDebInfo
-  deps = msvc
-  command = ${LAUNCHER}${CODE_CHECK}C:\PROGRA~2\MICROS~2\2022\BUILDT~1\VC\Tools\MSVC\1444~1.352\bin\Hostx64\x64\cl.exe  /nologo $DEFINES $INCLUDES $FLAGS /showIncludes /Fo$out /Fd$TARGET_COMPILE_PDB /FS -c $in
+  depfile = $DEP_FILE
+  deps = gcc
+  command = ${LAUNCHER}${CODE_CHECK}C:\msys64\ucrt64\bin\gcc.exe $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
   description = Building C object $out
 
 
 #############################################
-# Rule for linking CXX executable.
+# Rule for linking C executable.
 
-rule CXX_EXECUTABLE_LINKER__ap2_RelWithDebInfo
-  command = C:\WINDOWS\system32\cmd.exe /C "$PRE_LINK && "C:\Program Files\CMake\bin\cmake.exe" -E vs_link_exe --msvc-ver=1944 --intdir=$OBJECT_DIR --rc=C:\PROGRA~2\WI3CF2~1\10\bin\100261~1.0\x64\rc.exe --mt=C:\PROGRA~2\WI3CF2~1\10\bin\100261~1.0\x64\mt.exe --manifests $MANIFESTS -- C:\PROGRA~2\MICROS~2\2022\BUILDT~1\VC\Tools\MSVC\1444~1.352\bin\Hostx64\x64\link.exe /nologo $in  /out:$TARGET_FILE /implib:$TARGET_IMPLIB /pdb:$TARGET_PDB /version:0.0 $LINK_FLAGS $LINK_PATH $LINK_LIBRARIES && $POST_BUILD"
-  description = Linking CXX executable $TARGET_FILE
+rule C_EXECUTABLE_LINKER__ap2_RelWithDebInfo
+  command = C:\WINDOWS\system32\cmd.exe /C "$PRE_LINK && C:\msys64\ucrt64\bin\gcc.exe $FLAGS $LINK_FLAGS $in -o $TARGET_FILE -Wl,--out-implib,$TARGET_IMPLIB -Wl,--major-image-version,0,--minor-image-version,0 $LINK_PATH $LINK_LIBRARIES && $POST_BUILD"
+  description = Linking C executable $TARGET_FILE
   restat = $RESTAT
 
 
@@ -83,8 +80,9 @@ rule CUSTOM_COMMAND
 # Rule for compiling C files.
 
 rule C_COMPILER__glfw_unscanned_Debug
-  deps = msvc
-  command = ${LAUNCHER}${CODE_CHECK}C:\PROGRA~2\MICROS~2\2022\BUILDT~1\VC\Tools\MSVC\1444~1.352\bin\Hostx64\x64\cl.exe  /nologo $DEFINES $INCLUDES $FLAGS /showIncludes /Fo$out /Fd$TARGET_COMPILE_PDB /FS -c $in
+  depfile = $DEP_FILE
+  deps = gcc
+  command = ${LAUNCHER}${CODE_CHECK}C:\msys64\ucrt64\bin\gcc.exe $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
   description = Building C object $out
 
 
@@ -92,7 +90,7 @@ rule C_COMPILER__glfw_unscanned_Debug
 # Rule for linking C static library.
 
 rule C_STATIC_LIBRARY_LINKER__glfw_Debug
-  command = C:\WINDOWS\system32\cmd.exe /C "$PRE_LINK && C:\PROGRA~2\MICROS~2\2022\BUILDT~1\VC\Tools\MSVC\1444~1.352\bin\Hostx64\x64\lib.exe /nologo $LINK_FLAGS /out:$TARGET_FILE $in && $POST_BUILD"
+  command = C:\WINDOWS\system32\cmd.exe /C "$PRE_LINK && "C:\Program Files\CMake\bin\cmake.exe" -E rm -f $TARGET_FILE && C:\msys64\ucrt64\bin\ar.exe qc $TARGET_FILE $LINK_FLAGS $in && C:\msys64\ucrt64\bin\ranlib.exe $TARGET_FILE && $POST_BUILD"
   description = Linking C static library $TARGET_FILE
   restat = $RESTAT
 
@@ -101,8 +99,9 @@ rule C_STATIC_LIBRARY_LINKER__glfw_Debug
 # Rule for compiling C files.
 
 rule C_COMPILER__glfw_unscanned_Release
-  deps = msvc
-  command = ${LAUNCHER}${CODE_CHECK}C:\PROGRA~2\MICROS~2\2022\BUILDT~1\VC\Tools\MSVC\1444~1.352\bin\Hostx64\x64\cl.exe  /nologo $DEFINES $INCLUDES $FLAGS /showIncludes /Fo$out /Fd$TARGET_COMPILE_PDB /FS -c $in
+  depfile = $DEP_FILE
+  deps = gcc
+  command = ${LAUNCHER}${CODE_CHECK}C:\msys64\ucrt64\bin\gcc.exe $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
   description = Building C object $out
 
 
@@ -110,7 +109,7 @@ rule C_COMPILER__glfw_unscanned_Release
 # Rule for linking C static library.
 
 rule C_STATIC_LIBRARY_LINKER__glfw_Release
-  command = C:\WINDOWS\system32\cmd.exe /C "$PRE_LINK && C:\PROGRA~2\MICROS~2\2022\BUILDT~1\VC\Tools\MSVC\1444~1.352\bin\Hostx64\x64\lib.exe /nologo $LINK_FLAGS /out:$TARGET_FILE $in && $POST_BUILD"
+  command = C:\WINDOWS\system32\cmd.exe /C "$PRE_LINK && "C:\Program Files\CMake\bin\cmake.exe" -E rm -f $TARGET_FILE && C:\msys64\ucrt64\bin\ar.exe qc $TARGET_FILE $LINK_FLAGS $in && C:\msys64\ucrt64\bin\ranlib.exe $TARGET_FILE && $POST_BUILD"
   description = Linking C static library $TARGET_FILE
   restat = $RESTAT
 
@@ -119,8 +118,9 @@ rule C_STATIC_LIBRARY_LINKER__glfw_Release
 # Rule for compiling C files.
 
 rule C_COMPILER__glfw_unscanned_RelWithDebInfo
-  deps = msvc
-  command = ${LAUNCHER}${CODE_CHECK}C:\PROGRA~2\MICROS~2\2022\BUILDT~1\VC\Tools\MSVC\1444~1.352\bin\Hostx64\x64\cl.exe  /nologo $DEFINES $INCLUDES $FLAGS /showIncludes /Fo$out /Fd$TARGET_COMPILE_PDB /FS -c $in
+  depfile = $DEP_FILE
+  deps = gcc
+  command = ${LAUNCHER}${CODE_CHECK}C:\msys64\ucrt64\bin\gcc.exe $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
   description = Building C object $out
 
 
@@ -128,62 +128,8 @@ rule C_COMPILER__glfw_unscanned_RelWithDebInfo
 # Rule for linking C static library.
 
 rule C_STATIC_LIBRARY_LINKER__glfw_RelWithDebInfo
-  command = C:\WINDOWS\system32\cmd.exe /C "$PRE_LINK && C:\PROGRA~2\MICROS~2\2022\BUILDT~1\VC\Tools\MSVC\1444~1.352\bin\Hostx64\x64\lib.exe /nologo $LINK_FLAGS /out:$TARGET_FILE $in && $POST_BUILD"
+  command = C:\WINDOWS\system32\cmd.exe /C "$PRE_LINK && "C:\Program Files\CMake\bin\cmake.exe" -E rm -f $TARGET_FILE && C:\msys64\ucrt64\bin\ar.exe qc $TARGET_FILE $LINK_FLAGS $in && C:\msys64\ucrt64\bin\ranlib.exe $TARGET_FILE && $POST_BUILD"
   description = Linking C static library $TARGET_FILE
-  restat = $RESTAT
-
-
-#############################################
-# Rule for compiling CXX files.
-
-rule CXX_COMPILER__glm_unscanned_Debug
-  deps = msvc
-  command = ${LAUNCHER}${CODE_CHECK}C:\PROGRA~2\MICROS~2\2022\BUILDT~1\VC\Tools\MSVC\1444~1.352\bin\Hostx64\x64\cl.exe  /nologo /TP $DEFINES $INCLUDES $FLAGS /showIncludes /Fo$out /Fd$TARGET_COMPILE_PDB /FS -c $in
-  description = Building CXX object $out
-
-
-#############################################
-# Rule for linking CXX static library.
-
-rule CXX_STATIC_LIBRARY_LINKER__glm_Debug
-  command = C:\WINDOWS\system32\cmd.exe /C "$PRE_LINK && C:\PROGRA~2\MICROS~2\2022\BUILDT~1\VC\Tools\MSVC\1444~1.352\bin\Hostx64\x64\lib.exe /nologo $LINK_FLAGS /out:$TARGET_FILE $in && $POST_BUILD"
-  description = Linking CXX static library $TARGET_FILE
-  restat = $RESTAT
-
-
-#############################################
-# Rule for compiling CXX files.
-
-rule CXX_COMPILER__glm_unscanned_Release
-  deps = msvc
-  command = ${LAUNCHER}${CODE_CHECK}C:\PROGRA~2\MICROS~2\2022\BUILDT~1\VC\Tools\MSVC\1444~1.352\bin\Hostx64\x64\cl.exe  /nologo /TP $DEFINES $INCLUDES $FLAGS /showIncludes /Fo$out /Fd$TARGET_COMPILE_PDB /FS -c $in
-  description = Building CXX object $out
-
-
-#############################################
-# Rule for linking CXX static library.
-
-rule CXX_STATIC_LIBRARY_LINKER__glm_Release
-  command = C:\WINDOWS\system32\cmd.exe /C "$PRE_LINK && C:\PROGRA~2\MICROS~2\2022\BUILDT~1\VC\Tools\MSVC\1444~1.352\bin\Hostx64\x64\lib.exe /nologo $LINK_FLAGS /out:$TARGET_FILE $in && $POST_BUILD"
-  description = Linking CXX static library $TARGET_FILE
-  restat = $RESTAT
-
-
-#############################################
-# Rule for compiling CXX files.
-
-rule CXX_COMPILER__glm_unscanned_RelWithDebInfo
-  deps = msvc
-  command = ${LAUNCHER}${CODE_CHECK}C:\PROGRA~2\MICROS~2\2022\BUILDT~1\VC\Tools\MSVC\1444~1.352\bin\Hostx64\x64\cl.exe  /nologo /TP $DEFINES $INCLUDES $FLAGS /showIncludes /Fo$out /Fd$TARGET_COMPILE_PDB /FS -c $in
-  description = Building CXX object $out
-
-
-#############################################
-# Rule for linking CXX static library.
-
-rule CXX_STATIC_LIBRARY_LINKER__glm_RelWithDebInfo
-  command = C:\WINDOWS\system32\cmd.exe /C "$PRE_LINK && C:\PROGRA~2\MICROS~2\2022\BUILDT~1\VC\Tools\MSVC\1444~1.352\bin\Hostx64\x64\lib.exe /nologo $LINK_FLAGS /out:$TARGET_FILE $in && $POST_BUILD"
-  description = Linking CXX static library $TARGET_FILE
   restat = $RESTAT
 
 
@@ -191,8 +137,9 @@ rule CXX_STATIC_LIBRARY_LINKER__glm_RelWithDebInfo
 # Rule for compiling C files.
 
 rule C_COMPILER__glad_unscanned_Debug
-  deps = msvc
-  command = ${LAUNCHER}${CODE_CHECK}C:\PROGRA~2\MICROS~2\2022\BUILDT~1\VC\Tools\MSVC\1444~1.352\bin\Hostx64\x64\cl.exe  /nologo $DEFINES $INCLUDES $FLAGS /showIncludes /Fo$out /Fd$TARGET_COMPILE_PDB /FS -c $in
+  depfile = $DEP_FILE
+  deps = gcc
+  command = ${LAUNCHER}${CODE_CHECK}C:\msys64\ucrt64\bin\gcc.exe $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
   description = Building C object $out
 
 
@@ -200,7 +147,7 @@ rule C_COMPILER__glad_unscanned_Debug
 # Rule for linking C static library.
 
 rule C_STATIC_LIBRARY_LINKER__glad_Debug
-  command = C:\WINDOWS\system32\cmd.exe /C "$PRE_LINK && C:\PROGRA~2\MICROS~2\2022\BUILDT~1\VC\Tools\MSVC\1444~1.352\bin\Hostx64\x64\lib.exe /nologo $LINK_FLAGS /out:$TARGET_FILE $in && $POST_BUILD"
+  command = C:\WINDOWS\system32\cmd.exe /C "$PRE_LINK && "C:\Program Files\CMake\bin\cmake.exe" -E rm -f $TARGET_FILE && C:\msys64\ucrt64\bin\ar.exe qc $TARGET_FILE $LINK_FLAGS $in && C:\msys64\ucrt64\bin\ranlib.exe $TARGET_FILE && $POST_BUILD"
   description = Linking C static library $TARGET_FILE
   restat = $RESTAT
 
@@ -209,8 +156,9 @@ rule C_STATIC_LIBRARY_LINKER__glad_Debug
 # Rule for compiling C files.
 
 rule C_COMPILER__glad_unscanned_Release
-  deps = msvc
-  command = ${LAUNCHER}${CODE_CHECK}C:\PROGRA~2\MICROS~2\2022\BUILDT~1\VC\Tools\MSVC\1444~1.352\bin\Hostx64\x64\cl.exe  /nologo $DEFINES $INCLUDES $FLAGS /showIncludes /Fo$out /Fd$TARGET_COMPILE_PDB /FS -c $in
+  depfile = $DEP_FILE
+  deps = gcc
+  command = ${LAUNCHER}${CODE_CHECK}C:\msys64\ucrt64\bin\gcc.exe $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
   description = Building C object $out
 
 
@@ -218,7 +166,7 @@ rule C_COMPILER__glad_unscanned_Release
 # Rule for linking C static library.
 
 rule C_STATIC_LIBRARY_LINKER__glad_Release
-  command = C:\WINDOWS\system32\cmd.exe /C "$PRE_LINK && C:\PROGRA~2\MICROS~2\2022\BUILDT~1\VC\Tools\MSVC\1444~1.352\bin\Hostx64\x64\lib.exe /nologo $LINK_FLAGS /out:$TARGET_FILE $in && $POST_BUILD"
+  command = C:\WINDOWS\system32\cmd.exe /C "$PRE_LINK && "C:\Program Files\CMake\bin\cmake.exe" -E rm -f $TARGET_FILE && C:\msys64\ucrt64\bin\ar.exe qc $TARGET_FILE $LINK_FLAGS $in && C:\msys64\ucrt64\bin\ranlib.exe $TARGET_FILE && $POST_BUILD"
   description = Linking C static library $TARGET_FILE
   restat = $RESTAT
 
@@ -227,8 +175,9 @@ rule C_STATIC_LIBRARY_LINKER__glad_Release
 # Rule for compiling C files.
 
 rule C_COMPILER__glad_unscanned_RelWithDebInfo
-  deps = msvc
-  command = ${LAUNCHER}${CODE_CHECK}C:\PROGRA~2\MICROS~2\2022\BUILDT~1\VC\Tools\MSVC\1444~1.352\bin\Hostx64\x64\cl.exe  /nologo $DEFINES $INCLUDES $FLAGS /showIncludes /Fo$out /Fd$TARGET_COMPILE_PDB /FS -c $in
+  depfile = $DEP_FILE
+  deps = gcc
+  command = ${LAUNCHER}${CODE_CHECK}C:\msys64\ucrt64\bin\gcc.exe $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
   description = Building C object $out
 
 
@@ -236,7 +185,7 @@ rule C_COMPILER__glad_unscanned_RelWithDebInfo
 # Rule for linking C static library.
 
 rule C_STATIC_LIBRARY_LINKER__glad_RelWithDebInfo
-  command = C:\WINDOWS\system32\cmd.exe /C "$PRE_LINK && C:\PROGRA~2\MICROS~2\2022\BUILDT~1\VC\Tools\MSVC\1444~1.352\bin\Hostx64\x64\lib.exe /nologo $LINK_FLAGS /out:$TARGET_FILE $in && $POST_BUILD"
+  command = C:\WINDOWS\system32\cmd.exe /C "$PRE_LINK && "C:\Program Files\CMake\bin\cmake.exe" -E rm -f $TARGET_FILE && C:\msys64\ucrt64\bin\ar.exe qc $TARGET_FILE $LINK_FLAGS $in && C:\msys64\ucrt64\bin\ranlib.exe $TARGET_FILE && $POST_BUILD"
   description = Linking C static library $TARGET_FILE
   restat = $RESTAT
 

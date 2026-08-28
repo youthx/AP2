@@ -32,14 +32,14 @@ if(NOT DEFINED CMAKE_CROSSCOMPILING)
   set(CMAKE_CROSSCOMPILING "FALSE")
 endif()
 
-if(NOT CMAKE_INSTALL_LOCAL_ONLY)
-  # Include the install script for the subdirectory.
-  include("C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-build/cmake_install.cmake")
+# Set path to fallback-tool for dependency-resolution.
+if(NOT DEFINED CMAKE_OBJDUMP)
+  set(CMAKE_OBJDUMP "C:/msys64/ucrt64/bin/objdump.exe")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glm-build/cmake_install.cmake")
+  include("C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-build/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
@@ -50,20 +50,28 @@ endif()
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Runtime" OR NOT CMAKE_INSTALL_COMPONENT)
   if(CMAKE_INSTALL_CONFIG_NAME MATCHES "^([Dd][Ee][Bb][Uu][Gg])$")
     file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/bin" TYPE EXECUTABLE FILES "C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/bin/Debug/ap2.exe")
+    if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/ap2.exe" AND
+       NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/ap2.exe")
+      if(CMAKE_INSTALL_DO_STRIP)
+        execute_process(COMMAND "C:/msys64/ucrt64/bin/strip.exe" "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/ap2.exe")
+      endif()
+    endif()
   elseif(CMAKE_INSTALL_CONFIG_NAME MATCHES "^([Rr][Ee][Ll][Ee][Aa][Ss][Ee])$")
     file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/bin" TYPE EXECUTABLE FILES "C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/bin/Release/ap2.exe")
+    if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/ap2.exe" AND
+       NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/ap2.exe")
+      if(CMAKE_INSTALL_DO_STRIP)
+        execute_process(COMMAND "C:/msys64/ucrt64/bin/strip.exe" "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/ap2.exe")
+      endif()
+    endif()
   elseif(CMAKE_INSTALL_CONFIG_NAME MATCHES "^([Rr][Ee][Ll][Ww][Ii][Tt][Hh][Dd][Ee][Bb][Ii][Nn][Ff][Oo])$")
     file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/bin" TYPE EXECUTABLE FILES "C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/bin/RelWithDebInfo/ap2.exe")
-  endif()
-endif()
-
-if(CMAKE_INSTALL_COMPONENT STREQUAL "Debug" OR NOT CMAKE_INSTALL_COMPONENT)
-  if(CMAKE_INSTALL_CONFIG_NAME MATCHES "^([Dd][Ee][Bb][Uu][Gg])$")
-    file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/bin" TYPE FILE OPTIONAL FILES "C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/bin/Debug/ap2.pdb")
-  elseif(CMAKE_INSTALL_CONFIG_NAME MATCHES "^([Rr][Ee][Ll][Ee][Aa][Ss][Ee])$")
-    file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/bin" TYPE FILE OPTIONAL FILES "C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/bin/Release/ap2.pdb")
-  elseif(CMAKE_INSTALL_CONFIG_NAME MATCHES "^([Rr][Ee][Ll][Ww][Ii][Tt][Hh][Dd][Ee][Bb][Ii][Nn][Ff][Oo])$")
-    file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/bin" TYPE FILE OPTIONAL FILES "C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/bin/RelWithDebInfo/ap2.pdb")
+    if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/ap2.exe" AND
+       NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/ap2.exe")
+      if(CMAKE_INSTALL_DO_STRIP)
+        execute_process(COMMAND "C:/msys64/ucrt64/bin/strip.exe" "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/ap2.exe")
+      endif()
+    endif()
   endif()
 endif()
 

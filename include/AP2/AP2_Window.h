@@ -17,19 +17,35 @@ extern "C" {
 typedef struct AP_Window AP_Window;
 
 /* ---------------------------------------------------------
+ * Window configuration
+ * --------------------------------------------------------- */
+
+typedef struct AP_WindowConfig {
+  const char *title;
+
+  uint32_t width;
+  uint32_t height;
+
+  bool resizable;
+  bool decorated;
+  bool maximized;
+  bool fullscreen;
+
+} AP_WindowConfig;
+
+/* ---------------------------------------------------------
  * Windowing subsystem
  * --------------------------------------------------------- */
 
 bool AP_WindowingInit(void);
-void AP_WindowingClose(void);
 
-extern const AP_SubsystemMetadata AP_WindowingSubsystem;
+void AP_WindowingClose(void);
 
 /* ---------------------------------------------------------
  * Window lifecycle
  * --------------------------------------------------------- */
 
-AP_Window *AP_CreateWindow(const char *title, uint32_t width, uint32_t height);
+AP_Window *AP_CreateWindow(const AP_WindowConfig *config);
 
 void AP_DestroyWindow(AP_Window *window);
 
@@ -38,6 +54,7 @@ void AP_DestroyWindow(AP_Window *window);
  * --------------------------------------------------------- */
 
 bool AP_SetActiveWindow(AP_Window *window);
+
 AP_Window *AP_GetActiveWindow(void);
 
 /* ---------------------------------------------------------
@@ -46,15 +63,37 @@ AP_Window *AP_GetActiveWindow(void);
 
 bool AP_WindowShouldClose(const AP_Window *window);
 
-void AP_WindowGetSize(const AP_Window *window, uint32_t *out_width,
-                      uint32_t *out_height);
+void AP_WindowSetShouldClose(AP_Window *window, bool should_close);
 
 /* ---------------------------------------------------------
- * Window operations
+ * Window events
+ * --------------------------------------------------------- */
+
+void AP_WindowPollEvents(void);
+
+/* ---------------------------------------------------------
+ * Buffer
  * --------------------------------------------------------- */
 
 void AP_WindowSwapBuffers(AP_Window *window);
-void AP_WindowPollEvents(void);
+
+/* ---------------------------------------------------------
+ * Window information
+ * --------------------------------------------------------- */
+
+void AP_WindowGetSize(const AP_Window *window, uint32_t *out_width,
+                      uint32_t *out_height);
+
+void AP_WindowGetFramebufferSize(const AP_Window *window, uint32_t *out_width,
+                                 uint32_t *out_height);
+
+const char *AP_WindowGetTitle(const AP_Window *window);
+
+/* ---------------------------------------------------------
+ * Subsystem metadata
+ * --------------------------------------------------------- */
+
+extern const AP_SubsystemMetadata AP_WindowingSubsystem;
 
 #ifdef __cplusplus
 }

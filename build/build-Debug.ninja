@@ -12,75 +12,65 @@ build package_source: phony package_source$:Debug
 
 build install: phony install$:Debug
 
-build install\local: phony install\local$:Debug
+build install/local: phony install/local$:Debug
 
-build _deps\glfw-build\package: phony _deps\glfw-build\package$:Debug
+build install/strip: phony install/strip$:Debug
 
-build _deps\glfw-build\package_source: phony _deps\glfw-build\package_source$:Debug
+build _deps/glfw-build/package: phony _deps/glfw-build/package$:Debug
 
-build _deps\glfw-build\install: phony _deps\glfw-build\install$:Debug
+build _deps/glfw-build/package_source: phony _deps/glfw-build/package_source$:Debug
 
-build _deps\glfw-build\install\local: phony _deps\glfw-build\install\local$:Debug
+build _deps/glfw-build/install: phony _deps/glfw-build/install$:Debug
 
-build _deps\glfw-build\src\package: phony _deps\glfw-build\src\package$:Debug
+build _deps/glfw-build/install/local: phony _deps/glfw-build/install/local$:Debug
 
-build _deps\glfw-build\src\package_source: phony _deps\glfw-build\src\package_source$:Debug
+build _deps/glfw-build/install/strip: phony _deps/glfw-build/install/strip$:Debug
 
-build _deps\glfw-build\src\install: phony _deps\glfw-build\src\install$:Debug
+build _deps/glfw-build/src/package: phony _deps/glfw-build/src/package$:Debug
 
-build _deps\glfw-build\src\install\local: phony _deps\glfw-build\src\install\local$:Debug
+build _deps/glfw-build/src/package_source: phony _deps/glfw-build/src/package_source$:Debug
 
-build _deps\glfw-build\docs\package: phony _deps\glfw-build\docs\package$:Debug
+build _deps/glfw-build/src/install: phony _deps/glfw-build/src/install$:Debug
 
-build _deps\glfw-build\docs\package_source: phony _deps\glfw-build\docs\package_source$:Debug
+build _deps/glfw-build/src/install/local: phony _deps/glfw-build/src/install/local$:Debug
 
-build _deps\glfw-build\docs\install: phony _deps\glfw-build\docs\install$:Debug
+build _deps/glfw-build/src/install/strip: phony _deps/glfw-build/src/install/strip$:Debug
 
-build _deps\glfw-build\docs\install\local: phony _deps\glfw-build\docs\install\local$:Debug
+build _deps/glfw-build/docs/package: phony _deps/glfw-build/docs/package$:Debug
 
-build _deps\glm-build\package: phony _deps\glm-build\package$:Debug
+build _deps/glfw-build/docs/package_source: phony _deps/glfw-build/docs/package_source$:Debug
 
-build _deps\glm-build\package_source: phony _deps\glm-build\package_source$:Debug
+build _deps/glfw-build/docs/install: phony _deps/glfw-build/docs/install$:Debug
 
-build _deps\glm-build\install: phony _deps\glm-build\install$:Debug
+build _deps/glfw-build/docs/install/local: phony _deps/glfw-build/docs/install/local$:Debug
 
-build _deps\glm-build\install\local: phony _deps\glm-build\install\local$:Debug
+build _deps/glfw-build/docs/install/strip: phony _deps/glfw-build/docs/install/strip$:Debug
 
-build _deps\glm-build\glm\package: phony _deps\glm-build\glm\package$:Debug
+build _deps/glad-build/package: phony _deps/glad-build/package$:Debug
 
-build _deps\glm-build\glm\package_source: phony _deps\glm-build\glm\package_source$:Debug
+build _deps/glad-build/package_source: phony _deps/glad-build/package_source$:Debug
 
-build _deps\glm-build\glm\install: phony _deps\glm-build\glm\install$:Debug
+build _deps/glad-build/install: phony _deps/glad-build/install$:Debug
 
-build _deps\glm-build\glm\install\local: phony _deps\glm-build\glm\install\local$:Debug
+build _deps/glad-build/install/local: phony _deps/glad-build/install/local$:Debug
 
-build _deps\glad-build\package: phony _deps\glad-build\package$:Debug
+build _deps/glad-build/install/strip: phony _deps/glad-build/install/strip$:Debug
 
-build _deps\glad-build\package_source: phony _deps\glad-build\package_source$:Debug
+build ap2: phony bin/Debug/ap2.exe
 
-build _deps\glad-build\install: phony _deps\glad-build\install$:Debug
+build ap2.exe: phony bin/Debug/ap2.exe
 
-build _deps\glad-build\install\local: phony _deps\glad-build\install\local$:Debug
+build glad: phony lib/Debug/libglad.a
 
-build ap2: phony bin\Debug\ap2.exe
+build glfw: phony lib/Debug/libglfw3.a
 
-build ap2.exe: phony bin\Debug\ap2.exe
+build libglad.a: phony lib/Debug/libglad.a
 
-build glad: phony lib\Debug\glad.lib
+build libglfw3.a: phony lib/Debug/libglfw3.a
 
-build glad.lib: phony lib\Debug\glad.lib
+build uninstall: phony _deps/glfw-build/uninstall$:Debug
 
-build glfw: phony lib\Debug\glfw3.lib
-
-build glfw3.lib: phony lib\Debug\glfw3.lib
-
-build glm: phony lib\Debug\glm.lib
-
-build glm.lib: phony lib\Debug\glm.lib
-
-build uninstall: phony _deps\glfw-build\uninstall$:Debug
-
-build update_mappings: phony _deps\glfw-build\src\update_mappings$:Debug
+build update_mappings: phony _deps/glfw-build/src/update_mappings$:Debug
 
 
 #############################################
@@ -92,37 +82,25 @@ build all: phony all$:Debug
 #############################################
 # Folder: C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glad-build
 
-build _deps\glad-build\all: phony _deps\glad-build\all$:Debug
+build _deps/glad-build/all: phony _deps/glad-build/all$:Debug
 
 
 #############################################
 # Folder: C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-build
 
-build _deps\glfw-build\all: phony _deps\glfw-build\all$:Debug
+build _deps/glfw-build/all: phony _deps/glfw-build/all$:Debug
 
 
 #############################################
 # Folder: C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-build/docs
 
-build _deps\glfw-build\docs\all: phony _deps\glfw-build\docs\all$:Debug
+build _deps/glfw-build/docs/all: phony _deps/glfw-build/docs/all$:Debug
 
 
 #############################################
 # Folder: C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-build/src
 
-build _deps\glfw-build\src\all: phony _deps\glfw-build\src\all$:Debug
-
-
-#############################################
-# Folder: C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glm-build
-
-build _deps\glm-build\all: phony _deps\glm-build\all$:Debug
-
-
-#############################################
-# Folder: C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glm-build/glm
-
-build _deps\glm-build\glm\all: phony _deps\glm-build\glm\all$:Debug
+build _deps/glfw-build/src/all: phony _deps/glfw-build/src/all$:Debug
 
 build clean: phony clean$:Debug
 

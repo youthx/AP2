@@ -14,14 +14,12 @@ version = "3.5.1"
 url = "https://github.com/glfw/glfw.git"
 resolved = "3.5.1"
 
-[dependency.glm]
+[dependency.system]
 source_type = "index"
-version = "1.0.3"
-url = "https://github.com/g-truc/glm.git"
-resolved = "1.0.3"
+version = "*"
 
 [buildcache]
 # Auto-generated. Tracks change detection for incremental builds.
-generated = "2026-08-28T03:11:50Z"
-config_hash = "3889e5bf9cdfa350"
+generated = "2026-08-28T20:21:31Z"
+config_hash = "379d1fcc1153ffc7"
 

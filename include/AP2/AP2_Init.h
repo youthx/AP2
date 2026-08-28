@@ -8,68 +8,138 @@
 extern "C" {
 #endif
 
+/* =========================================================
+ * AP2 Subsystems
+ * ========================================================= */
+
 typedef enum AP_Subsystem {
-  AP_SUBSYSTEM_VIDEO = 0,
+  /*
+   * Windowing must initialize before Video.
+   */
+  AP_SUBSYSTEM_WINDOWING = 0,
+
+  /*
+   * Video owns the graphics device/backend.
+   */
+  AP_SUBSYSTEM_VIDEO,
+
+  /*
+   * Audio is independent of the graphics stack.
+   */
   AP_SUBSYSTEM_AUDIO,
-  AP_SUBSYSTEM_WINDOWING,
 
   AP_SUBSYSTEM_COUNT
 } AP_Subsystem;
 
-/*
- * Initialization flags.
- *
- * These are bit flags, so multiple subsystems can be initialized
- * with a single call:
- *
- *     AP_Init(AP_INIT_VIDEO | AP_INIT_AUDIO);
- */
+/* =========================================================
+ * Initialization Flags
+ * ========================================================= */
+
 typedef uint32_t AP_InitFlags;
 
+/*
+ * No subsystems.
+ */
 #define AP_INIT_NONE ((AP_InitFlags)0)
-#define AP_INIT_VIDEO ((AP_InitFlags)(1u << AP_SUBSYSTEM_VIDEO))
-#define AP_INIT_AUDIO ((AP_InitFlags)(1u << AP_SUBSYSTEM_AUDIO))
-#define AP_INIT_WINDOWING ((AP_InitFlags)(1u << AP_SUBSYSTEM_WINDOWING))
-
-#define AP_INIT_ALL (AP_INIT_VIDEO | AP_INIT_AUDIO | AP_INIT_WINDOWING)
-
-typedef struct AP_SubsystemMetadata {
-  bool (*init)(void);
-  void (*close)(void);
-} AP_SubsystemMetadata;
 
 /*
- * Registers a subsystem and its lifecycle callbacks.
+ * Windowing subsystem.
+ */
+#define AP_INIT_WINDOWING ((AP_InitFlags)(1u << AP_SUBSYSTEM_WINDOWING))
+
+/*
+ * Video subsystem.
+ */
+#define AP_INIT_VIDEO ((AP_InitFlags)(1u << AP_SUBSYSTEM_VIDEO))
+
+/*
+ * Audio subsystem.
+ */
+#define AP_INIT_AUDIO ((AP_InitFlags)(1u << AP_SUBSYSTEM_AUDIO))
+
+/*
+ * All AP2 subsystems.
+ */
+#define AP_INIT_ALL (AP_INIT_WINDOWING | AP_INIT_VIDEO | AP_INIT_AUDIO)
+
+/* =========================================================
+ * Subsystem Metadata
+ * ========================================================= */
+
+typedef struct AP_SubsystemMetadata {
+  /*
+   * Called when the subsystem is initialized.
+   *
+   * Return true on success.
+   */
+  bool (*init)(void);
+
+  /*
+   * Called when the subsystem is shut down.
+   */
+  void (*close)(void);
+
+} AP_SubsystemMetadata;
+
+/* =========================================================
+ * Subsystem Registration
+ * ========================================================= */
+
+/*
+ * Registers a subsystem with AP2.
  *
- * `name` is primarily intended for debugging/logging.
+ * This is primarily intended for AP2's internal subsystem
+ * registration system.
  */
 bool AP_RegisterSubsystem(AP_Subsystem subsystem, const char *name,
                           AP_SubsystemMetadata metadata);
 
+/* =========================================================
+ * Subsystem Lifecycle
+ * ========================================================= */
+
 /*
- * Initializes a single registered subsystem.
+ * Initializes one registered subsystem.
  */
 bool AP_InitSubsystem(AP_Subsystem subsystem);
 
 /*
- * Initializes all subsystems specified by `flags`.
- */
-bool AP_Init(AP_InitFlags flags);
-
-/*
- * Returns whether a subsystem has successfully initialized.
+ * Returns whether a subsystem has been successfully
+ * initialized.
  */
 bool AP_GetSubsystemInitialized(AP_Subsystem subsystem);
 
 /*
- * Shuts down a single initialized subsystem.
+ * Shuts down one initialized subsystem.
  */
 bool AP_CloseSubsystem(AP_Subsystem subsystem);
 
+/* =========================================================
+ * AP2 Lifecycle
+ * ========================================================= */
+
 /*
- * Shuts down all initialized subsystems.
+ * Initializes AP2.
+ *
+ * Multiple subsystem flags may be combined:
+ *
+ *     AP_Init(AP_INIT_WINDOWING | AP_INIT_VIDEO);
+ *
+ * Or all available subsystems:
+ *
+ *     AP_Init(AP_INIT_ALL);
+ */
+bool AP_Init(AP_InitFlags flags);
+
+/*
+ * Shuts down AP2 and all initialized subsystems.
  */
 void AP_Quit(void);
+
+/*
+ * Returns whether AP2 itself is currently initialized.
+ */
+bool AP_IsInitialized(void);
 
 #ifdef __cplusplus
 }

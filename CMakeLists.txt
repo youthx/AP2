@@ -16,8 +16,8 @@ endif()
 set(SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}")
 
 # Project description
-set(PROJECT_DESCRIPTION "A C project created with cforge")
-set(PROJECT_AUTHOR "Your Name <your.email@example.com>")
+set(PROJECT_DESCRIPTION "Aphelion Engine core library")
+set(PROJECT_AUTHOR "Jack Waechter")
 
 string(TOUPPER ${PROJECT_NAME} PROJECT_NAME_UPPER)
 # Set C++ standard
@@ -26,7 +26,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
 # Set C standard
-set(CMAKE_C_STANDARD 11)
+set(CMAKE_C_STANDARD 17)
 set(CMAKE_C_STANDARD_REQUIRED ON)
 set(CMAKE_C_EXTENSIONS OFF)
 
@@ -100,16 +100,8 @@ FetchContent_Declare(
     GIT_SHALLOW TRUE
 )
 
-# glm v1.0.3
-FetchContent_Declare(
-    glm
-    GIT_REPOSITORY https://github.com/g-truc/glm.git
-    GIT_TAG 1.0.3
-    GIT_SHALLOW TRUE
-)
-
 # Fetch packages without setup commands
-FetchContent_MakeAvailable(glfw glm)
+FetchContent_MakeAvailable(glfw)
 
 # Handle glad with setup commands
 FetchContent_GetProperties(glad)
@@ -268,19 +260,31 @@ target_include_directories(${PROJECT_NAME} PUBLIC
 target_link_libraries(${PROJECT_NAME} PUBLIC
     glad
     glfw
-    glm::glm
 )
+
+# platform-specific configuration
+if(CFORGE_PLATFORM STREQUAL "windows")
+    target_compile_definitions(${PROJECT_NAME} PUBLIC WIN32)
+    target_compile_definitions(${PROJECT_NAME} PUBLIC _WINDOWS)
+    target_link_libraries(${PROJECT_NAME} PUBLIC user32)
+    target_link_libraries(${PROJECT_NAME} PUBLIC kernel32)
+endif()
+
+# compiler-specific configuration
+if(CFORGE_COMPILER STREQUAL "msvc")
+    target_compile_definitions(${PROJECT_NAME} PUBLIC _CRT_SECURE_NO_WARNINGS)
+endif()
 
 # Portable compiler flags per configuration
 # Debug configuration flags
 if(CMAKE_BUILD_TYPE STREQUAL "Debug")
     # Portable compiler flags
     if(MSVC AND NOT CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
-        target_compile_options(${PROJECT_NAME} PRIVATE /Od /W4 /Zi /EHsc /GR)
+        target_compile_options(${PROJECT_NAME} PRIVATE /W4 /Zi /EHsc /GR)
     elseif(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
-        target_compile_options(${PROJECT_NAME} PRIVATE -Og -Wall -Wextra -g -fdiagnostics-color=always)
+        target_compile_options(${PROJECT_NAME} PRIVATE -Wall -Wextra -g -fdiagnostics-color=always)
     elseif(CMAKE_CXX_COMPILER_ID MATCHES "Clang")
-        target_compile_options(${PROJECT_NAME} PRIVATE -Og -Wall -Wextra -g -fcolor-diagnostics)
+        target_compile_options(${PROJECT_NAME} PRIVATE -Wall -Wextra -g -fcolor-diagnostics)
     endif()
 endif()
 
@@ -315,23 +319,45 @@ endif()
 if(CMAKE_BUILD_TYPE STREQUAL "Minsizerel")
     # Portable compiler flags
     if(MSVC AND NOT CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
-        target_compile_options(${PROJECT_NAME} PRIVATE /O1 /Os /EHsc /GR)
+        target_compile_options(${PROJECT_NAME} PRIVATE /O1 /Os /W4 /EHsc /GR)
     elseif(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
-        target_compile_options(${PROJECT_NAME} PRIVATE -Os -fdiagnostics-color=always)
+        target_compile_options(${PROJECT_NAME} PRIVATE -Os -Wall -Wextra -fdiagnostics-color=always)
     elseif(CMAKE_CXX_COMPILER_ID MATCHES "Clang")
-        target_compile_options(${PROJECT_NAME} PRIVATE -Os -fcolor-diagnostics)
+        target_compile_options(${PROJECT_NAME} PRIVATE -Os -Wall -Wextra -fcolor-diagnostics)
+    endif()
+endif()
+
+# Portable compiler flags per compiler
+if(CFORGE_COMPILER STREQUAL "msvc")
+    # Portable compiler flags
+    if(MSVC AND NOT CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
+        target_compile_options(${PROJECT_NAME} PRIVATE /W4 /EHsc /GR)
+    elseif(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
+        target_compile_options(${PROJECT_NAME} PRIVATE -Wall -Wextra -fdiagnostics-color=always)
+    elseif(CMAKE_CXX_COMPILER_ID MATCHES "Clang")
+        target_compile_options(${PROJECT_NAME} PRIVATE -Wall -Wextra -fcolor-diagnostics)
     endif()
 endif()
 
 # Definitions for config 'Debug'
 if(CMAKE_BUILD_TYPE STREQUAL "Debug")
   target_compile_definitions(${PROJECT_NAME} PUBLIC DEBUG=1)
+  target_compile_definitions(${PROJECT_NAME} PUBLIC _CRT_SECURE_NO_WARNINGS)
 endif()
+
+# System dependencies
+# Manual dependency: OpenGL
+target_link_libraries(${PROJECT_NAME} PUBLIC opengl32)
 
 # Link libraries
 target_link_libraries(${PROJECT_NAME} PUBLIC
 )
 
+# platform-specific links
+target_link_libraries(${PROJECT_NAME} PUBLIC
+    user32
+    kernel32
+)
 # Tests
 # No tests directory found
 
@@ -360,8 +386,8 @@ endif()
 
 # CPack configuration
 set(CPACK_PACKAGE_NAME "${PROJECT_NAME}")
-set(CPACK_PACKAGE_VENDOR "Your Organization")
-set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "A C project created with cforge")
+set(CPACK_PACKAGE_VENDOR "Aphelion Engine")
+set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "Aphelion Engine core library")
 set(CPACK_PACKAGE_VERSION "0.1.0")
 set(CPACK_PACKAGE_INSTALL_DIRECTORY "${PROJECT_NAME}")
 set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_CURRENT_SOURCE_DIR}/LICENSE")
