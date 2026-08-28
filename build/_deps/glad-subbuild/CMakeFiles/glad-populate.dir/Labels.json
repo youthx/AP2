@@ -1,0 +1,46 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glad-subbuild/CMakeFiles/glad-populate-Debug"
+		},
+		{
+			"file" : "C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glad-subbuild/CMakeFiles/glad-populate-(CONFIG).rule"
+		},
+		{
+			"file" : "C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glad-subbuild/CMakeFiles/(CONFIG)/glad-populate-complete.rule"
+		},
+		{
+			"file" : "C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glad-subbuild/glad-populate-prefix/src/glad-populate-stamp/(CONFIG)/glad-populate-build.rule"
+		},
+		{
+			"file" : "C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glad-subbuild/glad-populate-prefix/src/glad-populate-stamp/(CONFIG)/glad-populate-configure.rule"
+		},
+		{
+			"file" : "C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glad-subbuild/glad-populate-prefix/src/glad-populate-stamp/(CONFIG)/glad-populate-download.rule"
+		},
+		{
+			"file" : "C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glad-subbuild/glad-populate-prefix/src/glad-populate-stamp/(CONFIG)/glad-populate-install.rule"
+		},
+		{
+			"file" : "C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glad-subbuild/glad-populate-prefix/src/glad-populate-stamp/(CONFIG)/glad-populate-mkdir.rule"
+		},
+		{
+			"file" : "C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glad-subbuild/glad-populate-prefix/src/glad-populate-stamp/(CONFIG)/glad-populate-patch.rule"
+		},
+		{
+			"file" : "C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glad-subbuild/glad-populate-prefix/src/glad-populate-stamp/(CONFIG)/glad-populate-test.rule"
+		},
+		{
+			"file" : "C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glad-subbuild/glad-populate-prefix/src/glad-populate-stamp/(CONFIG)/glad-populate-update.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"glad-populate"
+		],
+		"name" : "glad-populate"
+	}
+}

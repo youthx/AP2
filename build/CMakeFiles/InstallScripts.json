@@ -1,0 +1,17 @@
+{
+	"Configs" : 
+	[
+		"Debug"
+	],
+	"InstallScripts" : 
+	[
+		"C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/cmake_install.cmake",
+		"C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-build/cmake_install.cmake",
+		"C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-build/src/cmake_install.cmake",
+		"C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-build/docs/cmake_install.cmake",
+		"C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glm-build/cmake_install.cmake",
+		"C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glm-build/glm/cmake_install.cmake",
+		"C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glad-build/cmake_install.cmake"
+	],
+	"Parallel" : false
+}

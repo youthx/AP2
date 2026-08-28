@@ -1,0 +1,14 @@
+# Target labels
+ glm-populate
+# Source files and their labels
+C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glm-subbuild/CMakeFiles/glm-populate-Debug
+C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glm-subbuild/CMakeFiles/glm-populate-(CONFIG).rule
+C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glm-subbuild/CMakeFiles/(CONFIG)/glm-populate-complete.rule
+C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glm-subbuild/glm-populate-prefix/src/glm-populate-stamp/(CONFIG)/glm-populate-build.rule
+C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glm-subbuild/glm-populate-prefix/src/glm-populate-stamp/(CONFIG)/glm-populate-configure.rule
+C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glm-subbuild/glm-populate-prefix/src/glm-populate-stamp/(CONFIG)/glm-populate-download.rule
+C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glm-subbuild/glm-populate-prefix/src/glm-populate-stamp/(CONFIG)/glm-populate-install.rule
+C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glm-subbuild/glm-populate-prefix/src/glm-populate-stamp/(CONFIG)/glm-populate-mkdir.rule
+C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glm-subbuild/glm-populate-prefix/src/glm-populate-stamp/(CONFIG)/glm-populate-patch.rule
+C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glm-subbuild/glm-populate-prefix/src/glm-populate-stamp/(CONFIG)/glm-populate-test.rule
+C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glm-subbuild/glm-populate-prefix/src/glm-populate-stamp/(CONFIG)/glm-populate-update.rule

@@ -1,0 +1,46 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glm-subbuild/CMakeFiles/glm-populate-Debug"
+		},
+		{
+			"file" : "C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glm-subbuild/CMakeFiles/glm-populate-(CONFIG).rule"
+		},
+		{
+			"file" : "C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glm-subbuild/CMakeFiles/(CONFIG)/glm-populate-complete.rule"
+		},
+		{
+			"file" : "C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glm-subbuild/glm-populate-prefix/src/glm-populate-stamp/(CONFIG)/glm-populate-build.rule"
+		},
+		{
+			"file" : "C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glm-subbuild/glm-populate-prefix/src/glm-populate-stamp/(CONFIG)/glm-populate-configure.rule"
+		},
+		{
+			"file" : "C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glm-subbuild/glm-populate-prefix/src/glm-populate-stamp/(CONFIG)/glm-populate-download.rule"
+		},
+		{
+			"file" : "C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glm-subbuild/glm-populate-prefix/src/glm-populate-stamp/(CONFIG)/glm-populate-install.rule"
+		},
+		{
+			"file" : "C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glm-subbuild/glm-populate-prefix/src/glm-populate-stamp/(CONFIG)/glm-populate-mkdir.rule"
+		},
+		{
+			"file" : "C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glm-subbuild/glm-populate-prefix/src/glm-populate-stamp/(CONFIG)/glm-populate-patch.rule"
+		},
+		{
+			"file" : "C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glm-subbuild/glm-populate-prefix/src/glm-populate-stamp/(CONFIG)/glm-populate-test.rule"
+		},
+		{
+			"file" : "C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glm-subbuild/glm-populate-prefix/src/glm-populate-stamp/(CONFIG)/glm-populate-update.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"glm-populate"
+		],
+		"name" : "glm-populate"
+	}
+}
