@@ -15,10 +15,9 @@ license = "MIT"
 
 binary_type = "executable"
 
-# cforge always `cmake --build --target ap2`. Debug builds the sample app
-# (src/main.c); Release builds the static library (src/core). The executable
-# target is renamed to ap2_app so the name `ap2` can be a config-dependent
-# custom target. See cmake/ap2_product.py.
+# Debug (`cforge build` / `python ap2_product.py`): sample app
+# Release (`cforge build --config Release` / `python ap2_product.py -c Release`): lib
+# See ap2_product.py
 
 c_standard = "17"
 cpp_standard = "17"

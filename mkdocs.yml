@@ -1,0 +1,64 @@
+site_name: AP2 — Application Primitives
+site_description: A C17 kit for games and tools
+site_url: https://youthx.github.io/AP2/
+repo_url: https://github.com/youthx/AP2
+repo_name: youthx/AP2
+edit_uri: edit/main/docs/
+docs_dir: docs
+site_dir: site
+
+theme:
+  name: material
+  palette:
+    - scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Light mode
+    - scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Dark mode
+  features:
+    - navigation.sections
+    - navigation.top
+    - content.code.copy
+    - content.action.edit
+    - search.suggest
+
+nav:
+  - Home: index.md
+  - Getting started: getting-started.md
+  - Architecture: architecture.md
+  - API overview: api-overview.md
+  - Tutorials:
+      - Hello window: tutorials/01-hello-window.md
+      - Drawing 2D: tutorials/02-drawing-2d.md
+      - Sprites and textures: tutorials/03-sprites-and-textures.md
+      - Input: tutorials/04-input.md
+      - Audio: tutorials/05-audio.md
+      - Text and fonts: tutorials/06-text-and-fonts.md
+      - Immediate GUI: tutorials/07-immediate-gui.md
+      - 3D: tutorials/08-3d.md
+      - Shaders and post: tutorials/09-shaders-and-post.md
+      - Breakout: tutorials/10-breakout.md
+      - Top-down walker: tutorials/11-top-down.md
+      - Desktop tool: tutorials/12-desktop-tool.md
+
+not_in_nav: |
+  README.md
+
+markdown_extensions:
+  - admonition
+  - tables
+  - fenced_code
+  - toc:
+      permalink: true
+  - pymdownx.superfences
+
+plugins:
+  - search
+  - include-markdown

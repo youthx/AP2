@@ -51,9 +51,12 @@ One include, opaque handles, no renderer pointer on every call. GLFW and OpenGL 
 Needs CMake 3.15+, a C17 compiler, and Python once (to generate GLAD).
 
 ```bash
-cforge build                         # Debug sample app (src/main.c)
+python ap2_product.py                # Debug sample app (src/main.c)
+python ap2_product.py --config Release  # static library (src/core)
+
+cforge build                         # same Debug app
 cforge run
-cforge build --config Release        # static library (src/core)
+cforge build --config Release        # same static library
 ```
 
 Or CMake:
@@ -75,7 +78,7 @@ On Windows with MSYS2 UCRT, `cforge.toml` already points at `gcc` / `g++`.
 
 ## Documentation
 
-Start with the [docs index](docs/README.md).
+Start with the [docs index](docs/README.md). Pushes to `main` / `master` publish [GitHub Pages](https://youthx.github.io/AP2/) and the [wiki](https://github.com/youthx/AP2/wiki).
 
 1. [Getting started](docs/getting-started.md)
 2. [Architecture](docs/architecture.md)

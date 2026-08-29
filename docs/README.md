@@ -33,3 +33,5 @@ Draw with the short names (`AP_Clear`, `AP_FillRect`, `AP_Present`, `AP_DrawText
 12. [Desktop tool](tutorials/12-desktop-tool.md) — inspector-style GUI app
 
 Headers under `include/AP2/` win if a tutorial and a signature disagree.
+
+The [GitHub Pages site](https://youthx.github.io/AP2/) and the [wiki](https://github.com/youthx/AP2/wiki) are published from this folder on each push.

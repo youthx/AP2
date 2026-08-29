@@ -18,9 +18,8 @@ On Windows, MSYS2 UCRT (`C:/msys64/ucrt64/bin/gcc.exe`) matches `cforge.toml`.
 From the repo root:
 
 ```bash
-cforge build                         # Debug sample app
+python ap2_product.py
 cforge run
-cforge build --config Release        # static library
 ```
 
 Or:

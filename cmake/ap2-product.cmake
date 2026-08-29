@@ -1,19 +1,19 @@
 # Included at the end of CMakeLists via cmake_language(DEFER).
-# Generates Debug-app / Release-lib rules. See cmake/ap2_product.py.
+# Generates Debug-app / Release-lib rules. See ap2_product.py at the repo root.
 
 if(DEFINED AP2_PRODUCT_APPLIED)
   return()
 endif()
 set(AP2_PRODUCT_APPLIED TRUE)
 
+set_property(DIRECTORY APPEND PROPERTY CMAKE_CONFIGURE_DEPENDS
+             "${CMAKE_CURRENT_SOURCE_DIR}/ap2_product.py")
+
 set(_AP2_PRODUCT_GEN "${CMAKE_BINARY_DIR}/ap2-product-gen.cmake")
 
 execute_process(
-  COMMAND python "${CMAKE_CURRENT_SOURCE_DIR}/cmake/ap2_product.py"
-          --source-dir "${CMAKE_CURRENT_SOURCE_DIR}"
-          --app-target ap2_app
-          --lib-target ap2_lib
-          --phony-target ap2
+  COMMAND python "${CMAKE_CURRENT_SOURCE_DIR}/ap2_product.py"
+          --emit-cmake
           --out "${_AP2_PRODUCT_GEN}"
   RESULT_VARIABLE _AP2_PRODUCT_PY
   ERROR_VARIABLE _AP2_PRODUCT_PY_ERR
@@ -22,7 +22,7 @@ execute_process(
 
 if(NOT _AP2_PRODUCT_PY EQUAL 0)
   message(FATAL_ERROR
-    "AP2: cmake/ap2_product.py failed (${_AP2_PRODUCT_PY}):\n"
+    "AP2: ap2_product.py failed (${_AP2_PRODUCT_PY}):\n"
     "${_AP2_PRODUCT_PY_OUT}${_AP2_PRODUCT_PY_ERR}")
 endif()
 

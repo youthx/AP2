@@ -1,0 +1,99 @@
+name: Docs
+
+# Publishes docs/ to GitHub Pages and mirrors them to the wiki.
+#
+# One-time repo setup:
+#   Pages — Settings → Pages → Source = GitHub Actions
+#   Wiki  — Settings → Features → Wikis, then create one dummy
+#           page so github.com/<owner>/AP2.wiki.git exists
+
+on:
+  push:
+    branches: [main, master]
+    paths:
+      - "docs/**"
+      - "README.md"
+      - "mkdocs.yml"
+      - ".github/workflows/docs.yml"
+      - ".github/scripts/prepare_wiki.py"
+  pull_request:
+    paths:
+      - "docs/**"
+      - "README.md"
+      - "mkdocs.yml"
+      - ".github/workflows/docs.yml"
+      - ".github/scripts/prepare_wiki.py"
+  workflow_dispatch:
+
+concurrency:
+  group: docs-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Build MkDocs
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install MkDocs
+        run: pip install --quiet mkdocs-material mkdocs-include-markdown-plugin
+
+      - name: Build site
+        run: mkdocs build
+
+      - if: github.event_name != 'pull_request'
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+  pages:
+    name: GitHub Pages
+    needs: build
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/configure-pages@v5
+      - id: deploy
+        uses: actions/deploy-pages@v4
+
+  wiki:
+    name: GitHub Wiki
+    needs: build
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Flatten docs for the wiki
+        run: |
+          python .github/scripts/prepare_wiki.py \
+            --docs docs \
+            --out wiki-out \
+            --repo "${{ github.repository }}" \
+            --sha "${{ github.sha }}"
+
+      - uses: Andrew-Chen-Wang/github-wiki-action@v5
+        with:
+          path: wiki-out
+          preprocess: false
+          disable-empty-commits: true
+          commit-message: "docs: sync wiki from ${{ github.sha }}"

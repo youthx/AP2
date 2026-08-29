@@ -398,6 +398,9 @@ GLFW_SOURCE_DIR:STATIC=C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-eng
 GLFW_USE_HYBRID_HPG:BOOL=OFF
 
 //No help, variable specified on the command line.
+NDEBUG:UNINITIALIZED=ON
+
+//No help, variable specified on the command line.
 _CRT_SECURE_NO_WARNINGS:UNINITIALIZED=ON
 
 //Value Computed by CMake

@@ -48,9 +48,9 @@ build _deps/glad-build/install/strip: phony _deps/glad-build/install/strip$:RelW
 
 build ap2: phony ap2$:RelWithDebInfo
 
-build ap2.exe: phony bin/RelWithDebInfo/ap2.exe
+build ap2_app: phony bin/RelWithDebInfo/ap2_app.exe
 
-build ap2_app: phony bin/RelWithDebInfo/ap2.exe
+build ap2_app.exe: phony bin/RelWithDebInfo/ap2_app.exe
 
 build ap2_lib: phony lib/RelWithDebInfo/libap2.a
 

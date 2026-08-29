@@ -330,7 +330,7 @@ build CMakeFiles/ap2_lib.dir/Debug/src/core/AP2_3D.c.obj: C_COMPILER__ap2_lib_un
   CONFIG = Debug
   DEFINES = -DAP2_VERSION=\"0.1.0\" -DAP2_VERSION_MAJOR=0 -DAP2_VERSION_MINOR=1 -DAP2_VERSION_PATCH=0 -DDEBUG=1 -DPROJECT_VERSION=\"0.1.0\" -DPROJECT_VERSION_MAJOR=0 -DPROJECT_VERSION_MINOR=1 -DPROJECT_VERSION_PATCH=0 -DWIN32 -D_CRT_SECURE_NO_WARNINGS -D_WINDOWS -DCMAKE_INTDIR=\"Debug\"
   DEP_FILE = CMakeFiles\ap2_lib.dir\Debug\src\core\AP2_3D.c.obj.d
-  FLAGS = -B C:/msys64/ucrt64/bin -g -std=c17 -Wall -Wextra -g -fdiagnostics-color=always
+  FLAGS = -B C:/msys64/ucrt64/bin -g -std=c17
   INCLUDES = -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/third_party/stb -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/third_party/miniaudio -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glad-src/generated/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-src/include
   OBJECT_DIR = CMakeFiles\ap2_lib.dir\Debug
   OBJECT_FILE_DIR = CMakeFiles\ap2_lib.dir\Debug\src\core
@@ -341,7 +341,7 @@ build CMakeFiles/ap2_lib.dir/Debug/src/core/AP2_Audio.c.obj: C_COMPILER__ap2_lib
   CONFIG = Debug
   DEFINES = -DAP2_VERSION=\"0.1.0\" -DAP2_VERSION_MAJOR=0 -DAP2_VERSION_MINOR=1 -DAP2_VERSION_PATCH=0 -DDEBUG=1 -DPROJECT_VERSION=\"0.1.0\" -DPROJECT_VERSION_MAJOR=0 -DPROJECT_VERSION_MINOR=1 -DPROJECT_VERSION_PATCH=0 -DWIN32 -D_CRT_SECURE_NO_WARNINGS -D_WINDOWS -DCMAKE_INTDIR=\"Debug\"
   DEP_FILE = CMakeFiles\ap2_lib.dir\Debug\src\core\AP2_Audio.c.obj.d
-  FLAGS = -B C:/msys64/ucrt64/bin -g -std=c17 -Wall -Wextra -g -fdiagnostics-color=always
+  FLAGS = -B C:/msys64/ucrt64/bin -g -std=c17
   INCLUDES = -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/third_party/stb -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/third_party/miniaudio -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glad-src/generated/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-src/include
   OBJECT_DIR = CMakeFiles\ap2_lib.dir\Debug
   OBJECT_FILE_DIR = CMakeFiles\ap2_lib.dir\Debug\src\core
@@ -352,7 +352,7 @@ build CMakeFiles/ap2_lib.dir/Debug/src/core/AP2_Device.c.obj: C_COMPILER__ap2_li
   CONFIG = Debug
   DEFINES = -DAP2_VERSION=\"0.1.0\" -DAP2_VERSION_MAJOR=0 -DAP2_VERSION_MINOR=1 -DAP2_VERSION_PATCH=0 -DDEBUG=1 -DPROJECT_VERSION=\"0.1.0\" -DPROJECT_VERSION_MAJOR=0 -DPROJECT_VERSION_MINOR=1 -DPROJECT_VERSION_PATCH=0 -DWIN32 -D_CRT_SECURE_NO_WARNINGS -D_WINDOWS -DCMAKE_INTDIR=\"Debug\"
   DEP_FILE = CMakeFiles\ap2_lib.dir\Debug\src\core\AP2_Device.c.obj.d
-  FLAGS = -B C:/msys64/ucrt64/bin -g -std=c17 -Wall -Wextra -g -fdiagnostics-color=always
+  FLAGS = -B C:/msys64/ucrt64/bin -g -std=c17
   INCLUDES = -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/third_party/stb -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/third_party/miniaudio -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glad-src/generated/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-src/include
   OBJECT_DIR = CMakeFiles\ap2_lib.dir\Debug
   OBJECT_FILE_DIR = CMakeFiles\ap2_lib.dir\Debug\src\core
@@ -363,7 +363,7 @@ build CMakeFiles/ap2_lib.dir/Debug/src/core/AP2_Error.c.obj: C_COMPILER__ap2_lib
   CONFIG = Debug
   DEFINES = -DAP2_VERSION=\"0.1.0\" -DAP2_VERSION_MAJOR=0 -DAP2_VERSION_MINOR=1 -DAP2_VERSION_PATCH=0 -DDEBUG=1 -DPROJECT_VERSION=\"0.1.0\" -DPROJECT_VERSION_MAJOR=0 -DPROJECT_VERSION_MINOR=1 -DPROJECT_VERSION_PATCH=0 -DWIN32 -D_CRT_SECURE_NO_WARNINGS -D_WINDOWS -DCMAKE_INTDIR=\"Debug\"
   DEP_FILE = CMakeFiles\ap2_lib.dir\Debug\src\core\AP2_Error.c.obj.d
-  FLAGS = -B C:/msys64/ucrt64/bin -g -std=c17 -Wall -Wextra -g -fdiagnostics-color=always
+  FLAGS = -B C:/msys64/ucrt64/bin -g -std=c17
   INCLUDES = -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/third_party/stb -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/third_party/miniaudio -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glad-src/generated/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-src/include
   OBJECT_DIR = CMakeFiles\ap2_lib.dir\Debug
   OBJECT_FILE_DIR = CMakeFiles\ap2_lib.dir\Debug\src\core
@@ -374,7 +374,7 @@ build CMakeFiles/ap2_lib.dir/Debug/src/core/AP2_Font.c.obj: C_COMPILER__ap2_lib_
   CONFIG = Debug
   DEFINES = -DAP2_VERSION=\"0.1.0\" -DAP2_VERSION_MAJOR=0 -DAP2_VERSION_MINOR=1 -DAP2_VERSION_PATCH=0 -DDEBUG=1 -DPROJECT_VERSION=\"0.1.0\" -DPROJECT_VERSION_MAJOR=0 -DPROJECT_VERSION_MINOR=1 -DPROJECT_VERSION_PATCH=0 -DWIN32 -D_CRT_SECURE_NO_WARNINGS -D_WINDOWS -DCMAKE_INTDIR=\"Debug\"
   DEP_FILE = CMakeFiles\ap2_lib.dir\Debug\src\core\AP2_Font.c.obj.d
-  FLAGS = -B C:/msys64/ucrt64/bin -g -std=c17 -Wall -Wextra -g -fdiagnostics-color=always
+  FLAGS = -B C:/msys64/ucrt64/bin -g -std=c17
   INCLUDES = -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/third_party/stb -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/third_party/miniaudio -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glad-src/generated/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-src/include
   OBJECT_DIR = CMakeFiles\ap2_lib.dir\Debug
   OBJECT_FILE_DIR = CMakeFiles\ap2_lib.dir\Debug\src\core
@@ -385,7 +385,7 @@ build CMakeFiles/ap2_lib.dir/Debug/src/core/AP2_Gui.c.obj: C_COMPILER__ap2_lib_u
   CONFIG = Debug
   DEFINES = -DAP2_VERSION=\"0.1.0\" -DAP2_VERSION_MAJOR=0 -DAP2_VERSION_MINOR=1 -DAP2_VERSION_PATCH=0 -DDEBUG=1 -DPROJECT_VERSION=\"0.1.0\" -DPROJECT_VERSION_MAJOR=0 -DPROJECT_VERSION_MINOR=1 -DPROJECT_VERSION_PATCH=0 -DWIN32 -D_CRT_SECURE_NO_WARNINGS -D_WINDOWS -DCMAKE_INTDIR=\"Debug\"
   DEP_FILE = CMakeFiles\ap2_lib.dir\Debug\src\core\AP2_Gui.c.obj.d
-  FLAGS = -B C:/msys64/ucrt64/bin -g -std=c17 -Wall -Wextra -g -fdiagnostics-color=always
+  FLAGS = -B C:/msys64/ucrt64/bin -g -std=c17
   INCLUDES = -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/third_party/stb -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/third_party/miniaudio -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glad-src/generated/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-src/include
   OBJECT_DIR = CMakeFiles\ap2_lib.dir\Debug
   OBJECT_FILE_DIR = CMakeFiles\ap2_lib.dir\Debug\src\core
@@ -396,7 +396,7 @@ build CMakeFiles/ap2_lib.dir/Debug/src/core/AP2_Init.c.obj: C_COMPILER__ap2_lib_
   CONFIG = Debug
   DEFINES = -DAP2_VERSION=\"0.1.0\" -DAP2_VERSION_MAJOR=0 -DAP2_VERSION_MINOR=1 -DAP2_VERSION_PATCH=0 -DDEBUG=1 -DPROJECT_VERSION=\"0.1.0\" -DPROJECT_VERSION_MAJOR=0 -DPROJECT_VERSION_MINOR=1 -DPROJECT_VERSION_PATCH=0 -DWIN32 -D_CRT_SECURE_NO_WARNINGS -D_WINDOWS -DCMAKE_INTDIR=\"Debug\"
   DEP_FILE = CMakeFiles\ap2_lib.dir\Debug\src\core\AP2_Init.c.obj.d
-  FLAGS = -B C:/msys64/ucrt64/bin -g -std=c17 -Wall -Wextra -g -fdiagnostics-color=always
+  FLAGS = -B C:/msys64/ucrt64/bin -g -std=c17
   INCLUDES = -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/third_party/stb -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/third_party/miniaudio -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glad-src/generated/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-src/include
   OBJECT_DIR = CMakeFiles\ap2_lib.dir\Debug
   OBJECT_FILE_DIR = CMakeFiles\ap2_lib.dir\Debug\src\core
@@ -407,7 +407,7 @@ build CMakeFiles/ap2_lib.dir/Debug/src/core/AP2_Input.c.obj: C_COMPILER__ap2_lib
   CONFIG = Debug
   DEFINES = -DAP2_VERSION=\"0.1.0\" -DAP2_VERSION_MAJOR=0 -DAP2_VERSION_MINOR=1 -DAP2_VERSION_PATCH=0 -DDEBUG=1 -DPROJECT_VERSION=\"0.1.0\" -DPROJECT_VERSION_MAJOR=0 -DPROJECT_VERSION_MINOR=1 -DPROJECT_VERSION_PATCH=0 -DWIN32 -D_CRT_SECURE_NO_WARNINGS -D_WINDOWS -DCMAKE_INTDIR=\"Debug\"
   DEP_FILE = CMakeFiles\ap2_lib.dir\Debug\src\core\AP2_Input.c.obj.d
-  FLAGS = -B C:/msys64/ucrt64/bin -g -std=c17 -Wall -Wextra -g -fdiagnostics-color=always
+  FLAGS = -B C:/msys64/ucrt64/bin -g -std=c17
   INCLUDES = -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/third_party/stb -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/third_party/miniaudio -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glad-src/generated/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-src/include
   OBJECT_DIR = CMakeFiles\ap2_lib.dir\Debug
   OBJECT_FILE_DIR = CMakeFiles\ap2_lib.dir\Debug\src\core
@@ -418,7 +418,7 @@ build CMakeFiles/ap2_lib.dir/Debug/src/core/AP2_List.c.obj: C_COMPILER__ap2_lib_
   CONFIG = Debug
   DEFINES = -DAP2_VERSION=\"0.1.0\" -DAP2_VERSION_MAJOR=0 -DAP2_VERSION_MINOR=1 -DAP2_VERSION_PATCH=0 -DDEBUG=1 -DPROJECT_VERSION=\"0.1.0\" -DPROJECT_VERSION_MAJOR=0 -DPROJECT_VERSION_MINOR=1 -DPROJECT_VERSION_PATCH=0 -DWIN32 -D_CRT_SECURE_NO_WARNINGS -D_WINDOWS -DCMAKE_INTDIR=\"Debug\"
   DEP_FILE = CMakeFiles\ap2_lib.dir\Debug\src\core\AP2_List.c.obj.d
-  FLAGS = -B C:/msys64/ucrt64/bin -g -std=c17 -Wall -Wextra -g -fdiagnostics-color=always
+  FLAGS = -B C:/msys64/ucrt64/bin -g -std=c17
   INCLUDES = -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/third_party/stb -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/third_party/miniaudio -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glad-src/generated/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-src/include
   OBJECT_DIR = CMakeFiles\ap2_lib.dir\Debug
   OBJECT_FILE_DIR = CMakeFiles\ap2_lib.dir\Debug\src\core
@@ -429,7 +429,7 @@ build CMakeFiles/ap2_lib.dir/Debug/src/core/AP2_Logger.c.obj: C_COMPILER__ap2_li
   CONFIG = Debug
   DEFINES = -DAP2_VERSION=\"0.1.0\" -DAP2_VERSION_MAJOR=0 -DAP2_VERSION_MINOR=1 -DAP2_VERSION_PATCH=0 -DDEBUG=1 -DPROJECT_VERSION=\"0.1.0\" -DPROJECT_VERSION_MAJOR=0 -DPROJECT_VERSION_MINOR=1 -DPROJECT_VERSION_PATCH=0 -DWIN32 -D_CRT_SECURE_NO_WARNINGS -D_WINDOWS -DCMAKE_INTDIR=\"Debug\"
   DEP_FILE = CMakeFiles\ap2_lib.dir\Debug\src\core\AP2_Logger.c.obj.d
-  FLAGS = -B C:/msys64/ucrt64/bin -g -std=c17 -Wall -Wextra -g -fdiagnostics-color=always
+  FLAGS = -B C:/msys64/ucrt64/bin -g -std=c17
   INCLUDES = -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/third_party/stb -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/third_party/miniaudio -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glad-src/generated/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-src/include
   OBJECT_DIR = CMakeFiles\ap2_lib.dir\Debug
   OBJECT_FILE_DIR = CMakeFiles\ap2_lib.dir\Debug\src\core
@@ -440,7 +440,7 @@ build CMakeFiles/ap2_lib.dir/Debug/src/core/AP2_Math.c.obj: C_COMPILER__ap2_lib_
   CONFIG = Debug
   DEFINES = -DAP2_VERSION=\"0.1.0\" -DAP2_VERSION_MAJOR=0 -DAP2_VERSION_MINOR=1 -DAP2_VERSION_PATCH=0 -DDEBUG=1 -DPROJECT_VERSION=\"0.1.0\" -DPROJECT_VERSION_MAJOR=0 -DPROJECT_VERSION_MINOR=1 -DPROJECT_VERSION_PATCH=0 -DWIN32 -D_CRT_SECURE_NO_WARNINGS -D_WINDOWS -DCMAKE_INTDIR=\"Debug\"
   DEP_FILE = CMakeFiles\ap2_lib.dir\Debug\src\core\AP2_Math.c.obj.d
-  FLAGS = -B C:/msys64/ucrt64/bin -g -std=c17 -Wall -Wextra -g -fdiagnostics-color=always
+  FLAGS = -B C:/msys64/ucrt64/bin -g -std=c17
   INCLUDES = -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/third_party/stb -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/third_party/miniaudio -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glad-src/generated/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-src/include
   OBJECT_DIR = CMakeFiles\ap2_lib.dir\Debug
   OBJECT_FILE_DIR = CMakeFiles\ap2_lib.dir\Debug\src\core
@@ -451,7 +451,7 @@ build CMakeFiles/ap2_lib.dir/Debug/src/core/AP2_Miniaudio.c.obj: C_COMPILER__ap2
   CONFIG = Debug
   DEFINES = -DAP2_VERSION=\"0.1.0\" -DAP2_VERSION_MAJOR=0 -DAP2_VERSION_MINOR=1 -DAP2_VERSION_PATCH=0 -DDEBUG=1 -DPROJECT_VERSION=\"0.1.0\" -DPROJECT_VERSION_MAJOR=0 -DPROJECT_VERSION_MINOR=1 -DPROJECT_VERSION_PATCH=0 -DWIN32 -D_CRT_SECURE_NO_WARNINGS -D_WINDOWS -DCMAKE_INTDIR=\"Debug\"
   DEP_FILE = CMakeFiles\ap2_lib.dir\Debug\src\core\AP2_Miniaudio.c.obj.d
-  FLAGS = -B C:/msys64/ucrt64/bin -g -std=c17 -Wall -Wextra -g -fdiagnostics-color=always
+  FLAGS = -B C:/msys64/ucrt64/bin -g -std=c17
   INCLUDES = -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/third_party/stb -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/third_party/miniaudio -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glad-src/generated/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-src/include
   OBJECT_DIR = CMakeFiles\ap2_lib.dir\Debug
   OBJECT_FILE_DIR = CMakeFiles\ap2_lib.dir\Debug\src\core
@@ -462,7 +462,7 @@ build CMakeFiles/ap2_lib.dir/Debug/src/core/AP2_Opengl.c.obj: C_COMPILER__ap2_li
   CONFIG = Debug
   DEFINES = -DAP2_VERSION=\"0.1.0\" -DAP2_VERSION_MAJOR=0 -DAP2_VERSION_MINOR=1 -DAP2_VERSION_PATCH=0 -DDEBUG=1 -DPROJECT_VERSION=\"0.1.0\" -DPROJECT_VERSION_MAJOR=0 -DPROJECT_VERSION_MINOR=1 -DPROJECT_VERSION_PATCH=0 -DWIN32 -D_CRT_SECURE_NO_WARNINGS -D_WINDOWS -DCMAKE_INTDIR=\"Debug\"
   DEP_FILE = CMakeFiles\ap2_lib.dir\Debug\src\core\AP2_Opengl.c.obj.d
-  FLAGS = -B C:/msys64/ucrt64/bin -g -std=c17 -Wall -Wextra -g -fdiagnostics-color=always
+  FLAGS = -B C:/msys64/ucrt64/bin -g -std=c17
   INCLUDES = -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/third_party/stb -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/third_party/miniaudio -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glad-src/generated/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-src/include
   OBJECT_DIR = CMakeFiles\ap2_lib.dir\Debug
   OBJECT_FILE_DIR = CMakeFiles\ap2_lib.dir\Debug\src\core
@@ -473,7 +473,7 @@ build CMakeFiles/ap2_lib.dir/Debug/src/core/AP2_Platform.c.obj: C_COMPILER__ap2_
   CONFIG = Debug
   DEFINES = -DAP2_VERSION=\"0.1.0\" -DAP2_VERSION_MAJOR=0 -DAP2_VERSION_MINOR=1 -DAP2_VERSION_PATCH=0 -DDEBUG=1 -DPROJECT_VERSION=\"0.1.0\" -DPROJECT_VERSION_MAJOR=0 -DPROJECT_VERSION_MINOR=1 -DPROJECT_VERSION_PATCH=0 -DWIN32 -D_CRT_SECURE_NO_WARNINGS -D_WINDOWS -DCMAKE_INTDIR=\"Debug\"
   DEP_FILE = CMakeFiles\ap2_lib.dir\Debug\src\core\AP2_Platform.c.obj.d
-  FLAGS = -B C:/msys64/ucrt64/bin -g -std=c17 -Wall -Wextra -g -fdiagnostics-color=always
+  FLAGS = -B C:/msys64/ucrt64/bin -g -std=c17
   INCLUDES = -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/third_party/stb -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/third_party/miniaudio -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glad-src/generated/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-src/include
   OBJECT_DIR = CMakeFiles\ap2_lib.dir\Debug
   OBJECT_FILE_DIR = CMakeFiles\ap2_lib.dir\Debug\src\core
@@ -484,7 +484,7 @@ build CMakeFiles/ap2_lib.dir/Debug/src/core/AP2_Post.c.obj: C_COMPILER__ap2_lib_
   CONFIG = Debug
   DEFINES = -DAP2_VERSION=\"0.1.0\" -DAP2_VERSION_MAJOR=0 -DAP2_VERSION_MINOR=1 -DAP2_VERSION_PATCH=0 -DDEBUG=1 -DPROJECT_VERSION=\"0.1.0\" -DPROJECT_VERSION_MAJOR=0 -DPROJECT_VERSION_MINOR=1 -DPROJECT_VERSION_PATCH=0 -DWIN32 -D_CRT_SECURE_NO_WARNINGS -D_WINDOWS -DCMAKE_INTDIR=\"Debug\"
   DEP_FILE = CMakeFiles\ap2_lib.dir\Debug\src\core\AP2_Post.c.obj.d
-  FLAGS = -B C:/msys64/ucrt64/bin -g -std=c17 -Wall -Wextra -g -fdiagnostics-color=always
+  FLAGS = -B C:/msys64/ucrt64/bin -g -std=c17
   INCLUDES = -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/third_party/stb -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/third_party/miniaudio -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glad-src/generated/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-src/include
   OBJECT_DIR = CMakeFiles\ap2_lib.dir\Debug
   OBJECT_FILE_DIR = CMakeFiles\ap2_lib.dir\Debug\src\core
@@ -495,7 +495,7 @@ build CMakeFiles/ap2_lib.dir/Debug/src/core/AP2_Renderer.c.obj: C_COMPILER__ap2_
   CONFIG = Debug
   DEFINES = -DAP2_VERSION=\"0.1.0\" -DAP2_VERSION_MAJOR=0 -DAP2_VERSION_MINOR=1 -DAP2_VERSION_PATCH=0 -DDEBUG=1 -DPROJECT_VERSION=\"0.1.0\" -DPROJECT_VERSION_MAJOR=0 -DPROJECT_VERSION_MINOR=1 -DPROJECT_VERSION_PATCH=0 -DWIN32 -D_CRT_SECURE_NO_WARNINGS -D_WINDOWS -DCMAKE_INTDIR=\"Debug\"
   DEP_FILE = CMakeFiles\ap2_lib.dir\Debug\src\core\AP2_Renderer.c.obj.d
-  FLAGS = -B C:/msys64/ucrt64/bin -g -std=c17 -Wall -Wextra -g -fdiagnostics-color=always
+  FLAGS = -B C:/msys64/ucrt64/bin -g -std=c17
   INCLUDES = -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/third_party/stb -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/third_party/miniaudio -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glad-src/generated/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-src/include
   OBJECT_DIR = CMakeFiles\ap2_lib.dir\Debug
   OBJECT_FILE_DIR = CMakeFiles\ap2_lib.dir\Debug\src\core
@@ -506,7 +506,7 @@ build CMakeFiles/ap2_lib.dir/Debug/src/core/AP2_Shader.c.obj: C_COMPILER__ap2_li
   CONFIG = Debug
   DEFINES = -DAP2_VERSION=\"0.1.0\" -DAP2_VERSION_MAJOR=0 -DAP2_VERSION_MINOR=1 -DAP2_VERSION_PATCH=0 -DDEBUG=1 -DPROJECT_VERSION=\"0.1.0\" -DPROJECT_VERSION_MAJOR=0 -DPROJECT_VERSION_MINOR=1 -DPROJECT_VERSION_PATCH=0 -DWIN32 -D_CRT_SECURE_NO_WARNINGS -D_WINDOWS -DCMAKE_INTDIR=\"Debug\"
   DEP_FILE = CMakeFiles\ap2_lib.dir\Debug\src\core\AP2_Shader.c.obj.d
-  FLAGS = -B C:/msys64/ucrt64/bin -g -std=c17 -Wall -Wextra -g -fdiagnostics-color=always
+  FLAGS = -B C:/msys64/ucrt64/bin -g -std=c17
   INCLUDES = -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/third_party/stb -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/third_party/miniaudio -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glad-src/generated/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-src/include
   OBJECT_DIR = CMakeFiles\ap2_lib.dir\Debug
   OBJECT_FILE_DIR = CMakeFiles\ap2_lib.dir\Debug\src\core
@@ -517,7 +517,7 @@ build CMakeFiles/ap2_lib.dir/Debug/src/core/AP2_Sprite.c.obj: C_COMPILER__ap2_li
   CONFIG = Debug
   DEFINES = -DAP2_VERSION=\"0.1.0\" -DAP2_VERSION_MAJOR=0 -DAP2_VERSION_MINOR=1 -DAP2_VERSION_PATCH=0 -DDEBUG=1 -DPROJECT_VERSION=\"0.1.0\" -DPROJECT_VERSION_MAJOR=0 -DPROJECT_VERSION_MINOR=1 -DPROJECT_VERSION_PATCH=0 -DWIN32 -D_CRT_SECURE_NO_WARNINGS -D_WINDOWS -DCMAKE_INTDIR=\"Debug\"
   DEP_FILE = CMakeFiles\ap2_lib.dir\Debug\src\core\AP2_Sprite.c.obj.d
-  FLAGS = -B C:/msys64/ucrt64/bin -g -std=c17 -Wall -Wextra -g -fdiagnostics-color=always
+  FLAGS = -B C:/msys64/ucrt64/bin -g -std=c17
   INCLUDES = -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/third_party/stb -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/third_party/miniaudio -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glad-src/generated/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-src/include
   OBJECT_DIR = CMakeFiles\ap2_lib.dir\Debug
   OBJECT_FILE_DIR = CMakeFiles\ap2_lib.dir\Debug\src\core
@@ -528,7 +528,7 @@ build CMakeFiles/ap2_lib.dir/Debug/src/core/AP2_String.c.obj: C_COMPILER__ap2_li
   CONFIG = Debug
   DEFINES = -DAP2_VERSION=\"0.1.0\" -DAP2_VERSION_MAJOR=0 -DAP2_VERSION_MINOR=1 -DAP2_VERSION_PATCH=0 -DDEBUG=1 -DPROJECT_VERSION=\"0.1.0\" -DPROJECT_VERSION_MAJOR=0 -DPROJECT_VERSION_MINOR=1 -DPROJECT_VERSION_PATCH=0 -DWIN32 -D_CRT_SECURE_NO_WARNINGS -D_WINDOWS -DCMAKE_INTDIR=\"Debug\"
   DEP_FILE = CMakeFiles\ap2_lib.dir\Debug\src\core\AP2_String.c.obj.d
-  FLAGS = -B C:/msys64/ucrt64/bin -g -std=c17 -Wall -Wextra -g -fdiagnostics-color=always
+  FLAGS = -B C:/msys64/ucrt64/bin -g -std=c17
   INCLUDES = -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/third_party/stb -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/third_party/miniaudio -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glad-src/generated/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-src/include
   OBJECT_DIR = CMakeFiles\ap2_lib.dir\Debug
   OBJECT_FILE_DIR = CMakeFiles\ap2_lib.dir\Debug\src\core
@@ -539,7 +539,7 @@ build CMakeFiles/ap2_lib.dir/Debug/src/core/AP2_Texture.c.obj: C_COMPILER__ap2_l
   CONFIG = Debug
   DEFINES = -DAP2_VERSION=\"0.1.0\" -DAP2_VERSION_MAJOR=0 -DAP2_VERSION_MINOR=1 -DAP2_VERSION_PATCH=0 -DDEBUG=1 -DPROJECT_VERSION=\"0.1.0\" -DPROJECT_VERSION_MAJOR=0 -DPROJECT_VERSION_MINOR=1 -DPROJECT_VERSION_PATCH=0 -DWIN32 -D_CRT_SECURE_NO_WARNINGS -D_WINDOWS -DCMAKE_INTDIR=\"Debug\"
   DEP_FILE = CMakeFiles\ap2_lib.dir\Debug\src\core\AP2_Texture.c.obj.d
-  FLAGS = -B C:/msys64/ucrt64/bin -g -std=c17 -Wall -Wextra -g -fdiagnostics-color=always
+  FLAGS = -B C:/msys64/ucrt64/bin -g -std=c17
   INCLUDES = -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/third_party/stb -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/third_party/miniaudio -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glad-src/generated/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-src/include
   OBJECT_DIR = CMakeFiles\ap2_lib.dir\Debug
   OBJECT_FILE_DIR = CMakeFiles\ap2_lib.dir\Debug\src\core
@@ -550,7 +550,7 @@ build CMakeFiles/ap2_lib.dir/Debug/src/core/AP2_Video.c.obj: C_COMPILER__ap2_lib
   CONFIG = Debug
   DEFINES = -DAP2_VERSION=\"0.1.0\" -DAP2_VERSION_MAJOR=0 -DAP2_VERSION_MINOR=1 -DAP2_VERSION_PATCH=0 -DDEBUG=1 -DPROJECT_VERSION=\"0.1.0\" -DPROJECT_VERSION_MAJOR=0 -DPROJECT_VERSION_MINOR=1 -DPROJECT_VERSION_PATCH=0 -DWIN32 -D_CRT_SECURE_NO_WARNINGS -D_WINDOWS -DCMAKE_INTDIR=\"Debug\"
   DEP_FILE = CMakeFiles\ap2_lib.dir\Debug\src\core\AP2_Video.c.obj.d
-  FLAGS = -B C:/msys64/ucrt64/bin -g -std=c17 -Wall -Wextra -g -fdiagnostics-color=always
+  FLAGS = -B C:/msys64/ucrt64/bin -g -std=c17
   INCLUDES = -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/third_party/stb -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/third_party/miniaudio -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glad-src/generated/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-src/include
   OBJECT_DIR = CMakeFiles\ap2_lib.dir\Debug
   OBJECT_FILE_DIR = CMakeFiles\ap2_lib.dir\Debug\src\core
@@ -561,7 +561,7 @@ build CMakeFiles/ap2_lib.dir/Debug/src/core/AP2_Window.c.obj: C_COMPILER__ap2_li
   CONFIG = Debug
   DEFINES = -DAP2_VERSION=\"0.1.0\" -DAP2_VERSION_MAJOR=0 -DAP2_VERSION_MINOR=1 -DAP2_VERSION_PATCH=0 -DDEBUG=1 -DPROJECT_VERSION=\"0.1.0\" -DPROJECT_VERSION_MAJOR=0 -DPROJECT_VERSION_MINOR=1 -DPROJECT_VERSION_PATCH=0 -DWIN32 -D_CRT_SECURE_NO_WARNINGS -D_WINDOWS -DCMAKE_INTDIR=\"Debug\"
   DEP_FILE = CMakeFiles\ap2_lib.dir\Debug\src\core\AP2_Window.c.obj.d
-  FLAGS = -B C:/msys64/ucrt64/bin -g -std=c17 -Wall -Wextra -g -fdiagnostics-color=always
+  FLAGS = -B C:/msys64/ucrt64/bin -g -std=c17
   INCLUDES = -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/third_party/stb -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/third_party/miniaudio -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glad-src/generated/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-src/include
   OBJECT_DIR = CMakeFiles\ap2_lib.dir\Debug
   OBJECT_FILE_DIR = CMakeFiles\ap2_lib.dir\Debug\src\core
@@ -591,13 +591,22 @@ build lib/Debug/libap2.a: C_STATIC_LIBRARY_LINKER__ap2_lib_Debug CMakeFiles/ap2_
 #############################################
 # Utility command for ap2
 
-build ap2$:Debug: phony CMakeFiles/ap2-Debug bin/Debug/ap2.exe lib/Debug/libap2.a
+build ap2$:Debug: phony CMakeFiles/ap2-Debug ap2-Debug.stamp bin/Debug/ap2.exe lib/Debug/libap2.a
 
 
 #############################################
 # Phony custom command for CMakeFiles\ap2-Debug
 
-build CMakeFiles/ap2-Debug | ${cmake_ninja_workdir}CMakeFiles/ap2-Debug: phony bin/Debug/ap2.exe || bin/Debug/ap2.exe lib/Debug/libap2.a lib/Debug/libglad.a lib/Debug/libglfw3.a
+build CMakeFiles/ap2-Debug | ${cmake_ninja_workdir}CMakeFiles/ap2-Debug: phony ap2-Debug.stamp || bin/Debug/ap2.exe lib/Debug/libap2.a lib/Debug/libglad.a lib/Debug/libglfw3.a
+
+
+#############################################
+# Custom command for ap2-Debug.stamp
+
+build ap2-Debug.stamp | ${cmake_ninja_workdir}ap2-Debug.stamp: CUSTOM_COMMAND bin/Debug/ap2.exe || bin/Debug/ap2.exe lib/Debug/libap2.a lib/Debug/libglad.a lib/Debug/libglfw3.a
+  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build && "C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/ap2-Debug.stamp"
+  DESC = AP2 Debug product
+  restat = 1
 
 # =============================================================================
 # Write statements declared in CMakeLists.txt:
