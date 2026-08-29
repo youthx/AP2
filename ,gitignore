@@ -1,0 +1,57 @@
+# Cforge / CMake generated files
+build/
+build-*/
+cmake-build-*/
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+install_manifest.txt
+CTestTestfile.cmake
+_deps/
+
+.cache/
+.cforge/
+
+# Generated build outputs
+bin/
+lib/
+out/
+
+# Compiled files
+*.o
+*.obj
+*.a
+*.lib
+*.so
+*.dll
+*.dylib
+*.exe
+
+# Debug symbols / compiler artifacts
+*.pdb
+*.ilk
+*.dSYM/
+*.gcda
+*.gcno
+*.gcov
+
+# CMake tooling
+compile_commands.json
+
+# IDEs
+.vscode/
+.idea/
+.vs/
+
+# Editor temporary files
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs
+*.log

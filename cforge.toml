@@ -15,9 +15,10 @@ license = "MIT"
 
 binary_type = "executable"
 
-# Debug (`cforge build` / `cforge run`): sample app from src/main.c
-# Release (`cforge build --config Release`): static library from src/core
-# See cmake/ap2-product.cmake
+# cforge always `cmake --build --target ap2`. Debug builds the sample app
+# (src/main.c); Release builds the static library (src/core). The executable
+# target is renamed to ap2_app so the name `ap2` can be a config-dependent
+# custom target. See cmake/ap2_product.py.
 
 c_standard = "17"
 cpp_standard = "17"
@@ -56,6 +57,10 @@ export_compile_commands = true
 generator = "Ninja Multi-Config"
 c_compiler = "C:/msys64/ucrt64/bin/gcc.exe"
 cxx_compiler = "C:/msys64/ucrt64/bin/g++.exe"
+inject_before_target = '''
+set(AP2_APP_TARGET ap2_app)
+set(PROJECT_NAME "${AP2_APP_TARGET}")
+'''
 inject_after_target = '''
 cmake_language(DEFER CALL include "${CMAKE_CURRENT_SOURCE_DIR}/cmake/ap2-product.cmake")
 '''

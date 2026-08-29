@@ -46,11 +46,11 @@ build _deps/glad-build/install/local: phony _deps/glad-build/install/local$:RelW
 
 build _deps/glad-build/install/strip: phony _deps/glad-build/install/strip$:RelWithDebInfo
 
-build ap2: phony bin/RelWithDebInfo/ap2.exe
+build ap2: phony ap2$:RelWithDebInfo
 
 build ap2.exe: phony bin/RelWithDebInfo/ap2.exe
 
-build ap2_default: phony ap2_default$:RelWithDebInfo
+build ap2_app: phony bin/RelWithDebInfo/ap2.exe
 
 build ap2_lib: phony lib/RelWithDebInfo/libap2.a
 

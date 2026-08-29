@@ -18,7 +18,7 @@
 #############################################
 # Minimal version of Ninja required by this file
 
-ninja_required_version = 1.8
+ninja_required_version = 1.5
 
 
 #############################################
@@ -35,287 +35,287 @@ CONFIGURATION = RelWithDebInfo
 include CMakeFiles/common.ninja
 
 # =============================================================================
-# Object build statements for EXECUTABLE target ap2
+# Object build statements for EXECUTABLE target ap2_app
 
 
 #############################################
-# Order-only phony target for ap2
+# Order-only phony target for ap2_app
 
-build cmake_object_order_depends_target_ap2_RELWITHDEBINFO: phony || cmake_object_order_depends_target_glad_RELWITHDEBINFO cmake_object_order_depends_target_glfw_RELWITHDEBINFO
+build cmake_object_order_depends_target_ap2_app_RELWITHDEBINFO: phony || cmake_object_order_depends_target_glad_RELWITHDEBINFO cmake_object_order_depends_target_glfw_RELWITHDEBINFO
 
-build CMakeFiles/ap2.dir/RelWithDebInfo/src/core/AP2_3D.c.obj: C_COMPILER__ap2_unscanned_RelWithDebInfo C$:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/src/core/AP2_3D.c || cmake_object_order_depends_target_ap2_RELWITHDEBINFO
+build CMakeFiles/ap2_app.dir/RelWithDebInfo/src/core/AP2_3D.c.obj: C_COMPILER__ap2_app_unscanned_RelWithDebInfo C$:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/src/core/AP2_3D.c || cmake_object_order_depends_target_ap2_app_RELWITHDEBINFO
   CONFIG = RelWithDebInfo
   DEFINES = -DAP2_VERSION=\"0.1.0\" -DAP2_VERSION_MAJOR=0 -DAP2_VERSION_MINOR=1 -DAP2_VERSION_PATCH=0 -DDEBUG=1 -DPROJECT_VERSION=\"0.1.0\" -DPROJECT_VERSION_MAJOR=0 -DPROJECT_VERSION_MINOR=1 -DPROJECT_VERSION_PATCH=0 -DWIN32 -D_CRT_SECURE_NO_WARNINGS -D_WINDOWS -DCMAKE_INTDIR=\"RelWithDebInfo\"
-  DEP_FILE = CMakeFiles\ap2.dir\RelWithDebInfo\src\core\AP2_3D.c.obj.d
+  DEP_FILE = CMakeFiles\ap2_app.dir\RelWithDebInfo\src\core\AP2_3D.c.obj.d
   FLAGS = -B C:/msys64/ucrt64/bin -O2 -g -DNDEBUG -std=c17 -Wall -Wextra -g -fdiagnostics-color=always
   INCLUDES = -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/third_party/stb -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/third_party/miniaudio -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glad-src/generated/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-src/include
-  OBJECT_DIR = CMakeFiles\ap2.dir\RelWithDebInfo
-  OBJECT_FILE_DIR = CMakeFiles\ap2.dir\RelWithDebInfo\src\core
-  TARGET_SUPPORT_DIR = CMakeFiles\ap2.dir
-  RSP_FILE = CMakeFiles\ap2.dir\RelWithDebInfo\src\core\AP2_3D.c.obj.rsp
+  OBJECT_DIR = CMakeFiles\ap2_app.dir\RelWithDebInfo
+  OBJECT_FILE_DIR = CMakeFiles\ap2_app.dir\RelWithDebInfo\src\core
+  TARGET_SUPPORT_DIR = CMakeFiles\ap2_app.dir
+  RSP_FILE = CMakeFiles\ap2_app.dir\RelWithDebInfo\src\core\AP2_3D.c.obj.rsp
 
-build CMakeFiles/ap2.dir/RelWithDebInfo/src/core/AP2_Audio.c.obj: C_COMPILER__ap2_unscanned_RelWithDebInfo C$:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/src/core/AP2_Audio.c || cmake_object_order_depends_target_ap2_RELWITHDEBINFO
+build CMakeFiles/ap2_app.dir/RelWithDebInfo/src/core/AP2_Audio.c.obj: C_COMPILER__ap2_app_unscanned_RelWithDebInfo C$:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/src/core/AP2_Audio.c || cmake_object_order_depends_target_ap2_app_RELWITHDEBINFO
   CONFIG = RelWithDebInfo
   DEFINES = -DAP2_VERSION=\"0.1.0\" -DAP2_VERSION_MAJOR=0 -DAP2_VERSION_MINOR=1 -DAP2_VERSION_PATCH=0 -DDEBUG=1 -DPROJECT_VERSION=\"0.1.0\" -DPROJECT_VERSION_MAJOR=0 -DPROJECT_VERSION_MINOR=1 -DPROJECT_VERSION_PATCH=0 -DWIN32 -D_CRT_SECURE_NO_WARNINGS -D_WINDOWS -DCMAKE_INTDIR=\"RelWithDebInfo\"
-  DEP_FILE = CMakeFiles\ap2.dir\RelWithDebInfo\src\core\AP2_Audio.c.obj.d
+  DEP_FILE = CMakeFiles\ap2_app.dir\RelWithDebInfo\src\core\AP2_Audio.c.obj.d
   FLAGS = -B C:/msys64/ucrt64/bin -O2 -g -DNDEBUG -std=c17 -Wall -Wextra -g -fdiagnostics-color=always
   INCLUDES = -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/third_party/stb -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/third_party/miniaudio -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glad-src/generated/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-src/include
-  OBJECT_DIR = CMakeFiles\ap2.dir\RelWithDebInfo
-  OBJECT_FILE_DIR = CMakeFiles\ap2.dir\RelWithDebInfo\src\core
-  TARGET_SUPPORT_DIR = CMakeFiles\ap2.dir
-  RSP_FILE = CMakeFiles\ap2.dir\RelWithDebInfo\src\core\AP2_Audio.c.obj.rsp
+  OBJECT_DIR = CMakeFiles\ap2_app.dir\RelWithDebInfo
+  OBJECT_FILE_DIR = CMakeFiles\ap2_app.dir\RelWithDebInfo\src\core
+  TARGET_SUPPORT_DIR = CMakeFiles\ap2_app.dir
+  RSP_FILE = CMakeFiles\ap2_app.dir\RelWithDebInfo\src\core\AP2_Audio.c.obj.rsp
 
-build CMakeFiles/ap2.dir/RelWithDebInfo/src/core/AP2_Device.c.obj: C_COMPILER__ap2_unscanned_RelWithDebInfo C$:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/src/core/AP2_Device.c || cmake_object_order_depends_target_ap2_RELWITHDEBINFO
+build CMakeFiles/ap2_app.dir/RelWithDebInfo/src/core/AP2_Device.c.obj: C_COMPILER__ap2_app_unscanned_RelWithDebInfo C$:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/src/core/AP2_Device.c || cmake_object_order_depends_target_ap2_app_RELWITHDEBINFO
   CONFIG = RelWithDebInfo
   DEFINES = -DAP2_VERSION=\"0.1.0\" -DAP2_VERSION_MAJOR=0 -DAP2_VERSION_MINOR=1 -DAP2_VERSION_PATCH=0 -DDEBUG=1 -DPROJECT_VERSION=\"0.1.0\" -DPROJECT_VERSION_MAJOR=0 -DPROJECT_VERSION_MINOR=1 -DPROJECT_VERSION_PATCH=0 -DWIN32 -D_CRT_SECURE_NO_WARNINGS -D_WINDOWS -DCMAKE_INTDIR=\"RelWithDebInfo\"
-  DEP_FILE = CMakeFiles\ap2.dir\RelWithDebInfo\src\core\AP2_Device.c.obj.d
+  DEP_FILE = CMakeFiles\ap2_app.dir\RelWithDebInfo\src\core\AP2_Device.c.obj.d
   FLAGS = -B C:/msys64/ucrt64/bin -O2 -g -DNDEBUG -std=c17 -Wall -Wextra -g -fdiagnostics-color=always
   INCLUDES = -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/third_party/stb -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/third_party/miniaudio -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glad-src/generated/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-src/include
-  OBJECT_DIR = CMakeFiles\ap2.dir\RelWithDebInfo
-  OBJECT_FILE_DIR = CMakeFiles\ap2.dir\RelWithDebInfo\src\core
-  TARGET_SUPPORT_DIR = CMakeFiles\ap2.dir
-  RSP_FILE = CMakeFiles\ap2.dir\RelWithDebInfo\src\core\AP2_Device.c.obj.rsp
+  OBJECT_DIR = CMakeFiles\ap2_app.dir\RelWithDebInfo
+  OBJECT_FILE_DIR = CMakeFiles\ap2_app.dir\RelWithDebInfo\src\core
+  TARGET_SUPPORT_DIR = CMakeFiles\ap2_app.dir
+  RSP_FILE = CMakeFiles\ap2_app.dir\RelWithDebInfo\src\core\AP2_Device.c.obj.rsp
 
-build CMakeFiles/ap2.dir/RelWithDebInfo/src/core/AP2_Error.c.obj: C_COMPILER__ap2_unscanned_RelWithDebInfo C$:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/src/core/AP2_Error.c || cmake_object_order_depends_target_ap2_RELWITHDEBINFO
+build CMakeFiles/ap2_app.dir/RelWithDebInfo/src/core/AP2_Error.c.obj: C_COMPILER__ap2_app_unscanned_RelWithDebInfo C$:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/src/core/AP2_Error.c || cmake_object_order_depends_target_ap2_app_RELWITHDEBINFO
   CONFIG = RelWithDebInfo
   DEFINES = -DAP2_VERSION=\"0.1.0\" -DAP2_VERSION_MAJOR=0 -DAP2_VERSION_MINOR=1 -DAP2_VERSION_PATCH=0 -DDEBUG=1 -DPROJECT_VERSION=\"0.1.0\" -DPROJECT_VERSION_MAJOR=0 -DPROJECT_VERSION_MINOR=1 -DPROJECT_VERSION_PATCH=0 -DWIN32 -D_CRT_SECURE_NO_WARNINGS -D_WINDOWS -DCMAKE_INTDIR=\"RelWithDebInfo\"
-  DEP_FILE = CMakeFiles\ap2.dir\RelWithDebInfo\src\core\AP2_Error.c.obj.d
+  DEP_FILE = CMakeFiles\ap2_app.dir\RelWithDebInfo\src\core\AP2_Error.c.obj.d
   FLAGS = -B C:/msys64/ucrt64/bin -O2 -g -DNDEBUG -std=c17 -Wall -Wextra -g -fdiagnostics-color=always
   INCLUDES = -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/third_party/stb -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/third_party/miniaudio -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glad-src/generated/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-src/include
-  OBJECT_DIR = CMakeFiles\ap2.dir\RelWithDebInfo
-  OBJECT_FILE_DIR = CMakeFiles\ap2.dir\RelWithDebInfo\src\core
-  TARGET_SUPPORT_DIR = CMakeFiles\ap2.dir
-  RSP_FILE = CMakeFiles\ap2.dir\RelWithDebInfo\src\core\AP2_Error.c.obj.rsp
+  OBJECT_DIR = CMakeFiles\ap2_app.dir\RelWithDebInfo
+  OBJECT_FILE_DIR = CMakeFiles\ap2_app.dir\RelWithDebInfo\src\core
+  TARGET_SUPPORT_DIR = CMakeFiles\ap2_app.dir
+  RSP_FILE = CMakeFiles\ap2_app.dir\RelWithDebInfo\src\core\AP2_Error.c.obj.rsp
 
-build CMakeFiles/ap2.dir/RelWithDebInfo/src/core/AP2_Font.c.obj: C_COMPILER__ap2_unscanned_RelWithDebInfo C$:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/src/core/AP2_Font.c || cmake_object_order_depends_target_ap2_RELWITHDEBINFO
+build CMakeFiles/ap2_app.dir/RelWithDebInfo/src/core/AP2_Font.c.obj: C_COMPILER__ap2_app_unscanned_RelWithDebInfo C$:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/src/core/AP2_Font.c || cmake_object_order_depends_target_ap2_app_RELWITHDEBINFO
   CONFIG = RelWithDebInfo
   DEFINES = -DAP2_VERSION=\"0.1.0\" -DAP2_VERSION_MAJOR=0 -DAP2_VERSION_MINOR=1 -DAP2_VERSION_PATCH=0 -DDEBUG=1 -DPROJECT_VERSION=\"0.1.0\" -DPROJECT_VERSION_MAJOR=0 -DPROJECT_VERSION_MINOR=1 -DPROJECT_VERSION_PATCH=0 -DWIN32 -D_CRT_SECURE_NO_WARNINGS -D_WINDOWS -DCMAKE_INTDIR=\"RelWithDebInfo\"
-  DEP_FILE = CMakeFiles\ap2.dir\RelWithDebInfo\src\core\AP2_Font.c.obj.d
+  DEP_FILE = CMakeFiles\ap2_app.dir\RelWithDebInfo\src\core\AP2_Font.c.obj.d
   FLAGS = -B C:/msys64/ucrt64/bin -O2 -g -DNDEBUG -std=c17 -Wall -Wextra -g -fdiagnostics-color=always
   INCLUDES = -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/third_party/stb -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/third_party/miniaudio -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glad-src/generated/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-src/include
-  OBJECT_DIR = CMakeFiles\ap2.dir\RelWithDebInfo
-  OBJECT_FILE_DIR = CMakeFiles\ap2.dir\RelWithDebInfo\src\core
-  TARGET_SUPPORT_DIR = CMakeFiles\ap2.dir
-  RSP_FILE = CMakeFiles\ap2.dir\RelWithDebInfo\src\core\AP2_Font.c.obj.rsp
+  OBJECT_DIR = CMakeFiles\ap2_app.dir\RelWithDebInfo
+  OBJECT_FILE_DIR = CMakeFiles\ap2_app.dir\RelWithDebInfo\src\core
+  TARGET_SUPPORT_DIR = CMakeFiles\ap2_app.dir
+  RSP_FILE = CMakeFiles\ap2_app.dir\RelWithDebInfo\src\core\AP2_Font.c.obj.rsp
 
-build CMakeFiles/ap2.dir/RelWithDebInfo/src/core/AP2_Gui.c.obj: C_COMPILER__ap2_unscanned_RelWithDebInfo C$:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/src/core/AP2_Gui.c || cmake_object_order_depends_target_ap2_RELWITHDEBINFO
+build CMakeFiles/ap2_app.dir/RelWithDebInfo/src/core/AP2_Gui.c.obj: C_COMPILER__ap2_app_unscanned_RelWithDebInfo C$:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/src/core/AP2_Gui.c || cmake_object_order_depends_target_ap2_app_RELWITHDEBINFO
   CONFIG = RelWithDebInfo
   DEFINES = -DAP2_VERSION=\"0.1.0\" -DAP2_VERSION_MAJOR=0 -DAP2_VERSION_MINOR=1 -DAP2_VERSION_PATCH=0 -DDEBUG=1 -DPROJECT_VERSION=\"0.1.0\" -DPROJECT_VERSION_MAJOR=0 -DPROJECT_VERSION_MINOR=1 -DPROJECT_VERSION_PATCH=0 -DWIN32 -D_CRT_SECURE_NO_WARNINGS -D_WINDOWS -DCMAKE_INTDIR=\"RelWithDebInfo\"
-  DEP_FILE = CMakeFiles\ap2.dir\RelWithDebInfo\src\core\AP2_Gui.c.obj.d
+  DEP_FILE = CMakeFiles\ap2_app.dir\RelWithDebInfo\src\core\AP2_Gui.c.obj.d
   FLAGS = -B C:/msys64/ucrt64/bin -O2 -g -DNDEBUG -std=c17 -Wall -Wextra -g -fdiagnostics-color=always
   INCLUDES = -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/third_party/stb -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/third_party/miniaudio -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glad-src/generated/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-src/include
-  OBJECT_DIR = CMakeFiles\ap2.dir\RelWithDebInfo
-  OBJECT_FILE_DIR = CMakeFiles\ap2.dir\RelWithDebInfo\src\core
-  TARGET_SUPPORT_DIR = CMakeFiles\ap2.dir
-  RSP_FILE = CMakeFiles\ap2.dir\RelWithDebInfo\src\core\AP2_Gui.c.obj.rsp
+  OBJECT_DIR = CMakeFiles\ap2_app.dir\RelWithDebInfo
+  OBJECT_FILE_DIR = CMakeFiles\ap2_app.dir\RelWithDebInfo\src\core
+  TARGET_SUPPORT_DIR = CMakeFiles\ap2_app.dir
+  RSP_FILE = CMakeFiles\ap2_app.dir\RelWithDebInfo\src\core\AP2_Gui.c.obj.rsp
 
-build CMakeFiles/ap2.dir/RelWithDebInfo/src/core/AP2_Init.c.obj: C_COMPILER__ap2_unscanned_RelWithDebInfo C$:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/src/core/AP2_Init.c || cmake_object_order_depends_target_ap2_RELWITHDEBINFO
+build CMakeFiles/ap2_app.dir/RelWithDebInfo/src/core/AP2_Init.c.obj: C_COMPILER__ap2_app_unscanned_RelWithDebInfo C$:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/src/core/AP2_Init.c || cmake_object_order_depends_target_ap2_app_RELWITHDEBINFO
   CONFIG = RelWithDebInfo
   DEFINES = -DAP2_VERSION=\"0.1.0\" -DAP2_VERSION_MAJOR=0 -DAP2_VERSION_MINOR=1 -DAP2_VERSION_PATCH=0 -DDEBUG=1 -DPROJECT_VERSION=\"0.1.0\" -DPROJECT_VERSION_MAJOR=0 -DPROJECT_VERSION_MINOR=1 -DPROJECT_VERSION_PATCH=0 -DWIN32 -D_CRT_SECURE_NO_WARNINGS -D_WINDOWS -DCMAKE_INTDIR=\"RelWithDebInfo\"
-  DEP_FILE = CMakeFiles\ap2.dir\RelWithDebInfo\src\core\AP2_Init.c.obj.d
+  DEP_FILE = CMakeFiles\ap2_app.dir\RelWithDebInfo\src\core\AP2_Init.c.obj.d
   FLAGS = -B C:/msys64/ucrt64/bin -O2 -g -DNDEBUG -std=c17 -Wall -Wextra -g -fdiagnostics-color=always
   INCLUDES = -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/third_party/stb -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/third_party/miniaudio -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glad-src/generated/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-src/include
-  OBJECT_DIR = CMakeFiles\ap2.dir\RelWithDebInfo
-  OBJECT_FILE_DIR = CMakeFiles\ap2.dir\RelWithDebInfo\src\core
-  TARGET_SUPPORT_DIR = CMakeFiles\ap2.dir
-  RSP_FILE = CMakeFiles\ap2.dir\RelWithDebInfo\src\core\AP2_Init.c.obj.rsp
+  OBJECT_DIR = CMakeFiles\ap2_app.dir\RelWithDebInfo
+  OBJECT_FILE_DIR = CMakeFiles\ap2_app.dir\RelWithDebInfo\src\core
+  TARGET_SUPPORT_DIR = CMakeFiles\ap2_app.dir
+  RSP_FILE = CMakeFiles\ap2_app.dir\RelWithDebInfo\src\core\AP2_Init.c.obj.rsp
 
-build CMakeFiles/ap2.dir/RelWithDebInfo/src/core/AP2_Input.c.obj: C_COMPILER__ap2_unscanned_RelWithDebInfo C$:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/src/core/AP2_Input.c || cmake_object_order_depends_target_ap2_RELWITHDEBINFO
+build CMakeFiles/ap2_app.dir/RelWithDebInfo/src/core/AP2_Input.c.obj: C_COMPILER__ap2_app_unscanned_RelWithDebInfo C$:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/src/core/AP2_Input.c || cmake_object_order_depends_target_ap2_app_RELWITHDEBINFO
   CONFIG = RelWithDebInfo
   DEFINES = -DAP2_VERSION=\"0.1.0\" -DAP2_VERSION_MAJOR=0 -DAP2_VERSION_MINOR=1 -DAP2_VERSION_PATCH=0 -DDEBUG=1 -DPROJECT_VERSION=\"0.1.0\" -DPROJECT_VERSION_MAJOR=0 -DPROJECT_VERSION_MINOR=1 -DPROJECT_VERSION_PATCH=0 -DWIN32 -D_CRT_SECURE_NO_WARNINGS -D_WINDOWS -DCMAKE_INTDIR=\"RelWithDebInfo\"
-  DEP_FILE = CMakeFiles\ap2.dir\RelWithDebInfo\src\core\AP2_Input.c.obj.d
+  DEP_FILE = CMakeFiles\ap2_app.dir\RelWithDebInfo\src\core\AP2_Input.c.obj.d
   FLAGS = -B C:/msys64/ucrt64/bin -O2 -g -DNDEBUG -std=c17 -Wall -Wextra -g -fdiagnostics-color=always
   INCLUDES = -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/third_party/stb -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/third_party/miniaudio -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glad-src/generated/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-src/include
-  OBJECT_DIR = CMakeFiles\ap2.dir\RelWithDebInfo
-  OBJECT_FILE_DIR = CMakeFiles\ap2.dir\RelWithDebInfo\src\core
-  TARGET_SUPPORT_DIR = CMakeFiles\ap2.dir
-  RSP_FILE = CMakeFiles\ap2.dir\RelWithDebInfo\src\core\AP2_Input.c.obj.rsp
+  OBJECT_DIR = CMakeFiles\ap2_app.dir\RelWithDebInfo
+  OBJECT_FILE_DIR = CMakeFiles\ap2_app.dir\RelWithDebInfo\src\core
+  TARGET_SUPPORT_DIR = CMakeFiles\ap2_app.dir
+  RSP_FILE = CMakeFiles\ap2_app.dir\RelWithDebInfo\src\core\AP2_Input.c.obj.rsp
 
-build CMakeFiles/ap2.dir/RelWithDebInfo/src/core/AP2_List.c.obj: C_COMPILER__ap2_unscanned_RelWithDebInfo C$:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/src/core/AP2_List.c || cmake_object_order_depends_target_ap2_RELWITHDEBINFO
+build CMakeFiles/ap2_app.dir/RelWithDebInfo/src/core/AP2_List.c.obj: C_COMPILER__ap2_app_unscanned_RelWithDebInfo C$:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/src/core/AP2_List.c || cmake_object_order_depends_target_ap2_app_RELWITHDEBINFO
   CONFIG = RelWithDebInfo
   DEFINES = -DAP2_VERSION=\"0.1.0\" -DAP2_VERSION_MAJOR=0 -DAP2_VERSION_MINOR=1 -DAP2_VERSION_PATCH=0 -DDEBUG=1 -DPROJECT_VERSION=\"0.1.0\" -DPROJECT_VERSION_MAJOR=0 -DPROJECT_VERSION_MINOR=1 -DPROJECT_VERSION_PATCH=0 -DWIN32 -D_CRT_SECURE_NO_WARNINGS -D_WINDOWS -DCMAKE_INTDIR=\"RelWithDebInfo\"
-  DEP_FILE = CMakeFiles\ap2.dir\RelWithDebInfo\src\core\AP2_List.c.obj.d
+  DEP_FILE = CMakeFiles\ap2_app.dir\RelWithDebInfo\src\core\AP2_List.c.obj.d
   FLAGS = -B C:/msys64/ucrt64/bin -O2 -g -DNDEBUG -std=c17 -Wall -Wextra -g -fdiagnostics-color=always
   INCLUDES = -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/third_party/stb -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/third_party/miniaudio -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glad-src/generated/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-src/include
-  OBJECT_DIR = CMakeFiles\ap2.dir\RelWithDebInfo
-  OBJECT_FILE_DIR = CMakeFiles\ap2.dir\RelWithDebInfo\src\core
-  TARGET_SUPPORT_DIR = CMakeFiles\ap2.dir
-  RSP_FILE = CMakeFiles\ap2.dir\RelWithDebInfo\src\core\AP2_List.c.obj.rsp
+  OBJECT_DIR = CMakeFiles\ap2_app.dir\RelWithDebInfo
+  OBJECT_FILE_DIR = CMakeFiles\ap2_app.dir\RelWithDebInfo\src\core
+  TARGET_SUPPORT_DIR = CMakeFiles\ap2_app.dir
+  RSP_FILE = CMakeFiles\ap2_app.dir\RelWithDebInfo\src\core\AP2_List.c.obj.rsp
 
-build CMakeFiles/ap2.dir/RelWithDebInfo/src/core/AP2_Logger.c.obj: C_COMPILER__ap2_unscanned_RelWithDebInfo C$:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/src/core/AP2_Logger.c || cmake_object_order_depends_target_ap2_RELWITHDEBINFO
+build CMakeFiles/ap2_app.dir/RelWithDebInfo/src/core/AP2_Logger.c.obj: C_COMPILER__ap2_app_unscanned_RelWithDebInfo C$:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/src/core/AP2_Logger.c || cmake_object_order_depends_target_ap2_app_RELWITHDEBINFO
   CONFIG = RelWithDebInfo
   DEFINES = -DAP2_VERSION=\"0.1.0\" -DAP2_VERSION_MAJOR=0 -DAP2_VERSION_MINOR=1 -DAP2_VERSION_PATCH=0 -DDEBUG=1 -DPROJECT_VERSION=\"0.1.0\" -DPROJECT_VERSION_MAJOR=0 -DPROJECT_VERSION_MINOR=1 -DPROJECT_VERSION_PATCH=0 -DWIN32 -D_CRT_SECURE_NO_WARNINGS -D_WINDOWS -DCMAKE_INTDIR=\"RelWithDebInfo\"
-  DEP_FILE = CMakeFiles\ap2.dir\RelWithDebInfo\src\core\AP2_Logger.c.obj.d
+  DEP_FILE = CMakeFiles\ap2_app.dir\RelWithDebInfo\src\core\AP2_Logger.c.obj.d
   FLAGS = -B C:/msys64/ucrt64/bin -O2 -g -DNDEBUG -std=c17 -Wall -Wextra -g -fdiagnostics-color=always
   INCLUDES = -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/third_party/stb -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/third_party/miniaudio -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glad-src/generated/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-src/include
-  OBJECT_DIR = CMakeFiles\ap2.dir\RelWithDebInfo
-  OBJECT_FILE_DIR = CMakeFiles\ap2.dir\RelWithDebInfo\src\core
-  TARGET_SUPPORT_DIR = CMakeFiles\ap2.dir
-  RSP_FILE = CMakeFiles\ap2.dir\RelWithDebInfo\src\core\AP2_Logger.c.obj.rsp
+  OBJECT_DIR = CMakeFiles\ap2_app.dir\RelWithDebInfo
+  OBJECT_FILE_DIR = CMakeFiles\ap2_app.dir\RelWithDebInfo\src\core
+  TARGET_SUPPORT_DIR = CMakeFiles\ap2_app.dir
+  RSP_FILE = CMakeFiles\ap2_app.dir\RelWithDebInfo\src\core\AP2_Logger.c.obj.rsp
 
-build CMakeFiles/ap2.dir/RelWithDebInfo/src/core/AP2_Math.c.obj: C_COMPILER__ap2_unscanned_RelWithDebInfo C$:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/src/core/AP2_Math.c || cmake_object_order_depends_target_ap2_RELWITHDEBINFO
+build CMakeFiles/ap2_app.dir/RelWithDebInfo/src/core/AP2_Math.c.obj: C_COMPILER__ap2_app_unscanned_RelWithDebInfo C$:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/src/core/AP2_Math.c || cmake_object_order_depends_target_ap2_app_RELWITHDEBINFO
   CONFIG = RelWithDebInfo
   DEFINES = -DAP2_VERSION=\"0.1.0\" -DAP2_VERSION_MAJOR=0 -DAP2_VERSION_MINOR=1 -DAP2_VERSION_PATCH=0 -DDEBUG=1 -DPROJECT_VERSION=\"0.1.0\" -DPROJECT_VERSION_MAJOR=0 -DPROJECT_VERSION_MINOR=1 -DPROJECT_VERSION_PATCH=0 -DWIN32 -D_CRT_SECURE_NO_WARNINGS -D_WINDOWS -DCMAKE_INTDIR=\"RelWithDebInfo\"
-  DEP_FILE = CMakeFiles\ap2.dir\RelWithDebInfo\src\core\AP2_Math.c.obj.d
+  DEP_FILE = CMakeFiles\ap2_app.dir\RelWithDebInfo\src\core\AP2_Math.c.obj.d
   FLAGS = -B C:/msys64/ucrt64/bin -O2 -g -DNDEBUG -std=c17 -Wall -Wextra -g -fdiagnostics-color=always
   INCLUDES = -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/third_party/stb -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/third_party/miniaudio -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glad-src/generated/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-src/include
-  OBJECT_DIR = CMakeFiles\ap2.dir\RelWithDebInfo
-  OBJECT_FILE_DIR = CMakeFiles\ap2.dir\RelWithDebInfo\src\core
-  TARGET_SUPPORT_DIR = CMakeFiles\ap2.dir
-  RSP_FILE = CMakeFiles\ap2.dir\RelWithDebInfo\src\core\AP2_Math.c.obj.rsp
+  OBJECT_DIR = CMakeFiles\ap2_app.dir\RelWithDebInfo
+  OBJECT_FILE_DIR = CMakeFiles\ap2_app.dir\RelWithDebInfo\src\core
+  TARGET_SUPPORT_DIR = CMakeFiles\ap2_app.dir
+  RSP_FILE = CMakeFiles\ap2_app.dir\RelWithDebInfo\src\core\AP2_Math.c.obj.rsp
 
-build CMakeFiles/ap2.dir/RelWithDebInfo/src/core/AP2_Miniaudio.c.obj: C_COMPILER__ap2_unscanned_RelWithDebInfo C$:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/src/core/AP2_Miniaudio.c || cmake_object_order_depends_target_ap2_RELWITHDEBINFO
+build CMakeFiles/ap2_app.dir/RelWithDebInfo/src/core/AP2_Miniaudio.c.obj: C_COMPILER__ap2_app_unscanned_RelWithDebInfo C$:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/src/core/AP2_Miniaudio.c || cmake_object_order_depends_target_ap2_app_RELWITHDEBINFO
   CONFIG = RelWithDebInfo
   DEFINES = -DAP2_VERSION=\"0.1.0\" -DAP2_VERSION_MAJOR=0 -DAP2_VERSION_MINOR=1 -DAP2_VERSION_PATCH=0 -DDEBUG=1 -DPROJECT_VERSION=\"0.1.0\" -DPROJECT_VERSION_MAJOR=0 -DPROJECT_VERSION_MINOR=1 -DPROJECT_VERSION_PATCH=0 -DWIN32 -D_CRT_SECURE_NO_WARNINGS -D_WINDOWS -DCMAKE_INTDIR=\"RelWithDebInfo\"
-  DEP_FILE = CMakeFiles\ap2.dir\RelWithDebInfo\src\core\AP2_Miniaudio.c.obj.d
+  DEP_FILE = CMakeFiles\ap2_app.dir\RelWithDebInfo\src\core\AP2_Miniaudio.c.obj.d
   FLAGS = -B C:/msys64/ucrt64/bin -O2 -g -DNDEBUG -std=c17 -Wall -Wextra -g -fdiagnostics-color=always
   INCLUDES = -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/third_party/stb -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/third_party/miniaudio -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glad-src/generated/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-src/include
-  OBJECT_DIR = CMakeFiles\ap2.dir\RelWithDebInfo
-  OBJECT_FILE_DIR = CMakeFiles\ap2.dir\RelWithDebInfo\src\core
-  TARGET_SUPPORT_DIR = CMakeFiles\ap2.dir
-  RSP_FILE = CMakeFiles\ap2.dir\RelWithDebInfo\src\core\AP2_Miniaudio.c.obj.rsp
+  OBJECT_DIR = CMakeFiles\ap2_app.dir\RelWithDebInfo
+  OBJECT_FILE_DIR = CMakeFiles\ap2_app.dir\RelWithDebInfo\src\core
+  TARGET_SUPPORT_DIR = CMakeFiles\ap2_app.dir
+  RSP_FILE = CMakeFiles\ap2_app.dir\RelWithDebInfo\src\core\AP2_Miniaudio.c.obj.rsp
 
-build CMakeFiles/ap2.dir/RelWithDebInfo/src/core/AP2_Opengl.c.obj: C_COMPILER__ap2_unscanned_RelWithDebInfo C$:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/src/core/AP2_Opengl.c || cmake_object_order_depends_target_ap2_RELWITHDEBINFO
+build CMakeFiles/ap2_app.dir/RelWithDebInfo/src/core/AP2_Opengl.c.obj: C_COMPILER__ap2_app_unscanned_RelWithDebInfo C$:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/src/core/AP2_Opengl.c || cmake_object_order_depends_target_ap2_app_RELWITHDEBINFO
   CONFIG = RelWithDebInfo
   DEFINES = -DAP2_VERSION=\"0.1.0\" -DAP2_VERSION_MAJOR=0 -DAP2_VERSION_MINOR=1 -DAP2_VERSION_PATCH=0 -DDEBUG=1 -DPROJECT_VERSION=\"0.1.0\" -DPROJECT_VERSION_MAJOR=0 -DPROJECT_VERSION_MINOR=1 -DPROJECT_VERSION_PATCH=0 -DWIN32 -D_CRT_SECURE_NO_WARNINGS -D_WINDOWS -DCMAKE_INTDIR=\"RelWithDebInfo\"
-  DEP_FILE = CMakeFiles\ap2.dir\RelWithDebInfo\src\core\AP2_Opengl.c.obj.d
+  DEP_FILE = CMakeFiles\ap2_app.dir\RelWithDebInfo\src\core\AP2_Opengl.c.obj.d
   FLAGS = -B C:/msys64/ucrt64/bin -O2 -g -DNDEBUG -std=c17 -Wall -Wextra -g -fdiagnostics-color=always
   INCLUDES = -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/third_party/stb -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/third_party/miniaudio -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glad-src/generated/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-src/include
-  OBJECT_DIR = CMakeFiles\ap2.dir\RelWithDebInfo
-  OBJECT_FILE_DIR = CMakeFiles\ap2.dir\RelWithDebInfo\src\core
-  TARGET_SUPPORT_DIR = CMakeFiles\ap2.dir
-  RSP_FILE = CMakeFiles\ap2.dir\RelWithDebInfo\src\core\AP2_Opengl.c.obj.rsp
+  OBJECT_DIR = CMakeFiles\ap2_app.dir\RelWithDebInfo
+  OBJECT_FILE_DIR = CMakeFiles\ap2_app.dir\RelWithDebInfo\src\core
+  TARGET_SUPPORT_DIR = CMakeFiles\ap2_app.dir
+  RSP_FILE = CMakeFiles\ap2_app.dir\RelWithDebInfo\src\core\AP2_Opengl.c.obj.rsp
 
-build CMakeFiles/ap2.dir/RelWithDebInfo/src/core/AP2_Platform.c.obj: C_COMPILER__ap2_unscanned_RelWithDebInfo C$:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/src/core/AP2_Platform.c || cmake_object_order_depends_target_ap2_RELWITHDEBINFO
+build CMakeFiles/ap2_app.dir/RelWithDebInfo/src/core/AP2_Platform.c.obj: C_COMPILER__ap2_app_unscanned_RelWithDebInfo C$:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/src/core/AP2_Platform.c || cmake_object_order_depends_target_ap2_app_RELWITHDEBINFO
   CONFIG = RelWithDebInfo
   DEFINES = -DAP2_VERSION=\"0.1.0\" -DAP2_VERSION_MAJOR=0 -DAP2_VERSION_MINOR=1 -DAP2_VERSION_PATCH=0 -DDEBUG=1 -DPROJECT_VERSION=\"0.1.0\" -DPROJECT_VERSION_MAJOR=0 -DPROJECT_VERSION_MINOR=1 -DPROJECT_VERSION_PATCH=0 -DWIN32 -D_CRT_SECURE_NO_WARNINGS -D_WINDOWS -DCMAKE_INTDIR=\"RelWithDebInfo\"
-  DEP_FILE = CMakeFiles\ap2.dir\RelWithDebInfo\src\core\AP2_Platform.c.obj.d
+  DEP_FILE = CMakeFiles\ap2_app.dir\RelWithDebInfo\src\core\AP2_Platform.c.obj.d
   FLAGS = -B C:/msys64/ucrt64/bin -O2 -g -DNDEBUG -std=c17 -Wall -Wextra -g -fdiagnostics-color=always
   INCLUDES = -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/third_party/stb -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/third_party/miniaudio -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glad-src/generated/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-src/include
-  OBJECT_DIR = CMakeFiles\ap2.dir\RelWithDebInfo
-  OBJECT_FILE_DIR = CMakeFiles\ap2.dir\RelWithDebInfo\src\core
-  TARGET_SUPPORT_DIR = CMakeFiles\ap2.dir
-  RSP_FILE = CMakeFiles\ap2.dir\RelWithDebInfo\src\core\AP2_Platform.c.obj.rsp
+  OBJECT_DIR = CMakeFiles\ap2_app.dir\RelWithDebInfo
+  OBJECT_FILE_DIR = CMakeFiles\ap2_app.dir\RelWithDebInfo\src\core
+  TARGET_SUPPORT_DIR = CMakeFiles\ap2_app.dir
+  RSP_FILE = CMakeFiles\ap2_app.dir\RelWithDebInfo\src\core\AP2_Platform.c.obj.rsp
 
-build CMakeFiles/ap2.dir/RelWithDebInfo/src/core/AP2_Post.c.obj: C_COMPILER__ap2_unscanned_RelWithDebInfo C$:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/src/core/AP2_Post.c || cmake_object_order_depends_target_ap2_RELWITHDEBINFO
+build CMakeFiles/ap2_app.dir/RelWithDebInfo/src/core/AP2_Post.c.obj: C_COMPILER__ap2_app_unscanned_RelWithDebInfo C$:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/src/core/AP2_Post.c || cmake_object_order_depends_target_ap2_app_RELWITHDEBINFO
   CONFIG = RelWithDebInfo
   DEFINES = -DAP2_VERSION=\"0.1.0\" -DAP2_VERSION_MAJOR=0 -DAP2_VERSION_MINOR=1 -DAP2_VERSION_PATCH=0 -DDEBUG=1 -DPROJECT_VERSION=\"0.1.0\" -DPROJECT_VERSION_MAJOR=0 -DPROJECT_VERSION_MINOR=1 -DPROJECT_VERSION_PATCH=0 -DWIN32 -D_CRT_SECURE_NO_WARNINGS -D_WINDOWS -DCMAKE_INTDIR=\"RelWithDebInfo\"
-  DEP_FILE = CMakeFiles\ap2.dir\RelWithDebInfo\src\core\AP2_Post.c.obj.d
+  DEP_FILE = CMakeFiles\ap2_app.dir\RelWithDebInfo\src\core\AP2_Post.c.obj.d
   FLAGS = -B C:/msys64/ucrt64/bin -O2 -g -DNDEBUG -std=c17 -Wall -Wextra -g -fdiagnostics-color=always
   INCLUDES = -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/third_party/stb -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/third_party/miniaudio -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glad-src/generated/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-src/include
-  OBJECT_DIR = CMakeFiles\ap2.dir\RelWithDebInfo
-  OBJECT_FILE_DIR = CMakeFiles\ap2.dir\RelWithDebInfo\src\core
-  TARGET_SUPPORT_DIR = CMakeFiles\ap2.dir
-  RSP_FILE = CMakeFiles\ap2.dir\RelWithDebInfo\src\core\AP2_Post.c.obj.rsp
+  OBJECT_DIR = CMakeFiles\ap2_app.dir\RelWithDebInfo
+  OBJECT_FILE_DIR = CMakeFiles\ap2_app.dir\RelWithDebInfo\src\core
+  TARGET_SUPPORT_DIR = CMakeFiles\ap2_app.dir
+  RSP_FILE = CMakeFiles\ap2_app.dir\RelWithDebInfo\src\core\AP2_Post.c.obj.rsp
 
-build CMakeFiles/ap2.dir/RelWithDebInfo/src/core/AP2_Renderer.c.obj: C_COMPILER__ap2_unscanned_RelWithDebInfo C$:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/src/core/AP2_Renderer.c || cmake_object_order_depends_target_ap2_RELWITHDEBINFO
+build CMakeFiles/ap2_app.dir/RelWithDebInfo/src/core/AP2_Renderer.c.obj: C_COMPILER__ap2_app_unscanned_RelWithDebInfo C$:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/src/core/AP2_Renderer.c || cmake_object_order_depends_target_ap2_app_RELWITHDEBINFO
   CONFIG = RelWithDebInfo
   DEFINES = -DAP2_VERSION=\"0.1.0\" -DAP2_VERSION_MAJOR=0 -DAP2_VERSION_MINOR=1 -DAP2_VERSION_PATCH=0 -DDEBUG=1 -DPROJECT_VERSION=\"0.1.0\" -DPROJECT_VERSION_MAJOR=0 -DPROJECT_VERSION_MINOR=1 -DPROJECT_VERSION_PATCH=0 -DWIN32 -D_CRT_SECURE_NO_WARNINGS -D_WINDOWS -DCMAKE_INTDIR=\"RelWithDebInfo\"
-  DEP_FILE = CMakeFiles\ap2.dir\RelWithDebInfo\src\core\AP2_Renderer.c.obj.d
+  DEP_FILE = CMakeFiles\ap2_app.dir\RelWithDebInfo\src\core\AP2_Renderer.c.obj.d
   FLAGS = -B C:/msys64/ucrt64/bin -O2 -g -DNDEBUG -std=c17 -Wall -Wextra -g -fdiagnostics-color=always
   INCLUDES = -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/third_party/stb -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/third_party/miniaudio -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glad-src/generated/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-src/include
-  OBJECT_DIR = CMakeFiles\ap2.dir\RelWithDebInfo
-  OBJECT_FILE_DIR = CMakeFiles\ap2.dir\RelWithDebInfo\src\core
-  TARGET_SUPPORT_DIR = CMakeFiles\ap2.dir
-  RSP_FILE = CMakeFiles\ap2.dir\RelWithDebInfo\src\core\AP2_Renderer.c.obj.rsp
+  OBJECT_DIR = CMakeFiles\ap2_app.dir\RelWithDebInfo
+  OBJECT_FILE_DIR = CMakeFiles\ap2_app.dir\RelWithDebInfo\src\core
+  TARGET_SUPPORT_DIR = CMakeFiles\ap2_app.dir
+  RSP_FILE = CMakeFiles\ap2_app.dir\RelWithDebInfo\src\core\AP2_Renderer.c.obj.rsp
 
-build CMakeFiles/ap2.dir/RelWithDebInfo/src/core/AP2_Shader.c.obj: C_COMPILER__ap2_unscanned_RelWithDebInfo C$:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/src/core/AP2_Shader.c || cmake_object_order_depends_target_ap2_RELWITHDEBINFO
+build CMakeFiles/ap2_app.dir/RelWithDebInfo/src/core/AP2_Shader.c.obj: C_COMPILER__ap2_app_unscanned_RelWithDebInfo C$:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/src/core/AP2_Shader.c || cmake_object_order_depends_target_ap2_app_RELWITHDEBINFO
   CONFIG = RelWithDebInfo
   DEFINES = -DAP2_VERSION=\"0.1.0\" -DAP2_VERSION_MAJOR=0 -DAP2_VERSION_MINOR=1 -DAP2_VERSION_PATCH=0 -DDEBUG=1 -DPROJECT_VERSION=\"0.1.0\" -DPROJECT_VERSION_MAJOR=0 -DPROJECT_VERSION_MINOR=1 -DPROJECT_VERSION_PATCH=0 -DWIN32 -D_CRT_SECURE_NO_WARNINGS -D_WINDOWS -DCMAKE_INTDIR=\"RelWithDebInfo\"
-  DEP_FILE = CMakeFiles\ap2.dir\RelWithDebInfo\src\core\AP2_Shader.c.obj.d
+  DEP_FILE = CMakeFiles\ap2_app.dir\RelWithDebInfo\src\core\AP2_Shader.c.obj.d
   FLAGS = -B C:/msys64/ucrt64/bin -O2 -g -DNDEBUG -std=c17 -Wall -Wextra -g -fdiagnostics-color=always
   INCLUDES = -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/third_party/stb -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/third_party/miniaudio -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glad-src/generated/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-src/include
-  OBJECT_DIR = CMakeFiles\ap2.dir\RelWithDebInfo
-  OBJECT_FILE_DIR = CMakeFiles\ap2.dir\RelWithDebInfo\src\core
-  TARGET_SUPPORT_DIR = CMakeFiles\ap2.dir
-  RSP_FILE = CMakeFiles\ap2.dir\RelWithDebInfo\src\core\AP2_Shader.c.obj.rsp
+  OBJECT_DIR = CMakeFiles\ap2_app.dir\RelWithDebInfo
+  OBJECT_FILE_DIR = CMakeFiles\ap2_app.dir\RelWithDebInfo\src\core
+  TARGET_SUPPORT_DIR = CMakeFiles\ap2_app.dir
+  RSP_FILE = CMakeFiles\ap2_app.dir\RelWithDebInfo\src\core\AP2_Shader.c.obj.rsp
 
-build CMakeFiles/ap2.dir/RelWithDebInfo/src/core/AP2_Sprite.c.obj: C_COMPILER__ap2_unscanned_RelWithDebInfo C$:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/src/core/AP2_Sprite.c || cmake_object_order_depends_target_ap2_RELWITHDEBINFO
+build CMakeFiles/ap2_app.dir/RelWithDebInfo/src/core/AP2_Sprite.c.obj: C_COMPILER__ap2_app_unscanned_RelWithDebInfo C$:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/src/core/AP2_Sprite.c || cmake_object_order_depends_target_ap2_app_RELWITHDEBINFO
   CONFIG = RelWithDebInfo
   DEFINES = -DAP2_VERSION=\"0.1.0\" -DAP2_VERSION_MAJOR=0 -DAP2_VERSION_MINOR=1 -DAP2_VERSION_PATCH=0 -DDEBUG=1 -DPROJECT_VERSION=\"0.1.0\" -DPROJECT_VERSION_MAJOR=0 -DPROJECT_VERSION_MINOR=1 -DPROJECT_VERSION_PATCH=0 -DWIN32 -D_CRT_SECURE_NO_WARNINGS -D_WINDOWS -DCMAKE_INTDIR=\"RelWithDebInfo\"
-  DEP_FILE = CMakeFiles\ap2.dir\RelWithDebInfo\src\core\AP2_Sprite.c.obj.d
+  DEP_FILE = CMakeFiles\ap2_app.dir\RelWithDebInfo\src\core\AP2_Sprite.c.obj.d
   FLAGS = -B C:/msys64/ucrt64/bin -O2 -g -DNDEBUG -std=c17 -Wall -Wextra -g -fdiagnostics-color=always
   INCLUDES = -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/third_party/stb -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/third_party/miniaudio -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glad-src/generated/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-src/include
-  OBJECT_DIR = CMakeFiles\ap2.dir\RelWithDebInfo
-  OBJECT_FILE_DIR = CMakeFiles\ap2.dir\RelWithDebInfo\src\core
-  TARGET_SUPPORT_DIR = CMakeFiles\ap2.dir
-  RSP_FILE = CMakeFiles\ap2.dir\RelWithDebInfo\src\core\AP2_Sprite.c.obj.rsp
+  OBJECT_DIR = CMakeFiles\ap2_app.dir\RelWithDebInfo
+  OBJECT_FILE_DIR = CMakeFiles\ap2_app.dir\RelWithDebInfo\src\core
+  TARGET_SUPPORT_DIR = CMakeFiles\ap2_app.dir
+  RSP_FILE = CMakeFiles\ap2_app.dir\RelWithDebInfo\src\core\AP2_Sprite.c.obj.rsp
 
-build CMakeFiles/ap2.dir/RelWithDebInfo/src/core/AP2_String.c.obj: C_COMPILER__ap2_unscanned_RelWithDebInfo C$:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/src/core/AP2_String.c || cmake_object_order_depends_target_ap2_RELWITHDEBINFO
+build CMakeFiles/ap2_app.dir/RelWithDebInfo/src/core/AP2_String.c.obj: C_COMPILER__ap2_app_unscanned_RelWithDebInfo C$:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/src/core/AP2_String.c || cmake_object_order_depends_target_ap2_app_RELWITHDEBINFO
   CONFIG = RelWithDebInfo
   DEFINES = -DAP2_VERSION=\"0.1.0\" -DAP2_VERSION_MAJOR=0 -DAP2_VERSION_MINOR=1 -DAP2_VERSION_PATCH=0 -DDEBUG=1 -DPROJECT_VERSION=\"0.1.0\" -DPROJECT_VERSION_MAJOR=0 -DPROJECT_VERSION_MINOR=1 -DPROJECT_VERSION_PATCH=0 -DWIN32 -D_CRT_SECURE_NO_WARNINGS -D_WINDOWS -DCMAKE_INTDIR=\"RelWithDebInfo\"
-  DEP_FILE = CMakeFiles\ap2.dir\RelWithDebInfo\src\core\AP2_String.c.obj.d
+  DEP_FILE = CMakeFiles\ap2_app.dir\RelWithDebInfo\src\core\AP2_String.c.obj.d
   FLAGS = -B C:/msys64/ucrt64/bin -O2 -g -DNDEBUG -std=c17 -Wall -Wextra -g -fdiagnostics-color=always
   INCLUDES = -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/third_party/stb -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/third_party/miniaudio -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glad-src/generated/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-src/include
-  OBJECT_DIR = CMakeFiles\ap2.dir\RelWithDebInfo
-  OBJECT_FILE_DIR = CMakeFiles\ap2.dir\RelWithDebInfo\src\core
-  TARGET_SUPPORT_DIR = CMakeFiles\ap2.dir
-  RSP_FILE = CMakeFiles\ap2.dir\RelWithDebInfo\src\core\AP2_String.c.obj.rsp
+  OBJECT_DIR = CMakeFiles\ap2_app.dir\RelWithDebInfo
+  OBJECT_FILE_DIR = CMakeFiles\ap2_app.dir\RelWithDebInfo\src\core
+  TARGET_SUPPORT_DIR = CMakeFiles\ap2_app.dir
+  RSP_FILE = CMakeFiles\ap2_app.dir\RelWithDebInfo\src\core\AP2_String.c.obj.rsp
 
-build CMakeFiles/ap2.dir/RelWithDebInfo/src/core/AP2_Texture.c.obj: C_COMPILER__ap2_unscanned_RelWithDebInfo C$:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/src/core/AP2_Texture.c || cmake_object_order_depends_target_ap2_RELWITHDEBINFO
+build CMakeFiles/ap2_app.dir/RelWithDebInfo/src/core/AP2_Texture.c.obj: C_COMPILER__ap2_app_unscanned_RelWithDebInfo C$:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/src/core/AP2_Texture.c || cmake_object_order_depends_target_ap2_app_RELWITHDEBINFO
   CONFIG = RelWithDebInfo
   DEFINES = -DAP2_VERSION=\"0.1.0\" -DAP2_VERSION_MAJOR=0 -DAP2_VERSION_MINOR=1 -DAP2_VERSION_PATCH=0 -DDEBUG=1 -DPROJECT_VERSION=\"0.1.0\" -DPROJECT_VERSION_MAJOR=0 -DPROJECT_VERSION_MINOR=1 -DPROJECT_VERSION_PATCH=0 -DWIN32 -D_CRT_SECURE_NO_WARNINGS -D_WINDOWS -DCMAKE_INTDIR=\"RelWithDebInfo\"
-  DEP_FILE = CMakeFiles\ap2.dir\RelWithDebInfo\src\core\AP2_Texture.c.obj.d
+  DEP_FILE = CMakeFiles\ap2_app.dir\RelWithDebInfo\src\core\AP2_Texture.c.obj.d
   FLAGS = -B C:/msys64/ucrt64/bin -O2 -g -DNDEBUG -std=c17 -Wall -Wextra -g -fdiagnostics-color=always
   INCLUDES = -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/third_party/stb -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/third_party/miniaudio -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glad-src/generated/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-src/include
-  OBJECT_DIR = CMakeFiles\ap2.dir\RelWithDebInfo
-  OBJECT_FILE_DIR = CMakeFiles\ap2.dir\RelWithDebInfo\src\core
-  TARGET_SUPPORT_DIR = CMakeFiles\ap2.dir
-  RSP_FILE = CMakeFiles\ap2.dir\RelWithDebInfo\src\core\AP2_Texture.c.obj.rsp
+  OBJECT_DIR = CMakeFiles\ap2_app.dir\RelWithDebInfo
+  OBJECT_FILE_DIR = CMakeFiles\ap2_app.dir\RelWithDebInfo\src\core
+  TARGET_SUPPORT_DIR = CMakeFiles\ap2_app.dir
+  RSP_FILE = CMakeFiles\ap2_app.dir\RelWithDebInfo\src\core\AP2_Texture.c.obj.rsp
 
-build CMakeFiles/ap2.dir/RelWithDebInfo/src/core/AP2_Video.c.obj: C_COMPILER__ap2_unscanned_RelWithDebInfo C$:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/src/core/AP2_Video.c || cmake_object_order_depends_target_ap2_RELWITHDEBINFO
+build CMakeFiles/ap2_app.dir/RelWithDebInfo/src/core/AP2_Video.c.obj: C_COMPILER__ap2_app_unscanned_RelWithDebInfo C$:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/src/core/AP2_Video.c || cmake_object_order_depends_target_ap2_app_RELWITHDEBINFO
   CONFIG = RelWithDebInfo
   DEFINES = -DAP2_VERSION=\"0.1.0\" -DAP2_VERSION_MAJOR=0 -DAP2_VERSION_MINOR=1 -DAP2_VERSION_PATCH=0 -DDEBUG=1 -DPROJECT_VERSION=\"0.1.0\" -DPROJECT_VERSION_MAJOR=0 -DPROJECT_VERSION_MINOR=1 -DPROJECT_VERSION_PATCH=0 -DWIN32 -D_CRT_SECURE_NO_WARNINGS -D_WINDOWS -DCMAKE_INTDIR=\"RelWithDebInfo\"
-  DEP_FILE = CMakeFiles\ap2.dir\RelWithDebInfo\src\core\AP2_Video.c.obj.d
+  DEP_FILE = CMakeFiles\ap2_app.dir\RelWithDebInfo\src\core\AP2_Video.c.obj.d
   FLAGS = -B C:/msys64/ucrt64/bin -O2 -g -DNDEBUG -std=c17 -Wall -Wextra -g -fdiagnostics-color=always
   INCLUDES = -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/third_party/stb -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/third_party/miniaudio -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glad-src/generated/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-src/include
-  OBJECT_DIR = CMakeFiles\ap2.dir\RelWithDebInfo
-  OBJECT_FILE_DIR = CMakeFiles\ap2.dir\RelWithDebInfo\src\core
-  TARGET_SUPPORT_DIR = CMakeFiles\ap2.dir
-  RSP_FILE = CMakeFiles\ap2.dir\RelWithDebInfo\src\core\AP2_Video.c.obj.rsp
+  OBJECT_DIR = CMakeFiles\ap2_app.dir\RelWithDebInfo
+  OBJECT_FILE_DIR = CMakeFiles\ap2_app.dir\RelWithDebInfo\src\core
+  TARGET_SUPPORT_DIR = CMakeFiles\ap2_app.dir
+  RSP_FILE = CMakeFiles\ap2_app.dir\RelWithDebInfo\src\core\AP2_Video.c.obj.rsp
 
-build CMakeFiles/ap2.dir/RelWithDebInfo/src/core/AP2_Window.c.obj: C_COMPILER__ap2_unscanned_RelWithDebInfo C$:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/src/core/AP2_Window.c || cmake_object_order_depends_target_ap2_RELWITHDEBINFO
+build CMakeFiles/ap2_app.dir/RelWithDebInfo/src/core/AP2_Window.c.obj: C_COMPILER__ap2_app_unscanned_RelWithDebInfo C$:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/src/core/AP2_Window.c || cmake_object_order_depends_target_ap2_app_RELWITHDEBINFO
   CONFIG = RelWithDebInfo
   DEFINES = -DAP2_VERSION=\"0.1.0\" -DAP2_VERSION_MAJOR=0 -DAP2_VERSION_MINOR=1 -DAP2_VERSION_PATCH=0 -DDEBUG=1 -DPROJECT_VERSION=\"0.1.0\" -DPROJECT_VERSION_MAJOR=0 -DPROJECT_VERSION_MINOR=1 -DPROJECT_VERSION_PATCH=0 -DWIN32 -D_CRT_SECURE_NO_WARNINGS -D_WINDOWS -DCMAKE_INTDIR=\"RelWithDebInfo\"
-  DEP_FILE = CMakeFiles\ap2.dir\RelWithDebInfo\src\core\AP2_Window.c.obj.d
+  DEP_FILE = CMakeFiles\ap2_app.dir\RelWithDebInfo\src\core\AP2_Window.c.obj.d
   FLAGS = -B C:/msys64/ucrt64/bin -O2 -g -DNDEBUG -std=c17 -Wall -Wextra -g -fdiagnostics-color=always
   INCLUDES = -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/third_party/stb -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/third_party/miniaudio -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glad-src/generated/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-src/include
-  OBJECT_DIR = CMakeFiles\ap2.dir\RelWithDebInfo
-  OBJECT_FILE_DIR = CMakeFiles\ap2.dir\RelWithDebInfo\src\core
-  TARGET_SUPPORT_DIR = CMakeFiles\ap2.dir
-  RSP_FILE = CMakeFiles\ap2.dir\RelWithDebInfo\src\core\AP2_Window.c.obj.rsp
+  OBJECT_DIR = CMakeFiles\ap2_app.dir\RelWithDebInfo
+  OBJECT_FILE_DIR = CMakeFiles\ap2_app.dir\RelWithDebInfo\src\core
+  TARGET_SUPPORT_DIR = CMakeFiles\ap2_app.dir
+  RSP_FILE = CMakeFiles\ap2_app.dir\RelWithDebInfo\src\core\AP2_Window.c.obj.rsp
 
-build CMakeFiles/ap2.dir/RelWithDebInfo/src/main.c.obj: C_COMPILER__ap2_unscanned_RelWithDebInfo C$:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/src/main.c || cmake_object_order_depends_target_ap2_RELWITHDEBINFO
+build CMakeFiles/ap2_app.dir/RelWithDebInfo/src/main.c.obj: C_COMPILER__ap2_app_unscanned_RelWithDebInfo C$:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/src/main.c || cmake_object_order_depends_target_ap2_app_RELWITHDEBINFO
   CONFIG = RelWithDebInfo
   DEFINES = -DAP2_VERSION=\"0.1.0\" -DAP2_VERSION_MAJOR=0 -DAP2_VERSION_MINOR=1 -DAP2_VERSION_PATCH=0 -DDEBUG=1 -DPROJECT_VERSION=\"0.1.0\" -DPROJECT_VERSION_MAJOR=0 -DPROJECT_VERSION_MINOR=1 -DPROJECT_VERSION_PATCH=0 -DWIN32 -D_CRT_SECURE_NO_WARNINGS -D_WINDOWS -DCMAKE_INTDIR=\"RelWithDebInfo\"
-  DEP_FILE = CMakeFiles\ap2.dir\RelWithDebInfo\src\main.c.obj.d
+  DEP_FILE = CMakeFiles\ap2_app.dir\RelWithDebInfo\src\main.c.obj.d
   FLAGS = -B C:/msys64/ucrt64/bin -O2 -g -DNDEBUG -std=c17 -Wall -Wextra -g -fdiagnostics-color=always
   INCLUDES = -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/third_party/stb -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/third_party/miniaudio -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glad-src/generated/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-src/include
-  OBJECT_DIR = CMakeFiles\ap2.dir\RelWithDebInfo
-  OBJECT_FILE_DIR = CMakeFiles\ap2.dir\RelWithDebInfo\src
-  TARGET_SUPPORT_DIR = CMakeFiles\ap2.dir
-  RSP_FILE = CMakeFiles\ap2.dir\RelWithDebInfo\src\main.c.obj.rsp
+  OBJECT_DIR = CMakeFiles\ap2_app.dir\RelWithDebInfo
+  OBJECT_FILE_DIR = CMakeFiles\ap2_app.dir\RelWithDebInfo\src
+  TARGET_SUPPORT_DIR = CMakeFiles\ap2_app.dir
+  RSP_FILE = CMakeFiles\ap2_app.dir\RelWithDebInfo\src\main.c.obj.rsp
 
 
 # =============================================================================
-# Link build statements for EXECUTABLE target ap2
+# Link build statements for EXECUTABLE target ap2_app
 
 
 #############################################
 # Link the executable bin\RelWithDebInfo\ap2.exe
 
-build bin/RelWithDebInfo/ap2.exe: C_EXECUTABLE_LINKER__ap2_RelWithDebInfo CMakeFiles/ap2.dir/RelWithDebInfo/src/core/AP2_3D.c.obj CMakeFiles/ap2.dir/RelWithDebInfo/src/core/AP2_Audio.c.obj CMakeFiles/ap2.dir/RelWithDebInfo/src/core/AP2_Device.c.obj CMakeFiles/ap2.dir/RelWithDebInfo/src/core/AP2_Error.c.obj CMakeFiles/ap2.dir/RelWithDebInfo/src/core/AP2_Font.c.obj CMakeFiles/ap2.dir/RelWithDebInfo/src/core/AP2_Gui.c.obj CMakeFiles/ap2.dir/RelWithDebInfo/src/core/AP2_Init.c.obj CMakeFiles/ap2.dir/RelWithDebInfo/src/core/AP2_Input.c.obj CMakeFiles/ap2.dir/RelWithDebInfo/src/core/AP2_List.c.obj CMakeFiles/ap2.dir/RelWithDebInfo/src/core/AP2_Logger.c.obj CMakeFiles/ap2.dir/RelWithDebInfo/src/core/AP2_Math.c.obj CMakeFiles/ap2.dir/RelWithDebInfo/src/core/AP2_Miniaudio.c.obj CMakeFiles/ap2.dir/RelWithDebInfo/src/core/AP2_Opengl.c.obj CMakeFiles/ap2.dir/RelWithDebInfo/src/core/AP2_Platform.c.obj CMakeFiles/ap2.dir/RelWithDebInfo/src/core/AP2_Post.c.obj CMakeFiles/ap2.dir/RelWithDebInfo/src/core/AP2_Renderer.c.obj CMakeFiles/ap2.dir/RelWithDebInfo/src/core/AP2_Shader.c.obj CMakeFiles/ap2.dir/RelWithDebInfo/src/core/AP2_Sprite.c.obj CMakeFiles/ap2.dir/RelWithDebInfo/src/core/AP2_String.c.obj CMakeFiles/ap2.dir/RelWithDebInfo/src/core/AP2_Texture.c.obj CMakeFiles/ap2.dir/RelWithDebInfo/src/core/AP2_Video.c.obj CMakeFiles/ap2.dir/RelWithDebInfo/src/core/AP2_Window.c.obj CMakeFiles/ap2.dir/RelWithDebInfo/src/main.c.obj | lib/RelWithDebInfo/libglad.a lib/RelWithDebInfo/libglfw3.a || lib/RelWithDebInfo/libglad.a lib/RelWithDebInfo/libglfw3.a
+build bin/RelWithDebInfo/ap2.exe: C_EXECUTABLE_LINKER__ap2_app_RelWithDebInfo CMakeFiles/ap2_app.dir/RelWithDebInfo/src/core/AP2_3D.c.obj CMakeFiles/ap2_app.dir/RelWithDebInfo/src/core/AP2_Audio.c.obj CMakeFiles/ap2_app.dir/RelWithDebInfo/src/core/AP2_Device.c.obj CMakeFiles/ap2_app.dir/RelWithDebInfo/src/core/AP2_Error.c.obj CMakeFiles/ap2_app.dir/RelWithDebInfo/src/core/AP2_Font.c.obj CMakeFiles/ap2_app.dir/RelWithDebInfo/src/core/AP2_Gui.c.obj CMakeFiles/ap2_app.dir/RelWithDebInfo/src/core/AP2_Init.c.obj CMakeFiles/ap2_app.dir/RelWithDebInfo/src/core/AP2_Input.c.obj CMakeFiles/ap2_app.dir/RelWithDebInfo/src/core/AP2_List.c.obj CMakeFiles/ap2_app.dir/RelWithDebInfo/src/core/AP2_Logger.c.obj CMakeFiles/ap2_app.dir/RelWithDebInfo/src/core/AP2_Math.c.obj CMakeFiles/ap2_app.dir/RelWithDebInfo/src/core/AP2_Miniaudio.c.obj CMakeFiles/ap2_app.dir/RelWithDebInfo/src/core/AP2_Opengl.c.obj CMakeFiles/ap2_app.dir/RelWithDebInfo/src/core/AP2_Platform.c.obj CMakeFiles/ap2_app.dir/RelWithDebInfo/src/core/AP2_Post.c.obj CMakeFiles/ap2_app.dir/RelWithDebInfo/src/core/AP2_Renderer.c.obj CMakeFiles/ap2_app.dir/RelWithDebInfo/src/core/AP2_Shader.c.obj CMakeFiles/ap2_app.dir/RelWithDebInfo/src/core/AP2_Sprite.c.obj CMakeFiles/ap2_app.dir/RelWithDebInfo/src/core/AP2_String.c.obj CMakeFiles/ap2_app.dir/RelWithDebInfo/src/core/AP2_Texture.c.obj CMakeFiles/ap2_app.dir/RelWithDebInfo/src/core/AP2_Video.c.obj CMakeFiles/ap2_app.dir/RelWithDebInfo/src/core/AP2_Window.c.obj CMakeFiles/ap2_app.dir/RelWithDebInfo/src/main.c.obj | lib/RelWithDebInfo/libglad.a lib/RelWithDebInfo/libglfw3.a || lib/RelWithDebInfo/libglad.a lib/RelWithDebInfo/libglfw3.a
   CONFIG = RelWithDebInfo
   FLAGS = -B C:/msys64/ucrt64/bin -O2 -g -DNDEBUG
   LINK_LIBRARIES = lib/RelWithDebInfo/libglad.a  lib/RelWithDebInfo/libglfw3.a  -luser32  -lkernel32  -lopengl32  -lgdi32  -luser32  -lkernel32  -lopengl32  -lgdi32  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
-  OBJECT_DIR = CMakeFiles\ap2.dir\RelWithDebInfo
+  OBJECT_DIR = CMakeFiles\ap2_app.dir\RelWithDebInfo
   POST_BUILD = cd .
   PRE_LINK = cd .
   TARGET_FILE = bin\RelWithDebInfo\ap2.exe
   TARGET_IMPLIB = lib\RelWithDebInfo\libap2.dll.a
   TARGET_PDB = ap2.exe.dbg
-  TARGET_SUPPORT_DIR = CMakeFiles\ap2.dir
-  RSP_FILE = CMakeFiles\ap2.RelWithDebInfo.rsp
+  TARGET_SUPPORT_DIR = CMakeFiles\ap2_app.dir
+  RSP_FILE = CMakeFiles\ap2_app.RelWithDebInfo.rsp
 
 # =============================================================================
 # Object build statements for STATIC_LIBRARY target ap2_lib
@@ -589,15 +589,15 @@ build lib/RelWithDebInfo/libap2.a: C_STATIC_LIBRARY_LINKER__ap2_lib_RelWithDebIn
 
 
 #############################################
-# Utility command for ap2_default
+# Utility command for ap2
 
-build ap2_default$:RelWithDebInfo: phony CMakeFiles/ap2_default-RelWithDebInfo bin/RelWithDebInfo/ap2.exe lib/RelWithDebInfo/libap2.a
+build ap2$:RelWithDebInfo: phony CMakeFiles/ap2-RelWithDebInfo bin/RelWithDebInfo/ap2.exe lib/RelWithDebInfo/libap2.a
 
 
 #############################################
-# Phony custom command for CMakeFiles\ap2_default-RelWithDebInfo
+# Phony custom command for CMakeFiles\ap2-RelWithDebInfo
 
-build CMakeFiles/ap2_default-RelWithDebInfo | ${cmake_ninja_workdir}CMakeFiles/ap2_default-RelWithDebInfo: phony lib/RelWithDebInfo/libap2.a || bin/RelWithDebInfo/ap2.exe lib/RelWithDebInfo/libap2.a lib/RelWithDebInfo/libglad.a lib/RelWithDebInfo/libglfw3.a
+build CMakeFiles/ap2-RelWithDebInfo | ${cmake_ninja_workdir}CMakeFiles/ap2-RelWithDebInfo: phony lib/RelWithDebInfo/libap2.a || bin/RelWithDebInfo/ap2.exe lib/RelWithDebInfo/libap2.a lib/RelWithDebInfo/libglad.a lib/RelWithDebInfo/libglfw3.a
 
 # =============================================================================
 # Write statements declared in CMakeLists.txt:
@@ -928,7 +928,7 @@ build lib/RelWithDebInfo/libglad.a: C_STATIC_LIBRARY_LINKER__glad_RelWithDebInfo
 
 build ap2.exe$:RelWithDebInfo: phony bin/RelWithDebInfo/ap2.exe
 
-build ap2$:RelWithDebInfo: phony bin/RelWithDebInfo/ap2.exe
+build ap2_app$:RelWithDebInfo: phony bin/RelWithDebInfo/ap2.exe
 
 build ap2_lib$:RelWithDebInfo: phony lib/RelWithDebInfo/libap2.a
 
@@ -948,7 +948,7 @@ build update_mappings$:RelWithDebInfo: phony _deps/glfw-build/src/update_mapping
 #############################################
 # Folder: C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build
 
-build all$:RelWithDebInfo: phony ap2_default$:RelWithDebInfo _deps/glfw-build/all$:RelWithDebInfo _deps/glad-build/all$:RelWithDebInfo
+build all$:RelWithDebInfo: phony ap2$:RelWithDebInfo _deps/glfw-build/all$:RelWithDebInfo _deps/glad-build/all$:RelWithDebInfo
 
 
 #############################################

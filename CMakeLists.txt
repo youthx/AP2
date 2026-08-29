@@ -244,6 +244,11 @@ file(GLOB_RECURSE SOURCES
     "${SOURCE_DIR}/src/core/*.c"
 )
 
+# Custom CMake code (inject_before_target)
+set(AP2_APP_TARGET ap2_app)
+set(PROJECT_NAME "${AP2_APP_TARGET}")
+
+
 # Add target
 add_executable(${PROJECT_NAME} ${SOURCES})
 

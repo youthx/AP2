@@ -1,49 +1,29 @@
-# AP2 product split (included at end of CMakeLists via cmake_language(DEFER)).
-#
-#   cforge build / cforge run          Debug   -> sample app (src/main.c)
-#   cforge build --config Release      Release -> static library (src/core)
+# Included at the end of CMakeLists via cmake_language(DEFER).
+# Generates Debug-app / Release-lib rules. See cmake/ap2_product.py.
 
-if(NOT TARGET ${PROJECT_NAME})
+if(DEFINED AP2_PRODUCT_APPLIED)
   return()
 endif()
+set(AP2_PRODUCT_APPLIED TRUE)
 
-file(GLOB AP2_LIB_SOURCES CONFIGURE_DEPENDS
-     "${CMAKE_CURRENT_SOURCE_DIR}/src/core/*.c")
+set(_AP2_PRODUCT_GEN "${CMAKE_BINARY_DIR}/ap2-product-gen.cmake")
 
-if(NOT AP2_LIB_SOURCES)
-  message(FATAL_ERROR "AP2: no sources found in src/core")
+execute_process(
+  COMMAND python "${CMAKE_CURRENT_SOURCE_DIR}/cmake/ap2_product.py"
+          --source-dir "${CMAKE_CURRENT_SOURCE_DIR}"
+          --app-target ap2_app
+          --lib-target ap2_lib
+          --phony-target ap2
+          --out "${_AP2_PRODUCT_GEN}"
+  RESULT_VARIABLE _AP2_PRODUCT_PY
+  ERROR_VARIABLE _AP2_PRODUCT_PY_ERR
+  OUTPUT_VARIABLE _AP2_PRODUCT_PY_OUT
+)
+
+if(NOT _AP2_PRODUCT_PY EQUAL 0)
+  message(FATAL_ERROR
+    "AP2: cmake/ap2_product.py failed (${_AP2_PRODUCT_PY}):\n"
+    "${_AP2_PRODUCT_PY_OUT}${_AP2_PRODUCT_PY_ERR}")
 endif()
 
-if(NOT TARGET ap2_lib)
-  add_library(ap2_lib STATIC ${AP2_LIB_SOURCES})
-endif()
-
-set_target_properties(ap2_lib PROPERTIES OUTPUT_NAME ap2)
-
-target_include_directories(ap2_lib PUBLIC
-                           "${CMAKE_CURRENT_SOURCE_DIR}/include"
-                           "${CMAKE_CURRENT_SOURCE_DIR}/third_party/stb"
-                           "${CMAKE_CURRENT_SOURCE_DIR}/third_party/miniaudio")
-
-get_target_property(_ap2_defs ${PROJECT_NAME} COMPILE_DEFINITIONS)
-if(_ap2_defs)
-  target_compile_definitions(ap2_lib PUBLIC ${_ap2_defs})
-endif()
-
-get_target_property(_ap2_opts ${PROJECT_NAME} COMPILE_OPTIONS)
-if(_ap2_opts)
-  target_compile_options(ap2_lib PRIVATE ${_ap2_opts})
-endif()
-
-get_target_property(_ap2_libs ${PROJECT_NAME} LINK_LIBRARIES)
-if(_ap2_libs)
-  target_link_libraries(ap2_lib PUBLIC ${_ap2_libs})
-endif()
-
-set_target_properties(${PROJECT_NAME} PROPERTIES EXCLUDE_FROM_ALL TRUE)
-set_target_properties(ap2_lib PROPERTIES EXCLUDE_FROM_ALL TRUE)
-
-if(NOT TARGET ap2_default)
-  add_custom_target(ap2_default ALL
-                    DEPENDS $<IF:$<CONFIG:Debug>,${PROJECT_NAME},ap2_lib>)
-endif()
+include("${_AP2_PRODUCT_GEN}")

@@ -62,6 +62,14 @@ AP_WINDOW_RESIZABLE | AP_WINDOW_HIGH_PIXEL_DENSITY | AP_WINDOW_MSAA | AP_WINDOW_
 
 `AP_WINDOW_FULLSCREEN` is exclusive fullscreen. Size is logical pixels; `AP_GetWindowSizeInPixels` is the framebuffer size on HiDPI displays.
 
+Caption chrome (decorated windows):
+
+```c
+AP_WINDOW_NO_TITLE | AP_WINDOW_NO_MINIMIZE | AP_WINDOW_NO_MAXIMIZE | AP_WINDOW_NO_CLOSE
+```
+
+Or at runtime: `AP_SetWindowTitleVisible`, `AP_SetWindowMinimizeButton`, `AP_SetWindowMaximizeButton`, `AP_SetWindowCloseButton`. `AP_WINDOW_NO_BUTTONS` hides all three. Close disabled still lets `AP_RequestClose` work.
+
 ## Errors
 
 Failed init or window creation leaves a message in `AP_GetErrorMessage()`. Log it if you are wiring a real app:

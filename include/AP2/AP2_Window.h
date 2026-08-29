@@ -30,6 +30,9 @@ extern "C" {
  *
  *     AP_CreateWindow("Game", 1280, 720, AP_WINDOW_RESIZABLE);
  *
+ *     AP_SetWindowTitleVisible(false);
+ *     AP_SetWindowMinimizeButton(false);
+ *
  *     while (AP_IsRunning()) {
  *         AP_PumpEvents();
  *         AP_SetRenderDrawColorFloat(0.1f, 0.1f, 0.1f, 1.0f);
@@ -77,7 +80,7 @@ typedef enum AP_WindowFlags {
   AP_WINDOW_NO_FOCUS = 1u << 19,
   AP_WINDOW_CENTER_CURSOR = 1u << 20,
   AP_WINDOW_BORDERLESS = 1u << 21,
-  AP_WINDOW_NO_TITLE = 1u << 22,
+  AP_WINDOW_NO_TITLE = 1u << 22, /* hide caption text; bar can stay */
   AP_WINDOW_NO_MINIMIZE = 1u << 23,
   AP_WINDOW_NO_MAXIMIZE = 1u << 24,
   AP_WINDOW_NO_CLOSE = 1u << 25
@@ -87,7 +90,7 @@ typedef enum AP_WindowFlags {
 #define AP_WINDOW_ALWAYS_ON_TOP AP_WINDOW_FLOATING
 #define AP_WINDOW_NOT_FOCUSABLE AP_WINDOW_NO_FOCUS
 #define AP_WINDOW_INPUT_FOCUS AP_WINDOW_FOCUSED
-#define AP_WINDOW_NO_BUTTONS                                                        \
+#define AP_WINDOW_NO_BUTTONS                                                       \
   (AP_WINDOW_NO_MINIMIZE | AP_WINDOW_NO_MAXIMIZE | AP_WINDOW_NO_CLOSE)
 
 /* =========================================================

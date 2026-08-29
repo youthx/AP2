@@ -81,6 +81,10 @@ struct AP_Window {
   bool auto_iconify;
   bool center_cursor;
   bool borderless;
+  bool chrome_title;
+  bool chrome_minimize;
+  bool chrome_maximize;
+  bool chrome_close;
 
   int msaa_samples;
   float opacity;
@@ -201,6 +205,20 @@ static void AP_WindowRefresh(AP_Window *window) {
   glfwGetCursorPos(window->handle, &window->cursor_x, &window->cursor_y);
 }
 
+static void AP_WindowApplyChrome(AP_Window *window) {
+  if (window == NULL || window->handle == NULL) {
+    return;
+  }
+
+  if (!window->decorated || window->borderless || window->fullscreen) {
+    return;
+  }
+
+  AP_PlatformSetWindowChrome(window->handle, window->chrome_title,
+                             window->chrome_minimize, window->chrome_maximize,
+                             window->chrome_close, window->title);
+}
+
 static bool AP_WindowCenterInternal(AP_Window *window) {
   GLFWmonitor *monitor;
   const GLFWvidmode *mode;
@@ -307,6 +325,12 @@ static void AP_WindowCloseCallback(GLFWwindow *handle) {
   AP_Window *window = (AP_Window *)glfwGetWindowUserPointer(handle);
 
   if (window == NULL) {
+    return;
+  }
+
+  if (!window->chrome_close) {
+    glfwSetWindowShouldClose(handle, GLFW_FALSE);
+    window->open = true;
     return;
   }
 
@@ -700,6 +724,12 @@ AP_Window *AP_CreateWindowEx(const AP_WindowConfig *config) {
     actual.swap_interval = 1;
   }
 
+  if ((actual.flags & AP_WINDOW_BORDERLESS) == 0 &&
+      (actual.flags & (AP_WINDOW_NO_TITLE | AP_WINDOW_NO_MINIMIZE |
+                       AP_WINDOW_NO_MAXIMIZE | AP_WINDOW_NO_CLOSE)) != 0) {
+    actual.flags |= AP_WINDOW_DECORATED;
+  }
+
   if (!AP_WindowEnsureGLFW()) {
     return NULL;
   }
@@ -782,6 +812,10 @@ AP_Window *AP_CreateWindowEx(const AP_WindowConfig *config) {
   window->auto_iconify = (actual.flags & AP_WINDOW_NO_AUTO_ICONIFY) == 0;
   window->center_cursor = (actual.flags & AP_WINDOW_CENTER_CURSOR) != 0;
   window->borderless = (actual.flags & AP_WINDOW_BORDERLESS) != 0;
+  window->chrome_title = (actual.flags & AP_WINDOW_NO_TITLE) == 0;
+  window->chrome_minimize = (actual.flags & AP_WINDOW_NO_MINIMIZE) == 0;
+  window->chrome_maximize = (actual.flags & AP_WINDOW_NO_MAXIMIZE) == 0;
+  window->chrome_close = (actual.flags & AP_WINDOW_NO_CLOSE) == 0;
   window->msaa_samples =
       window->msaa ? (actual.msaa_samples > 0 ? actual.msaa_samples : 4) : 0;
   window->opacity =
@@ -847,6 +881,8 @@ AP_Window *AP_CreateWindowEx(const AP_WindowConfig *config) {
     AP_WindowDestroyInternal(window);
     return NULL;
   }
+
+  AP_WindowApplyChrome(window);
 
   if ((actual.flags & AP_WINDOW_HIDDEN) == 0) {
     glfwShowWindow(handle);
@@ -1022,6 +1058,7 @@ bool AP_SetWindowTitle(const char *title) {
 
   AP_WindowCopyTitle(window, title);
   glfwSetWindowTitle(window->handle, window->title);
+  AP_WindowApplyChrome(window);
   return true;
 }
 
@@ -1359,6 +1396,7 @@ bool AP_SetWindowFullscreen(bool fullscreen) {
   glfwSwapInterval(window->swap_interval);
   window->fullscreen = false;
   AP_WindowRefresh(window);
+  AP_WindowApplyChrome(window);
   return true;
 }
 
@@ -1466,6 +1504,8 @@ bool AP_SetWindowBordered(bool bordered) {
   glfwSetWindowAttrib(window->handle, GLFW_DECORATED,
                       bordered ? GLFW_TRUE : GLFW_FALSE);
   window->decorated = bordered;
+  window->borderless = !bordered;
+  AP_WindowApplyChrome(window);
   return true;
 }
 
@@ -1477,6 +1517,78 @@ bool AP_IsWindowBordered(void) {
   }
 
   return glfwGetWindowAttrib(window->handle, GLFW_DECORATED) != 0;
+}
+
+bool AP_SetWindowTitleVisible(bool visible) {
+  AP_Window *window = AP_WindowActive();
+
+  if (window == NULL) {
+    AP_SET_ERROR(AP_ERROR_NOT_INITIALIZED, "No active window");
+    return false;
+  }
+
+  window->chrome_title = visible;
+  AP_WindowApplyChrome(window);
+  return true;
+}
+
+bool AP_IsWindowTitleVisible(void) {
+  AP_Window *window = AP_WindowActive();
+  return window != NULL && window->chrome_title;
+}
+
+bool AP_SetWindowMinimizeButton(bool visible) {
+  AP_Window *window = AP_WindowActive();
+
+  if (window == NULL) {
+    AP_SET_ERROR(AP_ERROR_NOT_INITIALIZED, "No active window");
+    return false;
+  }
+
+  window->chrome_minimize = visible;
+  AP_WindowApplyChrome(window);
+  return true;
+}
+
+bool AP_IsWindowMinimizeButton(void) {
+  AP_Window *window = AP_WindowActive();
+  return window != NULL && window->chrome_minimize;
+}
+
+bool AP_SetWindowMaximizeButton(bool visible) {
+  AP_Window *window = AP_WindowActive();
+
+  if (window == NULL) {
+    AP_SET_ERROR(AP_ERROR_NOT_INITIALIZED, "No active window");
+    return false;
+  }
+
+  window->chrome_maximize = visible;
+  AP_WindowApplyChrome(window);
+  return true;
+}
+
+bool AP_IsWindowMaximizeButton(void) {
+  AP_Window *window = AP_WindowActive();
+  return window != NULL && window->chrome_maximize;
+}
+
+bool AP_SetWindowCloseButton(bool visible) {
+  AP_Window *window = AP_WindowActive();
+
+  if (window == NULL) {
+    AP_SET_ERROR(AP_ERROR_NOT_INITIALIZED, "No active window");
+    return false;
+  }
+
+  window->chrome_close = visible;
+  AP_WindowApplyChrome(window);
+  return true;
+}
+
+bool AP_IsWindowCloseButton(void) {
+  AP_Window *window = AP_WindowActive();
+  return window != NULL && window->chrome_close;
 }
 
 bool AP_SetWindowAlwaysOnTop(bool on_top) {
@@ -1886,6 +1998,22 @@ uint32_t AP_GetWindowFlags(void) {
     flags |= AP_WINDOW_BORDERLESS;
   }
 
+  if (!window->chrome_title) {
+    flags |= AP_WINDOW_NO_TITLE;
+  }
+
+  if (!window->chrome_minimize) {
+    flags |= AP_WINDOW_NO_MINIMIZE;
+  }
+
+  if (!window->chrome_maximize) {
+    flags |= AP_WINDOW_NO_MAXIMIZE;
+  }
+
+  if (!window->chrome_close) {
+    flags |= AP_WINDOW_NO_CLOSE;
+  }
+
   return flags;
 }
 
@@ -1898,9 +2026,11 @@ bool AP_SetWindowFlags(uint32_t flags) {
   uint32_t enable = flags & ~current;
   uint32_t disable = current & ~flags;
   AP_WindowFlags known[] = {
-      AP_WINDOW_RESIZABLE,  AP_WINDOW_DECORATED, AP_WINDOW_MAXIMIZED,
-      AP_WINDOW_FULLSCREEN, AP_WINDOW_HIDDEN,    AP_WINDOW_FLOATING,
-      AP_WINDOW_VSYNC,      AP_WINDOW_MINIMIZED, AP_WINDOW_MOUSE_PASSTHROUGH};
+      AP_WINDOW_RESIZABLE,   AP_WINDOW_DECORATED,     AP_WINDOW_MAXIMIZED,
+      AP_WINDOW_FULLSCREEN,  AP_WINDOW_HIDDEN,        AP_WINDOW_FLOATING,
+      AP_WINDOW_VSYNC,       AP_WINDOW_MINIMIZED,     AP_WINDOW_MOUSE_PASSTHROUGH,
+      AP_WINDOW_NO_TITLE,    AP_WINDOW_NO_MINIMIZE,  AP_WINDOW_NO_MAXIMIZE,
+      AP_WINDOW_NO_CLOSE};
   size_t i;
 
   if (AP_WindowActive() == NULL) {
@@ -1961,6 +2091,14 @@ bool AP_EnableWindowFlag(AP_WindowFlags flag) {
     return AP_SetWindowDecorated(false);
   case AP_WINDOW_NO_AUTO_ICONIFY:
     return AP_SetWindowAutoIconify(false);
+  case AP_WINDOW_NO_TITLE:
+    return AP_SetWindowTitleVisible(false);
+  case AP_WINDOW_NO_MINIMIZE:
+    return AP_SetWindowMinimizeButton(false);
+  case AP_WINDOW_NO_MAXIMIZE:
+    return AP_SetWindowMaximizeButton(false);
+  case AP_WINDOW_NO_CLOSE:
+    return AP_SetWindowCloseButton(false);
   default:
     AP_SET_ERROR(AP_ERROR_UNSUPPORTED,
                  "Window flag cannot be changed after creation");
@@ -2003,6 +2141,14 @@ bool AP_DisableWindowFlag(AP_WindowFlags flag) {
     return AP_SetWindowDecorated(true);
   case AP_WINDOW_NO_AUTO_ICONIFY:
     return AP_SetWindowAutoIconify(true);
+  case AP_WINDOW_NO_TITLE:
+    return AP_SetWindowTitleVisible(true);
+  case AP_WINDOW_NO_MINIMIZE:
+    return AP_SetWindowMinimizeButton(true);
+  case AP_WINDOW_NO_MAXIMIZE:
+    return AP_SetWindowMaximizeButton(true);
+  case AP_WINDOW_NO_CLOSE:
+    return AP_SetWindowCloseButton(true);
   default:
     AP_SET_ERROR(AP_ERROR_UNSUPPORTED,
                  "Window flag cannot be changed after creation");

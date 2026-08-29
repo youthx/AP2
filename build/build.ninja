@@ -85,11 +85,11 @@ build _deps/glad-build/install/strip: phony _deps/glad-build/install/strip$:Debu
 
 build _deps/glad-build/install/strip$:all: phony _deps/glad-build/install/strip$:Debug _deps/glad-build/install/strip$:Release _deps/glad-build/install/strip$:RelWithDebInfo
 
-build ap2: phony bin/Debug/ap2.exe
+build ap2: phony ap2$:Debug
 
 build ap2.exe: phony bin/Debug/ap2.exe
 
-build ap2_default: phony ap2_default$:Debug
+build ap2_app: phony bin/Debug/ap2.exe
 
 build ap2_lib: phony lib/Debug/libap2.a
 

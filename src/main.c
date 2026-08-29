@@ -12,7 +12,6 @@
  */
 
 #include <AP2/AP2.h>
-#include <AP2/AP2_Post.h>
 
 #include <math.h>
 #include <stdio.h>
@@ -160,8 +159,6 @@ int main(void) {
 
     AP_SetDrawColor(0.07f, 0.08f, 0.11f, 1.0f);
     AP_Clear();
-
-    AP_PostEnabled();
 
     AP_Begin3D(&camera);
     AP_SampleDrawScene(cube, time);

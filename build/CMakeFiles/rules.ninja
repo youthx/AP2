@@ -14,7 +14,7 @@
 #############################################
 # Rule for compiling C files.
 
-rule C_COMPILER__ap2_unscanned_Debug
+rule C_COMPILER__ap2_app_unscanned_Debug
   depfile = $DEP_FILE
   deps = gcc
   command = ${LAUNCHER}${CODE_CHECK}C:\msys64\ucrt64\bin\gcc.exe @$RSP_FILE -MD -MT $out -MF $DEP_FILE -o $out -c $in
@@ -26,7 +26,7 @@ rule C_COMPILER__ap2_unscanned_Debug
 #############################################
 # Rule for linking C executable.
 
-rule C_EXECUTABLE_LINKER__ap2_Debug
+rule C_EXECUTABLE_LINKER__ap2_app_Debug
   command = C:\WINDOWS\system32\cmd.exe /C "$PRE_LINK && C:\msys64\ucrt64\bin\gcc.exe $FLAGS $LINK_FLAGS @$RSP_FILE -o $TARGET_FILE -Wl,--out-implib,$TARGET_IMPLIB -Wl,--major-image-version,0,--minor-image-version,0 && $POST_BUILD"
   description = Linking C executable $TARGET_FILE
   rspfile = $RSP_FILE
@@ -37,7 +37,7 @@ rule C_EXECUTABLE_LINKER__ap2_Debug
 #############################################
 # Rule for compiling C files.
 
-rule C_COMPILER__ap2_unscanned_Release
+rule C_COMPILER__ap2_app_unscanned_Release
   depfile = $DEP_FILE
   deps = gcc
   command = ${LAUNCHER}${CODE_CHECK}C:\msys64\ucrt64\bin\gcc.exe @$RSP_FILE -MD -MT $out -MF $DEP_FILE -o $out -c $in
@@ -49,7 +49,7 @@ rule C_COMPILER__ap2_unscanned_Release
 #############################################
 # Rule for linking C executable.
 
-rule C_EXECUTABLE_LINKER__ap2_Release
+rule C_EXECUTABLE_LINKER__ap2_app_Release
   command = C:\WINDOWS\system32\cmd.exe /C "$PRE_LINK && C:\msys64\ucrt64\bin\gcc.exe $FLAGS $LINK_FLAGS @$RSP_FILE -o $TARGET_FILE -Wl,--out-implib,$TARGET_IMPLIB -Wl,--major-image-version,0,--minor-image-version,0 && $POST_BUILD"
   description = Linking C executable $TARGET_FILE
   rspfile = $RSP_FILE
@@ -60,7 +60,7 @@ rule C_EXECUTABLE_LINKER__ap2_Release
 #############################################
 # Rule for compiling C files.
 
-rule C_COMPILER__ap2_unscanned_RelWithDebInfo
+rule C_COMPILER__ap2_app_unscanned_RelWithDebInfo
   depfile = $DEP_FILE
   deps = gcc
   command = ${LAUNCHER}${CODE_CHECK}C:\msys64\ucrt64\bin\gcc.exe @$RSP_FILE -MD -MT $out -MF $DEP_FILE -o $out -c $in
@@ -72,7 +72,7 @@ rule C_COMPILER__ap2_unscanned_RelWithDebInfo
 #############################################
 # Rule for linking C executable.
 
-rule C_EXECUTABLE_LINKER__ap2_RelWithDebInfo
+rule C_EXECUTABLE_LINKER__ap2_app_RelWithDebInfo
   command = C:\WINDOWS\system32\cmd.exe /C "$PRE_LINK && C:\msys64\ucrt64\bin\gcc.exe $FLAGS $LINK_FLAGS @$RSP_FILE -o $TARGET_FILE -Wl,--out-implib,$TARGET_IMPLIB -Wl,--major-image-version,0,--minor-image-version,0 && $POST_BUILD"
   description = Linking C executable $TARGET_FILE
   rspfile = $RSP_FILE
@@ -301,15 +301,6 @@ rule C_STATIC_LIBRARY_LINKER__glad_RelWithDebInfo
 rule RERUN_CMAKE
   command = "C:\Program Files\CMake\bin\cmake.exe" --regenerate-during-build -SC:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2 -BC:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build
   description = Re-running CMake...
-  generator = 1
-
-
-#############################################
-# Rule for re-checking globbed directories.
-
-rule VERIFY_GLOBS
-  command = "C:\Program Files\CMake\bin\cmake.exe" -P C:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build\CMakeFiles\VerifyGlobs.cmake
-  description = Re-checking globbed directories...
   generator = 1
 
 

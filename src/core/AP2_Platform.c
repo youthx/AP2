@@ -21,9 +21,12 @@
 #elif defined(__APPLE__)
 #define GLFW_EXPOSE_NATIVE_COCOA
 #include <GLFW/glfw3native.h>
+#include <objc/message.h>
+#include <objc/runtime.h>
 #include <pthread.h>
 #include <time.h>
 #elif defined(__linux__)
+#include <dlfcn.h>
 #include <pthread.h>
 #include <time.h>
 /*
@@ -464,6 +467,195 @@ void *AP_PlatformGetNativeDisplay(void) {
 #endif
 
   return NULL;
+}
+
+void AP_PlatformSetWindowChrome(void *glfw_window, bool title, bool minimize,
+                                 bool maximize, bool close,
+                                 const char *title_text) {
+  GLFWwindow *handle = (GLFWwindow *)glfw_window;
+
+  if (handle == NULL) {
+    return;
+  }
+
+  if (title_text == NULL) {
+    title_text = "";
+  }
+
+#if AP_PLATFORM_WINDOWS
+  {
+    HWND hwnd = glfwGetWin32Window(handle);
+    LONG_PTR style;
+    HMENU system_menu;
+
+    if (hwnd == NULL) {
+      return;
+    }
+
+    style = GetWindowLongPtr(hwnd, GWL_STYLE);
+    style |= WS_CAPTION;
+
+    if (minimize || maximize || close) {
+      style |= WS_SYSMENU;
+    } else {
+      style &= ~WS_SYSMENU;
+    }
+
+    if (minimize) {
+      style |= WS_MINIMIZEBOX;
+    } else {
+      style &= ~WS_MINIMIZEBOX;
+    }
+
+    if (maximize) {
+      style |= WS_MAXIMIZEBOX;
+    } else {
+      style &= ~WS_MAXIMIZEBOX;
+    }
+
+    SetWindowLongPtr(hwnd, GWL_STYLE, style);
+    SetWindowPos(hwnd, NULL, 0, 0, 0, 0,
+                 SWP_NOMOVE | SWP_NOSIZE | SWP_NOZORDER | SWP_NOACTIVATE |
+                     SWP_FRAMECHANGED);
+
+    if (title) {
+      glfwSetWindowTitle(handle, title_text);
+    } else {
+      SetWindowTextW(hwnd, L"");
+    }
+
+    system_menu = GetSystemMenu(hwnd, FALSE);
+    if (system_menu != NULL) {
+      EnableMenuItem(system_menu, SC_CLOSE,
+                     MF_BYCOMMAND | (close ? MF_ENABLED
+                                           : (MF_GRAYED | MF_DISABLED)));
+      DrawMenuBar(hwnd);
+    }
+  }
+#elif AP_PLATFORM_MACOS
+  {
+    id ns_window = (id)glfwGetCocoaWindow(handle);
+    id close_button;
+    id mini_button;
+    id zoom_button;
+
+    if (ns_window == NULL) {
+      return;
+    }
+
+    ((void (*)(id, SEL, unsigned long))objc_msgSend)(
+        ns_window, sel_registerName("setTitleVisibility:"),
+        title ? 0ul : 1ul);
+
+    if (title) {
+      glfwSetWindowTitle(handle, title_text);
+    }
+
+    close_button = ((id (*)(id, SEL, unsigned long))objc_msgSend)(
+        ns_window, sel_registerName("standardWindowButton:"), 0ul);
+    mini_button = ((id (*)(id, SEL, unsigned long))objc_msgSend)(
+        ns_window, sel_registerName("standardWindowButton:"), 1ul);
+    zoom_button = ((id (*)(id, SEL, unsigned long))objc_msgSend)(
+        ns_window, sel_registerName("standardWindowButton:"), 2ul);
+
+    if (close_button != nil) {
+      ((void (*)(id, SEL, BOOL))objc_msgSend)(
+          close_button, sel_registerName("setHidden:"), close ? NO : YES);
+    }
+    if (mini_button != nil) {
+      ((void (*)(id, SEL, BOOL))objc_msgSend)(
+          mini_button, sel_registerName("setHidden:"), minimize ? NO : YES);
+    }
+    if (zoom_button != nil) {
+      ((void (*)(id, SEL, BOOL))objc_msgSend)(
+          zoom_button, sel_registerName("setHidden:"), maximize ? NO : YES);
+    }
+  }
+#elif AP_PLATFORM_LINUX
+  if (glfwGetPlatform() == GLFW_PLATFORM_X11) {
+    void *x11 = dlopen("libX11.so.6", RTLD_LAZY);
+    void *display = glfwGetX11Display();
+    unsigned long x11_window = glfwGetX11Window(handle);
+    unsigned long (*intern_atom)(void *, const char *, int);
+    int (*change_property)(void *, unsigned long, unsigned long, unsigned long,
+                           int, int, const unsigned char *, int);
+    int (*store_name)(void *, unsigned long, const char *);
+    int (*flush)(void *);
+    unsigned long motif;
+    struct {
+      unsigned long flags;
+      unsigned long functions;
+      unsigned long decorations;
+      long input_mode;
+      unsigned long status;
+    } hints;
+
+    if (x11 == NULL || display == NULL || x11_window == 0) {
+      if (title) {
+        glfwSetWindowTitle(handle, title_text);
+      }
+      return;
+    }
+
+    intern_atom = (unsigned long (*)(void *, const char *, int))dlsym(
+        x11, "XInternAtom");
+    change_property =
+        (int (*)(void *, unsigned long, unsigned long, unsigned long, int, int,
+                 const unsigned char *, int))dlsym(x11, "XChangeProperty");
+    store_name =
+        (int (*)(void *, unsigned long, const char *))dlsym(x11, "XStoreName");
+    flush = (int (*)(void *))dlsym(x11, "XFlush");
+
+    if (intern_atom == NULL || change_property == NULL || store_name == NULL ||
+        flush == NULL) {
+      if (title) {
+        glfwSetWindowTitle(handle, title_text);
+      }
+      return;
+    }
+
+    memset(&hints, 0, sizeof(hints));
+    hints.flags = (1UL << 0) | (1UL << 1);
+    hints.functions = (1UL << 1) | (1UL << 2);
+    hints.decorations = (1UL << 1) | (1UL << 2);
+
+    if (title) {
+      hints.decorations |= (1UL << 3) | (1UL << 4);
+    }
+    if (minimize) {
+      hints.functions |= (1UL << 3);
+      hints.decorations |= (1UL << 5);
+    }
+    if (maximize) {
+      hints.functions |= (1UL << 4);
+      hints.decorations |= (1UL << 6);
+    }
+    if (close) {
+      hints.functions |= (1UL << 5);
+    }
+
+    motif = intern_atom(display, "_MOTIF_WM_HINTS", 0);
+    change_property(display, x11_window, motif, motif, 32, 0,
+                    (const unsigned char *)&hints, 5);
+
+    if (title) {
+      glfwSetWindowTitle(handle, title_text);
+    } else {
+      store_name(display, x11_window, "");
+    }
+
+    flush(display);
+    return;
+  }
+
+  if (title) {
+    glfwSetWindowTitle(handle, title_text);
+  }
+#else
+  if (title) {
+    glfwSetWindowTitle(handle, title_text);
+  }
+#endif
 }
 
 bool AP_PlatformIsMainThread(void) {
