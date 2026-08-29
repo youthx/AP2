@@ -1,6 +1,6 @@
 # Tutorial 01 — Hello window
 
-Copyright (c) 2026 Jack Waechter. MIT licensed.
+Copyright (c) 2024-2026 Jack Waechter. MIT licensed.
 
 Open a window, clear it, swap. That is the whole AP2 loop.
 
@@ -64,11 +64,11 @@ AP_WINDOW_RESIZABLE | AP_WINDOW_HIGH_PIXEL_DENSITY | AP_WINDOW_MSAA | AP_WINDOW_
 
 ## Errors
 
-Failed init or window creation leaves a message in `AP_GetError()`. Log it if you are wiring a real app:
+Failed init or window creation leaves a message in `AP_GetErrorMessage()`. Log it if you are wiring a real app:
 
 ```c
 if (!AP_Init(AP_INIT_VIDEO)) {
-  AP_ERROR("init: %s", AP_GetError());
+  AP_ERROR("init: %s", AP_GetErrorMessage());
   return 1;
 }
 ```

@@ -1,6 +1,6 @@
 # Tutorial 07 — Immediate GUI
 
-Copyright (c) 2026 Jack Waechter. MIT licensed.
+Copyright (c) 2024-2026 Jack Waechter. MIT licensed.
 
 Widgets are submitted every frame between `AP_Clear` and `AP_Present`. There is no retained tree. Layout is vertical unless you call `AP_GuiSameLine()`.
 
@@ -13,7 +13,7 @@ AP_SetDrawColor(0.10f, 0.11f, 0.13f, 1.0f);
 AP_Clear();
 
 if (AP_GuiBeginPanel("Debug", 24.0f, 24.0f, 280.0f, 360.0f)) {
-  AP_GuiLabel("Application Primitives");
+  AP_GuiLabel("AP2");
   AP_GuiSeparator();
   if (AP_GuiButton("Ping")) {
     /* clicked this frame */

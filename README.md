@@ -2,11 +2,9 @@
 
 **A small C17 library of window, draw, input, audio, and GUI primitives for games and tools.**
 
-Copyright (c) 2026 [Jack Waechter](LICENSE). MIT licensed.
+Copyright (c) 2024-2026 [Jack Waechter](LICENSE). MIT licensed.
 
-AP2 stands for **Application Primitives**. It is a kit of the pieces you actually assemble into a program: a window, an immediate 2D (and optional 3D) pass, frame-based input, a mixer, text, and an immediate GUI. The “2” is 2D-first, not a sequel to another engine.
-
-This is an independent project by Jack Waechter. It is not a product of, or a rename of, any other engine.
+**AP2** stands for **Application Primitives**. Work started in 2024 under a previous name and was rebranded here. The kit is a set of primitives you assemble into games and desktop tools — window, immediate draw, input, mixer, text, GUI, plus an optional 3D pass.
 
 ```c
 #include <AP2/AP2.h>
@@ -115,4 +113,4 @@ docs/            Guides and tutorials
 
 MIT. See [LICENSE](LICENSE).
 
-Copyright (c) 2026 Jack Waechter.
+Copyright (c) 2024-2026 Jack Waechter.

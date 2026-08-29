@@ -1,5 +1,5 @@
 # AP2 — Application Primitives
-# Copyright (c) 2026 Jack Waechter
+# Copyright (c) 2024-2026 Jack Waechter
 # Licensed under the MIT License. See LICENSE.
 #
 # CMakeLists.txt for ap2 v0.1.0

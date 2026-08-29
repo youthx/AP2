@@ -1,6 +1,6 @@
 # Tutorial 05 — Audio
 
-Copyright (c) 2026 Jack Waechter. MIT licensed.
+Copyright (c) 2024-2026 Jack Waechter. MIT licensed.
 
 AP2’s mixer is independent of video. Initialize it with `AP_INIT_AUDIO`. `AP_PumpEvents()` already calls `AP_AudioUpdate()`.
 

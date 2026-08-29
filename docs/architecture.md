@@ -1,8 +1,8 @@
 # Architecture
 
-Copyright (c) 2026 Jack Waechter. MIT licensed.
+Copyright (c) 2024-2026 Jack Waechter. MIT licensed.
 
-AP2 is **Application Primitives**: a few subsystems you turn on at `AP_Init`, then a set of headers you call from the game loop. There is no scene graph, no ECS, and no hidden renderer object.
+AP2 (**Application Primitives**) is a few subsystems you turn on at `AP_Init`, then a set of headers you call from the game loop. There is no scene graph, no ECS, and no hidden renderer object.
 
 ## Subsystems
 

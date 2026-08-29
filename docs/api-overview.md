@@ -1,6 +1,6 @@
 # API overview
 
-Copyright (c) 2026 Jack Waechter. MIT licensed.
+Copyright (c) 2024-2026 Jack Waechter. MIT licensed.
 
 Include `<AP2/AP2.h>`. Draw with short names (`AP_Clear`, `AP_FillRect`, `AP_Present`).
 
@@ -8,7 +8,7 @@ Include `<AP2/AP2.h>`. Draw with short names (`AP_Clear`, `AP_FillRect`, `AP_Pre
 |---|---|
 | `AP2_Types.h` | `AP_Vec2`, `AP_FRect`, `AP_Color`, handles |
 | `AP2_Init.h` | `AP_Init`, `AP_Quit`, subsystem flags |
-| `AP2_Error.h` | `AP_GetError`, `AP_SET_ERROR` |
+| `AP2_Error.h` | `AP_GetErrorMessage`, `AP_SET_ERROR` |
 | `AP2_Logger.h` | `AP_INFO`, `AP_WARN`, `AP_ERROR` |
 | `AP2_Platform.h` | OS queries, paths, time helpers |
 | `AP2_Math.h` | Vectors, matrices, quaternions (`AP_V3`, `AP_Mat4Mul`) |

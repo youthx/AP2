@@ -1,8 +1,8 @@
 # AP2 documentation
 
-**AP2** is **Application Primitives** — a C17 kit for games and tools.
+**AP2** (**Application Primitives**) is a C17 kit for games and tools.
 
-Copyright (c) 2026 Jack Waechter. MIT licensed. See [LICENSE](../LICENSE).
+Copyright (c) 2024-2026 Jack Waechter. MIT licensed. See [LICENSE](../LICENSE).
 
 Draw with the short names (`AP_Clear`, `AP_FillRect`, `AP_Present`, `AP_DrawTexture`). They are macros over `AP_Render*`.
 

@@ -1,6 +1,6 @@
 # Tutorial 02 — Drawing in 2D
 
-Copyright (c) 2026 Jack Waechter. MIT licensed.
+Copyright (c) 2024-2026 Jack Waechter. MIT licensed.
 
 2D is immediate: set color, issue a shape, next frame start over. Origin is the **top-left**. Y grows downward. Rotation is degrees, **clockwise**.
 
@@ -81,8 +81,8 @@ AP_PopTransform();
 ```c
 AP_Rect clip = {100, 100, 400, 300};
 AP_SetClipRect(&clip);
-/* draws are clipped */
-AP_SetClipRect(NULL); /* disable, if the implementation treats NULL as off */
+/* draws are clipped to that rectangle */
+AP_SetClipRect(NULL); /* disable */
 ```
 
 `AP_SetViewport` limits where the 2D pass lands. Most games leave the default (full window).

@@ -1,6 +1,6 @@
 # Tutorial 04 — Input
 
-Copyright (c) 2026 Jack Waechter. MIT licensed.
+Copyright (c) 2024-2026 Jack Waechter. MIT licensed.
 
 Input is sampled after `AP_PumpEvents()`. Each call is “this frame” relative to the last pump.
 

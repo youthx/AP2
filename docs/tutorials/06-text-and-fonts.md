@@ -1,6 +1,6 @@
 # Tutorial 06 — Text and fonts
 
-Copyright (c) 2026 Jack Waechter. MIT licensed.
+Copyright (c) 2024-2026 Jack Waechter. MIT licensed.
 
 Text is 2D: window pixels, top-left origin. After a window exists, an 8×8 Latin font is always available.
 
@@ -18,7 +18,7 @@ AP_DrawText(32.0f, 32.0f, "Score 1200");
 ```c
 AP_Font *font = AP_LoadFont("Inter.ttf", 18.0f);
 if (!font) {
-  AP_ERROR("font: %s", AP_GetError());
+  AP_ERROR("font: %s", AP_GetErrorMessage());
 }
 AP_SetFont(font);
 
@@ -55,6 +55,8 @@ Use this to center text yourself or to size HUD panels.
 ## HUD sketch
 
 ```c
+#include <stdio.h>
+
 char line[64];
 snprintf(line, sizeof line, "hp %d  fps %.0f", hp, 1.0f / dt);
 

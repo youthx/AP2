@@ -1,6 +1,6 @@
 # Tutorial 03 — Textures and sprites
 
-Copyright (c) 2026 Jack Waechter. MIT licensed.
+Copyright (c) 2024-2026 Jack Waechter. MIT licensed.
 
 A texture is a GPU image. A sprite is a slice of that image with origin, scale, rotation, and animation.
 
@@ -9,7 +9,7 @@ A texture is a GPU image. A sprite is a slice of that image with origin, scale, 
 ```c
 AP_Texture *tex = AP_LoadTexture("player.png");
 if (!tex) {
-  AP_ERROR("texture: %s", AP_GetError());
+  AP_ERROR("texture: %s", AP_GetErrorMessage());
 }
 
 AP_SetTextureScaleMode(tex, AP_SCALEMODE_NEAREST);

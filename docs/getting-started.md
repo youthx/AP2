@@ -1,8 +1,8 @@
 # Getting started
 
-Copyright (c) 2026 Jack Waechter. MIT licensed.
+Copyright (c) 2024-2026 Jack Waechter. MIT licensed.
 
-AP2 (**Application Primitives**) is one header and a small C17 library. This page gets a window on screen.
+AP2 is **Application Primitives**: one header and a small C17 library. This page gets a window on screen.
 
 ## What you need
 
