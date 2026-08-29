@@ -1,0 +1,1 @@
+collect2.exe: error: ld returned 57 exit status

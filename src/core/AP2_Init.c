@@ -20,6 +20,7 @@ typedef struct AP_SubsystemEntry {
 } AP_SubsystemEntry;
 
 static AP_SubsystemEntry g_subsystems[AP_SUBSYSTEM_COUNT];
+static bool g_ap2_initialized = false;
 
 /* ---------------------------------------------------------
  * Built-in subsystem registration
@@ -163,6 +164,10 @@ bool AP_CloseSubsystem(AP_Subsystem subsystem) {
  * --------------------------------------------------------- */
 
 bool AP_Init(AP_InitFlags flags) {
+  if (g_ap2_initialized) {
+    return true;
+  }
+
   AP_INFO("Initializing AP2");
 
   /*
@@ -216,6 +221,8 @@ bool AP_Init(AP_InitFlags flags) {
     }
   }
 
+  g_ap2_initialized = true;
+
   AP_INFO("AP2 initialized successfully");
 
   return true;
@@ -237,5 +244,9 @@ void AP_Quit(void) {
     AP_CloseSubsystem((AP_Subsystem)i);
   }
 
+  g_ap2_initialized = false;
+
   AP_INFO("AP2 shutdown complete");
 }
+
+bool AP_IsInitialized(void) { return g_ap2_initialized; }

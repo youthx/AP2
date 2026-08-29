@@ -29,10 +29,25 @@ source_dirs = [
 ]
 
 include_dirs = [
-    "include"
+    "include",
+    "third_party/stb"
 ]
 
 export_compile_commands = true
+
+
+# =========================================================
+# CMake
+# =========================================================
+
+[cmake]
+generator = "Ninja"
+
+[build.cmake_variables]
+CMAKE_C_COMPILER = "C:/msys64/ucrt64/bin/gcc.exe"
+CMAKE_CXX_COMPILER = "C:/msys64/ucrt64/bin/g++.exe"
+CMAKE_C_COMPILER_WORKS = "TRUE"
+CMAKE_CXX_COMPILER_WORKS = "TRUE"
 
 
 # =========================================================

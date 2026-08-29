@@ -18,7 +18,7 @@ file(MAKE_DIRECTORY
   "C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glad-subbuild/glad-populate-prefix/src/glad-populate-stamp"
 )
 
-set(configSubDirs Debug)
+set(configSubDirs )
 foreach(subDir IN LISTS configSubDirs)
     file(MAKE_DIRECTORY "C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glad-subbuild/glad-populate-prefix/src/glad-populate-stamp/${subDir}")
 endforeach()

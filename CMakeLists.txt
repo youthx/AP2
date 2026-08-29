@@ -59,6 +59,10 @@ message(STATUS "platform: ${CFORGE_PLATFORM}, compiler: ${CFORGE_COMPILER}")
 
 # CMake options
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+set(CMAKE_CXX_COMPILER "C:/msys64/ucrt64/bin/g++.exe")
+set(CMAKE_CXX_COMPILER_WORKS "TRUE")
+set(CMAKE_C_COMPILER "C:/msys64/ucrt64/bin/gcc.exe")
+set(CMAKE_C_COMPILER_WORKS "TRUE")
 
 # Build configurations
 if(NOT CMAKE_BUILD_TYPE)
@@ -254,6 +258,7 @@ target_compile_definitions(${PROJECT_NAME} PUBLIC
 # Include directories
 target_include_directories(${PROJECT_NAME} PUBLIC
     "${SOURCE_DIR}/include"
+    "${SOURCE_DIR}/third_party/stb"
 )
 
 # Link FetchContent dependencies

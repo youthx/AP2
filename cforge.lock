@@ -20,6 +20,6 @@ version = "*"
 
 [buildcache]
 # Auto-generated. Tracks change detection for incremental builds.
-generated = "2026-08-28T20:21:31Z"
-config_hash = "379d1fcc1153ffc7"
+generated = "2026-08-29T01:01:21Z"
+config_hash = "bd2d0f1807e8a5a9"
 

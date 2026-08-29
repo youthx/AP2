@@ -1,8 +1,4 @@
 {
-	"Configs" : 
-	[
-		"Debug"
-	],
 	"InstallScripts" : 
 	[
 		"C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/cmake_install.cmake",
