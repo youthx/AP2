@@ -30,7 +30,7 @@ cmake --build build --config Debug
 ./build/bin/Debug/ap2
 ```
 
-The demo in `src/main.c` exercises 2D, GUI, 3D, audio, and post-process.
+`src/main.c` is a sample 3D program (orbit camera, lights, meshes).
 
 ## A program of your own
 

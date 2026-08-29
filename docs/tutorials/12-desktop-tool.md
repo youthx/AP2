@@ -114,7 +114,7 @@ int main(void) {
 
 The preview is ordinary 2D (`AP_Clear`, `AP_FillNGon`, `AP_DrawText`). The GUI is immediate, so every slider write is visible on the same frame. Post stays off the UI because the default layer is `AP_GUI_LAYER_OVERLAY`.
 
-From here: load a texture with `AP_LoadTexture` and preview it with `AP_DrawTexture`, or add `AP_GuiBeginTabBar` for multiple tools. `src/main.c` in the repo is a larger version of the same idea.
+From here: load a texture with `AP_LoadTexture` and preview it with `AP_DrawTexture`, or add `AP_GuiBeginTabBar` for multiple tools. `src/main.c` is a 3D sample if you want a different starting point.
 
 ## Index
 

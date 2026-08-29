@@ -6,6 +6,7 @@
  * See LICENSE in the project root for full terms.
  */
 
+#define AP2_RENDERER_NO_SHORT_NAMES
 #include "AP2/AP2_Renderer.h"
 
 #include "AP2_Internal.h"

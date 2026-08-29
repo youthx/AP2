@@ -347,6 +347,7 @@ bool AP_RenderClipEnabled(void);
  * Compatibility names
  * ========================================================= */
 
+#ifndef AP2_RENDERER_NO_SHORT_NAMES
 #define AP_SetDrawColor AP_SetRenderDrawColorFloat
 #define AP_SetDrawColor8 AP_SetRenderDrawColor
 #define AP_GetDrawColor AP_GetRenderDrawColorFloat
@@ -428,6 +429,7 @@ bool AP_RenderClipEnabled(void);
 #define AP_GetViewport AP_GetRenderViewport
 #define AP_SetClipRect AP_SetRenderClipRect
 #define AP_GetClipRect AP_GetRenderClipRect
+#endif /* AP2_RENDERER_NO_SHORT_NAMES */
 
 #ifdef __cplusplus
 }

@@ -95,7 +95,7 @@ Start with the [docs index](docs/README.md).
 | [11 Top-down walker](docs/tutorials/11-top-down.md) | Game: WASD, camera, spatial audio |
 | [12 Desktop tool](docs/tutorials/12-desktop-tool.md) | App: inspector-style GUI |
 
-`src/main.c` is a living demo of renderer, GUI, 3D, audio, and post.
+`src/main.c` is a sample 3D program (orbit camera, lights, cubes, HUD).
 
 ## Layout
 

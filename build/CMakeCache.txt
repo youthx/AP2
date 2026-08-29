@@ -43,7 +43,7 @@ CMAKE_CXX_COMPILER_AR:FILEPATH=C:/msys64/ucrt64/bin/gcc-ar.exe
 CMAKE_CXX_COMPILER_RANLIB:FILEPATH=C:/msys64/ucrt64/bin/gcc-ranlib.exe
 
 //CXX flags
-CMAKE_CXX_FLAGS:STRING= -B C:/msys64/ucrt64/bin
+CMAKE_CXX_FLAGS:STRING= -B C:/msys64/ucrt64/bin -B C:/msys64/ucrt64/bin
 
 //Flags used by the CXX compiler during DEBUG builds.
 CMAKE_CXX_FLAGS_DEBUG:STRING=-g
@@ -75,7 +75,7 @@ CMAKE_C_COMPILER_AR:FILEPATH=C:/msys64/ucrt64/bin/gcc-ar.exe
 CMAKE_C_COMPILER_RANLIB:FILEPATH=C:/msys64/ucrt64/bin/gcc-ranlib.exe
 
 //C flags
-CMAKE_C_FLAGS:STRING= -B C:/msys64/ucrt64/bin
+CMAKE_C_FLAGS:STRING= -B C:/msys64/ucrt64/bin -B C:/msys64/ucrt64/bin
 
 //Flags used by the C compiler during DEBUG builds.
 CMAKE_C_FLAGS_DEBUG:STRING=-g
