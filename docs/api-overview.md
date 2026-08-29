@@ -12,18 +12,20 @@ Include `<AP2/AP2.h>`. Draw with short names (`AP_Clear`, `AP_FillRect`, `AP_Pre
 | `AP2_Logger.h` | `AP_INFO`, `AP_WARN`, `AP_ERROR` |
 | `AP2_Platform.h` | OS queries, paths, time helpers |
 | `AP2_Math.h` | Vectors, matrices, quaternions (`AP_V3`, `AP_Mat4Mul`) |
+| `AP2_Camera.h` | 2D / 3D camera, tracking, `AP_Begin2D` |
 | `AP2_Window.h` | Create / size / fullscreen / `AP_PumpEvents` / `AP_Tick` / `AP_GetDeltaTime` |
 | `AP2_Video.h` | Graphics API selection |
 | `AP2_Device.h` | GPU device info |
 | `AP2_Input.h` | Keys, mouse, gamepad, clipboard, file drop |
 | `AP2_Renderer.h` | Immediate 2D; short macros live here |
-| `AP2_Texture.h` | Load / update / `AP_DrawTexture` |
+| `AP2_Image.h` | CPU RGBA bitmaps: load, blit, filter, save |
+| `AP2_Texture.h` | GPU upload / `AP_DrawTexture` / image conversion |
 | `AP2_Sprite.h` | Atlas frames, animation, `AP_DrawSprite` |
 | `AP2_Tilemap.h` | Tilesets, tile grids, CSV, `AP_DrawTilemap` |
 | `AP2_Font.h` | TTF and `AP_DrawText` |
 | `AP2_Shader.h` | GLSL, `AP_UseShader`, `AP_SetUniformF` |
 | `AP2_Gui.h` | Immediate windows, menus, widgets |
-| `AP2_3D.h` | Camera, lights, `AP_DrawCube` |
+| `AP2_3D.h` | Lights, meshes, `AP_DrawCube` |
 | `AP2_Audio.h` | Sounds, voices, buses, listener |
 | `AP2_Post.h` | Vignette, bloom, grade, grain |
 | `AP2_List.h` / `AP2_String.h` | Small containers |

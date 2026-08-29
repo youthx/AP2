@@ -27,6 +27,31 @@ AP_DestroyTexture(tex);
 
 Supported image formats come from stb_image (PNG, JPEG, and others).
 
+## CPU images
+
+`AP_Image` is the CPU-side bitmap. Edit pixels, then upload to a texture:
+
+```c
+AP_Image *img = AP_LoadImage("player.png");
+AP_FlipImage(img, true, false);
+AP_ImageGrayscale(img);
+AP_MapImageColorKey(img, (AP_Color8){255, 0, 255, 255});
+
+AP_Texture *tex = AP_CreateTextureFromImage(img);
+AP_DestroyImage(img);
+```
+
+Blit, scale, crop, and save:
+
+```c
+AP_BlitImageBlend(src, NULL, dst, 16, 16, AP_BLENDMODE_BLEND);
+AP_Image *small = AP_ScaleImage(img, 64, 64, AP_IMAGE_NEAREST);
+AP_SaveImage(small, "out.png");
+AP_DestroyImage(small);
+```
+
+Read a GPU texture back with `AP_CreateImageFromTexture()`, or write one with `AP_SaveTexture()`.
+
 ## Source rectangles and rotation
 
 ```c

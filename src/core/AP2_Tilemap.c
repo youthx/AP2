@@ -62,6 +62,8 @@ static int AP_TileId(int cell) {
   return (int)((unsigned int)cell & AP_TILE_GID_MASK);
 }
 
+static void AP_TilemapFlipFromCell(int cell, float *angle, AP_FlipMode *flip);
+
 static int AP_TilesetIndex(int tile_id) { return tile_id - 1; }
 
 static bool AP_TilesetIdOk(const AP_Tileset *tileset, int tile_id) {
@@ -327,6 +329,8 @@ bool AP_RenderTile(const AP_Tileset *tileset, int tile_id, float x, float y,
                    float scale) {
   AP_FRect src;
   AP_FRect dst;
+  float angle = 0.0f;
+  AP_FlipMode flip = AP_FLIP_NONE;
   int id = AP_TilesetResolve(tileset, tile_id);
 
   if (scale <= 0.0f) {
@@ -345,7 +349,9 @@ bool AP_RenderTile(const AP_Tileset *tileset, int tile_id, float x, float y,
   dst.y = y;
   dst.w = src.w * scale;
   dst.h = src.h * scale;
-  return AP_RenderTexture(tileset->texture, &src, &dst);
+  AP_TilemapFlipFromCell(tile_id, &angle, &flip);
+  return AP_RenderTextureRotated(tileset->texture, &src, &dst, angle, NULL,
+                                 flip);
 }
 
 static bool AP_TilemapInBounds(const AP_Tilemap *map, int x, int y) {

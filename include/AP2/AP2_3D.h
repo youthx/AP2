@@ -9,6 +9,7 @@
 #ifndef AP2_3D_H
 #define AP2_3D_H
 
+#include "AP2/AP2_Camera.h"
 #include "AP2/AP2_Math.h"
 #include "AP2/AP2_Types.h"
 
@@ -23,7 +24,8 @@ extern "C" {
  *
  * Optional immediate 3D pass on top of the 2D renderer. World
  * space is right-handed and Y-up. Call AP_Begin3D() after
- * AP_Clear(), draw, then AP_End3D() before 2D UI.
+ * AP_Clear(), draw, then AP_End3D() before 2D UI. The camera
+ * type lives in AP2_Camera.h (2D and 3D).
  *
  *     AP_Camera cam = AP_CameraPerspective(
  *         AP_V3(0.0f, 4.0f, 8.0f), AP_V3(0.0f, 0.0f, 0.0f), 50.0f);
@@ -43,42 +45,12 @@ extern "C" {
 typedef struct AP_Mesh AP_Mesh;
 typedef struct AP_Texture AP_Texture;
 
-/* =========================================================
- * Camera
- *
- * fov_degrees > 0 selects perspective. fov_degrees == 0
- * selects orthographic using ortho_size as the vertical size.
- * ========================================================= */
-
-typedef struct AP_Camera {
-  AP_Vec3 position;
-  AP_Vec3 target;
-  AP_Vec3 up;
-  AP_F32 fov_degrees;
-  AP_F32 near_z;
-  AP_F32 far_z;
-  AP_F32 ortho_size;
-} AP_Camera;
-
 typedef struct AP_Vertex3 {
   AP_Vec3 position;
   AP_Vec3 normal;
   AP_Vec2 uv;
   AP_Color color;
 } AP_Vertex3;
-
-AP_Camera AP_CameraPerspective(AP_Vec3 position, AP_Vec3 target,
-                               AP_F32 fov_degrees);
-
-AP_Camera AP_CameraOrtho(AP_Vec3 position, AP_Vec3 target, AP_F32 ortho_size);
-
-AP_Camera AP_CameraDefault(void);
-
-AP_Mat4 AP_CameraView(const AP_Camera *camera);
-
-AP_Mat4 AP_CameraProjection(const AP_Camera *camera, AP_F32 aspect);
-
-AP_Mat4 AP_CameraViewProjection(const AP_Camera *camera, AP_F32 aspect);
 
 /* =========================================================
  * Mesh

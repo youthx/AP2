@@ -54,7 +54,7 @@ After include, `AP2_HAS_AUDIO` (and friends) is `0` or `1`.
 
 ## Handles
 
-Textures, sounds, shaders, fonts, tilesets, tilemaps, and windows are opaque pointers. Destroy what you create. Voices from `AP_PlayOneShot` are reaped automatically.
+Textures, images, sounds, shaders, fonts, tilesets, tilemaps, and windows are opaque pointers. Destroy what you create. Voices from `AP_PlayOneShot` are reaped automatically.
 
 ## Backends
 

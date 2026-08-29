@@ -10,10 +10,12 @@ endif()
 set(_AP2_LIB_SOURCES
   ${CMAKE_CURRENT_SOURCE_DIR}/src/core/AP2_3D.c
   ${CMAKE_CURRENT_SOURCE_DIR}/src/core/AP2_Audio.c
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/core/AP2_Camera.c
   ${CMAKE_CURRENT_SOURCE_DIR}/src/core/AP2_Device.c
   ${CMAKE_CURRENT_SOURCE_DIR}/src/core/AP2_Error.c
   ${CMAKE_CURRENT_SOURCE_DIR}/src/core/AP2_Font.c
   ${CMAKE_CURRENT_SOURCE_DIR}/src/core/AP2_Gui.c
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/core/AP2_Image.c
   ${CMAKE_CURRENT_SOURCE_DIR}/src/core/AP2_Init.c
   ${CMAKE_CURRENT_SOURCE_DIR}/src/core/AP2_Input.c
   ${CMAKE_CURRENT_SOURCE_DIR}/src/core/AP2_List.c
@@ -28,6 +30,7 @@ set(_AP2_LIB_SOURCES
   ${CMAKE_CURRENT_SOURCE_DIR}/src/core/AP2_Sprite.c
   ${CMAKE_CURRENT_SOURCE_DIR}/src/core/AP2_String.c
   ${CMAKE_CURRENT_SOURCE_DIR}/src/core/AP2_Texture.c
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/core/AP2_Tilemap.c
   ${CMAKE_CURRENT_SOURCE_DIR}/src/core/AP2_Video.c
   ${CMAKE_CURRENT_SOURCE_DIR}/src/core/AP2_Window.c
 )

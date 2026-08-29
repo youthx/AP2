@@ -39,6 +39,7 @@ static bool dsp_is_running(void) {
 static void dsp_draw_debug_info(void) {
     AP_String *fps = AP_CreateString();
     AP_StringFormat(fps, "FPS: %.2f", AP_GetFPS());
+		AP_SetRenderDrawColor(255, 255, 255, 255);
     AP_DrawText(10, 10, AP_StringCStr(fps));
     AP_DestroyString(fps);
 }
@@ -58,7 +59,6 @@ static void dsp_render(float dt) {
     AP_Clear();
 
     dsp_draw_debug_info();
-
     AP_Present();
 }
 

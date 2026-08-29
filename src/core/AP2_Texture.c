@@ -11,21 +11,11 @@
 #include "AP2_Internal.h"
 
 #include "AP2/AP2_Error.h"
+#include "AP2/AP2_Image.h"
 #include "AP2/AP2_Opengl.h"
 
 #define GLFW_INCLUDE_NONE
 #include <glad/gl.h>
-
-#if defined(__GNUC__)
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wunused-function"
-#pragma GCC diagnostic ignored "-Wunused-parameter"
-#endif
-#define STB_IMAGE_IMPLEMENTATION
-#include "stb_image.h"
-#if defined(__GNUC__)
-#pragma GCC diagnostic pop
-#endif
 
 #include <math.h>
 #include <stdlib.h>
@@ -411,50 +401,106 @@ AP_Texture *AP_CreateTextureFromPixels(int width, int height,
   return texture;
 }
 
-AP_Texture *AP_LoadTexture(const char *path) {
-  int width = 0;
-  int height = 0;
-  int channels = 0;
+AP_Texture *AP_CreateTextureFromImage(const AP_Image *image) {
+  if (!AP_ImageIsValid(image)) {
+    AP_SET_ERROR(AP_ERROR_INVALID_ARGUMENT, "Invalid image");
+    return NULL;
+  }
+
+  return AP_CreateTextureFromPixels(AP_GetImageWidth(image),
+                                    AP_GetImageHeight(image),
+                                    AP_GetImagePixels(image),
+                                    AP_GetImagePitch(image));
+}
+
+bool AP_UpdateTextureFromImage(AP_Texture *texture, const AP_Image *image) {
+  int width;
+  int height;
+
+  if (!AP_TextureIsValid(texture) || !AP_ImageIsValid(image)) {
+    AP_SET_ERROR(AP_ERROR_INVALID_ARGUMENT, "Invalid texture or image");
+    return false;
+  }
+
+  width = AP_GetImageWidth(image);
+  height = AP_GetImageHeight(image);
+  if (width != texture->width || height != texture->height) {
+    AP_SET_ERROR(AP_ERROR_INVALID_ARGUMENT,
+                 "Image size does not match texture");
+    return false;
+  }
+
+  return AP_UpdateTexture(texture, NULL, AP_GetImagePixels(image),
+                          AP_GetImagePitch(image));
+}
+
+AP_Image *AP_CreateImageFromTexture(AP_Texture *texture) {
+  int pitch;
   unsigned char *pixels;
+  AP_Image *image;
+
+  if (!AP_TextureIsValid(texture)) {
+    AP_SET_ERROR(AP_ERROR_INVALID_ARGUMENT, "Invalid texture");
+    return NULL;
+  }
+
+  pitch = texture->width * 4;
+  pixels = (unsigned char *)malloc((size_t)pitch * (size_t)texture->height);
+  if (pixels == NULL) {
+    AP_SET_ERROR(AP_ERROR_OUT_OF_MEMORY, "Failed to read texture into image");
+    return NULL;
+  }
+
+  if (!AP_ReadTexturePixels(texture, NULL, pixels, pitch)) {
+    free(pixels);
+    return NULL;
+  }
+
+  image = AP_CreateImageFromPixels(texture->width, texture->height, pixels,
+                                   pitch);
+  free(pixels);
+  return image;
+}
+
+bool AP_SaveTexture(AP_Texture *texture, const char *path) {
+  AP_Image *image;
+  bool ok;
+
+  image = AP_CreateImageFromTexture(texture);
+  if (image == NULL) {
+    return false;
+  }
+
+  ok = AP_SaveImage(image, path);
+  AP_DestroyImage(image);
+  return ok;
+}
+
+AP_Texture *AP_LoadTexture(const char *path) {
+  AP_Image *image;
   AP_Texture *texture;
 
-  if (path == NULL) {
-    AP_SET_ERROR(AP_ERROR_INVALID_ARGUMENT, "Texture path cannot be NULL");
+  image = AP_LoadImage(path);
+  if (image == NULL) {
     return NULL;
   }
 
-  pixels = stbi_load(path, &width, &height, &channels, 4);
-  if (pixels == NULL) {
-    AP_SET_ERROR(AP_ERROR_NOT_FOUND, "Failed to load texture file");
-    return NULL;
-  }
-
-  texture = AP_CreateTextureFromPixels(width, height, pixels, width * 4);
-  stbi_image_free(pixels);
+  texture = AP_CreateTextureFromImage(image);
+  AP_DestroyImage(image);
   return texture;
 }
 
 AP_Texture *AP_LoadTextureFromMemory(const void *data, int size) {
-  int width = 0;
-  int height = 0;
-  int channels = 0;
-  unsigned char *pixels;
+  AP_Image *image;
   AP_Texture *texture;
 
-  if (data == NULL || size <= 0) {
-    AP_SET_ERROR(AP_ERROR_INVALID_ARGUMENT, "Invalid texture memory");
+  image = AP_LoadImageFromMemory(data, size);
+  if (image == NULL) {
     return NULL;
   }
 
-  pixels = stbi_load_from_memory((const stbi_uc *)data, size, &width, &height,
-                                 &channels, 4);
-  if (pixels == NULL) {
-    AP_SET_ERROR(AP_ERROR_NOT_FOUND, "Failed to decode texture memory");
-    return NULL;
-  }
-
-  texture = AP_CreateTextureFromPixels(width, height, pixels, width * 4);
-  stbi_image_free(pixels);
+  texture = AP_CreateTextureFromImage(image);
+  AP_DestroyImage(image);
   return texture;
 }
 

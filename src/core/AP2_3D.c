@@ -524,59 +524,6 @@ static bool AP_3DSubmitLines(const AP_Vertex3 *vertices, int count,
 }
 
 /* =========================================================
- * Camera
- * ========================================================= */
-
-AP_Camera AP_CameraPerspective(AP_Vec3 position, AP_Vec3 target,
-                               AP_F32 fov_degrees) {
-  AP_Camera camera;
-  camera.position = position;
-  camera.target = target;
-  camera.up = AP_Vec3Up();
-  camera.fov_degrees = fov_degrees > 0.0f ? fov_degrees : 60.0f;
-  camera.near_z = 0.1f;
-  camera.far_z = 250.0f;
-  camera.ortho_size = 10.0f;
-  return camera;
-}
-
-AP_Camera AP_CameraOrtho(AP_Vec3 position, AP_Vec3 target, AP_F32 ortho_size) {
-  AP_Camera camera = AP_CameraPerspective(position, target, 0.0f);
-  camera.fov_degrees = 0.0f;
-  camera.ortho_size = ortho_size > 0.0f ? ortho_size : 10.0f;
-  return camera;
-}
-
-AP_Camera AP_CameraDefault(void) {
-  return AP_CameraPerspective(AP_V3(0.0f, 4.0f, 8.0f), AP_Vec3Zero(), 50.0f);
-}
-
-AP_Mat4 AP_CameraView(const AP_Camera *camera) {
-  if (camera == NULL) {
-    return AP_Mat4Identity();
-  }
-  return AP_Mat4LookAt(camera->position, camera->target, camera->up);
-}
-
-AP_Mat4 AP_CameraProjection(const AP_Camera *camera, AP_F32 aspect) {
-  if (camera == NULL) {
-    return AP_Mat4Identity();
-  }
-
-  if (camera->fov_degrees <= 0.0f) {
-    return AP_Mat4OrthoSize(camera->ortho_size, aspect, camera->near_z,
-                            camera->far_z);
-  }
-
-  return AP_Mat4Perspective(camera->fov_degrees, aspect, camera->near_z,
-                            camera->far_z);
-}
-
-AP_Mat4 AP_CameraViewProjection(const AP_Camera *camera, AP_F32 aspect) {
-  return AP_Mat4Mul(AP_CameraProjection(camera, aspect), AP_CameraView(camera));
-}
-
-/* =========================================================
  * Mesh
  * ========================================================= */
 

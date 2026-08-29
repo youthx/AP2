@@ -26,15 +26,24 @@ extern "C" {
  * SDL3's SDL_Texture calling convention, minus the renderer
  * pointer — textures belong to the active window.
  *
- *     AP_Texture *tex = AP_LoadTexture("player.png");
+ *     AP_Image *img = AP_LoadImage("player.png");
+ *     AP_FlipImage(img, true, false);
+ *     AP_Texture *tex = AP_CreateTextureFromImage(img);
+ *     AP_DestroyImage(img);
+ *
  *     AP_DrawTexture(tex, NULL, &(AP_FRect){64.0f, 64.0f, 128.0f, 128.0f});
  *     AP_DestroyTexture(tex);
  *
  * Pixel data is 8-bit RGBA, tightly packed (pitch = width * 4)
  * unless a pitch is supplied to AP_UpdateTexture().
+ * CPU-side editing lives in AP_Image; upload with
+ * AP_CreateTextureFromImage() or AP_UpdateTextureFromImage().
  */
 
 typedef struct AP_Texture AP_Texture;
+#ifndef AP2_IMAGE_H
+typedef struct AP_Image AP_Image;
+#endif
 
 typedef enum AP_ScaleMode {
   AP_SCALEMODE_NEAREST = 0,
@@ -77,6 +86,14 @@ AP_Texture *AP_LoadTexture(const char *path);
 AP_Texture *AP_LoadTextureFromMemory(const void *data, int size);
 
 AP_Texture *AP_CopyTexture(AP_Texture *texture);
+
+AP_Texture *AP_CreateTextureFromImage(const AP_Image *image);
+
+bool AP_UpdateTextureFromImage(AP_Texture *texture, const AP_Image *image);
+
+AP_Image *AP_CreateImageFromTexture(AP_Texture *texture);
+
+bool AP_SaveTexture(AP_Texture *texture, const char *path);
 
 void AP_DestroyTexture(AP_Texture *texture);
 

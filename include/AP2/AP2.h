@@ -42,8 +42,8 @@
  * Exclude flags: AP2_NO_ERROR, AP2_NO_LOGGER, AP2_NO_PLATFORM, AP2_NO_MATH,
  * AP2_NO_DEVICE, AP2_NO_VIDEO, AP2_NO_WINDOW, AP2_NO_INPUT, AP2_NO_RENDERER,
  * AP2_NO_TEXTURE, AP2_NO_SPRITE, AP2_NO_TILEMAP, AP2_NO_SHADER, AP2_NO_FONT,
- * AP2_NO_GUI, AP2_NO_LIST, AP2_NO_STRING, AP2_NO_3D, AP2_NO_AUDIO, AP2_NO_POST,
- * AP2_NO_OPENGL
+ * AP2_NO_GUI, AP2_NO_LIST, AP2_NO_STRING, AP2_NO_IMAGE, AP2_NO_CAMERA, AP2_NO_3D,
+ * AP2_NO_AUDIO, AP2_NO_POST, AP2_NO_OPENGL
  *
  * After include, AP2_HAS_<MODULE> is 0 or 1 for each module.
  *
@@ -461,6 +461,12 @@
 #ifndef AP2_NO_STRING
 #define AP2_NO_STRING
 #endif
+#ifndef AP2_NO_IMAGE
+#define AP2_NO_IMAGE
+#endif
+#ifndef AP2_NO_CAMERA
+#define AP2_NO_CAMERA
+#endif
 #ifndef AP2_NO_3D
 #define AP2_NO_3D
 #endif
@@ -494,6 +500,15 @@
 #endif
 
 #ifdef AP2_NO_MATH
+#ifndef AP2_NO_CAMERA
+#define AP2_NO_CAMERA
+#endif
+#ifndef AP2_NO_3D
+#define AP2_NO_3D
+#endif
+#endif
+
+#ifdef AP2_NO_CAMERA
 #ifndef AP2_NO_3D
 #define AP2_NO_3D
 #endif
@@ -617,6 +632,13 @@
 #define AP2_HAS_RENDERER 1
 #endif
 
+#undef AP2_HAS_IMAGE
+#ifdef AP2_NO_IMAGE
+#define AP2_HAS_IMAGE 0
+#else
+#define AP2_HAS_IMAGE 1
+#endif
+
 #undef AP2_HAS_TEXTURE
 #ifdef AP2_NO_TEXTURE
 #define AP2_HAS_TEXTURE 0
@@ -673,6 +695,13 @@
 #define AP2_HAS_STRING 1
 #endif
 
+#undef AP2_HAS_CAMERA
+#ifdef AP2_NO_CAMERA
+#define AP2_HAS_CAMERA 0
+#else
+#define AP2_HAS_CAMERA 1
+#endif
+
 #undef AP2_HAS_3D
 #ifdef AP2_NO_3D
 #define AP2_HAS_3D 0
@@ -727,6 +756,8 @@
 #define AP2_MODULE_AUDIO (1u << 20)
 #define AP2_MODULE_POST (1u << 21)
 #define AP2_MODULE_TILEMAP (1u << 22)
+#define AP2_MODULE_CAMERA (1u << 23)
+#define AP2_MODULE_IMAGE (1u << 24)
 
 #define AP2_ENABLED_MODULES                                                     \
   (AP2_MODULE_TYPES | AP2_MODULE_INIT |                                        \
@@ -734,6 +765,7 @@
    (AP2_HAS_LOGGER ? AP2_MODULE_LOGGER : 0u) |                                 \
    (AP2_HAS_PLATFORM ? AP2_MODULE_PLATFORM : 0u) |                             \
    (AP2_HAS_MATH ? AP2_MODULE_MATH : 0u) |                                     \
+   (AP2_HAS_CAMERA ? AP2_MODULE_CAMERA : 0u) |                                 \
    (AP2_HAS_LIST ? AP2_MODULE_LIST : 0u) |                                     \
    (AP2_HAS_STRING ? AP2_MODULE_STRING : 0u) |                                 \
    (AP2_HAS_DEVICE ? AP2_MODULE_DEVICE : 0u) |                                 \
@@ -741,6 +773,7 @@
    (AP2_HAS_WINDOW ? AP2_MODULE_WINDOW : 0u) |                                 \
    (AP2_HAS_INPUT ? AP2_MODULE_INPUT : 0u) |                                   \
    (AP2_HAS_RENDERER ? AP2_MODULE_RENDERER : 0u) |                             \
+   (AP2_HAS_IMAGE ? AP2_MODULE_IMAGE : 0u) |                                   \
    (AP2_HAS_TEXTURE ? AP2_MODULE_TEXTURE : 0u) |                               \
    (AP2_HAS_SPRITE ? AP2_MODULE_SPRITE : 0u) |                                 \
    (AP2_HAS_TILEMAP ? AP2_MODULE_TILEMAP : 0u) |                               \
@@ -764,6 +797,10 @@
 
 #if AP2_HAS_MATH
 #include "AP2/AP2_Math.h"
+#endif
+
+#if AP2_HAS_CAMERA
+#include "AP2/AP2_Camera.h"
 #endif
 
 #if AP2_HAS_PLATFORM
@@ -804,6 +841,10 @@
 
 #if AP2_HAS_RENDERER
 #include "AP2/AP2_Renderer.h"
+#endif
+
+#if AP2_HAS_IMAGE
+#include "AP2/AP2_Image.h"
 #endif
 
 #if AP2_HAS_TEXTURE

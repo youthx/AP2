@@ -65,6 +65,17 @@ build CMakeFiles/ap2_app.dir/Release/src/core/AP2_Audio.c.obj: C_COMPILER__ap2_a
   TARGET_SUPPORT_DIR = CMakeFiles\ap2_app.dir
   RSP_FILE = CMakeFiles\ap2_app.dir\Release\src\core\AP2_Audio.c.obj.rsp
 
+build CMakeFiles/ap2_app.dir/Release/src/core/AP2_Camera.c.obj: C_COMPILER__ap2_app_unscanned_Release C$:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/src/core/AP2_Camera.c || cmake_object_order_depends_target_ap2_app_RELEASE
+  CONFIG = Release
+  DEFINES = -DAP2_VERSION=\"0.1.0\" -DAP2_VERSION_MAJOR=0 -DAP2_VERSION_MINOR=1 -DAP2_VERSION_PATCH=0 -DDEBUG=1 -DPROJECT_VERSION=\"0.1.0\" -DPROJECT_VERSION_MAJOR=0 -DPROJECT_VERSION_MINOR=1 -DPROJECT_VERSION_PATCH=0 -DWIN32 -D_CRT_SECURE_NO_WARNINGS -D_WINDOWS -DCMAKE_INTDIR=\"Release\"
+  DEP_FILE = CMakeFiles\ap2_app.dir\Release\src\core\AP2_Camera.c.obj.d
+  FLAGS = -B C:/msys64/ucrt64/bin -std=c17 -Wall -Wextra -g -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/include/AP2 -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/third_party/stb -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/third_party/miniaudio -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glad-src/generated/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-src/include
+  OBJECT_DIR = CMakeFiles\ap2_app.dir\Release
+  OBJECT_FILE_DIR = CMakeFiles\ap2_app.dir\Release\src\core
+  TARGET_SUPPORT_DIR = CMakeFiles\ap2_app.dir
+  RSP_FILE = CMakeFiles\ap2_app.dir\Release\src\core\AP2_Camera.c.obj.rsp
+
 build CMakeFiles/ap2_app.dir/Release/src/core/AP2_Device.c.obj: C_COMPILER__ap2_app_unscanned_Release C$:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/src/core/AP2_Device.c || cmake_object_order_depends_target_ap2_app_RELEASE
   CONFIG = Release
   DEFINES = -DAP2_VERSION=\"0.1.0\" -DAP2_VERSION_MAJOR=0 -DAP2_VERSION_MINOR=1 -DAP2_VERSION_PATCH=0 -DDEBUG=1 -DPROJECT_VERSION=\"0.1.0\" -DPROJECT_VERSION_MAJOR=0 -DPROJECT_VERSION_MINOR=1 -DPROJECT_VERSION_PATCH=0 -DWIN32 -D_CRT_SECURE_NO_WARNINGS -D_WINDOWS -DCMAKE_INTDIR=\"Release\"
@@ -108,6 +119,17 @@ build CMakeFiles/ap2_app.dir/Release/src/core/AP2_Gui.c.obj: C_COMPILER__ap2_app
   OBJECT_FILE_DIR = CMakeFiles\ap2_app.dir\Release\src\core
   TARGET_SUPPORT_DIR = CMakeFiles\ap2_app.dir
   RSP_FILE = CMakeFiles\ap2_app.dir\Release\src\core\AP2_Gui.c.obj.rsp
+
+build CMakeFiles/ap2_app.dir/Release/src/core/AP2_Image.c.obj: C_COMPILER__ap2_app_unscanned_Release C$:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/src/core/AP2_Image.c || cmake_object_order_depends_target_ap2_app_RELEASE
+  CONFIG = Release
+  DEFINES = -DAP2_VERSION=\"0.1.0\" -DAP2_VERSION_MAJOR=0 -DAP2_VERSION_MINOR=1 -DAP2_VERSION_PATCH=0 -DDEBUG=1 -DPROJECT_VERSION=\"0.1.0\" -DPROJECT_VERSION_MAJOR=0 -DPROJECT_VERSION_MINOR=1 -DPROJECT_VERSION_PATCH=0 -DWIN32 -D_CRT_SECURE_NO_WARNINGS -D_WINDOWS -DCMAKE_INTDIR=\"Release\"
+  DEP_FILE = CMakeFiles\ap2_app.dir\Release\src\core\AP2_Image.c.obj.d
+  FLAGS = -B C:/msys64/ucrt64/bin -std=c17 -Wall -Wextra -g -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/include/AP2 -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/third_party/stb -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/third_party/miniaudio -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glad-src/generated/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-src/include
+  OBJECT_DIR = CMakeFiles\ap2_app.dir\Release
+  OBJECT_FILE_DIR = CMakeFiles\ap2_app.dir\Release\src\core
+  TARGET_SUPPORT_DIR = CMakeFiles\ap2_app.dir
+  RSP_FILE = CMakeFiles\ap2_app.dir\Release\src\core\AP2_Image.c.obj.rsp
 
 build CMakeFiles/ap2_app.dir/Release/src/core/AP2_Init.c.obj: C_COMPILER__ap2_app_unscanned_Release C$:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/src/core/AP2_Init.c || cmake_object_order_depends_target_ap2_app_RELEASE
   CONFIG = Release
@@ -263,6 +285,17 @@ build CMakeFiles/ap2_app.dir/Release/src/core/AP2_Texture.c.obj: C_COMPILER__ap2
   TARGET_SUPPORT_DIR = CMakeFiles\ap2_app.dir
   RSP_FILE = CMakeFiles\ap2_app.dir\Release\src\core\AP2_Texture.c.obj.rsp
 
+build CMakeFiles/ap2_app.dir/Release/src/core/AP2_Tilemap.c.obj: C_COMPILER__ap2_app_unscanned_Release C$:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/src/core/AP2_Tilemap.c || cmake_object_order_depends_target_ap2_app_RELEASE
+  CONFIG = Release
+  DEFINES = -DAP2_VERSION=\"0.1.0\" -DAP2_VERSION_MAJOR=0 -DAP2_VERSION_MINOR=1 -DAP2_VERSION_PATCH=0 -DDEBUG=1 -DPROJECT_VERSION=\"0.1.0\" -DPROJECT_VERSION_MAJOR=0 -DPROJECT_VERSION_MINOR=1 -DPROJECT_VERSION_PATCH=0 -DWIN32 -D_CRT_SECURE_NO_WARNINGS -D_WINDOWS -DCMAKE_INTDIR=\"Release\"
+  DEP_FILE = CMakeFiles\ap2_app.dir\Release\src\core\AP2_Tilemap.c.obj.d
+  FLAGS = -B C:/msys64/ucrt64/bin -std=c17 -Wall -Wextra -g -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/include/AP2 -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/third_party/stb -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/third_party/miniaudio -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glad-src/generated/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-src/include
+  OBJECT_DIR = CMakeFiles\ap2_app.dir\Release
+  OBJECT_FILE_DIR = CMakeFiles\ap2_app.dir\Release\src\core
+  TARGET_SUPPORT_DIR = CMakeFiles\ap2_app.dir
+  RSP_FILE = CMakeFiles\ap2_app.dir\Release\src\core\AP2_Tilemap.c.obj.rsp
+
 build CMakeFiles/ap2_app.dir/Release/src/core/AP2_Video.c.obj: C_COMPILER__ap2_app_unscanned_Release C$:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/src/core/AP2_Video.c || cmake_object_order_depends_target_ap2_app_RELEASE
   CONFIG = Release
   DEFINES = -DAP2_VERSION=\"0.1.0\" -DAP2_VERSION_MAJOR=0 -DAP2_VERSION_MINOR=1 -DAP2_VERSION_PATCH=0 -DDEBUG=1 -DPROJECT_VERSION=\"0.1.0\" -DPROJECT_VERSION_MAJOR=0 -DPROJECT_VERSION_MINOR=1 -DPROJECT_VERSION_PATCH=0 -DWIN32 -D_CRT_SECURE_NO_WARNINGS -D_WINDOWS -DCMAKE_INTDIR=\"Release\"
@@ -304,7 +337,7 @@ build CMakeFiles/ap2_app.dir/Release/src/main.c.obj: C_COMPILER__ap2_app_unscann
 #############################################
 # Link the executable bin\Release\ap2_app.exe
 
-build bin/Release/ap2_app.exe: C_EXECUTABLE_LINKER__ap2_app_Release CMakeFiles/ap2_app.dir/Release/src/core/AP2_3D.c.obj CMakeFiles/ap2_app.dir/Release/src/core/AP2_Audio.c.obj CMakeFiles/ap2_app.dir/Release/src/core/AP2_Device.c.obj CMakeFiles/ap2_app.dir/Release/src/core/AP2_Error.c.obj CMakeFiles/ap2_app.dir/Release/src/core/AP2_Font.c.obj CMakeFiles/ap2_app.dir/Release/src/core/AP2_Gui.c.obj CMakeFiles/ap2_app.dir/Release/src/core/AP2_Init.c.obj CMakeFiles/ap2_app.dir/Release/src/core/AP2_Input.c.obj CMakeFiles/ap2_app.dir/Release/src/core/AP2_List.c.obj CMakeFiles/ap2_app.dir/Release/src/core/AP2_Logger.c.obj CMakeFiles/ap2_app.dir/Release/src/core/AP2_Math.c.obj CMakeFiles/ap2_app.dir/Release/src/core/AP2_Miniaudio.c.obj CMakeFiles/ap2_app.dir/Release/src/core/AP2_Opengl.c.obj CMakeFiles/ap2_app.dir/Release/src/core/AP2_Platform.c.obj CMakeFiles/ap2_app.dir/Release/src/core/AP2_Post.c.obj CMakeFiles/ap2_app.dir/Release/src/core/AP2_Renderer.c.obj CMakeFiles/ap2_app.dir/Release/src/core/AP2_Shader.c.obj CMakeFiles/ap2_app.dir/Release/src/core/AP2_Sprite.c.obj CMakeFiles/ap2_app.dir/Release/src/core/AP2_String.c.obj CMakeFiles/ap2_app.dir/Release/src/core/AP2_Texture.c.obj CMakeFiles/ap2_app.dir/Release/src/core/AP2_Video.c.obj CMakeFiles/ap2_app.dir/Release/src/core/AP2_Window.c.obj CMakeFiles/ap2_app.dir/Release/src/main.c.obj | lib/Release/libglad.a lib/Release/libglfw3.a || lib/Release/libglad.a lib/Release/libglfw3.a
+build bin/Release/ap2_app.exe: C_EXECUTABLE_LINKER__ap2_app_Release CMakeFiles/ap2_app.dir/Release/src/core/AP2_3D.c.obj CMakeFiles/ap2_app.dir/Release/src/core/AP2_Audio.c.obj CMakeFiles/ap2_app.dir/Release/src/core/AP2_Camera.c.obj CMakeFiles/ap2_app.dir/Release/src/core/AP2_Device.c.obj CMakeFiles/ap2_app.dir/Release/src/core/AP2_Error.c.obj CMakeFiles/ap2_app.dir/Release/src/core/AP2_Font.c.obj CMakeFiles/ap2_app.dir/Release/src/core/AP2_Gui.c.obj CMakeFiles/ap2_app.dir/Release/src/core/AP2_Image.c.obj CMakeFiles/ap2_app.dir/Release/src/core/AP2_Init.c.obj CMakeFiles/ap2_app.dir/Release/src/core/AP2_Input.c.obj CMakeFiles/ap2_app.dir/Release/src/core/AP2_List.c.obj CMakeFiles/ap2_app.dir/Release/src/core/AP2_Logger.c.obj CMakeFiles/ap2_app.dir/Release/src/core/AP2_Math.c.obj CMakeFiles/ap2_app.dir/Release/src/core/AP2_Miniaudio.c.obj CMakeFiles/ap2_app.dir/Release/src/core/AP2_Opengl.c.obj CMakeFiles/ap2_app.dir/Release/src/core/AP2_Platform.c.obj CMakeFiles/ap2_app.dir/Release/src/core/AP2_Post.c.obj CMakeFiles/ap2_app.dir/Release/src/core/AP2_Renderer.c.obj CMakeFiles/ap2_app.dir/Release/src/core/AP2_Shader.c.obj CMakeFiles/ap2_app.dir/Release/src/core/AP2_Sprite.c.obj CMakeFiles/ap2_app.dir/Release/src/core/AP2_String.c.obj CMakeFiles/ap2_app.dir/Release/src/core/AP2_Texture.c.obj CMakeFiles/ap2_app.dir/Release/src/core/AP2_Tilemap.c.obj CMakeFiles/ap2_app.dir/Release/src/core/AP2_Video.c.obj CMakeFiles/ap2_app.dir/Release/src/core/AP2_Window.c.obj CMakeFiles/ap2_app.dir/Release/src/main.c.obj | lib/Release/libglad.a lib/Release/libglfw3.a || lib/Release/libglad.a lib/Release/libglfw3.a
   CONFIG = Release
   FLAGS = -B C:/msys64/ucrt64/bin
   LINK_LIBRARIES = lib/Release/libglad.a  lib/Release/libglfw3.a  -luser32  -lkernel32  -lopengl32  -lgdi32  -luser32  -lkernel32  -lopengl32  -lgdi32  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
@@ -347,6 +380,17 @@ build CMakeFiles/ap2_lib.dir/Release/src/core/AP2_Audio.c.obj: C_COMPILER__ap2_l
   OBJECT_FILE_DIR = CMakeFiles\ap2_lib.dir\Release\src\core
   TARGET_SUPPORT_DIR = CMakeFiles\ap2_lib.dir
   RSP_FILE = CMakeFiles\ap2_lib.dir\Release\src\core\AP2_Audio.c.obj.rsp
+
+build CMakeFiles/ap2_lib.dir/Release/src/core/AP2_Camera.c.obj: C_COMPILER__ap2_lib_unscanned_Release C$:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/src/core/AP2_Camera.c || cmake_object_order_depends_target_ap2_lib_RELEASE
+  CONFIG = Release
+  DEFINES = -DAP2_VERSION=\"0.1.0\" -DAP2_VERSION_MAJOR=0 -DAP2_VERSION_MINOR=1 -DAP2_VERSION_PATCH=0 -DDEBUG=1 -DPROJECT_VERSION=\"0.1.0\" -DPROJECT_VERSION_MAJOR=0 -DPROJECT_VERSION_MINOR=1 -DPROJECT_VERSION_PATCH=0 -DWIN32 -D_CRT_SECURE_NO_WARNINGS -D_WINDOWS -DCMAKE_INTDIR=\"Release\"
+  DEP_FILE = CMakeFiles\ap2_lib.dir\Release\src\core\AP2_Camera.c.obj.d
+  FLAGS = -B C:/msys64/ucrt64/bin -std=c17
+  INCLUDES = -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/third_party/stb -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/third_party/miniaudio -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glad-src/generated/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-src/include
+  OBJECT_DIR = CMakeFiles\ap2_lib.dir\Release
+  OBJECT_FILE_DIR = CMakeFiles\ap2_lib.dir\Release\src\core
+  TARGET_SUPPORT_DIR = CMakeFiles\ap2_lib.dir
+  RSP_FILE = CMakeFiles\ap2_lib.dir\Release\src\core\AP2_Camera.c.obj.rsp
 
 build CMakeFiles/ap2_lib.dir/Release/src/core/AP2_Device.c.obj: C_COMPILER__ap2_lib_unscanned_Release C$:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/src/core/AP2_Device.c || cmake_object_order_depends_target_ap2_lib_RELEASE
   CONFIG = Release
@@ -391,6 +435,17 @@ build CMakeFiles/ap2_lib.dir/Release/src/core/AP2_Gui.c.obj: C_COMPILER__ap2_lib
   OBJECT_FILE_DIR = CMakeFiles\ap2_lib.dir\Release\src\core
   TARGET_SUPPORT_DIR = CMakeFiles\ap2_lib.dir
   RSP_FILE = CMakeFiles\ap2_lib.dir\Release\src\core\AP2_Gui.c.obj.rsp
+
+build CMakeFiles/ap2_lib.dir/Release/src/core/AP2_Image.c.obj: C_COMPILER__ap2_lib_unscanned_Release C$:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/src/core/AP2_Image.c || cmake_object_order_depends_target_ap2_lib_RELEASE
+  CONFIG = Release
+  DEFINES = -DAP2_VERSION=\"0.1.0\" -DAP2_VERSION_MAJOR=0 -DAP2_VERSION_MINOR=1 -DAP2_VERSION_PATCH=0 -DDEBUG=1 -DPROJECT_VERSION=\"0.1.0\" -DPROJECT_VERSION_MAJOR=0 -DPROJECT_VERSION_MINOR=1 -DPROJECT_VERSION_PATCH=0 -DWIN32 -D_CRT_SECURE_NO_WARNINGS -D_WINDOWS -DCMAKE_INTDIR=\"Release\"
+  DEP_FILE = CMakeFiles\ap2_lib.dir\Release\src\core\AP2_Image.c.obj.d
+  FLAGS = -B C:/msys64/ucrt64/bin -std=c17
+  INCLUDES = -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/third_party/stb -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/third_party/miniaudio -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glad-src/generated/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-src/include
+  OBJECT_DIR = CMakeFiles\ap2_lib.dir\Release
+  OBJECT_FILE_DIR = CMakeFiles\ap2_lib.dir\Release\src\core
+  TARGET_SUPPORT_DIR = CMakeFiles\ap2_lib.dir
+  RSP_FILE = CMakeFiles\ap2_lib.dir\Release\src\core\AP2_Image.c.obj.rsp
 
 build CMakeFiles/ap2_lib.dir/Release/src/core/AP2_Init.c.obj: C_COMPILER__ap2_lib_unscanned_Release C$:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/src/core/AP2_Init.c || cmake_object_order_depends_target_ap2_lib_RELEASE
   CONFIG = Release
@@ -546,6 +601,17 @@ build CMakeFiles/ap2_lib.dir/Release/src/core/AP2_Texture.c.obj: C_COMPILER__ap2
   TARGET_SUPPORT_DIR = CMakeFiles\ap2_lib.dir
   RSP_FILE = CMakeFiles\ap2_lib.dir\Release\src\core\AP2_Texture.c.obj.rsp
 
+build CMakeFiles/ap2_lib.dir/Release/src/core/AP2_Tilemap.c.obj: C_COMPILER__ap2_lib_unscanned_Release C$:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/src/core/AP2_Tilemap.c || cmake_object_order_depends_target_ap2_lib_RELEASE
+  CONFIG = Release
+  DEFINES = -DAP2_VERSION=\"0.1.0\" -DAP2_VERSION_MAJOR=0 -DAP2_VERSION_MINOR=1 -DAP2_VERSION_PATCH=0 -DDEBUG=1 -DPROJECT_VERSION=\"0.1.0\" -DPROJECT_VERSION_MAJOR=0 -DPROJECT_VERSION_MINOR=1 -DPROJECT_VERSION_PATCH=0 -DWIN32 -D_CRT_SECURE_NO_WARNINGS -D_WINDOWS -DCMAKE_INTDIR=\"Release\"
+  DEP_FILE = CMakeFiles\ap2_lib.dir\Release\src\core\AP2_Tilemap.c.obj.d
+  FLAGS = -B C:/msys64/ucrt64/bin -std=c17
+  INCLUDES = -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/third_party/stb -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/third_party/miniaudio -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glad-src/generated/include -IC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-src/include
+  OBJECT_DIR = CMakeFiles\ap2_lib.dir\Release
+  OBJECT_FILE_DIR = CMakeFiles\ap2_lib.dir\Release\src\core
+  TARGET_SUPPORT_DIR = CMakeFiles\ap2_lib.dir
+  RSP_FILE = CMakeFiles\ap2_lib.dir\Release\src\core\AP2_Tilemap.c.obj.rsp
+
 build CMakeFiles/ap2_lib.dir/Release/src/core/AP2_Video.c.obj: C_COMPILER__ap2_lib_unscanned_Release C$:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/src/core/AP2_Video.c || cmake_object_order_depends_target_ap2_lib_RELEASE
   CONFIG = Release
   DEFINES = -DAP2_VERSION=\"0.1.0\" -DAP2_VERSION_MAJOR=0 -DAP2_VERSION_MINOR=1 -DAP2_VERSION_PATCH=0 -DDEBUG=1 -DPROJECT_VERSION=\"0.1.0\" -DPROJECT_VERSION_MAJOR=0 -DPROJECT_VERSION_MINOR=1 -DPROJECT_VERSION_PATCH=0 -DWIN32 -D_CRT_SECURE_NO_WARNINGS -D_WINDOWS -DCMAKE_INTDIR=\"Release\"
@@ -576,7 +642,7 @@ build CMakeFiles/ap2_lib.dir/Release/src/core/AP2_Window.c.obj: C_COMPILER__ap2_
 #############################################
 # Link the static library lib\Release\libap2.a
 
-build lib/Release/libap2.a: C_STATIC_LIBRARY_LINKER__ap2_lib_Release CMakeFiles/ap2_lib.dir/Release/src/core/AP2_3D.c.obj CMakeFiles/ap2_lib.dir/Release/src/core/AP2_Audio.c.obj CMakeFiles/ap2_lib.dir/Release/src/core/AP2_Device.c.obj CMakeFiles/ap2_lib.dir/Release/src/core/AP2_Error.c.obj CMakeFiles/ap2_lib.dir/Release/src/core/AP2_Font.c.obj CMakeFiles/ap2_lib.dir/Release/src/core/AP2_Gui.c.obj CMakeFiles/ap2_lib.dir/Release/src/core/AP2_Init.c.obj CMakeFiles/ap2_lib.dir/Release/src/core/AP2_Input.c.obj CMakeFiles/ap2_lib.dir/Release/src/core/AP2_List.c.obj CMakeFiles/ap2_lib.dir/Release/src/core/AP2_Logger.c.obj CMakeFiles/ap2_lib.dir/Release/src/core/AP2_Math.c.obj CMakeFiles/ap2_lib.dir/Release/src/core/AP2_Miniaudio.c.obj CMakeFiles/ap2_lib.dir/Release/src/core/AP2_Opengl.c.obj CMakeFiles/ap2_lib.dir/Release/src/core/AP2_Platform.c.obj CMakeFiles/ap2_lib.dir/Release/src/core/AP2_Post.c.obj CMakeFiles/ap2_lib.dir/Release/src/core/AP2_Renderer.c.obj CMakeFiles/ap2_lib.dir/Release/src/core/AP2_Shader.c.obj CMakeFiles/ap2_lib.dir/Release/src/core/AP2_Sprite.c.obj CMakeFiles/ap2_lib.dir/Release/src/core/AP2_String.c.obj CMakeFiles/ap2_lib.dir/Release/src/core/AP2_Texture.c.obj CMakeFiles/ap2_lib.dir/Release/src/core/AP2_Video.c.obj CMakeFiles/ap2_lib.dir/Release/src/core/AP2_Window.c.obj || lib/Release/libglad.a lib/Release/libglfw3.a
+build lib/Release/libap2.a: C_STATIC_LIBRARY_LINKER__ap2_lib_Release CMakeFiles/ap2_lib.dir/Release/src/core/AP2_3D.c.obj CMakeFiles/ap2_lib.dir/Release/src/core/AP2_Audio.c.obj CMakeFiles/ap2_lib.dir/Release/src/core/AP2_Camera.c.obj CMakeFiles/ap2_lib.dir/Release/src/core/AP2_Device.c.obj CMakeFiles/ap2_lib.dir/Release/src/core/AP2_Error.c.obj CMakeFiles/ap2_lib.dir/Release/src/core/AP2_Font.c.obj CMakeFiles/ap2_lib.dir/Release/src/core/AP2_Gui.c.obj CMakeFiles/ap2_lib.dir/Release/src/core/AP2_Image.c.obj CMakeFiles/ap2_lib.dir/Release/src/core/AP2_Init.c.obj CMakeFiles/ap2_lib.dir/Release/src/core/AP2_Input.c.obj CMakeFiles/ap2_lib.dir/Release/src/core/AP2_List.c.obj CMakeFiles/ap2_lib.dir/Release/src/core/AP2_Logger.c.obj CMakeFiles/ap2_lib.dir/Release/src/core/AP2_Math.c.obj CMakeFiles/ap2_lib.dir/Release/src/core/AP2_Miniaudio.c.obj CMakeFiles/ap2_lib.dir/Release/src/core/AP2_Opengl.c.obj CMakeFiles/ap2_lib.dir/Release/src/core/AP2_Platform.c.obj CMakeFiles/ap2_lib.dir/Release/src/core/AP2_Post.c.obj CMakeFiles/ap2_lib.dir/Release/src/core/AP2_Renderer.c.obj CMakeFiles/ap2_lib.dir/Release/src/core/AP2_Shader.c.obj CMakeFiles/ap2_lib.dir/Release/src/core/AP2_Sprite.c.obj CMakeFiles/ap2_lib.dir/Release/src/core/AP2_String.c.obj CMakeFiles/ap2_lib.dir/Release/src/core/AP2_Texture.c.obj CMakeFiles/ap2_lib.dir/Release/src/core/AP2_Tilemap.c.obj CMakeFiles/ap2_lib.dir/Release/src/core/AP2_Video.c.obj CMakeFiles/ap2_lib.dir/Release/src/core/AP2_Window.c.obj || lib/Release/libglad.a lib/Release/libglfw3.a
   CONFIG = Release
   LANGUAGE_COMPILE_FLAGS = -B C:/msys64/ucrt64/bin
   OBJECT_DIR = CMakeFiles\ap2_lib.dir\Release

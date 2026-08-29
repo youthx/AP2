@@ -9,6 +9,9 @@ install_manifest.txt
 CTestTestfile.cmake
 _deps/
 
+src/dsp 
+src/main.c 
+
 .cache/
 .cforge/
 

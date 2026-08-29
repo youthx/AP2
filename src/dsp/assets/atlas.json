@@ -1,0 +1,1157 @@
+{
+  "tile_size": 32,
+  "player": {
+    "file": "player.png",
+    "columns": 4,
+    "rows": 4,
+    "notes": "Painted 32x32 pilgrim. Row 0 down, 1 left, 2 right, 3 up. 4-frame walk. Transparent background. Use AP_SCALEMODE_NEAREST.",
+    "anims": {
+      "walk_down": {
+        "start": 0,
+        "count": 4,
+        "fps": 8
+      },
+      "walk_left": {
+        "start": 4,
+        "count": 4,
+        "fps": 8
+      },
+      "walk_right": {
+        "start": 8,
+        "count": 4,
+        "fps": 8
+      },
+      "walk_up": {
+        "start": 12,
+        "count": 4,
+        "fps": 8
+      }
+    }
+  },
+  "tileset": {
+    "file": "tileset.png",
+    "columns": 16,
+    "rows": 16,
+    "empty_id": 0,
+    "gid_offset": 1,
+    "anims": {
+      "water": {
+        "first_id": 25,
+        "frames": 4,
+        "fps": 6
+      },
+      "magma": {
+        "first_id": 29,
+        "frames": 4,
+        "fps": 8
+      },
+      "blood_pool": {
+        "first_id": 34,
+        "frames": 3,
+        "fps": 4
+      }
+    },
+    "tiles": {
+      "1": {
+        "name": "ash_0",
+        "solid": false
+      },
+      "2": {
+        "name": "ash_1",
+        "solid": false
+      },
+      "3": {
+        "name": "ash_2",
+        "solid": false
+      },
+      "4": {
+        "name": "ash_3",
+        "solid": false
+      },
+      "5": {
+        "name": "earth_0",
+        "solid": false
+      },
+      "6": {
+        "name": "earth_1",
+        "solid": false
+      },
+      "7": {
+        "name": "earth_2",
+        "solid": false
+      },
+      "8": {
+        "name": "earth_3",
+        "solid": false
+      },
+      "9": {
+        "name": "cobble_0",
+        "solid": false
+      },
+      "10": {
+        "name": "cobble_1",
+        "solid": false
+      },
+      "11": {
+        "name": "cobble_2",
+        "solid": false
+      },
+      "12": {
+        "name": "ritual",
+        "solid": false
+      },
+      "13": {
+        "name": "flagstone_0",
+        "solid": false
+      },
+      "14": {
+        "name": "flagstone_1",
+        "solid": false
+      },
+      "15": {
+        "name": "mosaic",
+        "solid": false
+      },
+      "16": {
+        "name": "sand_0",
+        "solid": false
+      },
+      "17": {
+        "name": "blood_0",
+        "solid": false
+      },
+      "18": {
+        "name": "blood_1",
+        "solid": false
+      },
+      "19": {
+        "name": "bone_floor_0",
+        "solid": false
+      },
+      "20": {
+        "name": "bone_floor_1",
+        "solid": false
+      },
+      "21": {
+        "name": "cosmic_0",
+        "solid": false
+      },
+      "22": {
+        "name": "cosmic_1",
+        "solid": false
+      },
+      "23": {
+        "name": "void_grass_0",
+        "solid": false
+      },
+      "24": {
+        "name": "void_grass_1",
+        "solid": false
+      },
+      "25": {
+        "name": "water_0",
+        "solid": false
+      },
+      "26": {
+        "name": "water_1",
+        "solid": false
+      },
+      "27": {
+        "name": "water_2",
+        "solid": false
+      },
+      "28": {
+        "name": "water_3",
+        "solid": false
+      },
+      "29": {
+        "name": "magma_0",
+        "solid": false
+      },
+      "30": {
+        "name": "magma_1",
+        "solid": false
+      },
+      "31": {
+        "name": "magma_2",
+        "solid": false
+      },
+      "32": {
+        "name": "magma_3",
+        "solid": false
+      },
+      "33": {
+        "name": "void_pit",
+        "solid": false
+      },
+      "34": {
+        "name": "blood_pool_0",
+        "solid": false
+      },
+      "35": {
+        "name": "blood_pool_1",
+        "solid": false
+      },
+      "36": {
+        "name": "blood_pool_2",
+        "solid": false
+      },
+      "37": {
+        "name": "sand_1",
+        "solid": false
+      },
+      "38": {
+        "name": "ash_4",
+        "solid": false
+      },
+      "39": {
+        "name": "cobble_3",
+        "solid": false
+      },
+      "40": {
+        "name": "earth_4",
+        "solid": false
+      },
+      "41": {
+        "name": "wall_0",
+        "solid": true
+      },
+      "42": {
+        "name": "wall_1",
+        "solid": true
+      },
+      "43": {
+        "name": "wall_2",
+        "solid": true
+      },
+      "44": {
+        "name": "wall_3",
+        "solid": true
+      },
+      "45": {
+        "name": "wall_top",
+        "solid": true
+      },
+      "46": {
+        "name": "doorway",
+        "solid": true
+      },
+      "47": {
+        "name": "stairs",
+        "solid": false
+      },
+      "48": {
+        "name": "rubble",
+        "solid": true
+      },
+      "49": {
+        "name": "pillar",
+        "solid": true
+      },
+      "50": {
+        "name": "pillar_broken",
+        "solid": true
+      },
+      "51": {
+        "name": "altar",
+        "solid": true
+      },
+      "52": {
+        "name": "well",
+        "solid": true
+      },
+      "53": {
+        "name": "sarcophagus",
+        "solid": true
+      },
+      "54": {
+        "name": "obelisk",
+        "solid": true
+      },
+      "55": {
+        "name": "statue",
+        "solid": true
+      },
+      "56": {
+        "name": "grate",
+        "solid": false
+      },
+      "57": {
+        "name": "tentacle",
+        "solid": true
+      },
+      "58": {
+        "name": "eye_stone",
+        "solid": false
+      },
+      "59": {
+        "name": "wall_blood",
+        "solid": true
+      },
+      "60": {
+        "name": "wall_void",
+        "solid": true
+      },
+      "61": {
+        "name": "wall_sun",
+        "solid": true
+      },
+      "62": {
+        "name": "pillar2",
+        "solid": true
+      },
+      "63": {
+        "name": "altar_copy",
+        "solid": true
+      },
+      "64": {
+        "name": "rubble_2",
+        "solid": true
+      },
+      "65": {
+        "name": "painted_0",
+        "solid": false
+      },
+      "66": {
+        "name": "painted_1",
+        "solid": false
+      },
+      "67": {
+        "name": "painted_2",
+        "solid": false
+      },
+      "68": {
+        "name": "painted_3",
+        "solid": false
+      },
+      "69": {
+        "name": "painted_4",
+        "solid": false
+      },
+      "70": {
+        "name": "painted_5",
+        "solid": false
+      },
+      "71": {
+        "name": "painted_6",
+        "solid": false
+      },
+      "72": {
+        "name": "painted_7",
+        "solid": false
+      },
+      "73": {
+        "name": "painted_8",
+        "solid": false
+      },
+      "74": {
+        "name": "painted_9",
+        "solid": false
+      },
+      "75": {
+        "name": "painted_10",
+        "solid": false
+      },
+      "76": {
+        "name": "painted_11",
+        "solid": false
+      },
+      "77": {
+        "name": "painted_12",
+        "solid": false
+      },
+      "78": {
+        "name": "painted_13",
+        "solid": false
+      },
+      "79": {
+        "name": "painted_14",
+        "solid": false
+      },
+      "80": {
+        "name": "painted_15",
+        "solid": false
+      },
+      "81": {
+        "name": "painted_16",
+        "solid": false
+      },
+      "82": {
+        "name": "painted_17",
+        "solid": false
+      },
+      "83": {
+        "name": "painted_18",
+        "solid": false
+      },
+      "84": {
+        "name": "painted_19",
+        "solid": false
+      },
+      "85": {
+        "name": "painted_20",
+        "solid": false
+      },
+      "86": {
+        "name": "painted_21",
+        "solid": false
+      },
+      "87": {
+        "name": "painted_22",
+        "solid": false
+      },
+      "88": {
+        "name": "painted_23",
+        "solid": false
+      },
+      "89": {
+        "name": "painted_24",
+        "solid": false
+      },
+      "90": {
+        "name": "painted_25",
+        "solid": false
+      },
+      "91": {
+        "name": "painted_26",
+        "solid": false
+      },
+      "92": {
+        "name": "painted_27",
+        "solid": false
+      },
+      "93": {
+        "name": "painted_28",
+        "solid": false
+      },
+      "94": {
+        "name": "painted_29",
+        "solid": false
+      },
+      "95": {
+        "name": "painted_30",
+        "solid": false
+      },
+      "96": {
+        "name": "painted_31",
+        "solid": false
+      },
+      "97": {
+        "name": "painted_32",
+        "solid": false
+      },
+      "98": {
+        "name": "painted_33",
+        "solid": false
+      },
+      "99": {
+        "name": "painted_34",
+        "solid": false
+      },
+      "100": {
+        "name": "painted_35",
+        "solid": false
+      },
+      "101": {
+        "name": "painted_36",
+        "solid": false
+      },
+      "102": {
+        "name": "painted_37",
+        "solid": false
+      },
+      "103": {
+        "name": "painted_38",
+        "solid": false
+      },
+      "104": {
+        "name": "painted_39",
+        "solid": false
+      },
+      "105": {
+        "name": "painted_40",
+        "solid": false
+      },
+      "106": {
+        "name": "painted_41",
+        "solid": false
+      },
+      "107": {
+        "name": "painted_42",
+        "solid": false
+      },
+      "108": {
+        "name": "painted_43",
+        "solid": false
+      },
+      "109": {
+        "name": "painted_44",
+        "solid": false
+      },
+      "110": {
+        "name": "painted_45",
+        "solid": false
+      },
+      "111": {
+        "name": "painted_46",
+        "solid": false
+      },
+      "112": {
+        "name": "painted_47",
+        "solid": false
+      },
+      "113": {
+        "name": "painted_48",
+        "solid": false
+      },
+      "114": {
+        "name": "painted_49",
+        "solid": false
+      },
+      "115": {
+        "name": "painted_50",
+        "solid": false
+      },
+      "116": {
+        "name": "painted_51",
+        "solid": false
+      },
+      "117": {
+        "name": "painted_52",
+        "solid": false
+      },
+      "118": {
+        "name": "painted_53",
+        "solid": false
+      },
+      "119": {
+        "name": "painted_54",
+        "solid": false
+      },
+      "120": {
+        "name": "painted_55",
+        "solid": false
+      },
+      "121": {
+        "name": "painted_56",
+        "solid": false
+      },
+      "122": {
+        "name": "painted_57",
+        "solid": false
+      },
+      "123": {
+        "name": "painted_58",
+        "solid": false
+      },
+      "124": {
+        "name": "painted_59",
+        "solid": false
+      },
+      "125": {
+        "name": "painted_60",
+        "solid": false
+      },
+      "126": {
+        "name": "painted_61",
+        "solid": false
+      },
+      "127": {
+        "name": "painted_62",
+        "solid": false
+      },
+      "128": {
+        "name": "painted_63",
+        "solid": false
+      },
+      "129": {
+        "name": "painted_64",
+        "solid": false
+      },
+      "130": {
+        "name": "painted_65",
+        "solid": false
+      },
+      "131": {
+        "name": "painted_66",
+        "solid": false
+      },
+      "132": {
+        "name": "painted_67",
+        "solid": false
+      },
+      "133": {
+        "name": "painted_68",
+        "solid": false
+      },
+      "134": {
+        "name": "painted_69",
+        "solid": false
+      },
+      "135": {
+        "name": "painted_70",
+        "solid": false
+      },
+      "136": {
+        "name": "painted_71",
+        "solid": false
+      },
+      "137": {
+        "name": "painted_72",
+        "solid": false
+      },
+      "138": {
+        "name": "painted_73",
+        "solid": false
+      },
+      "139": {
+        "name": "painted_74",
+        "solid": false
+      },
+      "140": {
+        "name": "painted_75",
+        "solid": false
+      },
+      "141": {
+        "name": "painted_76",
+        "solid": false
+      },
+      "142": {
+        "name": "painted_77",
+        "solid": false
+      },
+      "143": {
+        "name": "painted_78",
+        "solid": false
+      },
+      "144": {
+        "name": "painted_79",
+        "solid": false
+      },
+      "145": {
+        "name": "painted_80",
+        "solid": false
+      },
+      "146": {
+        "name": "painted_81",
+        "solid": false
+      },
+      "147": {
+        "name": "painted_82",
+        "solid": false
+      },
+      "148": {
+        "name": "painted_83",
+        "solid": false
+      },
+      "149": {
+        "name": "painted_84",
+        "solid": false
+      },
+      "150": {
+        "name": "painted_85",
+        "solid": false
+      },
+      "151": {
+        "name": "painted_86",
+        "solid": false
+      },
+      "152": {
+        "name": "painted_87",
+        "solid": false
+      },
+      "153": {
+        "name": "painted_88",
+        "solid": false
+      },
+      "154": {
+        "name": "painted_89",
+        "solid": false
+      },
+      "155": {
+        "name": "painted_90",
+        "solid": false
+      },
+      "156": {
+        "name": "painted_91",
+        "solid": false
+      },
+      "157": {
+        "name": "painted_92",
+        "solid": false
+      },
+      "158": {
+        "name": "painted_93",
+        "solid": false
+      },
+      "159": {
+        "name": "painted_94",
+        "solid": false
+      },
+      "160": {
+        "name": "painted_95",
+        "solid": false
+      },
+      "161": {
+        "name": "painted_96",
+        "solid": false
+      },
+      "162": {
+        "name": "painted_97",
+        "solid": false
+      },
+      "163": {
+        "name": "painted_98",
+        "solid": false
+      },
+      "164": {
+        "name": "painted_99",
+        "solid": false
+      },
+      "165": {
+        "name": "painted_100",
+        "solid": false
+      },
+      "166": {
+        "name": "painted_101",
+        "solid": false
+      },
+      "167": {
+        "name": "painted_102",
+        "solid": false
+      },
+      "168": {
+        "name": "painted_103",
+        "solid": false
+      },
+      "169": {
+        "name": "painted_104",
+        "solid": false
+      },
+      "170": {
+        "name": "painted_105",
+        "solid": false
+      },
+      "171": {
+        "name": "painted_106",
+        "solid": false
+      },
+      "172": {
+        "name": "painted_107",
+        "solid": false
+      },
+      "173": {
+        "name": "painted_108",
+        "solid": false
+      },
+      "174": {
+        "name": "painted_109",
+        "solid": false
+      },
+      "175": {
+        "name": "painted_110",
+        "solid": false
+      },
+      "176": {
+        "name": "painted_111",
+        "solid": false
+      },
+      "177": {
+        "name": "painted_112",
+        "solid": false
+      },
+      "178": {
+        "name": "painted_113",
+        "solid": false
+      },
+      "179": {
+        "name": "painted_114",
+        "solid": false
+      },
+      "180": {
+        "name": "painted_115",
+        "solid": false
+      },
+      "181": {
+        "name": "painted_116",
+        "solid": false
+      },
+      "182": {
+        "name": "painted_117",
+        "solid": false
+      },
+      "183": {
+        "name": "painted_118",
+        "solid": false
+      },
+      "184": {
+        "name": "painted_119",
+        "solid": false
+      },
+      "185": {
+        "name": "painted_120",
+        "solid": false
+      },
+      "186": {
+        "name": "painted_121",
+        "solid": false
+      },
+      "187": {
+        "name": "painted_122",
+        "solid": false
+      },
+      "188": {
+        "name": "painted_123",
+        "solid": false
+      },
+      "189": {
+        "name": "painted_124",
+        "solid": false
+      },
+      "190": {
+        "name": "painted_125",
+        "solid": false
+      },
+      "191": {
+        "name": "painted_126",
+        "solid": false
+      },
+      "192": {
+        "name": "painted_127",
+        "solid": false
+      },
+      "193": {
+        "name": "fill_192",
+        "solid": false
+      },
+      "194": {
+        "name": "fill_193",
+        "solid": false
+      },
+      "195": {
+        "name": "fill_194",
+        "solid": false
+      },
+      "196": {
+        "name": "fill_195",
+        "solid": false
+      },
+      "197": {
+        "name": "fill_196",
+        "solid": false
+      },
+      "198": {
+        "name": "fill_197",
+        "solid": false
+      },
+      "199": {
+        "name": "fill_198",
+        "solid": false
+      },
+      "200": {
+        "name": "fill_199",
+        "solid": false
+      },
+      "201": {
+        "name": "fill_200",
+        "solid": false
+      },
+      "202": {
+        "name": "fill_201",
+        "solid": false
+      },
+      "203": {
+        "name": "fill_202",
+        "solid": false
+      },
+      "204": {
+        "name": "fill_203",
+        "solid": false
+      },
+      "205": {
+        "name": "fill_204",
+        "solid": false
+      },
+      "206": {
+        "name": "fill_205",
+        "solid": false
+      },
+      "207": {
+        "name": "fill_206",
+        "solid": false
+      },
+      "208": {
+        "name": "fill_207",
+        "solid": false
+      },
+      "209": {
+        "name": "fill_208",
+        "solid": false
+      },
+      "210": {
+        "name": "fill_209",
+        "solid": false
+      },
+      "211": {
+        "name": "fill_210",
+        "solid": false
+      },
+      "212": {
+        "name": "fill_211",
+        "solid": false
+      },
+      "213": {
+        "name": "fill_212",
+        "solid": false
+      },
+      "214": {
+        "name": "fill_213",
+        "solid": false
+      },
+      "215": {
+        "name": "fill_214",
+        "solid": false
+      },
+      "216": {
+        "name": "fill_215",
+        "solid": false
+      },
+      "217": {
+        "name": "fill_216",
+        "solid": false
+      },
+      "218": {
+        "name": "fill_217",
+        "solid": false
+      },
+      "219": {
+        "name": "fill_218",
+        "solid": false
+      },
+      "220": {
+        "name": "fill_219",
+        "solid": false
+      },
+      "221": {
+        "name": "fill_220",
+        "solid": false
+      },
+      "222": {
+        "name": "fill_221",
+        "solid": false
+      },
+      "223": {
+        "name": "fill_222",
+        "solid": false
+      },
+      "224": {
+        "name": "fill_223",
+        "solid": false
+      },
+      "225": {
+        "name": "fill_224",
+        "solid": false
+      },
+      "226": {
+        "name": "fill_225",
+        "solid": false
+      },
+      "227": {
+        "name": "fill_226",
+        "solid": false
+      },
+      "228": {
+        "name": "fill_227",
+        "solid": false
+      },
+      "229": {
+        "name": "fill_228",
+        "solid": false
+      },
+      "230": {
+        "name": "fill_229",
+        "solid": false
+      },
+      "231": {
+        "name": "fill_230",
+        "solid": false
+      },
+      "232": {
+        "name": "fill_231",
+        "solid": false
+      },
+      "233": {
+        "name": "fill_232",
+        "solid": false
+      },
+      "234": {
+        "name": "fill_233",
+        "solid": false
+      },
+      "235": {
+        "name": "fill_234",
+        "solid": false
+      },
+      "236": {
+        "name": "fill_235",
+        "solid": false
+      },
+      "237": {
+        "name": "fill_236",
+        "solid": false
+      },
+      "238": {
+        "name": "fill_237",
+        "solid": false
+      },
+      "239": {
+        "name": "fill_238",
+        "solid": false
+      },
+      "240": {
+        "name": "fill_239",
+        "solid": false
+      },
+      "241": {
+        "name": "fill_240",
+        "solid": false
+      },
+      "242": {
+        "name": "fill_241",
+        "solid": false
+      },
+      "243": {
+        "name": "fill_242",
+        "solid": false
+      },
+      "244": {
+        "name": "fill_243",
+        "solid": false
+      },
+      "245": {
+        "name": "fill_244",
+        "solid": false
+      },
+      "246": {
+        "name": "fill_245",
+        "solid": false
+      },
+      "247": {
+        "name": "fill_246",
+        "solid": false
+      },
+      "248": {
+        "name": "fill_247",
+        "solid": false
+      },
+      "249": {
+        "name": "fill_248",
+        "solid": false
+      },
+      "250": {
+        "name": "fill_249",
+        "solid": false
+      },
+      "251": {
+        "name": "fill_250",
+        "solid": false
+      },
+      "252": {
+        "name": "fill_251",
+        "solid": false
+      },
+      "253": {
+        "name": "fill_252",
+        "solid": false
+      },
+      "254": {
+        "name": "fill_253",
+        "solid": false
+      },
+      "255": {
+        "name": "fill_254",
+        "solid": false
+      },
+      "256": {
+        "name": "fill_255",
+        "solid": false
+      }
+    }
+  },
+  "props": {
+    "file": "props.png",
+    "columns": 8,
+    "rows": 8,
+    "names": [
+      "skull",
+      "bones",
+      "lantern",
+      "candles",
+      "tome",
+      "chest",
+      "banner",
+      "crystal",
+      "dead_tree",
+      "mushroom",
+      "sigil",
+      "key",
+      "sword",
+      "cairn",
+      "brazier",
+      "egg",
+      "raven",
+      "tentacle_prop",
+      "statue_prop",
+      "pillar_prop",
+      "altar_prop",
+      "obelisk_prop",
+      "well_prop",
+      "sarcophagus_prop",
+      "painted_prop_0",
+      "painted_prop_1",
+      "painted_prop_2",
+      "painted_prop_3",
+      "painted_prop_4",
+      "painted_prop_5",
+      "painted_prop_6",
+      "painted_prop_7",
+      "painted_prop_8",
+      "painted_prop_9",
+      "painted_prop_10",
+      "painted_prop_11",
+      "painted_prop_12",
+      "painted_prop_13",
+      "painted_prop_14",
+      "painted_prop_15",
+      "painted_prop_16",
+      "painted_prop_17",
+      "painted_prop_18",
+      "painted_prop_19",
+      "painted_prop_20",
+      "painted_prop_21",
+      "painted_prop_22",
+      "painted_prop_23",
+      "painted_prop_24",
+      "painted_prop_25",
+      "painted_prop_26",
+      "painted_prop_27",
+      "painted_prop_28",
+      "painted_prop_29",
+      "painted_prop_30",
+      "painted_prop_31",
+      "painted_prop_32",
+      "painted_prop_33",
+      "painted_prop_34",
+      "painted_prop_35",
+      "painted_prop_36",
+      "painted_prop_37",
+      "painted_prop_38",
+      "painted_prop_39"
+    ]
+  },
+  "map": {
+    "file": "map.csv",
+    "width": 40,
+    "height": 28
+  }
+}
