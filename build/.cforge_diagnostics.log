@@ -1,4 +1,4 @@
-[1/6] Building C object CMakeFiles/ap2_app.dir/Debug/src/main.c.obj
+[1/3] Building C object CMakeFiles/ap2_app.dir/Debug/src/main.c.obj
 C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/src/main.c: In function 'dsp_update':
 C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/src/main.c:50:30: warning: unused parameter 'dt' [-Wunused-parameter]
    50 | static void dsp_update(float dt) {
@@ -7,8 +7,5 @@ C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/src/main.c: In 
 C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/src/main.c:57:30: warning: unused parameter 'dt' [-Wunused-parameter]
    57 | static void dsp_render(float dt) {
       |                        ~~~~~~^~
-[2/6] Building C object CMakeFiles/ap2_lib.dir/Debug/src/core/AP2_Tilemap.c.obj
-[3/6] Building C object CMakeFiles/ap2_lib.dir/Debug/src/core/AP2_Window.c.obj
-[4/6] Linking C executable bin\Debug\ap2.exe
-[5/6] Linking C static library lib\Debug\libap2.a
-[6/6] AP2 Debug product
+[2/3] Linking C executable bin\Debug\ap2.exe
+[3/3] AP2 Debug product
