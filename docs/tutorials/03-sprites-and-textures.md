@@ -90,4 +90,4 @@ AP_SpriteSetScale(&player, 4.0f);
 
 ## Next
 
-[Input](04-input.md)
+[Input](04-input.md) · [Tilemaps](13-tilemaps.md)

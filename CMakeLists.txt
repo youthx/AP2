@@ -271,6 +271,7 @@ target_compile_definitions(${PROJECT_NAME} PUBLIC
 # Include directories
 target_include_directories(${PROJECT_NAME} PUBLIC
     "${SOURCE_DIR}/include"
+    "${SOURCE_DIR}/include/AP2"
     "${SOURCE_DIR}/third_party/stb"
     "${SOURCE_DIR}/third_party/miniaudio"
 )

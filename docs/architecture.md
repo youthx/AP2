@@ -23,6 +23,7 @@ AP_Init(AP_INIT_WINDOWING | AP_INIT_VIDEO | AP_INIT_AUDIO);
 
 ```
 AP_PumpEvents()     input + audio update
+AP_Tick()           wait for target FPS, returns dt (seconds)
 AP_Clear()          begin the color buffer (and post capture, if enabled)
   2D / 3D / text    scene
   AP_Gui*           widgets (overlay by default)
@@ -53,7 +54,7 @@ After include, `AP2_HAS_AUDIO` (and friends) is `0` or `1`.
 
 ## Handles
 
-Textures, sounds, shaders, fonts, and windows are opaque pointers. Destroy what you create. Voices from `AP_PlayOneShot` are reaped automatically.
+Textures, sounds, shaders, fonts, tilesets, tilemaps, and windows are opaque pointers. Destroy what you create. Voices from `AP_PlayOneShot` are reaped automatically.
 
 ## Backends
 

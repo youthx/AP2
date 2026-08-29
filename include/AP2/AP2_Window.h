@@ -449,6 +449,32 @@ uint64_t AP_GetTicks(void);
 
 void AP_SetTime(double time);
 
+/*
+ * Frame clock (pygame Clock.tick).
+ *
+ *     AP_SetTargetFPS(60);
+ *     while (AP_IsRunning()) {
+ *         AP_PumpEvents();
+ *         double dt = AP_Tick();
+ *         AP_Present();
+ *     }
+ *
+ * Target 0 is uncapped: Tick still measures dt, it just does not wait.
+ * dt is seconds, clamped after a hitch so physics does not explode.
+ * AP_TickFPS(60) is pygame's clock.tick(60).
+ */
+void AP_SetTargetFPS(int fps);
+
+int AP_GetTargetFPS(void);
+
+double AP_Tick(void);
+
+double AP_TickFPS(int fps);
+
+double AP_GetDeltaTime(void);
+
+double AP_GetFPS(void);
+
 /* =========================================================
  * Subsystem
  * ========================================================= */

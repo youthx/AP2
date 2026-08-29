@@ -46,6 +46,7 @@ int main(void) {
 | `AP_CreateWindow` | One window. Later draw/input calls use it |
 | `AP_IsRunning` | False after the user hits the close button or `AP_RequestClose` |
 | `AP_PumpEvents` | OS events, input, audio tick |
+| `AP_Tick` | Optional. Caps FPS (`AP_SetTargetFPS`) and returns dt in seconds |
 | `AP_SetDrawColor` | RGBA 0–1. `AP_Clear` uses this color |
 | `AP_Clear` | Fill the color buffer |
 | `AP_Present` | Swap (and run post-process if enabled) |

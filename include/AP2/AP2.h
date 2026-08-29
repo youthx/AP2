@@ -23,6 +23,7 @@
  *
  *     while (AP_IsRunning()) {
  *         AP_PumpEvents();
+ *         double dt = AP_Tick();
  *         AP_SetDrawColor(0.1f, 0.1f, 0.1f, 1.0f);
  *         AP_Clear();
  *         AP_Present();
@@ -40,8 +41,8 @@
  *
  * Exclude flags: AP2_NO_ERROR, AP2_NO_LOGGER, AP2_NO_PLATFORM, AP2_NO_MATH,
  * AP2_NO_DEVICE, AP2_NO_VIDEO, AP2_NO_WINDOW, AP2_NO_INPUT, AP2_NO_RENDERER,
- * AP2_NO_TEXTURE, AP2_NO_SPRITE, AP2_NO_SHADER, AP2_NO_FONT, AP2_NO_GUI,
- * AP2_NO_LIST, AP2_NO_STRING, AP2_NO_3D, AP2_NO_AUDIO, AP2_NO_POST,
+ * AP2_NO_TEXTURE, AP2_NO_SPRITE, AP2_NO_TILEMAP, AP2_NO_SHADER, AP2_NO_FONT,
+ * AP2_NO_GUI, AP2_NO_LIST, AP2_NO_STRING, AP2_NO_3D, AP2_NO_AUDIO, AP2_NO_POST,
  * AP2_NO_OPENGL
  *
  * After include, AP2_HAS_<MODULE> is 0 or 1 for each module.
@@ -535,6 +536,9 @@
 #ifndef AP2_NO_SPRITE
 #define AP2_NO_SPRITE
 #endif
+#ifndef AP2_NO_TILEMAP
+#define AP2_NO_TILEMAP
+#endif
 #ifndef AP2_NO_POST
 #define AP2_NO_POST
 #endif
@@ -627,6 +631,13 @@
 #define AP2_HAS_SPRITE 1
 #endif
 
+#undef AP2_HAS_TILEMAP
+#ifdef AP2_NO_TILEMAP
+#define AP2_HAS_TILEMAP 0
+#else
+#define AP2_HAS_TILEMAP 1
+#endif
+
 #undef AP2_HAS_SHADER
 #ifdef AP2_NO_SHADER
 #define AP2_HAS_SHADER 0
@@ -715,6 +726,7 @@
 #define AP2_MODULE_3D (1u << 19)
 #define AP2_MODULE_AUDIO (1u << 20)
 #define AP2_MODULE_POST (1u << 21)
+#define AP2_MODULE_TILEMAP (1u << 22)
 
 #define AP2_ENABLED_MODULES                                                     \
   (AP2_MODULE_TYPES | AP2_MODULE_INIT |                                        \
@@ -731,6 +743,7 @@
    (AP2_HAS_RENDERER ? AP2_MODULE_RENDERER : 0u) |                             \
    (AP2_HAS_TEXTURE ? AP2_MODULE_TEXTURE : 0u) |                               \
    (AP2_HAS_SPRITE ? AP2_MODULE_SPRITE : 0u) |                                 \
+   (AP2_HAS_TILEMAP ? AP2_MODULE_TILEMAP : 0u) |                               \
    (AP2_HAS_SHADER ? AP2_MODULE_SHADER : 0u) |                                 \
    (AP2_HAS_FONT ? AP2_MODULE_FONT : 0u) |                                     \
    (AP2_HAS_GUI ? AP2_MODULE_GUI : 0u) |                                       \
@@ -799,6 +812,10 @@
 
 #if AP2_HAS_SPRITE
 #include "AP2/AP2_Sprite.h"
+#endif
+
+#if AP2_HAS_TILEMAP
+#include "AP2/AP2_Tilemap.h"
 #endif
 
 #if AP2_HAS_SHADER

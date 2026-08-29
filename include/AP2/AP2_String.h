@@ -12,6 +12,7 @@
 #include <stdbool.h>
 #include <stddef.h>
 #include <stdint.h>
+#include <stdarg.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -49,6 +50,25 @@ const char *AP_StringCStr(const AP_String *str);
 
 char AP_StringCharAt(const AP_String *str, size_t index);
 
+#ifndef AP2_PRINTF_FORMAT
+#if defined(__GNUC__) || defined(__clang__)
+#define AP2_PRINTF_FORMAT(fmt_index, arg_index)                                \
+  __attribute__((format(printf, fmt_index, arg_index)))
+#else
+#define AP2_PRINTF_FORMAT(fmt_index, arg_index)
+#endif
+#endif
+
+bool AP_StringFormat(AP_String *str, const char *format, ...)
+    AP2_PRINTF_FORMAT(2, 3);
+
+bool AP_StringFormatV(AP_String *str, const char *format, va_list args);
+
+bool AP_StringAppendFormat(AP_String *str, const char *format, ...)
+    AP2_PRINTF_FORMAT(2, 3);
+
+bool AP_StringAppendFormatV(AP_String *str, const char *format, va_list args);
+
 #define AP_String_Reserve AP_StringReserve
 #define AP_String_AppendFixed AP_StringAppendFixed
 #define AP_String_Append AP_StringAppend
@@ -57,6 +77,8 @@ char AP_StringCharAt(const AP_String *str, size_t index);
 #define AP_String_Insert AP_StringInsert
 #define AP_String_Erase AP_StringErase
 #define AP_String_CharAt AP_StringCharAt
+#define AP_String_Format AP_StringFormat
+#define AP_String_AppendFormat AP_StringAppendFormat
 
 #ifdef __cplusplus
 }

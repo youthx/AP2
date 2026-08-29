@@ -25,6 +25,7 @@ Draw with the short names (`AP_Clear`, `AP_FillRect`, `AP_Present`, `AP_DrawText
 7. [Immediate GUI](tutorials/07-immediate-gui.md)
 8. [3D](tutorials/08-3d.md)
 9. [Shaders and post-processing](tutorials/09-shaders-and-post.md)
+13. [Tilemaps](tutorials/13-tilemaps.md)
 
 ### Apps and games
 

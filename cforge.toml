@@ -38,6 +38,7 @@ source_dirs = [
 
 include_dirs = [
     "include",
+    "include/AP2",
     "third_party/stb",
     "third_party/miniaudio"
 ]

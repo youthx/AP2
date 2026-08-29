@@ -1,74 +1,29 @@
-[1/72] Building C object _deps/glfw-build/src/CMakeFiles/glfw.dir/Release/context.c.obj
-[2/72] Building C object _deps/glfw-build/src/CMakeFiles/glfw.dir/Release/null_init.c.obj
-[3/72] Building C object _deps/glfw-build/src/CMakeFiles/glfw.dir/Release/platform.c.obj
-[4/72] Building C object _deps/glfw-build/src/CMakeFiles/glfw.dir/Release/init.c.obj
-[5/72] Building C object _deps/glfw-build/src/CMakeFiles/glfw.dir/Release/vulkan.c.obj
-[6/72] Building C object _deps/glfw-build/src/CMakeFiles/glfw.dir/Release/egl_context.c.obj
-[7/72] Building C object _deps/glfw-build/src/CMakeFiles/glfw.dir/Release/osmesa_context.c.obj
-[8/72] Building C object _deps/glfw-build/src/CMakeFiles/glfw.dir/Release/monitor.c.obj
-[9/72] Building C object _deps/glfw-build/src/CMakeFiles/glfw.dir/Release/input.c.obj
-[10/72] Building C object _deps/glfw-build/src/CMakeFiles/glfw.dir/Release/window.c.obj
-[11/72] Building C object _deps/glfw-build/src/CMakeFiles/glfw.dir/Release/win32_module.c.obj
-[12/72] Building C object _deps/glfw-build/src/CMakeFiles/glfw.dir/Release/win32_time.c.obj
-[13/72] Building C object _deps/glfw-build/src/CMakeFiles/glfw.dir/Release/null_monitor.c.obj
-[14/72] Building C object _deps/glfw-build/src/CMakeFiles/glfw.dir/Release/null_joystick.c.obj
-[15/72] Building C object _deps/glfw-build/src/CMakeFiles/glfw.dir/Release/null_window.c.obj
-[16/72] Building C object _deps/glfw-build/src/CMakeFiles/glfw.dir/Release/win32_thread.c.obj
-[17/72] Building C object _deps/glfw-build/src/CMakeFiles/glfw.dir/Release/win32_init.c.obj
-[18/72] Building C object _deps/glfw-build/src/CMakeFiles/glfw.dir/Release/win32_monitor.c.obj
-[19/72] Building C object CMakeFiles/ap2_app.dir/Release/src/core/AP2_Error.c.obj
-[20/72] Building C object _deps/glfw-build/src/CMakeFiles/glfw.dir/Release/win32_joystick.c.obj
-[21/72] Building C object CMakeFiles/ap2_app.dir/Release/src/core/AP2_Device.c.obj
-[22/72] Building C object CMakeFiles/ap2_app.dir/Release/src/core/AP2_Audio.c.obj
-[23/72] Building C object CMakeFiles/ap2_app.dir/Release/src/core/AP2_3D.c.obj
-[24/72] Building C object CMakeFiles/ap2_app.dir/Release/src/core/AP2_Init.c.obj
-[25/72] Building C object CMakeFiles/ap2_app.dir/Release/src/core/AP2_Font.c.obj
-[26/72] Building C object CMakeFiles/ap2_app.dir/Release/src/core/AP2_Gui.c.obj
-[27/72] Building C object CMakeFiles/ap2_app.dir/Release/src/core/AP2_Input.c.obj
-[28/72] Building C object CMakeFiles/ap2_app.dir/Release/src/core/AP2_List.c.obj
-[29/72] Building C object CMakeFiles/ap2_app.dir/Release/src/core/AP2_Logger.c.obj
-[30/72] Building C object CMakeFiles/ap2_app.dir/Release/src/core/AP2_Math.c.obj
-[31/72] Building C object CMakeFiles/ap2_app.dir/Release/src/core/AP2_Opengl.c.obj
-[32/72] Building C object _deps/glfw-build/src/CMakeFiles/glfw.dir/Release/win32_window.c.obj
-[33/72] Building C object CMakeFiles/ap2_app.dir/Release/src/core/AP2_Post.c.obj
-[34/72] Building C object CMakeFiles/ap2_app.dir/Release/src/core/AP2_Sprite.c.obj
-[35/72] Building C object CMakeFiles/ap2_app.dir/Release/src/core/AP2_Shader.c.obj
-[36/72] Building C object _deps/glfw-build/src/CMakeFiles/glfw.dir/Release/wgl_context.c.obj
-[37/72] Building C object CMakeFiles/ap2_app.dir/Release/src/core/AP2_Renderer.c.obj
-[38/72] Building C object CMakeFiles/ap2_app.dir/Release/src/core/AP2_String.c.obj
-[39/72] Building C object CMakeFiles/ap2_app.dir/Release/src/core/AP2_Video.c.obj
-[40/72] Building C object CMakeFiles/ap2_app.dir/Release/src/core/AP2_Window.c.obj
-[41/72] Building C object CMakeFiles/ap2_app.dir/Release/src/main.c.obj
-[42/72] Building C object CMakeFiles/ap2_lib.dir/Release/src/core/AP2_Device.c.obj
-[43/72] Building C object CMakeFiles/ap2_lib.dir/Release/src/core/AP2_3D.c.obj
-[44/72] Building C object CMakeFiles/ap2_lib.dir/Release/src/core/AP2_Error.c.obj
-[45/72] Building C object CMakeFiles/ap2_lib.dir/Release/src/core/AP2_Audio.c.obj
-[46/72] Building C object CMakeFiles/ap2_lib.dir/Release/src/core/AP2_Init.c.obj
-[47/72] Building C object CMakeFiles/ap2_lib.dir/Release/src/core/AP2_List.c.obj
-[48/72] Building C object CMakeFiles/ap2_app.dir/Release/src/core/AP2_Texture.c.obj
-[49/72] Building C object CMakeFiles/ap2_lib.dir/Release/src/core/AP2_Input.c.obj
-[50/72] Building C object CMakeFiles/ap2_lib.dir/Release/src/core/AP2_Font.c.obj
-[51/72] Building C object CMakeFiles/ap2_lib.dir/Release/src/core/AP2_Logger.c.obj
-[52/72] Building C object CMakeFiles/ap2_app.dir/Release/src/core/AP2_Platform.c.obj
-[53/72] Building C object CMakeFiles/ap2_lib.dir/Release/src/core/AP2_Gui.c.obj
-[54/72] Building C object CMakeFiles/ap2_lib.dir/Release/src/core/AP2_Math.c.obj
-[55/72] Building C object CMakeFiles/ap2_lib.dir/Release/src/core/AP2_Opengl.c.obj
-[56/72] Building C object CMakeFiles/ap2_lib.dir/Release/src/core/AP2_Sprite.c.obj
-[57/72] Building C object CMakeFiles/ap2_lib.dir/Release/src/core/AP2_Post.c.obj
-[58/72] Building C object CMakeFiles/ap2_lib.dir/Release/src/core/AP2_String.c.obj
-[59/72] Building C object CMakeFiles/ap2_lib.dir/Release/src/core/AP2_Shader.c.obj
-[60/72] Building C object CMakeFiles/ap2_lib.dir/Release/src/core/AP2_Renderer.c.obj
-[61/72] Building C object CMakeFiles/ap2_lib.dir/Release/src/core/AP2_Video.c.obj
-[62/72] Building C object CMakeFiles/ap2_lib.dir/Release/src/core/AP2_Window.c.obj
-[63/72] Linking C static library lib\Release\libglfw3.a
-[64/72] Building C object CMakeFiles/ap2_lib.dir/Release/src/core/AP2_Platform.c.obj
-[65/72] Building C object CMakeFiles/ap2_lib.dir/Release/src/core/AP2_Texture.c.obj
-[66/72] Building C object _deps/glad-build/CMakeFiles/glad.dir/Release/src/gl.c.obj
-[67/72] Linking C static library lib\Release\libglad.a
-[68/72] Building C object CMakeFiles/ap2_app.dir/Release/src/core/AP2_Miniaudio.c.obj
-[69/72] Building C object CMakeFiles/ap2_lib.dir/Release/src/core/AP2_Miniaudio.c.obj
-[70/72] Linking C static library lib\Release\libap2.a
-[71/72] Linking C executable bin\Release\ap2.exe
-lto-wrapper.exe: warning: using serial compilation of 8 LTRANS jobs
-lto-wrapper.exe: note: see the '-flto' option documentation for more information
-[72/72] AP2 Release product
+[1/18] Building C object CMakeFiles/ap2_app.dir/Debug/src/core/AP2_Init.c.obj
+[2/18] Building C object CMakeFiles/ap2_app.dir/Debug/src/main.c.obj
+C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/src/main.c: In function 'dsp_update':
+C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/src/main.c:49:30: warning: unused parameter 'dt' [-Wunused-parameter]
+   49 | static void dsp_update(float dt) {
+      |                        ~~~~~~^~
+C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/src/main.c: In function 'dsp_render':
+C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/src/main.c:56:30: warning: unused parameter 'dt' [-Wunused-parameter]
+   56 | static void dsp_render(float dt) {
+      |                        ~~~~~~^~
+[3/18] Building C object CMakeFiles/ap2_app.dir/Debug/src/core/AP2_Input.c.obj
+[4/18] Building C object CMakeFiles/ap2_app.dir/Debug/src/core/AP2_Post.c.obj
+[5/18] Building C object CMakeFiles/ap2_lib.dir/Debug/src/core/AP2_3D.c.obj
+[6/18] Building C object CMakeFiles/ap2_app.dir/Debug/src/core/AP2_3D.c.obj
+[7/18] Building C object CMakeFiles/ap2_lib.dir/Debug/src/core/AP2_Gui.c.obj
+[8/18] Building C object CMakeFiles/ap2_lib.dir/Debug/src/core/AP2_Init.c.obj
+[9/18] Building C object CMakeFiles/ap2_app.dir/Debug/src/core/AP2_Gui.c.obj
+[10/18] Building C object CMakeFiles/ap2_app.dir/Debug/src/core/AP2_Window.c.obj
+C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/src/core/AP2_Window.c:2193:13: warning: 'AP_ClockReset' defined but not used [-Wunused-function]
+ 2193 | static void AP_ClockReset(void) {
+      |             ^~~~~~~~~~~~~
+[11/18] Building C object CMakeFiles/ap2_lib.dir/Debug/src/core/AP2_Input.c.obj
+[12/18] Building C object CMakeFiles/ap2_lib.dir/Debug/src/core/AP2_Post.c.obj
+[13/18] Building C object CMakeFiles/ap2_app.dir/Debug/src/core/AP2_Renderer.c.obj
+[14/18] Building C object CMakeFiles/ap2_lib.dir/Debug/src/core/AP2_Window.c.obj
+[15/18] Building C object CMakeFiles/ap2_lib.dir/Debug/src/core/AP2_Renderer.c.obj
+[16/18] Linking C executable bin\Debug\ap2.exe
+[17/18] Linking C static library lib\Debug\libap2.a
+[18/18] AP2 Debug product

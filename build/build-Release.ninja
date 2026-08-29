@@ -36,6 +36,16 @@ build _deps/glfw-build/src/install/local: phony _deps/glfw-build/src/install/loc
 
 build _deps/glfw-build/src/install/strip: phony _deps/glfw-build/src/install/strip$:Release
 
+build _deps/glfw-build/docs/package: phony _deps/glfw-build/docs/package$:Release
+
+build _deps/glfw-build/docs/package_source: phony _deps/glfw-build/docs/package_source$:Release
+
+build _deps/glfw-build/docs/install: phony _deps/glfw-build/docs/install$:Release
+
+build _deps/glfw-build/docs/install/local: phony _deps/glfw-build/docs/install/local$:Release
+
+build _deps/glfw-build/docs/install/strip: phony _deps/glfw-build/docs/install/strip$:Release
+
 build _deps/glad-build/package: phony _deps/glad-build/package$:Release
 
 build _deps/glad-build/package_source: phony _deps/glad-build/package_source$:Release
@@ -64,6 +74,8 @@ build libglad.a: phony lib/Release/libglad.a
 
 build libglfw3.a: phony lib/Release/libglfw3.a
 
+build uninstall: phony _deps/glfw-build/uninstall$:Release
+
 build update_mappings: phony _deps/glfw-build/src/update_mappings$:Release
 
 
@@ -83,6 +95,12 @@ build _deps/glad-build/all: phony _deps/glad-build/all$:Release
 # Folder: C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-build
 
 build _deps/glfw-build/all: phony _deps/glfw-build/all$:Release
+
+
+#############################################
+# Folder: C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-build/docs
+
+build _deps/glfw-build/docs/all: phony _deps/glfw-build/docs/all$:Release
 
 
 #############################################

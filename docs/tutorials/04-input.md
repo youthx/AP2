@@ -81,17 +81,19 @@ if (pad >= 0 && AP_IsGamepadConnected(pad)) {
 
 ## Frame time
 
-There is no `AP_GetDeltaTime`. Measure it from `AP_GetTime()` (seconds since init):
+`AP_Tick()` is pygame's `Clock.tick`: it waits so the frame hits `AP_SetTargetFPS`, then returns delta time in seconds. `0` means uncapped.
 
 ```c
-static double last = 0.0;
-double now = AP_GetTime();
-float dt = (last == 0.0) ? 0.0f : (float)(now - last);
-last = now;
-if (dt > 0.05f) {
-  dt = 0.05f; /* clamp after a hitch */
+AP_SetTargetFPS(60);
+
+while (AP_IsRunning()) {
+  AP_PumpEvents();
+  double dt = AP_Tick(); /* or AP_GetDeltaTime() after Tick */
+  AP_SpriteUpdate(&walk, (float)dt);
 }
 ```
+
+`AP_TickFPS(60)` is the one-liner. `AP_GetFPS()` is a smoothed measurement, not the cap. Hitch frames are clamped to 0.1s.
 
 ## Next
 

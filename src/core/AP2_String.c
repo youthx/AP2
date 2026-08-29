@@ -10,6 +10,8 @@
 
 #include "AP2/AP2_Error.h"
 
+#include <stdarg.h>
+#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
@@ -201,4 +203,68 @@ char AP_StringCharAt(const AP_String *str, size_t index) {
   }
 
   return str->data[index];
+}
+
+static bool AP_StringFormatVInternal(AP_String *str, bool append,
+                                    const char *format, va_list args) {
+  va_list copy;
+  int needed;
+  size_t offset;
+
+  if (str == NULL || format == NULL) {
+    AP_SET_ERROR(AP_ERROR_INVALID_ARGUMENT, "String format arguments invalid");
+    return false;
+  }
+
+  if (str->data == NULL && !AP_InitString(str)) {
+    return false;
+  }
+
+  offset = append ? str->length : 0;
+
+  va_copy(copy, args);
+  needed = vsnprintf(NULL, 0, format, copy);
+  va_end(copy);
+
+  if (needed < 0) {
+    AP_SET_ERROR(AP_ERROR_OPERATION_FAILED, "String format failed");
+    return false;
+  }
+
+  if (!AP_StringGrow(str, offset + (size_t)needed + 1)) {
+    return false;
+  }
+
+  vsnprintf(str->data + offset, str->capacity - offset, format, args);
+  str->length = offset + (size_t)needed;
+  str->data[str->length] = '\0';
+  return true;
+}
+
+bool AP_StringFormatV(AP_String *str, const char *format, va_list args) {
+  return AP_StringFormatVInternal(str, false, format, args);
+}
+
+bool AP_StringFormat(AP_String *str, const char *format, ...) {
+  va_list args;
+  bool ok;
+
+  va_start(args, format);
+  ok = AP_StringFormatVInternal(str, false, format, args);
+  va_end(args);
+  return ok;
+}
+
+bool AP_StringAppendFormatV(AP_String *str, const char *format, va_list args) {
+  return AP_StringFormatVInternal(str, true, format, args);
+}
+
+bool AP_StringAppendFormat(AP_String *str, const char *format, ...) {
+  va_list args;
+  bool ok;
+
+  va_start(args, format);
+  ok = AP_StringFormatVInternal(str, true, format, args);
+  va_end(args);
+  return ok;
 }

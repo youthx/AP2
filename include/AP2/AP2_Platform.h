@@ -160,6 +160,8 @@ uint64_t AP_PlatformGetTimerFrequency(void);
 
 uint64_t AP_PlatformGetTimerValue(void);
 
+void AP_PlatformSleep(double seconds);
+
 #ifdef __cplusplus
 }
 #endif

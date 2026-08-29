@@ -103,6 +103,14 @@ static int g_window_count = 0;
 static AP_Window *g_active_window = NULL;
 static bool g_glfw_initialized = false;
 
+#define AP_DELTA_TIME_MAX 0.1
+
+static int g_target_fps = 0;
+static bool g_clock_started = false;
+static double g_last_tick = 0.0;
+static double g_delta_time = 0.0;
+static double g_fps = 0.0;
+
 /* =========================================================
  * Helpers
  * ========================================================= */
@@ -630,7 +638,7 @@ AP_WindowConfig AP_WindowDefaultConfig(void) {
   config.height = AP_WINDOW_DEFAULT_HEIGHT;
   config.x = AP_WINDOW_POS_CENTERED;
   config.y = AP_WINDOW_POS_CENTERED;
-  config.flags = AP_WINDOW_RESIZABLE | AP_WINDOW_DECORATED | AP_WINDOW_VSYNC |
+  config.flags = AP_WINDOW_DECORATED | AP_WINDOW_VSYNC |
                  AP_WINDOW_CENTERED | AP_WINDOW_FOCUS_ON_SHOW |
                  AP_WINDOW_SCALE_TO_MONITOR | AP_WINDOW_HIGH_DPI |
                  AP_WINDOW_MSAA;
@@ -724,9 +732,9 @@ AP_Window *AP_CreateWindowEx(const AP_WindowConfig *config) {
     actual.swap_interval = 1;
   }
 
-  if ((actual.flags & AP_WINDOW_BORDERLESS) == 0 &&
-      (actual.flags & (AP_WINDOW_NO_TITLE | AP_WINDOW_NO_MINIMIZE |
-                       AP_WINDOW_NO_MAXIMIZE | AP_WINDOW_NO_CLOSE)) != 0) {
+  if ((actual.flags & AP_WINDOW_BORDERLESS) != 0) {
+    actual.flags &= ~AP_WINDOW_DECORATED;
+  } else {
     actual.flags |= AP_WINDOW_DECORATED;
   }
 
@@ -2168,6 +2176,27 @@ void *AP_GetNativeHandle(void) {
 
 void *AP_GetNativeDisplay(void) { return AP_PlatformGetNativeDisplay(); }
 
+static double AP_ClockNow(void) {
+  if (g_glfw_initialized) {
+    return glfwGetTime();
+  }
+
+  {
+    uint64_t frequency = AP_PlatformGetTimerFrequency();
+    if (frequency == 0) {
+      return 0.0;
+    }
+    return (double)AP_PlatformGetTimerValue() / (double)frequency;
+  }
+}
+
+static void AP_ClockReset(void) {
+  g_clock_started = false;
+  g_last_tick = 0.0;
+  g_delta_time = 0.0;
+  g_fps = 0.0;
+}
+
 double AP_GetTime(void) {
   if (!g_glfw_initialized) {
     return 0.0;
@@ -2184,7 +2213,70 @@ void AP_SetTime(double time) {
   }
 
   glfwSetTime(time);
+  g_last_tick = time;
+  g_delta_time = 0.0;
 }
+
+void AP_SetTargetFPS(int fps) {
+  if (fps < 0) {
+    fps = 0;
+  }
+  g_target_fps = fps;
+}
+
+int AP_GetTargetFPS(void) { return g_target_fps; }
+
+double AP_Tick(void) {
+  double now = AP_ClockNow();
+
+  if (!g_clock_started) {
+    g_clock_started = true;
+    g_last_tick = now;
+    g_delta_time = 0.0;
+    return 0.0;
+  }
+
+  if (g_target_fps > 0) {
+    double frame = 1.0 / (double)g_target_fps;
+    double target = g_last_tick + frame;
+    double remaining = target - now;
+
+    if (remaining > 0.002) {
+      AP_PlatformSleep(remaining - 0.001);
+      now = AP_ClockNow();
+    }
+
+    while (now < target) {
+      now = AP_ClockNow();
+    }
+  }
+
+  g_delta_time = now - g_last_tick;
+  if (g_delta_time < 0.0) {
+    g_delta_time = 0.0;
+  }
+  if (g_delta_time > AP_DELTA_TIME_MAX) {
+    g_delta_time = AP_DELTA_TIME_MAX;
+  }
+
+  g_last_tick = now;
+
+  if (g_delta_time > 0.0) {
+    double instant = 1.0 / g_delta_time;
+    g_fps = (g_fps <= 0.0) ? instant : (g_fps * 0.9 + instant * 0.1);
+  }
+
+  return g_delta_time;
+}
+
+double AP_TickFPS(int fps) {
+  AP_SetTargetFPS(fps);
+  return AP_Tick();
+}
+
+double AP_GetDeltaTime(void) { return g_delta_time; }
+
+double AP_GetFPS(void) { return g_fps; }
 
 /* =========================================================
  * Subsystem

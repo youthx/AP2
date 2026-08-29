@@ -705,3 +705,34 @@ uint64_t AP_PlatformGetTimerValue(void) {
          (uint64_t)time_value.tv_nsec;
 #endif
 }
+
+void AP_PlatformSleep(double seconds) {
+  if (seconds <= 0.0) {
+    return;
+  }
+
+#if defined(_WIN32)
+  {
+    DWORD milliseconds = (DWORD)(seconds * 1000.0);
+    if (milliseconds > 0) {
+      Sleep(milliseconds);
+    }
+  }
+#else
+  {
+    struct timespec request;
+
+    request.tv_sec = (time_t)seconds;
+    request.tv_nsec =
+        (long)((seconds - (double)request.tv_sec) * 1000000000.0);
+    if (request.tv_nsec < 0) {
+      request.tv_nsec = 0;
+    } else if (request.tv_nsec > 999999999L) {
+      request.tv_nsec = 999999999L;
+    }
+
+    while (nanosleep(&request, &request) != 0) {
+    }
+  }
+#endif
+}

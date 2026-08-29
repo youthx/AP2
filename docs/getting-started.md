@@ -51,6 +51,7 @@ int main(void) {
 
   while (AP_IsRunning()) {
     AP_PumpEvents();
+    AP_Tick();
 
     if (AP_IsKeyPressed(AP_KEY_ESCAPE)) {
       AP_RequestClose();
@@ -87,6 +88,7 @@ Application code should use the short macros:
 | `AP_DrawLineF` | `AP_RenderLine` |
 | `AP_DrawTexture` | `AP_RenderTexture` |
 | `AP_DrawSprite` | `AP_RenderSprite` |
+| `AP_DrawTilemap` | `AP_RenderTilemap` |
 | `AP_DrawText` | `AP_RenderText` |
 | `AP_PushTransform` | `AP_PushRenderTransform` |
 

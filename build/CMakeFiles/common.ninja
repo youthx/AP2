@@ -652,6 +652,215 @@ build _deps/glfw-build/src/install/strip$:RelWithDebInfo: phony _deps/glfw-build
 
 # =============================================================================
 # Write statements declared in CMakeLists.txt:
+# C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-src/CMakeLists.txt
+# =============================================================================
+
+
+#############################################
+# Utility command for package
+
+build _deps/glfw-build/docs/CMakeFiles/Debug/package.util: CUSTOM_COMMAND _deps/glfw-build/docs/all$:Debug
+  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build && "C:\Program Files\CMake\bin\cpack.exe" -C Debug --config ./CPackConfig.cmake"
+  DESC = Run CPack packaging tool...
+  pool = console
+  restat = 1
+
+build _deps/glfw-build/docs/package$:Debug: phony _deps/glfw-build/docs/CMakeFiles/Debug/package.util
+
+
+#############################################
+# Utility command for package
+
+build _deps/glfw-build/docs/CMakeFiles/Release/package.util: CUSTOM_COMMAND _deps/glfw-build/docs/all$:Release
+  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build && "C:\Program Files\CMake\bin\cpack.exe" -C Release --config ./CPackConfig.cmake"
+  DESC = Run CPack packaging tool...
+  pool = console
+  restat = 1
+
+build _deps/glfw-build/docs/package$:Release: phony _deps/glfw-build/docs/CMakeFiles/Release/package.util
+
+
+#############################################
+# Utility command for package
+
+build _deps/glfw-build/docs/CMakeFiles/RelWithDebInfo/package.util: CUSTOM_COMMAND _deps/glfw-build/docs/all$:RelWithDebInfo
+  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build && "C:\Program Files\CMake\bin\cpack.exe" -C RelWithDebInfo --config ./CPackConfig.cmake"
+  DESC = Run CPack packaging tool...
+  pool = console
+  restat = 1
+
+build _deps/glfw-build/docs/package$:RelWithDebInfo: phony _deps/glfw-build/docs/CMakeFiles/RelWithDebInfo/package.util
+
+
+#############################################
+# Utility command for package_source
+
+build _deps/glfw-build/docs/CMakeFiles/Debug/package_source.util: CUSTOM_COMMAND
+  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build && "C:\Program Files\CMake\bin\cpack.exe" --config ./CPackSourceConfig.cmake"
+  DESC = Run CPack packaging tool for source...
+  pool = console
+  restat = 1
+
+build _deps/glfw-build/docs/package_source$:Debug: phony _deps/glfw-build/docs/CMakeFiles/Debug/package_source.util
+
+
+#############################################
+# Utility command for package_source
+
+build _deps/glfw-build/docs/CMakeFiles/Release/package_source.util: CUSTOM_COMMAND
+  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build && "C:\Program Files\CMake\bin\cpack.exe" --config ./CPackSourceConfig.cmake"
+  DESC = Run CPack packaging tool for source...
+  pool = console
+  restat = 1
+
+build _deps/glfw-build/docs/package_source$:Release: phony _deps/glfw-build/docs/CMakeFiles/Release/package_source.util
+
+
+#############################################
+# Utility command for package_source
+
+build _deps/glfw-build/docs/CMakeFiles/RelWithDebInfo/package_source.util: CUSTOM_COMMAND
+  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build && "C:\Program Files\CMake\bin\cpack.exe" --config ./CPackSourceConfig.cmake"
+  DESC = Run CPack packaging tool for source...
+  pool = console
+  restat = 1
+
+build _deps/glfw-build/docs/package_source$:RelWithDebInfo: phony _deps/glfw-build/docs/CMakeFiles/RelWithDebInfo/package_source.util
+
+
+#############################################
+# Utility command for edit_cache
+
+build _deps/glfw-build/docs/CMakeFiles/edit_cache.util: CUSTOM_COMMAND
+  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build\_deps\glfw-build\docs && "C:\Program Files\CMake\bin\cmake-gui.exe" -SC:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2 -BC:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build"
+  DESC = Running CMake cache editor...
+  pool = console
+  restat = 1
+
+build _deps/glfw-build/docs/edit_cache: phony _deps/glfw-build/docs/CMakeFiles/edit_cache.util
+
+
+#############################################
+# Utility command for rebuild_cache
+
+build _deps/glfw-build/docs/CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
+  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build\_deps\glfw-build\docs && "C:\Program Files\CMake\bin\cmake.exe" --regenerate-during-build -SC:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2 -BC:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build"
+  DESC = Running CMake to regenerate build system...
+  pool = console
+  restat = 1
+
+build _deps/glfw-build/docs/rebuild_cache: phony _deps/glfw-build/docs/CMakeFiles/rebuild_cache.util
+
+
+#############################################
+# Utility command for install
+
+build _deps/glfw-build/docs/CMakeFiles/Debug/install.util: CUSTOM_COMMAND _deps/glfw-build/docs/all$:Debug
+  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build\_deps\glfw-build\docs && "C:\Program Files\CMake\bin\cmake.exe" -DBUILD_TYPE=Debug -P cmake_install.cmake"
+  DESC = Install the project...
+  pool = console
+  restat = 1
+
+build _deps/glfw-build/docs/install$:Debug: phony _deps/glfw-build/docs/CMakeFiles/Debug/install.util
+
+
+#############################################
+# Utility command for install
+
+build _deps/glfw-build/docs/CMakeFiles/Release/install.util: CUSTOM_COMMAND _deps/glfw-build/docs/all$:Release
+  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build\_deps\glfw-build\docs && "C:\Program Files\CMake\bin\cmake.exe" -DBUILD_TYPE=Release -P cmake_install.cmake"
+  DESC = Install the project...
+  pool = console
+  restat = 1
+
+build _deps/glfw-build/docs/install$:Release: phony _deps/glfw-build/docs/CMakeFiles/Release/install.util
+
+
+#############################################
+# Utility command for install
+
+build _deps/glfw-build/docs/CMakeFiles/RelWithDebInfo/install.util: CUSTOM_COMMAND _deps/glfw-build/docs/all$:RelWithDebInfo
+  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build\_deps\glfw-build\docs && "C:\Program Files\CMake\bin\cmake.exe" -DBUILD_TYPE=RelWithDebInfo -P cmake_install.cmake"
+  DESC = Install the project...
+  pool = console
+  restat = 1
+
+build _deps/glfw-build/docs/install$:RelWithDebInfo: phony _deps/glfw-build/docs/CMakeFiles/RelWithDebInfo/install.util
+
+
+#############################################
+# Utility command for install/local
+
+build _deps/glfw-build/docs/CMakeFiles/Debug/install/local.util: CUSTOM_COMMAND _deps/glfw-build/docs/all$:Debug
+  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build\_deps\glfw-build\docs && "C:\Program Files\CMake\bin\cmake.exe" -DCMAKE_INSTALL_LOCAL_ONLY=1 -DBUILD_TYPE=Debug -P cmake_install.cmake"
+  DESC = Installing only the local directory...
+  pool = console
+  restat = 1
+
+build _deps/glfw-build/docs/install/local$:Debug: phony _deps/glfw-build/docs/CMakeFiles/Debug/install/local.util
+
+
+#############################################
+# Utility command for install/local
+
+build _deps/glfw-build/docs/CMakeFiles/Release/install/local.util: CUSTOM_COMMAND _deps/glfw-build/docs/all$:Release
+  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build\_deps\glfw-build\docs && "C:\Program Files\CMake\bin\cmake.exe" -DCMAKE_INSTALL_LOCAL_ONLY=1 -DBUILD_TYPE=Release -P cmake_install.cmake"
+  DESC = Installing only the local directory...
+  pool = console
+  restat = 1
+
+build _deps/glfw-build/docs/install/local$:Release: phony _deps/glfw-build/docs/CMakeFiles/Release/install/local.util
+
+
+#############################################
+# Utility command for install/local
+
+build _deps/glfw-build/docs/CMakeFiles/RelWithDebInfo/install/local.util: CUSTOM_COMMAND _deps/glfw-build/docs/all$:RelWithDebInfo
+  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build\_deps\glfw-build\docs && "C:\Program Files\CMake\bin\cmake.exe" -DCMAKE_INSTALL_LOCAL_ONLY=1 -DBUILD_TYPE=RelWithDebInfo -P cmake_install.cmake"
+  DESC = Installing only the local directory...
+  pool = console
+  restat = 1
+
+build _deps/glfw-build/docs/install/local$:RelWithDebInfo: phony _deps/glfw-build/docs/CMakeFiles/RelWithDebInfo/install/local.util
+
+
+#############################################
+# Utility command for install/strip
+
+build _deps/glfw-build/docs/CMakeFiles/Debug/install/strip.util: CUSTOM_COMMAND _deps/glfw-build/docs/all$:Debug
+  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build\_deps\glfw-build\docs && "C:\Program Files\CMake\bin\cmake.exe" -DCMAKE_INSTALL_DO_STRIP=1 -DBUILD_TYPE=Debug -P cmake_install.cmake"
+  DESC = Installing the project stripped...
+  pool = console
+  restat = 1
+
+build _deps/glfw-build/docs/install/strip$:Debug: phony _deps/glfw-build/docs/CMakeFiles/Debug/install/strip.util
+
+
+#############################################
+# Utility command for install/strip
+
+build _deps/glfw-build/docs/CMakeFiles/Release/install/strip.util: CUSTOM_COMMAND _deps/glfw-build/docs/all$:Release
+  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build\_deps\glfw-build\docs && "C:\Program Files\CMake\bin\cmake.exe" -DCMAKE_INSTALL_DO_STRIP=1 -DBUILD_TYPE=Release -P cmake_install.cmake"
+  DESC = Installing the project stripped...
+  pool = console
+  restat = 1
+
+build _deps/glfw-build/docs/install/strip$:Release: phony _deps/glfw-build/docs/CMakeFiles/Release/install/strip.util
+
+
+#############################################
+# Utility command for install/strip
+
+build _deps/glfw-build/docs/CMakeFiles/RelWithDebInfo/install/strip.util: CUSTOM_COMMAND _deps/glfw-build/docs/all$:RelWithDebInfo
+  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build\_deps\glfw-build\docs && "C:\Program Files\CMake\bin\cmake.exe" -DCMAKE_INSTALL_DO_STRIP=1 -DBUILD_TYPE=RelWithDebInfo -P cmake_install.cmake"
+  DESC = Installing the project stripped...
+  pool = console
+  restat = 1
+
+build _deps/glfw-build/docs/install/strip$:RelWithDebInfo: phony _deps/glfw-build/docs/CMakeFiles/RelWithDebInfo/install/strip.util
+
+# =============================================================================
+# Write statements declared in CMakeLists.txt:
 # C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/CMakeLists.txt
 # =============================================================================
 
@@ -870,26 +1079,27 @@ build _deps/glad-build/install/strip$:RelWithDebInfo: phony _deps/glad-build/CMa
 # =============================================================================
 # =============================================================================
 # =============================================================================
+# =============================================================================
 # Built-in targets
 
 
 #############################################
 # Re-run CMake if any of its inputs changed.
 
-build CMakeFiles/impl-Debug.ninja build-Debug.ninja CMakeFiles/impl-Release.ninja build-Release.ninja CMakeFiles/impl-RelWithDebInfo.ninja build-RelWithDebInfo.ninja build.ninja C$:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/cmake_install.cmake C$:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-build/cmake_install.cmake C$:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-build/src/cmake_install.cmake C$:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glad-build/cmake_install.cmake: RERUN_CMAKE | C$:/Program$ Files/CMake/share/cmake-4.3/Modules/BasicConfigVersion-SameMajorVersion.cmake.in C$:/Program$ Files/CMake/share/cmake-4.3/Modules/CMakeCInformation.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/CMakeCXXInformation.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/CMakeCommonLanguageInclude.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/CMakeDependentOption.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/CMakeGenericSystem.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/CMakeInitializeConfigs.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/CMakeLanguageInformation.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/CMakePackageConfigHelpers.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/CMakeRCInformation.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/CMakeSystemSpecificInformation.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/CMakeSystemSpecificInitialize.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/CPack.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/CPackComponent.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/CheckCSourceCompiles.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/CheckIncludeFile.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/CheckLibraryExists.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/Compiler/CMakeCommonCompilerMacros.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/Compiler/GNU-C.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/Compiler/GNU-CXX.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/Compiler/GNU.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/ExternalProject/shared_internal_commands.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/FetchContent.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/FetchContent/CMakeLists.cmake.in C$:/Program$ Files/CMake/share/cmake-4.3/Modules/FindGit.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/FindPackageHandleStandardArgs.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/FindPackageMessage.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/FindThreads.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/GNUInstallDirs.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/Internal/CMakeCLinkerInformation.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/Internal/CMakeCXXLinkerInformation.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/Internal/CMakeCommonLinkerInformation.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/Internal/CheckSourceCompiles.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/Linker/GNU-C.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/Linker/GNU-CXX.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/Linker/GNU.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/Platform/Linker/GNU.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/Platform/Linker/Windows-GNU-C.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/Platform/Linker/Windows-GNU-CXX.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/Platform/Linker/Windows-GNU.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/Platform/Windows-GNU-C-ABI.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/Platform/Windows-GNU-C.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/Platform/Windows-GNU-CXX-ABI.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/Platform/Windows-GNU-CXX.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/Platform/Windows-GNU.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/Platform/Windows-Initialize.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/Platform/Windows-windres.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/Platform/Windows.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/Platform/WindowsPaths.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/WriteBasicConfigVersionFile.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Templates/CPackConfig.cmake.in C$:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/CMakeLists.txt C$:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/ap2_product.py C$:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/cmake/ap2-product.cmake CMakeCache.txt CMakeFiles/4.3.3/CMakeCCompiler.cmake CMakeFiles/4.3.3/CMakeCXXCompiler.cmake CMakeFiles/4.3.3/CMakeRCCompiler.cmake CMakeFiles/4.3.3/CMakeSystem.cmake _deps/glad-src/generated/CMakeLists.txt _deps/glfw-src/CMakeLists.txt _deps/glfw-src/CMake/glfw3.pc.in _deps/glfw-src/CMake/glfw3Config.cmake.in _deps/glfw-src/src/CMakeLists.txt ap2-product-gen.cmake
+build CMakeFiles/impl-Debug.ninja build-Debug.ninja CMakeFiles/impl-Release.ninja build-Release.ninja CMakeFiles/impl-RelWithDebInfo.ninja build-RelWithDebInfo.ninja build.ninja C$:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/cmake_install.cmake C$:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-build/cmake_install.cmake C$:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-build/src/cmake_install.cmake C$:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-build/docs/cmake_install.cmake C$:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glad-build/cmake_install.cmake: RERUN_CMAKE | C$:/Program$ Files/CMake/share/cmake-4.3/Modules/BasicConfigVersion-SameMajorVersion.cmake.in C$:/Program$ Files/CMake/share/cmake-4.3/Modules/CMakeCInformation.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/CMakeCXXInformation.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/CMakeCommonLanguageInclude.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/CMakeDependentOption.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/CMakeGenericSystem.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/CMakeInitializeConfigs.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/CMakeLanguageInformation.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/CMakePackageConfigHelpers.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/CMakeRCInformation.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/CMakeSystemSpecificInformation.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/CMakeSystemSpecificInitialize.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/CPack.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/CPackComponent.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/CheckCSourceCompiles.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/CheckIncludeFile.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/CheckLibraryExists.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/Compiler/CMakeCommonCompilerMacros.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/Compiler/GNU-C.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/Compiler/GNU-CXX.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/Compiler/GNU.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/ExternalProject/shared_internal_commands.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/FetchContent.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/FetchContent/CMakeLists.cmake.in C$:/Program$ Files/CMake/share/cmake-4.3/Modules/FindDoxygen.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/FindGit.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/FindPackageHandleStandardArgs.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/FindPackageMessage.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/FindThreads.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/GNUInstallDirs.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/Internal/CMakeCLinkerInformation.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/Internal/CMakeCXXLinkerInformation.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/Internal/CMakeCommonLinkerInformation.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/Internal/CheckSourceCompiles.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/Linker/GNU-C.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/Linker/GNU-CXX.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/Linker/GNU.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/Platform/Linker/GNU.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/Platform/Linker/Windows-GNU-C.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/Platform/Linker/Windows-GNU-CXX.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/Platform/Linker/Windows-GNU.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/Platform/Windows-GNU-C-ABI.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/Platform/Windows-GNU-C.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/Platform/Windows-GNU-CXX-ABI.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/Platform/Windows-GNU-CXX.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/Platform/Windows-GNU.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/Platform/Windows-Initialize.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/Platform/Windows-windres.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/Platform/Windows.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/Platform/WindowsPaths.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/WriteBasicConfigVersionFile.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Templates/CPackConfig.cmake.in C$:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/CMakeLists.txt C$:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/ap2_product.py C$:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/cmake/ap2-product.cmake CMakeCache.txt CMakeFiles/4.3.3/CMakeCCompiler.cmake CMakeFiles/4.3.3/CMakeCXXCompiler.cmake CMakeFiles/4.3.3/CMakeRCCompiler.cmake CMakeFiles/4.3.3/CMakeSystem.cmake _deps/glad-src/generated/CMakeLists.txt _deps/glfw-src/CMakeLists.txt _deps/glfw-src/CMake/cmake_uninstall.cmake.in _deps/glfw-src/CMake/glfw3.pc.in _deps/glfw-src/CMake/glfw3Config.cmake.in _deps/glfw-src/docs/CMakeLists.txt _deps/glfw-src/src/CMakeLists.txt ap2-product-gen.cmake
   pool = console
 
 
 #############################################
 # A missing CMake input file is not an error.
 
-build C$:/Program$ Files/CMake/share/cmake-4.3/Modules/BasicConfigVersion-SameMajorVersion.cmake.in C$:/Program$ Files/CMake/share/cmake-4.3/Modules/CMakeCInformation.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/CMakeCXXInformation.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/CMakeCommonLanguageInclude.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/CMakeDependentOption.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/CMakeGenericSystem.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/CMakeInitializeConfigs.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/CMakeLanguageInformation.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/CMakePackageConfigHelpers.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/CMakeRCInformation.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/CMakeSystemSpecificInformation.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/CMakeSystemSpecificInitialize.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/CPack.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/CPackComponent.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/CheckCSourceCompiles.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/CheckIncludeFile.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/CheckLibraryExists.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/Compiler/CMakeCommonCompilerMacros.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/Compiler/GNU-C.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/Compiler/GNU-CXX.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/Compiler/GNU.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/ExternalProject/shared_internal_commands.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/FetchContent.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/FetchContent/CMakeLists.cmake.in C$:/Program$ Files/CMake/share/cmake-4.3/Modules/FindGit.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/FindPackageHandleStandardArgs.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/FindPackageMessage.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/FindThreads.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/GNUInstallDirs.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/Internal/CMakeCLinkerInformation.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/Internal/CMakeCXXLinkerInformation.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/Internal/CMakeCommonLinkerInformation.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/Internal/CheckSourceCompiles.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/Linker/GNU-C.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/Linker/GNU-CXX.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/Linker/GNU.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/Platform/Linker/GNU.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/Platform/Linker/Windows-GNU-C.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/Platform/Linker/Windows-GNU-CXX.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/Platform/Linker/Windows-GNU.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/Platform/Windows-GNU-C-ABI.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/Platform/Windows-GNU-C.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/Platform/Windows-GNU-CXX-ABI.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/Platform/Windows-GNU-CXX.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/Platform/Windows-GNU.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/Platform/Windows-Initialize.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/Platform/Windows-windres.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/Platform/Windows.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/Platform/WindowsPaths.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/WriteBasicConfigVersionFile.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Templates/CPackConfig.cmake.in C$:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/CMakeLists.txt C$:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/ap2_product.py C$:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/cmake/ap2-product.cmake CMakeCache.txt CMakeFiles/4.3.3/CMakeCCompiler.cmake CMakeFiles/4.3.3/CMakeCXXCompiler.cmake CMakeFiles/4.3.3/CMakeRCCompiler.cmake CMakeFiles/4.3.3/CMakeSystem.cmake _deps/glad-src/generated/CMakeLists.txt _deps/glfw-src/CMakeLists.txt _deps/glfw-src/CMake/glfw3.pc.in _deps/glfw-src/CMake/glfw3Config.cmake.in _deps/glfw-src/src/CMakeLists.txt ap2-product-gen.cmake: phony
+build C$:/Program$ Files/CMake/share/cmake-4.3/Modules/BasicConfigVersion-SameMajorVersion.cmake.in C$:/Program$ Files/CMake/share/cmake-4.3/Modules/CMakeCInformation.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/CMakeCXXInformation.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/CMakeCommonLanguageInclude.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/CMakeDependentOption.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/CMakeGenericSystem.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/CMakeInitializeConfigs.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/CMakeLanguageInformation.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/CMakePackageConfigHelpers.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/CMakeRCInformation.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/CMakeSystemSpecificInformation.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/CMakeSystemSpecificInitialize.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/CPack.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/CPackComponent.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/CheckCSourceCompiles.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/CheckIncludeFile.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/CheckLibraryExists.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/Compiler/CMakeCommonCompilerMacros.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/Compiler/GNU-C.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/Compiler/GNU-CXX.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/Compiler/GNU.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/ExternalProject/shared_internal_commands.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/FetchContent.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/FetchContent/CMakeLists.cmake.in C$:/Program$ Files/CMake/share/cmake-4.3/Modules/FindDoxygen.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/FindGit.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/FindPackageHandleStandardArgs.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/FindPackageMessage.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/FindThreads.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/GNUInstallDirs.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/Internal/CMakeCLinkerInformation.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/Internal/CMakeCXXLinkerInformation.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/Internal/CMakeCommonLinkerInformation.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/Internal/CheckSourceCompiles.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/Linker/GNU-C.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/Linker/GNU-CXX.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/Linker/GNU.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/Platform/Linker/GNU.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/Platform/Linker/Windows-GNU-C.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/Platform/Linker/Windows-GNU-CXX.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/Platform/Linker/Windows-GNU.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/Platform/Windows-GNU-C-ABI.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/Platform/Windows-GNU-C.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/Platform/Windows-GNU-CXX-ABI.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/Platform/Windows-GNU-CXX.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/Platform/Windows-GNU.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/Platform/Windows-Initialize.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/Platform/Windows-windres.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/Platform/Windows.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/Platform/WindowsPaths.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Modules/WriteBasicConfigVersionFile.cmake C$:/Program$ Files/CMake/share/cmake-4.3/Templates/CPackConfig.cmake.in C$:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/CMakeLists.txt C$:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/ap2_product.py C$:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/cmake/ap2-product.cmake CMakeCache.txt CMakeFiles/4.3.3/CMakeCCompiler.cmake CMakeFiles/4.3.3/CMakeCXXCompiler.cmake CMakeFiles/4.3.3/CMakeRCCompiler.cmake CMakeFiles/4.3.3/CMakeSystem.cmake _deps/glad-src/generated/CMakeLists.txt _deps/glfw-src/CMakeLists.txt _deps/glfw-src/CMake/cmake_uninstall.cmake.in _deps/glfw-src/CMake/glfw3.pc.in _deps/glfw-src/CMake/glfw3Config.cmake.in _deps/glfw-src/docs/CMakeLists.txt _deps/glfw-src/src/CMakeLists.txt ap2-product-gen.cmake: phony
 
 
 #############################################
 # Clean byproducts.
 
-build CMakeFiles/cmake_byproducts_for_clean_target: phony ap2$:Debug CMakeFiles/Debug/ap2.util ap2$:Release CMakeFiles/Release/ap2.util ap2$:RelWithDebInfo CMakeFiles/RelWithDebInfo/ap2.util _deps/glfw-build/src/update_mappings$:Debug _deps/glfw-build/src/CMakeFiles/Debug/update_mappings.util _deps/glfw-build/src/update_mappings$:Release _deps/glfw-build/src/CMakeFiles/Release/update_mappings.util _deps/glfw-build/src/update_mappings$:RelWithDebInfo _deps/glfw-build/src/CMakeFiles/RelWithDebInfo/update_mappings.util
+build CMakeFiles/cmake_byproducts_for_clean_target: phony ap2$:Debug CMakeFiles/Debug/ap2.util ap2$:Release CMakeFiles/Release/ap2.util ap2$:RelWithDebInfo CMakeFiles/RelWithDebInfo/ap2.util _deps/glfw-build/uninstall$:Debug _deps/glfw-build/CMakeFiles/Debug/uninstall.util _deps/glfw-build/uninstall$:Release _deps/glfw-build/CMakeFiles/Release/uninstall.util _deps/glfw-build/uninstall$:RelWithDebInfo _deps/glfw-build/CMakeFiles/RelWithDebInfo/uninstall.util _deps/glfw-build/src/update_mappings$:Debug _deps/glfw-build/src/CMakeFiles/Debug/update_mappings.util _deps/glfw-build/src/update_mappings$:Release _deps/glfw-build/src/CMakeFiles/Release/update_mappings.util _deps/glfw-build/src/update_mappings$:RelWithDebInfo _deps/glfw-build/src/CMakeFiles/RelWithDebInfo/update_mappings.util
 
 
 #############################################
