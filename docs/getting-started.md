@@ -9,7 +9,7 @@ AP2 (**Application Primitives**) is one header and a small C17 library. This pag
 - CMake 3.15 or newer
 - A C17 compiler (GCC, Clang, or MSVC)
 - Python 3, once, so CMake can generate the GLAD OpenGL loader
-- [cforge](https://github.com) is optional; plain CMake works
+- cforge is optional; plain CMake works
 
 On Windows, MSYS2 UCRT (`C:/msys64/ucrt64/bin/gcc.exe`) matches `cforge.toml`.
 
