@@ -1,11 +1,15 @@
+# AP2 — Application Primitives
+# Copyright (c) 2026 Jack Waechter
+# Licensed under the MIT License. See LICENSE.
+
 # =========================================================
-# AP2 - Aphelion Engine Core
+# AP2 - Application Primitives
 # =========================================================
 
 [project]
 name = "ap2"
 version = "0.1.0"
-description = "Aphelion Engine core library"
+description = "Application Primitives — a C17 kit for games and tools"
 authors = ["Jack Waechter"]
 license = "MIT"
 
@@ -30,7 +34,8 @@ source_dirs = [
 
 include_dirs = [
     "include",
-    "third_party/stb"
+    "third_party/stb",
+    "third_party/miniaudio"
 ]
 
 export_compile_commands = true
@@ -41,13 +46,22 @@ export_compile_commands = true
 # =========================================================
 
 [cmake]
-generator = "Ninja"
+# Must match cforge run's Windows default. `cforge build` honors this key, but
+# `cforge run` ignores it and always passes -G "Ninja Multi-Config". Pinning
+# anything else (e.g. "Ninja") makes the next `cforge run` fail against the cache.
+generator = "Ninja Multi-Config"
+c_compiler = "C:/msys64/ucrt64/bin/gcc.exe"
+cxx_compiler = "C:/msys64/ucrt64/bin/g++.exe"
 
 [build.cmake_variables]
 CMAKE_C_COMPILER = "C:/msys64/ucrt64/bin/gcc.exe"
 CMAKE_CXX_COMPILER = "C:/msys64/ucrt64/bin/g++.exe"
 CMAKE_C_COMPILER_WORKS = "TRUE"
 CMAKE_CXX_COMPILER_WORKS = "TRUE"
+CMAKE_DEPENDS_USE_COMPILER = "FALSE"
+CMAKE_NINJA_FORCE_RESPONSE_FILE = "ON"
+CMAKE_C_FLAGS = "-B C:/msys64/ucrt64/bin"
+CMAKE_CXX_FLAGS = "-B C:/msys64/ucrt64/bin"
 
 
 # =========================================================
@@ -135,7 +149,22 @@ defines = [
 
 links = [
     "user32",
-    "kernel32"
+    "kernel32",
+    "opengl32",
+    "gdi32"
+]
+
+[platform.linux]
+links = [
+    "GL",
+    "dl",
+    "m",
+    "pthread"
+]
+
+[platform.macos]
+defines = [
+    "GL_SILENCE_DEPRECATION"
 ]
 
 
@@ -147,10 +176,6 @@ links = [
 [dependencies]
 glad = "2.0.8"
 glfw = "3.5.1"
-
-[dependencies.system.OpenGL]
-method = "manual"
-libraries = ["opengl32"]
 
 # =========================================================
 # Tests
@@ -168,7 +193,7 @@ enabled = false
 enabled = true
 generators = []
 
-vendor = "Aphelion Engine"
+vendor = "Jack Waechter"
 contact = "Jack Waechter"
 
 

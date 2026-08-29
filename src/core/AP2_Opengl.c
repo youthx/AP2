@@ -1,7 +1,20 @@
+/*
+ * AP2 — Application Primitives
+ * Copyright (c) 2026 Jack Waechter
+ *
+ * Licensed under the MIT License.
+ * See LICENSE in the project root for full terms.
+ */
+
 #include "AP2/AP2_Opengl.h"
 
 #include "AP2/AP2_Error.h"
 #include "AP2/AP2_Logger.h"
+#include "AP2/AP2_Platform.h"
+
+#if AP_PLATFORM_MACOS
+#define GL_SILENCE_DEPRECATION
+#endif
 
 #define GLFW_INCLUDE_NONE
 #include <glad/gl.h>
@@ -79,8 +92,21 @@ static void AP_OpenGLQueryState(void) {
   g_opengl_info.version = g_version;
   g_opengl_info.glsl_version = g_glsl;
 
-  sscanf(g_version, "%u.%u", &g_opengl_info.version_number.major,
-         &g_opengl_info.version_number.minor);
+  {
+    GLint major = 0;
+    GLint minor = 0;
+
+    glGetIntegerv(GL_MAJOR_VERSION, &major);
+    glGetIntegerv(GL_MINOR_VERSION, &minor);
+
+    if (major > 0) {
+      g_opengl_info.version_number.major = (AP_UInt)major;
+      g_opengl_info.version_number.minor = (AP_UInt)minor;
+    } else {
+      sscanf(g_version, "%u.%u", &g_opengl_info.version_number.major,
+             &g_opengl_info.version_number.minor);
+    }
+  }
 
   {
     GLint profile = 0;
@@ -142,6 +168,44 @@ static void AP_OpenGLQueryState(void) {
       g_opengl_info.version_number.major > 4 ||
       (g_opengl_info.version_number.major == 4 &&
        g_opengl_info.version_number.minor >= 3);
+}
+
+static void GLAPIENTRY AP_OpenGLDebugCallback(GLenum source, GLenum type,
+                                              GLuint id,
+                                   GLenum severity, GLsizei length,
+                                   const GLchar *message,
+                                   const void *user_param) {
+  (void)source;
+  (void)type;
+  (void)id;
+  (void)length;
+  (void)user_param;
+
+  if (message == NULL || severity == GL_DEBUG_SEVERITY_NOTIFICATION) {
+    return;
+  }
+
+  if (severity == GL_DEBUG_SEVERITY_HIGH) {
+    AP_ERROR("OpenGL: %s", message);
+    return;
+  }
+
+  AP_WARN("OpenGL: %s", message);
+}
+
+static void AP_OpenGLInstallDebugCallback(void) {
+  if (!g_opengl_config.debug && !g_opengl_info.debug_context) {
+    return;
+  }
+
+  if (glDebugMessageCallback == NULL) {
+    return;
+  }
+
+  glEnable(GL_DEBUG_OUTPUT);
+  glEnable(GL_DEBUG_OUTPUT_SYNCHRONOUS);
+  glDebugMessageCallback(AP_OpenGLDebugCallback, NULL);
+  AP_INFO("OpenGL debug output enabled");
 }
 
 static const char *AP_OpenGLShaderTypeName(GLenum type) {
@@ -221,10 +285,13 @@ static bool AP_OpenGLAttachStage(GLuint program, GLenum type, const char *source
 
 AP_OpenGLConfig AP_OpenGLDefaultConfig(void) {
   AP_OpenGLConfig config;
+  uint32_t major = 0;
+  uint32_t minor = 0;
 
   memset(&config, 0, sizeof(config));
-  config.major_version = 4;
-  config.minor_version = 6;
+  AP_PlatformRecommendedOpenGLVersion(&major, &minor);
+  config.major_version = major;
+  config.minor_version = minor;
   config.debug = false;
   config.vsync = true;
   config.double_buffer = true;
@@ -259,14 +326,12 @@ bool AP_OpenGLInit(const AP_OpenGLConfig *config) {
 
   AP_OpenGLQueryState();
 
-  if (g_opengl_info.version_number.major < 3 ||
-      (g_opengl_info.version_number.major == 3 &&
-       g_opengl_info.version_number.minor < 3)) {
+  if (g_opengl_info.version_number.major < AP_PLATFORM_OPENGL_MIN_MAJOR ||
+      (g_opengl_info.version_number.major == AP_PLATFORM_OPENGL_MIN_MAJOR &&
+       g_opengl_info.version_number.minor < AP_PLATFORM_OPENGL_MIN_MINOR)) {
     AP_SET_ERROR(AP_ERROR_UNSUPPORTED, "OpenGL 3.3 or newer is required");
     return false;
   }
-
-  glfwSwapInterval(g_opengl_config.vsync ? 1 : 0);
 
   glGetIntegerv(GL_VIEWPORT, g_viewport);
   glDisable(GL_DEPTH_TEST);
@@ -280,6 +345,8 @@ bool AP_OpenGLInit(const AP_OpenGLConfig *config) {
   if (g_opengl_config.multisample && g_opengl_capabilities.multisampling) {
     glEnable(GL_MULTISAMPLE);
   }
+
+  AP_OpenGLInstallDebugCallback();
 
   g_opengl_initialized = true;
 

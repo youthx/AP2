@@ -1,3 +1,11 @@
+/*
+ * AP2 — Application Primitives
+ * Copyright (c) 2026 Jack Waechter
+ *
+ * Licensed under the MIT License.
+ * See LICENSE in the project root for full terms.
+ */
+
 #ifndef AP2_VIDEO_H
 #define AP2_VIDEO_H
 
@@ -63,9 +71,19 @@ typedef struct AP_VideoInfo {
  * Initializes the video subsystem using the supplied
  * configuration.
  *
- * Passing NULL uses the default configuration.
+ * Passing NULL uses the platform default (OpenGL, vsync on,
+ * highest core version this OS can request).
+ *
+ * D3D11/D3D12 are rejected on non-Windows. Vulkan and D3D
+ * are recognized but not implemented yet.
  */
 bool AP_VideoInit(const AP_VideoConfig *config);
+
+/*
+ * Updates the pending video configuration. Fails if a
+ * graphics device already exists.
+ */
+bool AP_VideoSetConfig(const AP_VideoConfig *config);
 
 /*
  * Shuts down the video subsystem.
@@ -104,6 +122,12 @@ bool AP_VideoUpdateDeviceInfo(void);
  * Returns a human-readable name for a video API.
  */
 const char *AP_VideoAPIName(AP_VideoAPI api);
+
+bool AP_VideoAPIAvailable(AP_VideoAPI api);
+
+bool AP_VideoAPIImplemented(AP_VideoAPI api);
+
+AP_VideoConfig AP_VideoDefaultConfig(void);
 
 /* ---------------------------------------------------------
  * Subsystem metadata

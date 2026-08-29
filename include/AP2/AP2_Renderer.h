@@ -1,3 +1,11 @@
+/*
+ * AP2 — Application Primitives
+ * Copyright (c) 2026 Jack Waechter
+ *
+ * Licensed under the MIT License.
+ * See LICENSE in the project root for full terms.
+ */
+
 #ifndef AP2_RENDERER_H
 #define AP2_RENDERER_H
 
@@ -18,14 +26,16 @@ extern "C" {
  * Calling convention matches SDL3's 2D renderer, minus the
  * SDL_Renderer * argument:
  *
- *     AP_SetRenderDrawColorFloat(0.1f, 0.1f, 0.1f, 1.0f);
- *     AP_RenderClear();
- *     AP_SetRenderDrawColorFloat(1.0f, 0.2f, 0.2f, 1.0f);
- *     AP_RenderFillRect(&(AP_FRect){32.0f, 32.0f, 200.0f, 120.0f});
- *     AP_RenderPresent();
+ *     AP_SetDrawColor(0.1f, 0.1f, 0.1f, 1.0f);
+ *     AP_Clear();
+ *     AP_SetDrawColor(1.0f, 0.2f, 0.2f, 1.0f);
+ *     AP_FillRect(&(AP_FRect){32.0f, 32.0f, 200.0f, 120.0f});
+ *     AP_Present();
  *
  * Coordinates use a top-left origin in window pixels.
- * AP_RenderClear() uses the current draw color, like SDL3.
+ * AP_Clear() uses the current draw color, like SDL3.
+ * Prefer the short names (AP_Clear, AP_FillRect, AP_Present)
+ * in application code; AP_Render* is the underlying API.
  *
  * Rotation is in degrees. Positive angles rotate clockwise in
  * window space (Y increases downward).
@@ -399,6 +409,25 @@ bool AP_RenderClipEnabled(void);
 #define AP_GetScale AP_GetRenderScale
 #define AP_IsClipEnabled AP_RenderClipEnabled
 #define AP_DrawGeometry AP_RenderGeometryRaw
+#define AP_DrawVertices AP_RenderGeometry
+#define AP_DrawRect AP_RenderRect
+#define AP_DrawRects AP_RenderRects
+#define AP_FillRect AP_RenderFillRect
+#define AP_FillRects AP_RenderFillRects
+#define AP_FillRectGradient AP_RenderFillRectGradient
+#define AP_DrawRoundedRect AP_RenderRoundedRect
+#define AP_FillRoundedRect AP_RenderFillRoundedRect
+#define AP_DrawNGon AP_RenderNGon
+#define AP_FillNGon AP_RenderFillNGon
+#define AP_DrawStar AP_RenderStar
+#define AP_FillStar AP_RenderFillStar
+#define AP_DrawCross AP_RenderCross
+#define AP_DrawGrid AP_RenderGrid
+#define AP_DrawRing AP_RenderRing
+#define AP_SetViewport AP_SetRenderViewport
+#define AP_GetViewport AP_GetRenderViewport
+#define AP_SetClipRect AP_SetRenderClipRect
+#define AP_GetClipRect AP_GetRenderClipRect
 
 #ifdef __cplusplus
 }

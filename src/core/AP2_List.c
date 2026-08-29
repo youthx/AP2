@@ -1,3 +1,11 @@
+/*
+ * AP2 — Application Primitives
+ * Copyright (c) 2026 Jack Waechter
+ *
+ * Licensed under the MIT License.
+ * See LICENSE in the project root for full terms.
+ */
+
 #include "AP2/AP2_List.h"
 
 #include <stdlib.h>

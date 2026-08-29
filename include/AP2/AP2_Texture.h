@@ -1,3 +1,11 @@
+/*
+ * AP2 — Application Primitives
+ * Copyright (c) 2026 Jack Waechter
+ *
+ * Licensed under the MIT License.
+ * See LICENSE in the project root for full terms.
+ */
+
 #ifndef AP2_TEXTURE_H
 #define AP2_TEXTURE_H
 
@@ -14,12 +22,12 @@ extern "C" {
 /*
  * AP2 Texture
  *
- * GPU image used by AP_RenderTexture() and AP_Sprite. Matches
+ * GPU image used by AP_DrawTexture() and AP_Sprite. Matches
  * SDL3's SDL_Texture calling convention, minus the renderer
  * pointer — textures belong to the active window.
  *
  *     AP_Texture *tex = AP_LoadTexture("player.png");
- *     AP_RenderTexture(tex, NULL, &(AP_FRect){64.0f, 64.0f, 128.0f, 128.0f});
+ *     AP_DrawTexture(tex, NULL, &(AP_FRect){64.0f, 64.0f, 128.0f, 128.0f});
  *     AP_DestroyTexture(tex);
  *
  * Pixel data is 8-bit RGBA, tightly packed (pitch = width * 4)
@@ -175,6 +183,14 @@ bool AP_RenderTextureQuad(AP_Texture *texture, const AP_FRect *src,
 bool AP_RenderTextureGeometry(AP_Texture *texture, const AP_Vertex *vertices,
                               int num_vertices, const int *indices,
                               int num_indices);
+
+#define AP_DrawTexture AP_RenderTexture
+#define AP_DrawTextureRotated AP_RenderTextureRotated
+#define AP_DrawTextureTiled AP_RenderTextureTiled
+#define AP_DrawTexture9Grid AP_RenderTexture9Grid
+#define AP_DrawTextureAffine AP_RenderTextureAffine
+#define AP_DrawTextureQuad AP_RenderTextureQuad
+#define AP_DrawTextureGeometry AP_RenderTextureGeometry
 
 #ifdef __cplusplus
 }

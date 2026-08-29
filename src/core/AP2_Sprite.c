@@ -1,4 +1,14 @@
+/*
+ * AP2 — Application Primitives
+ * Copyright (c) 2026 Jack Waechter
+ *
+ * Licensed under the MIT License.
+ * See LICENSE in the project root for full terms.
+ */
+
 #include "AP2/AP2_Sprite.h"
+
+#include "AP2_Internal.h"
 
 #include "AP2/AP2_Error.h"
 
@@ -148,13 +158,107 @@ bool AP_SpriteSetFrame(AP_Sprite *sprite, int columns, int rows, int frame) {
   return true;
 }
 
+static bool AP_SpriteApplyAnimFrame(AP_Sprite *sprite) {
+  return AP_SpriteSetFrame(sprite, sprite->anim_columns, sprite->anim_rows,
+                           sprite->anim_start + sprite->anim_index);
+}
+
+bool AP_SpritePlay(AP_Sprite *sprite, int columns, int rows, int start_frame,
+                   int frame_count, float fps, bool loop) {
+  int total;
+
+  if (sprite == NULL || columns <= 0 || rows <= 0 || start_frame < 0 ||
+      fps < 0.0f) {
+    AP_SET_ERROR(AP_ERROR_INVALID_ARGUMENT, "Invalid sprite animation");
+    return false;
+  }
+
+  total = columns * rows;
+  if (frame_count < 0) {
+    AP_SET_ERROR(AP_ERROR_INVALID_ARGUMENT, "Invalid sprite animation");
+    return false;
+  }
+
+  if (frame_count == 0) {
+    frame_count = total - start_frame;
+  }
+
+  if (frame_count <= 0 || start_frame + frame_count > total) {
+    AP_SET_ERROR(AP_ERROR_INVALID_ARGUMENT, "Sprite animation is out of range");
+    return false;
+  }
+
+  sprite->anim_columns = columns;
+  sprite->anim_rows = rows;
+  sprite->anim_start = start_frame;
+  sprite->anim_count = frame_count;
+  sprite->anim_index = 0;
+  sprite->anim_fps = fps;
+  sprite->anim_elapsed = 0.0f;
+  sprite->anim_loop = loop;
+  sprite->anim_playing = fps > 0.0f;
+  return AP_SpriteApplyAnimFrame(sprite);
+}
+
+bool AP_SpriteStop(AP_Sprite *sprite) {
+  if (sprite == NULL) {
+    AP_SET_ERROR(AP_ERROR_INVALID_ARGUMENT, "Sprite cannot be NULL");
+    return false;
+  }
+
+  sprite->anim_playing = false;
+  return true;
+}
+
+bool AP_SpriteUpdate(AP_Sprite *sprite, float delta_seconds) {
+  int advanced;
+
+  if (sprite == NULL) {
+    AP_SET_ERROR(AP_ERROR_INVALID_ARGUMENT, "Sprite cannot be NULL");
+    return false;
+  }
+
+  if (!sprite->anim_playing || sprite->anim_fps <= 0.0f ||
+      sprite->anim_count <= 0 || delta_seconds <= 0.0f) {
+    return true;
+  }
+
+  sprite->anim_elapsed += delta_seconds;
+  advanced = (int)(sprite->anim_elapsed * sprite->anim_fps);
+  if (advanced <= 0) {
+    return true;
+  }
+
+  sprite->anim_elapsed -= (float)advanced / sprite->anim_fps;
+  if (sprite->anim_loop) {
+    sprite->anim_index =
+        (sprite->anim_index + advanced) % sprite->anim_count;
+  } else {
+    sprite->anim_index += advanced;
+    if (sprite->anim_index >= sprite->anim_count) {
+      sprite->anim_index = sprite->anim_count - 1;
+      sprite->anim_playing = false;
+    }
+  }
+
+  return AP_SpriteApplyAnimFrame(sprite);
+}
+
+int AP_SpriteGetFrame(const AP_Sprite *sprite) {
+  if (sprite == NULL || sprite->anim_count <= 0) {
+    return 0;
+  }
+
+  return sprite->anim_start + sprite->anim_index;
+}
+
 bool AP_RenderSpriteEx(const AP_Sprite *sprite, const AP_FRect *dst) {
   AP_FPoint center;
-  AP_U8 red;
-  AP_U8 green;
-  AP_U8 blue;
-  AP_U8 alpha;
-  bool result;
+  AP_Color tint;
+  float red;
+  float green;
+  float blue;
+  float alpha;
 
   if (sprite == NULL || dst == NULL) {
     AP_SET_ERROR(AP_ERROR_INVALID_ARGUMENT, "Sprite draw arguments cannot be NULL");
@@ -170,24 +274,18 @@ bool AP_RenderSpriteEx(const AP_Sprite *sprite, const AP_FRect *dst) {
     center.y += sprite->origin.y / sprite->src.h * dst->h;
   }
 
-  if (!AP_GetTextureColorMod(sprite->texture, &red, &green, &blue) ||
-      !AP_GetTextureAlphaMod(sprite->texture, &alpha)) {
+  if (!AP_GetTextureColorModFloat(sprite->texture, &red, &green, &blue) ||
+      !AP_GetTextureAlphaModFloat(sprite->texture, &alpha)) {
     return false;
   }
 
-  AP_SetTextureColorModFloat(sprite->texture,
-                             sprite->color.r * ((float)red / 255.0f),
-                             sprite->color.g * ((float)green / 255.0f),
-                             sprite->color.b * ((float)blue / 255.0f));
-  AP_SetTextureAlphaModFloat(sprite->texture,
-                             sprite->color.a * ((float)alpha / 255.0f));
-
-  result = AP_RenderTextureRotated(sprite->texture, &sprite->src, dst,
-                                   sprite->rotation, &center, sprite->flip);
-
-  AP_SetTextureColorMod(sprite->texture, red, green, blue);
-  AP_SetTextureAlphaMod(sprite->texture, alpha);
-  return result;
+  tint.r = sprite->color.r * red;
+  tint.g = sprite->color.g * green;
+  tint.b = sprite->color.b * blue;
+  tint.a = sprite->color.a * alpha;
+  return AP_TextureRenderRotatedTinted(sprite->texture, &sprite->src, dst,
+                                       sprite->rotation, &center, sprite->flip,
+                                       tint);
 }
 
 bool AP_RenderSprite(const AP_Sprite *sprite, float x, float y) {

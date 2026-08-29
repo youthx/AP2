@@ -1,3 +1,11 @@
+/*
+ * AP2 — Application Primitives
+ * Copyright (c) 2026 Jack Waechter
+ *
+ * Licensed under the MIT License.
+ * See LICENSE in the project root for full terms.
+ */
+
 #ifndef AP2_FONT_H
 #define AP2_FONT_H
 
@@ -15,17 +23,17 @@ extern "C" {
  * Text is drawn in window pixels, top-left origin. A built-in
  * 8x8 Latin font is always available after the window exists:
  *
- *     AP_SetRenderDrawColorFloat(1.0f, 1.0f, 1.0f, 1.0f);
- *     AP_RenderText(32.0f, 32.0f, "Hello");
+ *     AP_SetDrawColor(1.0f, 1.0f, 1.0f, 1.0f);
+ *     AP_DrawText(32.0f, 32.0f, "Hello");
  *
  * Custom TrueType fonts:
  *
  *     AP_Font *font = AP_LoadFont("Inter.ttf", 18.0f);
  *     AP_SetFont(font);
- *     AP_RenderText(32.0f, 64.0f, "Custom");
+ *     AP_DrawText(32.0f, 64.0f, "Custom");
  *     AP_DestroyFont(font);
  *
- * AP_RenderText uses the current font and the current draw color.
+ * AP_DrawText uses the current font and the current draw color.
  * Size 0 in *Ex helpers means the font's baked size.
  */
 
@@ -68,6 +76,10 @@ bool AP_RenderTextEx(AP_Font *font, float x, float y, const char *text,
 bool AP_RenderTextAligned(AP_Font *font, const AP_FRect *bounds,
                           const char *text, AP_FColor color, float size,
                           AP_TextAlign align);
+
+#define AP_DrawText AP_RenderText
+#define AP_DrawTextEx AP_RenderTextEx
+#define AP_DrawTextAligned AP_RenderTextAligned
 
 #ifdef __cplusplus
 }

@@ -1,3 +1,11 @@
+/*
+ * AP2 — Application Primitives
+ * Copyright (c) 2026 Jack Waechter
+ *
+ * Licensed under the MIT License.
+ * See LICENSE in the project root for full terms.
+ */
+
 #ifndef AP2_SPRITE_H
 #define AP2_SPRITE_H
 
@@ -14,12 +22,12 @@ extern "C" {
  * AP2 Sprite
  *
  * A drawable slice of a texture with origin, scale, rotation,
- * flip, and tint. (x, y) passed to AP_RenderSprite() is where
+ * flip, and tint. (x, y) passed to AP_DrawSprite() is where
  * the origin is placed in window pixels.
  *
  *     AP_Sprite sprite = AP_CreateSprite(texture);
  *     AP_SpriteSetOriginNormalized(&sprite, 0.5f, 0.5f);
- *     AP_RenderSprite(&sprite, 640.0f, 360.0f);
+ *     AP_DrawSprite(&sprite, 640.0f, 360.0f);
  *
  * Atlas frames:
  *
@@ -35,6 +43,15 @@ typedef struct AP_Sprite {
   float scale_y;
   AP_FlipMode flip;
   AP_FColor color;
+  int anim_columns;
+  int anim_rows;
+  int anim_start;
+  int anim_count;
+  int anim_index;
+  float anim_fps;
+  float anim_elapsed;
+  bool anim_loop;
+  bool anim_playing;
 } AP_Sprite;
 
 AP_Sprite AP_CreateSprite(AP_Texture *texture);
@@ -59,9 +76,21 @@ bool AP_SpriteSetColor(AP_Sprite *sprite, AP_FColor color);
 
 bool AP_SpriteSetFrame(AP_Sprite *sprite, int columns, int rows, int frame);
 
+bool AP_SpritePlay(AP_Sprite *sprite, int columns, int rows, int start_frame,
+                   int frame_count, float fps, bool loop);
+
+bool AP_SpriteStop(AP_Sprite *sprite);
+
+bool AP_SpriteUpdate(AP_Sprite *sprite, float delta_seconds);
+
+int AP_SpriteGetFrame(const AP_Sprite *sprite);
+
 bool AP_RenderSprite(const AP_Sprite *sprite, float x, float y);
 
 bool AP_RenderSpriteEx(const AP_Sprite *sprite, const AP_FRect *dst);
+
+#define AP_DrawSprite AP_RenderSprite
+#define AP_DrawSpriteEx AP_RenderSpriteEx
 
 #ifdef __cplusplus
 }

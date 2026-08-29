@@ -14,12 +14,8 @@ version = "3.5.1"
 url = "https://github.com/glfw/glfw.git"
 resolved = "3.5.1"
 
-[dependency.system]
-source_type = "index"
-version = "*"
-
 [buildcache]
 # Auto-generated. Tracks change detection for incremental builds.
-generated = "2026-08-29T01:01:21Z"
-config_hash = "bd2d0f1807e8a5a9"
+generated = "2026-08-29T01:42:45Z"
+config_hash = "eab23a808fb787d7"
 

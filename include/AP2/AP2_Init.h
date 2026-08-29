@@ -1,3 +1,11 @@
+/*
+ * AP2 — Application Primitives
+ * Copyright (c) 2026 Jack Waechter
+ *
+ * Licensed under the MIT License.
+ * See LICENSE in the project root for full terms.
+ */
+
 #ifndef AP2_INIT_H
 #define AP2_INIT_H
 
@@ -125,9 +133,8 @@ bool AP_CloseSubsystem(AP_Subsystem subsystem);
  *
  *     AP_Init(AP_INIT_WINDOWING | AP_INIT_VIDEO);
  *
- * Or all available subsystems:
- *
- *     AP_Init(AP_INIT_ALL);
+ * AP_INIT_VIDEO also enables windowing. AP_INIT_ALL starts every
+ * registered subsystem.
  */
 bool AP_Init(AP_InitFlags flags);
 

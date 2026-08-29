@@ -1,3 +1,11 @@
+/*
+ * AP2 — Application Primitives
+ * Copyright (c) 2026 Jack Waechter
+ *
+ * Licensed under the MIT License.
+ * See LICENSE in the project root for full terms.
+ */
+
 #include "AP2/AP2_Texture.h"
 
 #include "AP2_Internal.h"
@@ -8,8 +16,16 @@
 #define GLFW_INCLUDE_NONE
 #include <glad/gl.h>
 
+#if defined(__GNUC__)
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-function"
+#pragma GCC diagnostic ignored "-Wunused-parameter"
+#endif
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
+#if defined(__GNUC__)
+#pragma GCC diagnostic pop
+#endif
 
 #include <math.h>
 #include <stdlib.h>
@@ -166,6 +182,7 @@ static bool AP_TextureUpload(AP_Texture *texture, int x, int y, int width,
   const unsigned char *src;
   unsigned char *row;
   int dst_pitch;
+  int dest_y;
   int row_index;
 
   if (pixels == NULL) {
@@ -178,11 +195,13 @@ static bool AP_TextureUpload(AP_Texture *texture, int x, int y, int width,
     pitch = dst_pitch;
   }
 
+  dest_y = texture->invert_v ? texture->height - y - height : y;
+
   glBindTexture(GL_TEXTURE_2D, texture->id);
   glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 
-  if (pitch == dst_pitch) {
-    glTexSubImage2D(GL_TEXTURE_2D, 0, x, y, width, height, GL_RGBA,
+  if (!texture->invert_v && pitch == dst_pitch) {
+    glTexSubImage2D(GL_TEXTURE_2D, 0, x, dest_y, width, height, GL_RGBA,
                     GL_UNSIGNED_BYTE, pixels);
     glBindTexture(GL_TEXTURE_2D, 0);
     return true;
@@ -197,8 +216,9 @@ static bool AP_TextureUpload(AP_Texture *texture, int x, int y, int width,
   }
 
   for (row_index = 0; row_index < height; ++row_index) {
-    memcpy(row, src + (size_t)row_index * (size_t)pitch, (size_t)dst_pitch);
-    glTexSubImage2D(GL_TEXTURE_2D, 0, x, y + row_index, width, 1, GL_RGBA,
+    int src_row = texture->invert_v ? height - 1 - row_index : row_index;
+    memcpy(row, src + (size_t)src_row * (size_t)pitch, (size_t)dst_pitch);
+    glTexSubImage2D(GL_TEXTURE_2D, 0, x, dest_y + row_index, width, 1, GL_RGBA,
                     GL_UNSIGNED_BYTE, row);
   }
 
@@ -219,6 +239,11 @@ static bool AP_TextureFillSourceDest(AP_Texture *texture, const AP_FRect *src,
                                      const AP_FRect *dst, AP_FRect *source,
                                      AP_FRect *dest) {
   AP_Rect viewport;
+
+  if (!AP_TextureIsValid(texture)) {
+    AP_SET_ERROR(AP_ERROR_INVALID_ARGUMENT, "Invalid texture");
+    return false;
+  }
 
   source->x = 0.0f;
   source->y = 0.0f;
@@ -351,6 +376,13 @@ static bool AP_TextureDrawRect(AP_Texture *texture, const AP_FRect *src,
 
   return AP_RendererSubmitTexturedQuad((AP_UInt)texture->id, texture->blend_mode,
                                        corners, uvs, tint);
+}
+
+bool AP_TextureRenderRotatedTinted(AP_Texture *texture, const AP_FRect *src,
+                                   const AP_FRect *dst, float angle,
+                                   const AP_FPoint *center, AP_FlipMode flip,
+                                   AP_Color tint) {
+  return AP_TextureDrawRect(texture, src, dst, angle, center, flip, tint);
 }
 
 AP_Texture *AP_CreateTexture(int width, int height) {
@@ -674,8 +706,9 @@ bool AP_ReadTexturePixels(AP_Texture *texture, const AP_Rect *rect, void *pixels
   glBindTexture(GL_TEXTURE_2D, 0);
 
   for (row = 0; row < height; ++row) {
+    int src_row = texture->invert_v ? texture->height - 1 - (y + row) : y + row;
     memcpy((unsigned char *)pixels + (size_t)row * (size_t)pitch,
-           full + (size_t)(y + row) * (size_t)full_pitch + (size_t)x * 4u,
+           full + (size_t)src_row * (size_t)full_pitch + (size_t)x * 4u,
            (size_t)width * 4u);
   }
 
@@ -684,7 +717,12 @@ bool AP_ReadTexturePixels(AP_Texture *texture, const AP_Rect *rect, void *pixels
 }
 
 bool AP_GenerateTextureMipmaps(AP_Texture *texture) {
-  if (!AP_TextureIsValid(texture) || !AP_TextureHasContext()) {
+  if (!AP_TextureIsValid(texture)) {
+    AP_SET_ERROR(AP_ERROR_INVALID_ARGUMENT, "Invalid texture");
+    return false;
+  }
+
+  if (!AP_TextureHasContext()) {
     return false;
   }
 
@@ -960,6 +998,17 @@ bool AP_RenderTexture9Grid(AP_Texture *texture, const AP_FRect *src, float left,
   dr = right * scale;
   dt = top * scale;
   db = bottom * scale;
+
+  if (dl + dr > dest.w && dl + dr > 0.0f) {
+    float fit = dest.w / (dl + dr);
+    dl *= fit;
+    dr *= fit;
+  }
+  if (dt + db > dest.h && dt + db > 0.0f) {
+    float fit = dest.h / (dt + db);
+    dt *= fit;
+    db *= fit;
+  }
 
   s.x = source.x;
   s.y = source.y;

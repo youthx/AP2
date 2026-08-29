@@ -1,3 +1,11 @@
+/*
+ * AP2 — Application Primitives
+ * Copyright (c) 2026 Jack Waechter
+ *
+ * Licensed under the MIT License.
+ * See LICENSE in the project root for full terms.
+ */
+
 #ifndef AP2_SHADER_H
 #define AP2_SHADER_H
 
@@ -20,7 +28,7 @@ extern "C" {
  *     AP_Shader *wave = AP_CreateShader(NULL, fragment_source);
  *     AP_UseShader(wave);
  *     AP_SetUniformF("u_time", time);
- *     AP_RenderFillRect(&(AP_FRect){0.0f, 0.0f, 1280.0f, 720.0f});
+ *     AP_FillRect(&(AP_FRect){0.0f, 0.0f, 1280.0f, 720.0f});
  *     AP_UseShader(NULL);
  *
  * Advanced path — extra stages, defines, explicit bindings:

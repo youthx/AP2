@@ -1,3 +1,11 @@
+/*
+ * AP2 — Application Primitives
+ * Copyright (c) 2026 Jack Waechter
+ *
+ * Licensed under the MIT License.
+ * See LICENSE in the project root for full terms.
+ */
+
 #include "AP2/AP2_Renderer.h"
 
 #include "AP2_Internal.h"
@@ -9,8 +17,8 @@
 #include "AP2/AP2_Window.h"
 
 #define GLFW_INCLUDE_NONE
-#include <glad/gl.h>
 #include <GLFW/glfw3.h>
+#include <glad/gl.h>
 
 #include <math.h>
 #include <stddef.h>
@@ -129,10 +137,8 @@ static void AP_IntersectRect(AP_Rect *result, const AP_Rect *a,
                              const AP_Rect *b) {
   int x1 = a->x > b->x ? a->x : b->x;
   int y1 = a->y > b->y ? a->y : b->y;
-  int x2 = (a->x + a->w) < (b->x + b->w) ? (a->x + a->w)
-                                                 : (b->x + b->w);
-  int y2 = (a->y + a->h) < (b->y + b->h) ? (a->y + a->h)
-                                                   : (b->y + b->h);
+  int x2 = (a->x + a->w) < (b->x + b->w) ? (a->x + a->w) : (b->x + b->w);
+  int y2 = (a->y + a->h) < (b->y + b->h) ? (a->y + a->h) : (b->y + b->h);
 
   result->x = x1;
   result->y = y1;
@@ -170,10 +176,9 @@ static void AP_RendererApplyBlend(AP_Renderer *renderer) {
 
   case AP_BLEND_MUL:
     AP_OpenGLSetBlending(true);
-    AP_OpenGLSetBlendFuncSeparate((AP_UInt)GL_DST_COLOR,
-                                  (AP_UInt)GL_ONE_MINUS_SRC_ALPHA,
-                                  (AP_UInt)GL_DST_ALPHA,
-                                  (AP_UInt)GL_ONE_MINUS_SRC_ALPHA);
+    AP_OpenGLSetBlendFuncSeparate(
+        (AP_UInt)GL_DST_COLOR, (AP_UInt)GL_ONE_MINUS_SRC_ALPHA,
+        (AP_UInt)GL_DST_ALPHA, (AP_UInt)GL_ONE_MINUS_SRC_ALPHA);
     break;
 
   case AP_BLEND_SCREEN:
@@ -189,10 +194,9 @@ static void AP_RendererApplyBlend(AP_Renderer *renderer) {
   case AP_BLEND_ALPHA:
   default:
     AP_OpenGLSetBlending(true);
-    AP_OpenGLSetBlendFuncSeparate((AP_UInt)GL_SRC_ALPHA,
-                                  (AP_UInt)GL_ONE_MINUS_SRC_ALPHA,
-                                  (AP_UInt)GL_ONE,
-                                  (AP_UInt)GL_ONE_MINUS_SRC_ALPHA);
+    AP_OpenGLSetBlendFuncSeparate(
+        (AP_UInt)GL_SRC_ALPHA, (AP_UInt)GL_ONE_MINUS_SRC_ALPHA, (AP_UInt)GL_ONE,
+        (AP_UInt)GL_ONE_MINUS_SRC_ALPHA);
     break;
   }
 }
@@ -216,8 +220,8 @@ static void AP_RendererApplyScissor(AP_Renderer *renderer) {
   }
 
   AP_OpenGLSetScissorEnabled(true);
-  AP_OpenGLSetScissor(area.x, renderer->fb_height - area.y - area.h,
-                      area.w, area.h);
+  AP_OpenGLSetScissor(area.x, renderer->fb_height - area.y - area.h, area.w,
+                      area.h);
 }
 
 static void AP_RendererFlushInternal(AP_Renderer *renderer) {
@@ -247,9 +251,10 @@ static void AP_RendererFlushInternal(AP_Renderer *renderer) {
                                    : renderer->white_texture);
   glBindVertexArray(renderer->vao);
   glBindBuffer(GL_ARRAY_BUFFER, renderer->vbo);
-  glBufferSubData(GL_ARRAY_BUFFER, 0,
-                  (GLsizeiptr)(renderer->vertex_count * (int)sizeof(AP_Vertex2D)),
-                  renderer->vertices);
+  glBufferSubData(
+      GL_ARRAY_BUFFER, 0,
+      (GLsizeiptr)(renderer->vertex_count * (int)sizeof(AP_Vertex2D)),
+      renderer->vertices);
   glDrawArrays(GL_TRIANGLES, 0, renderer->vertex_count);
   glBindVertexArray(0);
 
@@ -294,7 +299,8 @@ static void AP_RendererPushVertexColor(AP_Renderer *renderer, float x, float y,
                                        AP_Color color) {
   AP_Vertex2D *vertex;
 
-  AP_RendererUseTexture(renderer, renderer->white_texture, renderer->blend_mode);
+  AP_RendererUseTexture(renderer, renderer->white_texture,
+                        renderer->blend_mode);
 
   vertex = &renderer->vertices[renderer->vertex_count++];
   color = AP_RendererVertexColor(renderer, color);
@@ -511,7 +517,7 @@ static bool AP_RendererStrokeEllipseRaw(AP_Renderer *renderer, float cx,
     float a1 = start_rad + (float)(i + 1) / (float)segments * sweep_rad;
 
     if (!AP_RenderLine(cx + cosf(a0) * rx, cy + sinf(a0) * ry,
-                      cx + cosf(a1) * rx, cy + sinf(a1) * ry)) {
+                       cx + cosf(a1) * rx, cy + sinf(a1) * ry)) {
       return false;
     }
   }
@@ -656,12 +662,12 @@ static bool AP_RendererCreate(AP_Window *window) {
   renderer->transform = AP_TransformIdentity();
   renderer->vertex_capacity = AP_RENDERER_MAX_VERTICES;
 
-  renderer->vertices =
-      (AP_Vertex2D *)malloc((size_t)renderer->vertex_capacity *
-                            sizeof(AP_Vertex2D));
+  renderer->vertices = (AP_Vertex2D *)malloc((size_t)renderer->vertex_capacity *
+                                             sizeof(AP_Vertex2D));
   if (renderer->vertices == NULL) {
     free(renderer);
-    AP_SET_ERROR(AP_ERROR_OUT_OF_MEMORY, "Failed to allocate renderer vertices");
+    AP_SET_ERROR(AP_ERROR_OUT_OF_MEMORY,
+                 "Failed to allocate renderer vertices");
     return false;
   }
 
@@ -679,9 +685,10 @@ static bool AP_RendererCreate(AP_Window *window) {
   glGenBuffers(1, &renderer->vbo);
   glBindVertexArray(renderer->vao);
   glBindBuffer(GL_ARRAY_BUFFER, renderer->vbo);
-  glBufferData(GL_ARRAY_BUFFER,
-               (GLsizeiptr)(renderer->vertex_capacity * (int)sizeof(AP_Vertex2D)),
-               NULL, GL_DYNAMIC_DRAW);
+  glBufferData(
+      GL_ARRAY_BUFFER,
+      (GLsizeiptr)(renderer->vertex_capacity * (int)sizeof(AP_Vertex2D)), NULL,
+      GL_DYNAMIC_DRAW);
   glEnableVertexAttribArray(0);
   glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(AP_Vertex2D),
                         (const void *)offsetof(AP_Vertex2D, x));
@@ -729,6 +736,7 @@ static bool AP_RendererCreate(AP_Window *window) {
 
   renderer->initialized = true;
   g_renderer = renderer;
+  AP_FontInit();
 
   AP_INFO("Renderer ready (%dx%d)", renderer->fb_width, renderer->fb_height);
   return true;
@@ -766,6 +774,10 @@ void AP_RendererUnbindWindow(AP_Window *window) {
 
   AP_RendererFlushInternal(g_renderer);
   g_renderer->user_shader = NULL;
+  AP_PostShutdown();
+  AP_3DShutdown();
+  AP_GuiShutdown();
+  AP_FontShutdown();
   AP_RendererDestroyResources(g_renderer);
   free(g_renderer);
   g_renderer = NULL;
@@ -854,6 +866,7 @@ void AP_RendererNotifyResize(int width, int height) {
 
   g_renderer->window_fb_width = width;
   g_renderer->window_fb_height = height;
+  AP_PostNotifyResize(width, height);
 
   if (g_renderer->target_fbo != 0) {
     return;
@@ -877,7 +890,8 @@ void AP_RendererNotifyResize(int width, int height) {
  * Color
  * ========================================================= */
 
-bool AP_SetRenderDrawColorFloat(AP_F32 red, AP_F32 green, AP_F32 blue, AP_F32 alpha) {
+bool AP_SetRenderDrawColorFloat(AP_F32 red, AP_F32 green, AP_F32 blue,
+                                AP_F32 alpha) {
   AP_Renderer *renderer = AP_RendererActive();
 
   if (renderer == NULL) {
@@ -889,15 +903,17 @@ bool AP_SetRenderDrawColorFloat(AP_F32 red, AP_F32 green, AP_F32 blue, AP_F32 al
 }
 
 bool AP_SetRenderDrawColor(AP_U8 red, AP_U8 green, AP_U8 blue, AP_U8 alpha) {
-  return AP_SetRenderDrawColorFloat((AP_F32)red / 255.0f, (AP_F32)green / 255.0f,
-                         (AP_F32)blue / 255.0f, (AP_F32)alpha / 255.0f);
+  return AP_SetRenderDrawColorFloat(
+      (AP_F32)red / 255.0f, (AP_F32)green / 255.0f, (AP_F32)blue / 255.0f,
+      (AP_F32)alpha / 255.0f);
 }
 
 bool AP_SetRenderDrawColorC(AP_Color color) {
   return AP_SetRenderDrawColorFloat(color.r, color.g, color.b, color.a);
 }
 
-bool AP_GetRenderDrawColorFloat(AP_F32 *red, AP_F32 *green, AP_F32 *blue, AP_F32 *alpha) {
+bool AP_GetRenderDrawColorFloat(AP_F32 *red, AP_F32 *green, AP_F32 *blue,
+                                AP_F32 *alpha) {
   AP_Renderer *renderer = AP_RendererActive();
 
   if (renderer == NULL) {
@@ -931,9 +947,9 @@ bool AP_SetClearColor(AP_F32 red, AP_F32 green, AP_F32 blue, AP_F32 alpha) {
   }
 
   renderer->clear_color = AP_MakeColor(red, green, blue, alpha);
-  return AP_OpenGLSetClearColor(renderer->clear_color.r, renderer->clear_color.g,
-                                renderer->clear_color.b,
-                                renderer->clear_color.a);
+  return AP_OpenGLSetClearColor(
+      renderer->clear_color.r, renderer->clear_color.g, renderer->clear_color.b,
+      renderer->clear_color.a);
 }
 
 bool AP_SetClearColor8(AP_U8 red, AP_U8 green, AP_U8 blue, AP_U8 alpha) {
@@ -1033,6 +1049,7 @@ bool AP_RenderClear(void) {
   }
 
   AP_RendererFlushInternal(renderer);
+  AP_PostBeginFrame();
   AP_OpenGLSetClearColor(renderer->draw_color.r, renderer->draw_color.g,
                          renderer->draw_color.b, renderer->draw_color.a);
   return AP_OpenGLClear(true, true, true);
@@ -1057,6 +1074,7 @@ bool AP_RenderPresent(void) {
   }
 
   AP_RendererFlushInternal(renderer);
+  AP_PostPresent();
   return AP_OpenGLSwapBuffers(AP_WindowGetGLFW(renderer->window));
 }
 
@@ -1102,8 +1120,7 @@ bool AP_DisableRenderDrawFlag(AP_DrawFlags flag) {
 }
 
 bool AP_RenderDrawFlagEnabled(AP_DrawFlags flag) {
-  return g_renderer != NULL &&
-         (g_renderer->draw_flags & (uint32_t)flag) != 0;
+  return g_renderer != NULL && (g_renderer->draw_flags & (uint32_t)flag) != 0;
 }
 
 /* =========================================================
@@ -1267,7 +1284,7 @@ bool AP_RenderLinesClosed(const AP_Vec2 *points, int count, bool closed) {
     int next = (i + 1) % count;
 
     if (!AP_RenderLine(points[i].x, points[i].y, points[next].x,
-                      points[next].y)) {
+                       points[next].y)) {
       return false;
     }
 
@@ -1311,7 +1328,8 @@ bool AP_DrawLines(const AP_Vec2I *points, int count) {
 }
 
 bool AP_RenderLines(const AP_Vec2 *points, int count) {
-  return AP_RenderLinesClosed(points, count, AP_RenderDrawFlagEnabled(AP_DRAW_CLOSED));
+  return AP_RenderLinesClosed(points, count,
+                              AP_RenderDrawFlagEnabled(AP_DRAW_CLOSED));
 }
 
 bool AP_FillRectF(AP_F32 x, AP_F32 y, AP_F32 width, AP_F32 height) {
@@ -1483,14 +1501,15 @@ bool AP_FillRoundedRectF(AP_F32 x, AP_F32 y, AP_F32 width, AP_F32 height,
       !AP_FillRectF(x, y + radius, radius, height - radius * 2.0f) ||
       !AP_FillRectF(x + width - radius, y + radius, radius,
                     height - radius * 2.0f) ||
-      !AP_RendererFillEllipseRaw(renderer, x + width - radius, y + height - radius,
-                                 radius, radius, 0.0f, 90.0f) ||
-      !AP_RendererFillEllipseRaw(renderer, x + radius, y + height - radius, radius,
-                                 radius, 90.0f, 90.0f) ||
-      !AP_RendererFillEllipseRaw(renderer, x + radius, y + radius, radius, radius,
-                                 180.0f, 90.0f) ||
-      !AP_RendererFillEllipseRaw(renderer, x + width - radius, y + radius, radius,
-                                 radius, 270.0f, 90.0f)) {
+      !AP_RendererFillEllipseRaw(renderer, x + width - radius,
+                                 y + height - radius, radius, radius, 0.0f,
+                                 90.0f) ||
+      !AP_RendererFillEllipseRaw(renderer, x + radius, y + height - radius,
+                                 radius, radius, 90.0f, 90.0f) ||
+      !AP_RendererFillEllipseRaw(renderer, x + radius, y + radius, radius,
+                                 radius, 180.0f, 90.0f) ||
+      !AP_RendererFillEllipseRaw(renderer, x + width - radius, y + radius,
+                                 radius, radius, 270.0f, 90.0f)) {
     renderer->draw_flags = flags;
     return false;
   }
@@ -1500,8 +1519,8 @@ bool AP_FillRoundedRectF(AP_F32 x, AP_F32 y, AP_F32 width, AP_F32 height,
 }
 
 bool AP_FillRoundedRect(int x, int y, int width, int height, int radius) {
-  return AP_FillRoundedRectF((AP_F32)x, (AP_F32)y, (AP_F32)width, (AP_F32)height,
-                             (AP_F32)radius);
+  return AP_FillRoundedRectF((AP_F32)x, (AP_F32)y, (AP_F32)width,
+                             (AP_F32)height, (AP_F32)radius);
 }
 
 bool AP_DrawRoundedRectF(AP_F32 x, AP_F32 y, AP_F32 width, AP_F32 height,
@@ -1556,8 +1575,8 @@ bool AP_DrawRoundedRectF(AP_F32 x, AP_F32 y, AP_F32 width, AP_F32 height,
 }
 
 bool AP_DrawRoundedRect(int x, int y, int width, int height, int radius) {
-  return AP_DrawRoundedRectF((AP_F32)x, (AP_F32)y, (AP_F32)width, (AP_F32)height,
-                             (AP_F32)radius);
+  return AP_DrawRoundedRectF((AP_F32)x, (AP_F32)y, (AP_F32)width,
+                             (AP_F32)height, (AP_F32)radius);
 }
 
 bool AP_SetRenderCircleSegments(int segments) {
@@ -1568,7 +1587,8 @@ bool AP_SetRenderCircleSegments(int segments) {
   }
 
   if (segments < 0) {
-    AP_SET_ERROR(AP_ERROR_INVALID_ARGUMENT, "Circle segments cannot be negative");
+    AP_SET_ERROR(AP_ERROR_INVALID_ARGUMENT,
+                 "Circle segments cannot be negative");
     return false;
   }
 
@@ -1580,7 +1600,8 @@ int AP_GetRenderCircleSegments(void) {
   return g_renderer != NULL ? g_renderer->circle_segments : 0;
 }
 
-bool AP_RenderFillEllipse(AP_F32 cx, AP_F32 cy, AP_F32 radius_x, AP_F32 radius_y) {
+bool AP_RenderFillEllipse(AP_F32 cx, AP_F32 cy, AP_F32 radius_x,
+                          AP_F32 radius_y) {
   AP_Renderer *renderer = AP_RendererActive();
 
   if (renderer == NULL) {
@@ -1593,7 +1614,7 @@ bool AP_RenderFillEllipse(AP_F32 cx, AP_F32 cy, AP_F32 radius_x, AP_F32 radius_y
 
 bool AP_FillEllipse(int cx, int cy, int radius_x, int radius_y) {
   return AP_RenderFillEllipse((AP_F32)cx, (AP_F32)cy, (AP_F32)radius_x,
-                         (AP_F32)radius_y);
+                              (AP_F32)radius_y);
 }
 
 bool AP_RenderEllipse(AP_F32 cx, AP_F32 cy, AP_F32 radius_x, AP_F32 radius_y) {
@@ -1609,7 +1630,7 @@ bool AP_RenderEllipse(AP_F32 cx, AP_F32 cy, AP_F32 radius_x, AP_F32 radius_y) {
 
 bool AP_DrawEllipse(int cx, int cy, int radius_x, int radius_y) {
   return AP_RenderEllipse((AP_F32)cx, (AP_F32)cy, (AP_F32)radius_x,
-                         (AP_F32)radius_y);
+                          (AP_F32)radius_y);
 }
 
 bool AP_RenderFillCircle(AP_F32 cx, AP_F32 cy, AP_F32 radius) {
@@ -1629,24 +1650,25 @@ bool AP_DrawCircle(int cx, int cy, int radius) {
 }
 
 bool AP_RenderArc(AP_F32 cx, AP_F32 cy, AP_F32 radius, AP_F32 start_deg,
-                 AP_F32 end_deg) {
+                  AP_F32 end_deg) {
   AP_Renderer *renderer = AP_RendererActive();
 
   if (renderer == NULL) {
     return false;
   }
 
-  return AP_RendererStrokeEllipseRaw(renderer, cx, cy, radius, radius, start_deg,
+  return AP_RendererStrokeEllipseRaw(renderer, cx, cy, radius, radius,
+                                     start_deg,
                                      AP_NormalizeSweep(start_deg, end_deg));
 }
 
 bool AP_DrawArc(int cx, int cy, int radius, AP_F32 start_deg, AP_F32 end_deg) {
   return AP_RenderArc((AP_F32)cx, (AP_F32)cy, (AP_F32)radius, start_deg,
-                     end_deg);
+                      end_deg);
 }
 
 bool AP_RenderFillPie(AP_F32 cx, AP_F32 cy, AP_F32 radius, AP_F32 start_deg,
-                 AP_F32 end_deg) {
+                      AP_F32 end_deg) {
   AP_Renderer *renderer = AP_RendererActive();
 
   if (renderer == NULL) {
@@ -1659,11 +1681,11 @@ bool AP_RenderFillPie(AP_F32 cx, AP_F32 cy, AP_F32 radius, AP_F32 start_deg,
 
 bool AP_FillPie(int cx, int cy, int radius, AP_F32 start_deg, AP_F32 end_deg) {
   return AP_RenderFillPie((AP_F32)cx, (AP_F32)cy, (AP_F32)radius, start_deg,
-                     end_deg);
+                          end_deg);
 }
 
 bool AP_RenderFillRing(AP_F32 cx, AP_F32 cy, AP_F32 inner_radius,
-                  AP_F32 outer_radius) {
+                       AP_F32 outer_radius) {
   AP_Renderer *renderer = AP_RendererActive();
   int segments;
   int i;
@@ -1717,7 +1739,7 @@ bool AP_RenderFillRing(AP_F32 cx, AP_F32 cy, AP_F32 inner_radius,
 
 bool AP_FillRing(int cx, int cy, int inner_radius, int outer_radius) {
   return AP_RenderFillRing((AP_F32)cx, (AP_F32)cy, (AP_F32)inner_radius,
-                      (AP_F32)outer_radius);
+                           (AP_F32)outer_radius);
 }
 
 bool AP_DrawRing(int cx, int cy, int inner_radius, int outer_radius) {
@@ -1732,8 +1754,8 @@ bool AP_DrawRing(int cx, int cy, int inner_radius, int outer_radius) {
   return true;
 }
 
-bool AP_RenderFillTriangle(AP_F32 x1, AP_F32 y1, AP_F32 x2, AP_F32 y2, AP_F32 x3,
-                      AP_F32 y3) {
+bool AP_RenderFillTriangle(AP_F32 x1, AP_F32 y1, AP_F32 x2, AP_F32 y2,
+                           AP_F32 x3, AP_F32 y3) {
   AP_Renderer *renderer = AP_RendererActive();
   float ax;
   float ay;
@@ -1759,12 +1781,12 @@ bool AP_RenderFillTriangle(AP_F32 x1, AP_F32 y1, AP_F32 x2, AP_F32 y2, AP_F32 x3
 
 bool AP_FillTriangle(int x1, int y1, int x2, int y2, int x3, int y3) {
   return AP_RenderFillTriangle((AP_F32)x1, (AP_F32)y1, (AP_F32)x2, (AP_F32)y2,
-                          (AP_F32)x3, (AP_F32)y3);
+                               (AP_F32)x3, (AP_F32)y3);
 }
 
 bool AP_RenderFillTriangleColor(AP_F32 x1, AP_F32 y1, AP_Color c1, AP_F32 x2,
-                          AP_F32 y2, AP_Color c2, AP_F32 x3, AP_F32 y3,
-                          AP_Color c3) {
+                                AP_F32 y2, AP_Color c2, AP_F32 x3, AP_F32 y3,
+                                AP_Color c3) {
   AP_Renderer *renderer = AP_RendererActive();
   float ax;
   float ay;
@@ -1789,7 +1811,7 @@ bool AP_RenderFillTriangleColor(AP_F32 x1, AP_F32 y1, AP_Color c1, AP_F32 x2,
 }
 
 bool AP_RenderTriangle(AP_F32 x1, AP_F32 y1, AP_F32 x2, AP_F32 y2, AP_F32 x3,
-                      AP_F32 y3) {
+                       AP_F32 y3) {
   if (!AP_RenderLine(x1, y1, x2, y2)) {
     return false;
   }
@@ -1803,7 +1825,7 @@ bool AP_RenderTriangle(AP_F32 x1, AP_F32 y1, AP_F32 x2, AP_F32 y2, AP_F32 x3,
 
 bool AP_DrawTriangle(int x1, int y1, int x2, int y2, int x3, int y3) {
   return AP_RenderTriangle((AP_F32)x1, (AP_F32)y1, (AP_F32)x2, (AP_F32)y2,
-                          (AP_F32)x3, (AP_F32)y3);
+                           (AP_F32)x3, (AP_F32)y3);
 }
 
 bool AP_RenderFillPolygon(const AP_Vec2 *points, int count) {
@@ -1854,7 +1876,8 @@ static bool AP_RendererRegularPolygon(int cx, int cy, int radius, int sides,
   bool result;
 
   if (sides < 3 || radius <= 0) {
-    AP_SET_ERROR(AP_ERROR_INVALID_ARGUMENT, "N-gon requires radius > 0 and sides >= 3");
+    AP_SET_ERROR(AP_ERROR_INVALID_ARGUMENT,
+                 "N-gon requires radius > 0 and sides >= 3");
     return false;
   }
 
@@ -1870,7 +1893,8 @@ static bool AP_RendererRegularPolygon(int cx, int cy, int radius, int sides,
     points[i].y = (AP_F32)cy + sinf(angle) * (AP_F32)radius;
   }
 
-  result = fill ? AP_RenderFillPolygon(points, sides) : AP_RenderPolygon(points, sides);
+  result = fill ? AP_RenderFillPolygon(points, sides)
+                : AP_RenderPolygon(points, sides);
   free(points);
   return result;
 }
@@ -1926,7 +1950,7 @@ bool AP_FillStar(int cx, int cy, int outer_radius, int inner_radius,
 }
 
 bool AP_RenderQuadraticBezier(AP_F32 x1, AP_F32 y1, AP_F32 cx, AP_F32 cy,
-                            AP_F32 x2, AP_F32 y2) {
+                              AP_F32 x2, AP_F32 y2) {
   AP_Vec2 points[24];
   int i;
   int count = 24;
@@ -1942,7 +1966,7 @@ bool AP_RenderQuadraticBezier(AP_F32 x1, AP_F32 y1, AP_F32 cx, AP_F32 cy,
 }
 
 bool AP_RenderBezier(AP_F32 x1, AP_F32 y1, AP_F32 cx1, AP_F32 cy1, AP_F32 cx2,
-                   AP_F32 cy2, AP_F32 x2, AP_F32 y2) {
+                     AP_F32 cy2, AP_F32 x2, AP_F32 y2) {
   AP_Vec2 points[32];
   int i;
   int count = 32;
@@ -1961,7 +1985,8 @@ bool AP_RenderBezier(AP_F32 x1, AP_F32 y1, AP_F32 cx1, AP_F32 cy1, AP_F32 cx2,
   return AP_RenderLinesClosed(points, count, false);
 }
 
-bool AP_RenderFillCapsule(AP_F32 x1, AP_F32 y1, AP_F32 x2, AP_F32 y2, AP_F32 radius) {
+bool AP_RenderFillCapsule(AP_F32 x1, AP_F32 y1, AP_F32 x2, AP_F32 y2,
+                          AP_F32 radius) {
   AP_Renderer *renderer = AP_RendererActive();
   AP_LineCap previous_cap;
   float previous_width;
@@ -1990,7 +2015,8 @@ bool AP_RenderFillCapsule(AP_F32 x1, AP_F32 y1, AP_F32 x2, AP_F32 y2, AP_F32 rad
   return true;
 }
 
-bool AP_RenderCapsule(AP_F32 x1, AP_F32 y1, AP_F32 x2, AP_F32 y2, AP_F32 radius) {
+bool AP_RenderCapsule(AP_F32 x1, AP_F32 y1, AP_F32 x2, AP_F32 y2,
+                      AP_F32 radius) {
   float dx = x2 - x1;
   float dy = y2 - y1;
   float length = sqrtf(dx * dx + dy * dy);
@@ -2011,12 +2037,12 @@ bool AP_RenderCapsule(AP_F32 x1, AP_F32 y1, AP_F32 x2, AP_F32 y2, AP_F32 radius)
   angle = atan2f(dy, dx) / AP_DEG2RAD;
 
   if (!AP_RenderLine(x1 + nx * radius, y1 + ny * radius, x2 + nx * radius,
-                    y2 + ny * radius)) {
+                     y2 + ny * radius)) {
     return false;
   }
 
   if (!AP_RenderLine(x1 - nx * radius, y1 - ny * radius, x2 - nx * radius,
-                    y2 - ny * radius)) {
+                     y2 - ny * radius)) {
     return false;
   }
 
@@ -2091,8 +2117,8 @@ static bool AP_RendererPushMappedVertex(AP_Renderer *renderer,
 
   AP_RendererMapPoint(renderer, vertex->position.x, vertex->position.y, &x, &y);
   color = vertex->color;
-  AP_RendererPushVertexUV(renderer, x, y, vertex->tex_coord.x, vertex->tex_coord.y,
-                          color);
+  AP_RendererPushVertexUV(renderer, x, y, vertex->tex_coord.x,
+                          vertex->tex_coord.y, color);
   return true;
 }
 
@@ -2131,7 +2157,8 @@ static bool AP_RendererEmitPrimitive(AP_Renderer *renderer,
         AP_SET_ERROR(AP_ERROR_INVALID_ARGUMENT, "Mesh index out of range");
         return false;
       }
-      if (!AP_RenderPoint(vertices[index].position.x, vertices[index].position.y)) {
+      if (!AP_RenderPoint(vertices[index].position.x,
+                          vertices[index].position.y)) {
         return false;
       }
     }
@@ -2148,8 +2175,8 @@ static bool AP_RendererEmitPrimitive(AP_Renderer *renderer,
         AP_SET_ERROR(AP_ERROR_INVALID_ARGUMENT, "Mesh index out of range");
         return false;
       }
-      if (!AP_RenderLine(vertices[a].position.x, vertices[a].position.y, vertices[b].position.x,
-                        vertices[b].position.y)) {
+      if (!AP_RenderLine(vertices[a].position.x, vertices[a].position.y,
+                         vertices[b].position.x, vertices[b].position.y)) {
         return false;
       }
     }
@@ -2167,16 +2194,16 @@ static bool AP_RendererEmitPrimitive(AP_Renderer *renderer,
         AP_SET_ERROR(AP_ERROR_INVALID_ARGUMENT, "Mesh index out of range");
         return false;
       }
-      if (!AP_RenderLine(vertices[a].position.x, vertices[a].position.y, vertices[b].position.x,
-                        vertices[b].position.y)) {
+      if (!AP_RenderLine(vertices[a].position.x, vertices[a].position.y,
+                         vertices[b].position.x, vertices[b].position.y)) {
         return false;
       }
     }
     if (primitive == AP_PRIM_LINE_LOOP) {
       int a = indices != NULL ? (int)indices[total - 1] : total - 1;
       int b = indices != NULL ? (int)indices[0] : 0;
-      return AP_RenderLine(vertices[a].position.x, vertices[a].position.y, vertices[b].position.x,
-                          vertices[b].position.y);
+      return AP_RenderLine(vertices[a].position.x, vertices[a].position.y,
+                           vertices[b].position.x, vertices[b].position.y);
     }
     return true;
 
@@ -2216,8 +2243,8 @@ static bool AP_RendererEmitPrimitive(AP_Renderer *renderer,
       for (i = 1; i + 1 < total; ++i) {
         int b = indices != NULL ? (int)indices[i] : i;
         int c = indices != NULL ? (int)indices[i + 1] : i + 1;
-        if (!AP_RendererEmitIndexedTriangle(renderer, vertices, count, origin, b,
-                                            c)) {
+        if (!AP_RendererEmitIndexedTriangle(renderer, vertices, count, origin,
+                                            b, c)) {
           return false;
         }
       }
@@ -2230,7 +2257,8 @@ static bool AP_RendererEmitPrimitive(AP_Renderer *renderer,
   }
 }
 
-bool AP_RenderPrimitives(const AP_Vertex *vertices, int count, AP_Primitive primitive) {
+bool AP_RenderPrimitives(const AP_Vertex *vertices, int count,
+                         AP_Primitive primitive) {
   AP_Renderer *renderer;
 
   if (vertices == NULL || count < 0) {
@@ -2243,7 +2271,8 @@ bool AP_RenderPrimitives(const AP_Vertex *vertices, int count, AP_Primitive prim
     return false;
   }
 
-  AP_RendererUseTexture(renderer, renderer->white_texture, renderer->blend_mode);
+  AP_RendererUseTexture(renderer, renderer->white_texture,
+                        renderer->blend_mode);
   return AP_RendererEmitPrimitive(renderer, vertices, count, NULL, 0,
                                   primitive);
 }
@@ -2264,13 +2293,14 @@ bool AP_DrawMeshIndexed(const AP_Vertex *vertices, int vertex_count,
     return false;
   }
 
-  AP_RendererUseTexture(renderer, renderer->white_texture, renderer->blend_mode);
+  AP_RendererUseTexture(renderer, renderer->white_texture,
+                        renderer->blend_mode);
   return AP_RendererEmitPrimitive(renderer, vertices, vertex_count, indices,
                                   index_count, primitive);
 }
 
 bool AP_RenderGeometryRaw(const AP_Vec2 *positions, const AP_Color *colors,
-                     int count) {
+                          int count) {
   AP_Renderer *renderer;
   int i;
 
@@ -2549,7 +2579,8 @@ bool AP_SetClipRect(int x, int y, int width, int height) {
   }
 
   if (width < 0 || height < 0) {
-    AP_SET_ERROR(AP_ERROR_INVALID_ARGUMENT, "Clip dimensions cannot be negative");
+    AP_SET_ERROR(AP_ERROR_INVALID_ARGUMENT,
+                 "Clip dimensions cannot be negative");
     return false;
   }
 
@@ -2821,14 +2852,16 @@ bool AP_RenderFillNGon(float x, float y, float radius, int sides) {
 
 bool AP_RenderStar(float x, float y, float outer_radius, float inner_radius,
                    int points) {
-  return AP_DrawStar((int)(x + 0.5f), (int)(y + 0.5f), (int)(outer_radius + 0.5f),
-                     (int)(inner_radius + 0.5f), points);
+  return AP_DrawStar((int)(x + 0.5f), (int)(y + 0.5f),
+                     (int)(outer_radius + 0.5f), (int)(inner_radius + 0.5f),
+                     points);
 }
 
 bool AP_RenderFillStar(float x, float y, float outer_radius, float inner_radius,
                        int points) {
-  return AP_FillStar((int)(x + 0.5f), (int)(y + 0.5f), (int)(outer_radius + 0.5f),
-                     (int)(inner_radius + 0.5f), points);
+  return AP_FillStar((int)(x + 0.5f), (int)(y + 0.5f),
+                     (int)(outer_radius + 0.5f), (int)(inner_radius + 0.5f),
+                     points);
 }
 
 bool AP_RenderCross(float x, float y, float size) {

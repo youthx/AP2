@@ -1,5 +1,14 @@
+/*
+ * AP2 — Application Primitives
+ * Copyright (c) 2026 Jack Waechter
+ *
+ * Licensed under the MIT License.
+ * See LICENSE in the project root for full terms.
+ */
+
 #include "AP2/AP2_Init.h"
 
+#include "AP2/AP2_Audio.h"
 #include "AP2/AP2_Error.h"
 #include "AP2/AP2_Logger.h"
 #include "AP2/AP2_Video.h"
@@ -40,9 +49,7 @@ static void AP_RegisterBuiltInSubsystems(void) {
 
   AP_RegisterSubsystem(AP_SUBSYSTEM_VIDEO, "Video", AP_VideoSubsystem);
 
-  /*
-   * Audio is intentionally not registered yet.
-   */
+  AP_RegisterSubsystem(AP_SUBSYSTEM_AUDIO, "Audio", AP_AudioSubsystem);
 }
 
 /* ---------------------------------------------------------
@@ -169,6 +176,10 @@ bool AP_Init(AP_InitFlags flags) {
   }
 
   AP_INFO("Initializing AP2");
+
+  if (flags & AP_INIT_VIDEO) {
+    flags |= AP_INIT_WINDOWING;
+  }
 
   /*
    * Register all built-in subsystems before attempting

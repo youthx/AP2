@@ -1,3 +1,11 @@
+/*
+ * AP2 — Application Primitives
+ * Copyright (c) 2026 Jack Waechter
+ *
+ * Licensed under the MIT License.
+ * See LICENSE in the project root for full terms.
+ */
+
 #include "AP2/AP2_Logger.h"
 
 #include <stdio.h>
@@ -138,7 +146,16 @@ void AP_LogV(AP_LogLevel level, const char *format, va_list args) {
 
   if (g_logger.include_timestamp) {
     time_t current_time = time(NULL);
-    struct tm *local_time = localtime(&current_time);
+    struct tm local_buf;
+    struct tm *local_time = NULL;
+
+#if defined(_WIN32)
+    if (localtime_s(&local_buf, &current_time) == 0) {
+      local_time = &local_buf;
+    }
+#else
+    local_time = localtime_r(&current_time, &local_buf);
+#endif
 
     if (local_time) {
       fprintf(output, "[%02d:%02d:%02d] ", local_time->tm_hour,

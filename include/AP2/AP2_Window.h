@@ -1,3 +1,11 @@
+/*
+ * AP2 — Application Primitives
+ * Copyright (c) 2026 Jack Waechter
+ *
+ * Licensed under the MIT License.
+ * See LICENSE in the project root for full terms.
+ */
+
 #ifndef AP2_WINDOW_H
 #define AP2_WINDOW_H
 
@@ -397,6 +405,8 @@ bool AP_DisableWindowFlag(AP_WindowFlags flag);
  * ========================================================= */
 
 void *AP_GetNativeHandle(void);
+
+void *AP_GetNativeDisplay(void);
 
 /* =========================================================
  * Time

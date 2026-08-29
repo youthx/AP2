@@ -1,3 +1,11 @@
+/*
+ * AP2 — Application Primitives
+ * Copyright (c) 2026 Jack Waechter
+ *
+ * Licensed under the MIT License.
+ * See LICENSE in the project root for full terms.
+ */
+
 #ifndef AP2_DEVICE_H
 #define AP2_DEVICE_H
 
@@ -74,12 +82,17 @@ typedef struct AP_DeviceConfig {
   bool vsync;
 } AP_DeviceConfig;
 
+AP_DeviceConfig AP_DeviceDefaultConfig(void);
+
 /* ---------------------------------------------------------
  * Device lifecycle
  * --------------------------------------------------------- */
 
 /*
  * Creates and initializes the graphics device.
+ *
+ * The OpenGL backend requires a current context and loaded
+ * entry points (AP_OpenGLInit). Window creation does this.
  *
  * Returns false if the requested backend cannot be
  * initialized.
@@ -127,6 +140,8 @@ AP_GraphicsBackend AP_DeviceGetBackend(const AP_Device *device);
  * Returns a human-readable backend name.
  */
 const char *AP_GraphicsBackendName(AP_GraphicsBackend backend);
+
+bool AP_GraphicsBackendAvailable(AP_GraphicsBackend backend);
 
 /* ---------------------------------------------------------
  * Subsystem metadata

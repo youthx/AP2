@@ -1,3 +1,11 @@
+/*
+ * AP2 — Application Primitives
+ * Copyright (c) 2026 Jack Waechter
+ *
+ * Licensed under the MIT License.
+ * See LICENSE in the project root for full terms.
+ */
+
 #include "AP2/AP2_Window.h"
 
 #include "AP2_Internal.h"
@@ -6,22 +14,11 @@
 #include "AP2/AP2_Error.h"
 #include "AP2/AP2_Logger.h"
 #include "AP2/AP2_Opengl.h"
+#include "AP2/AP2_Platform.h"
 #include "AP2/AP2_Video.h"
 
 #define GLFW_INCLUDE_NONE
 #include <GLFW/glfw3.h>
-
-#if defined(_WIN32)
-#define GLFW_EXPOSE_NATIVE_WIN32
-#include <GLFW/glfw3native.h>
-#elif defined(__APPLE__)
-#define GLFW_EXPOSE_NATIVE_COCOA
-#include <GLFW/glfw3native.h>
-#elif defined(__linux__)
-#define GLFW_EXPOSE_NATIVE_X11
-#define GLFW_EXPOSE_NATIVE_WAYLAND
-#include <GLFW/glfw3native.h>
-#endif
 
 #include <stddef.h>
 #include <stdint.h>
@@ -359,48 +356,73 @@ static void AP_WindowInstallCallbacks(AP_Window *window) {
 
 static void AP_WindowApplyHints(const AP_WindowConfig *config, int major,
                                 int minor) {
+  const AP_VideoConfig *video = AP_VideoGetConfig();
+  bool debug = (config->flags & AP_WINDOW_DEBUG) != 0;
+  int context_api = GLFW_NATIVE_CONTEXT_API;
+
+  if (video != NULL && (video->debug || video->validation)) {
+    debug = true;
+  }
+
+  switch (AP_PlatformGetContextAPI()) {
+  case AP_PLATFORM_CONTEXT_EGL:
+    context_api = GLFW_EGL_CONTEXT_API;
+    break;
+  case AP_PLATFORM_CONTEXT_OSMESA:
+    context_api = GLFW_OSMESA_CONTEXT_API;
+    break;
+  default:
+    context_api = GLFW_NATIVE_CONTEXT_API;
+    break;
+  }
+
   glfwDefaultWindowHints();
 
+  glfwWindowHint(GLFW_CLIENT_API, GLFW_OPENGL_API);
+  glfwWindowHint(GLFW_CONTEXT_CREATION_API, context_api);
   glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, major);
   glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, minor);
   glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+  glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT,
+                 AP_PlatformOpenGLRequiresForwardCompat() ? GLFW_TRUE
+                                                          : GLFW_FALSE);
+  glfwWindowHint(GLFW_DOUBLEBUFFER, GLFW_TRUE);
+  glfwWindowHint(GLFW_RED_BITS, 8);
+  glfwWindowHint(GLFW_GREEN_BITS, 8);
+  glfwWindowHint(GLFW_BLUE_BITS, 8);
+  glfwWindowHint(GLFW_ALPHA_BITS, 8);
+  glfwWindowHint(GLFW_DEPTH_BITS, 24);
+  glfwWindowHint(GLFW_STENCIL_BITS, 8);
+  glfwWindowHint(GLFW_REFRESH_RATE, GLFW_DONT_CARE);
 
-#if defined(__APPLE__)
-  glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GLFW_TRUE);
-#endif
-
-  glfwWindowHint(GLFW_RESIZABLE,
-                 (config->flags & AP_WINDOW_RESIZABLE) ? GLFW_TRUE
-                                                       : GLFW_FALSE);
-  glfwWindowHint(GLFW_DECORATED,
-                 ((config->flags & AP_WINDOW_DECORATED) &&
-                  (config->flags & AP_WINDOW_BORDERLESS) == 0)
-                     ? GLFW_TRUE
-                     : GLFW_FALSE);
-  glfwWindowHint(GLFW_FLOATING, (config->flags & AP_WINDOW_FLOATING)
-                                    ? GLFW_TRUE
-                                    : GLFW_FALSE);
+  glfwWindowHint(GLFW_RESIZABLE, (config->flags & AP_WINDOW_RESIZABLE)
+                                     ? GLFW_TRUE
+                                     : GLFW_FALSE);
+  glfwWindowHint(GLFW_DECORATED, ((config->flags & AP_WINDOW_DECORATED) &&
+                                  (config->flags & AP_WINDOW_BORDERLESS) == 0)
+                                     ? GLFW_TRUE
+                                     : GLFW_FALSE);
+  glfwWindowHint(GLFW_FLOATING,
+                 (config->flags & AP_WINDOW_FLOATING) ? GLFW_TRUE : GLFW_FALSE);
   glfwWindowHint(GLFW_TRANSPARENT_FRAMEBUFFER,
                  (config->flags & AP_WINDOW_TRANSPARENT) ? GLFW_TRUE
                                                          : GLFW_FALSE);
-  glfwWindowHint(GLFW_VISIBLE,
-                 (config->flags & AP_WINDOW_HIDDEN) ? GLFW_FALSE : GLFW_TRUE);
-  glfwWindowHint(GLFW_MAXIMIZED,
-                 ((config->flags & AP_WINDOW_MAXIMIZED) &&
-                  (config->flags & AP_WINDOW_FULLSCREEN) == 0)
-                     ? GLFW_TRUE
-                     : GLFW_FALSE);
+  glfwWindowHint(GLFW_VISIBLE, GLFW_FALSE);
+  glfwWindowHint(GLFW_MAXIMIZED, ((config->flags & AP_WINDOW_MAXIMIZED) &&
+                                  (config->flags & AP_WINDOW_FULLSCREEN) == 0)
+                                     ? GLFW_TRUE
+                                     : GLFW_FALSE);
   glfwWindowHint(GLFW_FOCUSED,
                  (config->flags & AP_WINDOW_NO_FOCUS) ? GLFW_FALSE : GLFW_TRUE);
-  glfwWindowHint(GLFW_FOCUS_ON_SHOW,
-                 (config->flags & AP_WINDOW_FOCUS_ON_SHOW) ? GLFW_TRUE
-                                                           : GLFW_FALSE);
-  glfwWindowHint(GLFW_AUTO_ICONIFY,
-                 (config->flags & AP_WINDOW_NO_AUTO_ICONIFY) ? GLFW_FALSE
-                                                             : GLFW_TRUE);
-  glfwWindowHint(GLFW_CENTER_CURSOR,
-                 (config->flags & AP_WINDOW_CENTER_CURSOR) ? GLFW_TRUE
-                                                           : GLFW_FALSE);
+  glfwWindowHint(GLFW_FOCUS_ON_SHOW, (config->flags & AP_WINDOW_FOCUS_ON_SHOW)
+                                         ? GLFW_TRUE
+                                         : GLFW_FALSE);
+  glfwWindowHint(GLFW_AUTO_ICONIFY, (config->flags & AP_WINDOW_NO_AUTO_ICONIFY)
+                                        ? GLFW_FALSE
+                                        : GLFW_TRUE);
+  glfwWindowHint(GLFW_CENTER_CURSOR, (config->flags & AP_WINDOW_CENTER_CURSOR)
+                                         ? GLFW_TRUE
+                                         : GLFW_FALSE);
   glfwWindowHint(GLFW_MOUSE_PASSTHROUGH,
                  (config->flags & AP_WINDOW_MOUSE_PASSTHROUGH) ? GLFW_TRUE
                                                                : GLFW_FALSE);
@@ -415,9 +437,7 @@ static void AP_WindowApplyHints(const AP_WindowConfig *config, int major,
 #endif
   glfwWindowHint(GLFW_SRGB_CAPABLE,
                  (config->flags & AP_WINDOW_SRGB) ? GLFW_TRUE : GLFW_FALSE);
-  glfwWindowHint(GLFW_OPENGL_DEBUG_CONTEXT,
-                 (config->flags & AP_WINDOW_DEBUG) ? GLFW_TRUE : GLFW_FALSE);
-  glfwWindowHint(GLFW_DOUBLEBUFFER, GLFW_TRUE);
+  glfwWindowHint(GLFW_OPENGL_DEBUG_CONTEXT, debug ? GLFW_TRUE : GLFW_FALSE);
 
   {
     int samples = 0;
@@ -439,6 +459,7 @@ static bool AP_WindowEnsureGLFW(void) {
   }
 
   glfwSetErrorCallback(AP_GLFWErrorCallback);
+  AP_PlatformPrepareWindowing();
 
   if (!glfwInit()) {
     AP_SET_ERROR(AP_ERROR_INITIALIZATION_FAILED, "Failed to initialize GLFW");
@@ -446,25 +467,48 @@ static bool AP_WindowEnsureGLFW(void) {
   }
 
   g_glfw_initialized = true;
+  AP_PlatformRefreshWindowSystem();
   AP_InputInit();
+
+  AP_INFO("Windowing ready: %s %s (%s)", AP_PlatformOSName(AP_PlatformGetOS()),
+          AP_PlatformArchName(AP_PlatformGetArch()),
+          AP_PlatformWindowSystemName(AP_PlatformGetWindowSystem()));
+
   return true;
 }
 
 static bool AP_WindowAttachGraphics(AP_Window *window) {
   AP_DeviceConfig device_config;
+  AP_OpenGLConfig gl_config;
+  const AP_VideoConfig *video;
 
   if (!AP_OpenGLMakeContextCurrent(window->handle)) {
     return false;
   }
 
-  if (!AP_OpenGLInit(NULL)) {
+  gl_config = AP_OpenGLDefaultConfig();
+  video = AP_VideoGetConfig();
+  if (video != NULL) {
+    gl_config.major_version = video->major_version;
+    gl_config.minor_version = video->minor_version;
+    gl_config.debug =
+        video->debug || video->validation || window->debug_context;
+    gl_config.vsync = video->vsync;
+  }
+
+  gl_config.vsync = window->vsync;
+  gl_config.multisample = window->msaa;
+  gl_config.multisample_samples =
+      window->msaa_samples > 0 ? (AP_UInt)window->msaa_samples : 4;
+
+  if (!AP_OpenGLInit(&gl_config)) {
     return false;
   }
 
   if (!AP_DeviceIsInitialized()) {
-    memset(&device_config, 0, sizeof(device_config));
+    device_config = AP_DeviceDefaultConfig();
     device_config.backend = AP_GRAPHICS_BACKEND_OPENGL;
-    device_config.validation = false;
+    device_config.validation = gl_config.debug;
     device_config.vsync = window->vsync;
 
     if (!AP_DeviceInit(&device_config)) {
@@ -580,7 +624,8 @@ AP_WindowConfig AP_WindowDefaultConfig(void) {
 
 bool AP_WindowValidateConfig(const AP_WindowConfig *config) {
   if (config == NULL) {
-    AP_SET_ERROR(AP_ERROR_INVALID_ARGUMENT, "Window configuration cannot be NULL");
+    AP_SET_ERROR(AP_ERROR_INVALID_ARGUMENT,
+                 "Window configuration cannot be NULL");
     return false;
   }
 
@@ -622,10 +667,15 @@ AP_Window *AP_CreateWindow(const char *title, int width, int height,
 AP_Window *AP_CreateWindowEx(const AP_WindowConfig *config) {
   AP_WindowConfig actual;
   AP_Window *window;
-  GLFWwindow *handle;
+  GLFWwindow *handle = NULL;
   GLFWmonitor *monitor = NULL;
-  int major;
-  int minor;
+  const AP_VideoConfig *video;
+  uint32_t majors[8];
+  uint32_t minors[8];
+  int version_count;
+  int version_index;
+  int major = 0;
+  int minor = 0;
   bool centered;
 
   if (config == NULL) {
@@ -654,33 +704,44 @@ AP_Window *AP_CreateWindowEx(const AP_WindowConfig *config) {
     return NULL;
   }
 
-#if defined(__APPLE__)
-  major = 4;
-  minor = 1;
-#else
-  major = 4;
-  minor = 6;
-#endif
-
-  AP_WindowApplyHints(&actual, major, minor);
+  if (AP_VideoIsInitialized() && AP_VideoGetAPI() != AP_VIDEO_API_NONE &&
+      AP_VideoGetAPI() != AP_VIDEO_API_OPENGL) {
+    AP_SET_ERROR(AP_ERROR_UNSUPPORTED,
+                 "Window creation currently requires the OpenGL video API");
+    return NULL;
+  }
 
   if (actual.flags & AP_WINDOW_FULLSCREEN) {
     monitor = AP_WindowResolveMonitor(actual.monitor_index);
     if (monitor == NULL) {
-      AP_SET_ERROR(AP_ERROR_OPERATION_FAILED, "Failed to acquire fullscreen monitor");
+      AP_SET_ERROR(AP_ERROR_OPERATION_FAILED,
+                   "Failed to acquire fullscreen monitor");
       return NULL;
     }
   }
 
-  handle = glfwCreateWindow(actual.width, actual.height, actual.title, monitor,
-                            NULL);
+  video = AP_VideoGetConfig();
+  version_count = AP_PlatformEnumerateOpenGLVersions(
+      video != NULL ? video->major_version : 0,
+      video != NULL ? video->minor_version : 0, majors, minors, 8);
 
-  if (handle == NULL) {
-    AP_WARN("Failed to create %d.%d context, retrying with OpenGL 3.3", major,
-            minor);
-    AP_WindowApplyHints(&actual, 3, 3);
+  if (version_count <= 0) {
+    AP_SET_ERROR(AP_ERROR_UNSUPPORTED, "No supported OpenGL versions");
+    return NULL;
+  }
+
+  for (version_index = 0; version_index < version_count; ++version_index) {
+    major = (int)majors[version_index];
+    minor = (int)minors[version_index];
+    AP_WindowApplyHints(&actual, major, minor);
     handle = glfwCreateWindow(actual.width, actual.height, actual.title,
                               monitor, NULL);
+    if (handle != NULL) {
+      AP_INFO("Created OpenGL %d.%d context", major, minor);
+      break;
+    }
+
+    AP_WARN("Failed to create OpenGL %d.%d context", major, minor);
   }
 
   if (handle == NULL) {
@@ -712,23 +773,19 @@ AP_Window *AP_CreateWindowEx(const AP_WindowConfig *config) {
   window->transparent = (actual.flags & AP_WINDOW_TRANSPARENT) != 0;
   window->vsync = actual.swap_interval != 0;
   window->high_dpi = (actual.flags & AP_WINDOW_HIGH_DPI) != 0;
-  window->mouse_passthrough =
-      (actual.flags & AP_WINDOW_MOUSE_PASSTHROUGH) != 0;
+  window->mouse_passthrough = (actual.flags & AP_WINDOW_MOUSE_PASSTHROUGH) != 0;
   window->focus_on_show = (actual.flags & AP_WINDOW_FOCUS_ON_SHOW) != 0;
-  window->scale_to_monitor =
-      (actual.flags & AP_WINDOW_SCALE_TO_MONITOR) != 0;
+  window->scale_to_monitor = (actual.flags & AP_WINDOW_SCALE_TO_MONITOR) != 0;
   window->msaa = (actual.flags & AP_WINDOW_MSAA) != 0;
   window->srgb = (actual.flags & AP_WINDOW_SRGB) != 0;
   window->debug_context = (actual.flags & AP_WINDOW_DEBUG) != 0;
   window->auto_iconify = (actual.flags & AP_WINDOW_NO_AUTO_ICONIFY) == 0;
   window->center_cursor = (actual.flags & AP_WINDOW_CENTER_CURSOR) != 0;
   window->borderless = (actual.flags & AP_WINDOW_BORDERLESS) != 0;
-  window->msaa_samples = window->msaa
-                             ? (actual.msaa_samples > 0 ? actual.msaa_samples : 4)
-                             : 0;
-  window->opacity = actual.opacity > 0.0f && actual.opacity <= 1.0f
-                        ? actual.opacity
-                        : 1.0f;
+  window->msaa_samples =
+      window->msaa ? (actual.msaa_samples > 0 ? actual.msaa_samples : 4) : 0;
+  window->opacity =
+      actual.opacity > 0.0f && actual.opacity <= 1.0f ? actual.opacity : 1.0f;
   window->monitor_index = actual.monitor_index;
   window->swap_interval = actual.swap_interval;
   window->cursor_visible = true;
@@ -748,15 +805,11 @@ AP_Window *AP_CreateWindowEx(const AP_WindowConfig *config) {
 
   if (actual.min_width > 0 || actual.min_height > 0 || actual.max_width > 0 ||
       actual.max_height > 0) {
-    glfwSetWindowSizeLimits(handle,
-                            actual.min_width > 0 ? actual.min_width
-                                                 : GLFW_DONT_CARE,
-                            actual.min_height > 0 ? actual.min_height
-                                                  : GLFW_DONT_CARE,
-                            actual.max_width > 0 ? actual.max_width
-                                                 : GLFW_DONT_CARE,
-                            actual.max_height > 0 ? actual.max_height
-                                                  : GLFW_DONT_CARE);
+    glfwSetWindowSizeLimits(
+        handle, actual.min_width > 0 ? actual.min_width : GLFW_DONT_CARE,
+        actual.min_height > 0 ? actual.min_height : GLFW_DONT_CARE,
+        actual.max_width > 0 ? actual.max_width : GLFW_DONT_CARE,
+        actual.max_height > 0 ? actual.max_height : GLFW_DONT_CARE);
   }
 
   if ((actual.flags & AP_WINDOW_MINIMIZED) != 0 &&
@@ -793,6 +846,11 @@ AP_Window *AP_CreateWindowEx(const AP_WindowConfig *config) {
     AP_ERROR("Failed to initialize graphics for window");
     AP_WindowDestroyInternal(window);
     return NULL;
+  }
+
+  if ((actual.flags & AP_WINDOW_HIDDEN) == 0) {
+    glfwShowWindow(handle);
+    AP_WindowRefresh(window);
   }
 
   AP_INFO("Window created: %s (%dx%d)", window->title, window->width,
@@ -846,6 +904,8 @@ bool AP_SetActiveWindow(AP_Window *window) {
  * ========================================================= */
 
 void AP_PumpEvents(void) {
+  AP_AudioPump();
+
   if (!g_glfw_initialized) {
     return;
   }
@@ -861,6 +921,8 @@ void AP_PumpEvents(void) {
 }
 
 void AP_WaitEvents(void) {
+  AP_AudioPump();
+
   if (!g_glfw_initialized) {
     return;
   }
@@ -876,6 +938,8 @@ void AP_WaitEvents(void) {
 }
 
 void AP_WaitEventsTimeout(double timeout) {
+  AP_AudioPump();
+
   if (!g_glfw_initialized) {
     return;
   }
@@ -939,7 +1003,8 @@ void AP_WindowSetShouldClose(AP_Window *window, bool should_close) {
     return;
   }
 
-  glfwSetWindowShouldClose(window->handle, should_close ? GLFW_TRUE : GLFW_FALSE);
+  glfwSetWindowShouldClose(window->handle,
+                           should_close ? GLFW_TRUE : GLFW_FALSE);
   window->open = !should_close;
 }
 
@@ -1107,7 +1172,9 @@ bool AP_GetWindowPosition(int *x, int *y) {
   return true;
 }
 
-bool AP_CenterWindow(void) { return AP_WindowCenterInternal(AP_WindowActive()); }
+bool AP_CenterWindow(void) {
+  return AP_WindowCenterInternal(AP_WindowActive());
+}
 
 /* =========================================================
  * Visibility / focus
@@ -1282,14 +1349,13 @@ bool AP_SetWindowFullscreen(bool fullscreen) {
     return true;
   }
 
-  glfwSetWindowMonitor(window->handle, NULL,
-                       window->windowed_valid ? window->windowed_x : 100,
-                       window->windowed_valid ? window->windowed_y : 100,
-                       window->windowed_valid ? window->windowed_width
-                                              : AP_WINDOW_DEFAULT_WIDTH,
-                       window->windowed_valid ? window->windowed_height
-                                              : AP_WINDOW_DEFAULT_HEIGHT,
-                       0);
+  glfwSetWindowMonitor(
+      window->handle, NULL, window->windowed_valid ? window->windowed_x : 100,
+      window->windowed_valid ? window->windowed_y : 100,
+      window->windowed_valid ? window->windowed_width : AP_WINDOW_DEFAULT_WIDTH,
+      window->windowed_valid ? window->windowed_height
+                             : AP_WINDOW_DEFAULT_HEIGHT,
+      0);
   glfwSwapInterval(window->swap_interval);
   window->fullscreen = false;
   AP_WindowRefresh(window);
@@ -1445,7 +1511,8 @@ bool AP_SetWindowOpacity(float opacity) {
   }
 
   if (opacity <= 0.0f || opacity > 1.0f) {
-    AP_SET_ERROR(AP_ERROR_INVALID_ARGUMENT, "Opacity must be in the range (0, 1]");
+    AP_SET_ERROR(AP_ERROR_INVALID_ARGUMENT,
+                 "Opacity must be in the range (0, 1]");
     return false;
   }
 
@@ -1611,9 +1678,9 @@ void AP_SetCursorLocked(bool locked) {
   }
 
   glfwSetInputMode(window->handle, GLFW_CURSOR,
-                   locked ? GLFW_CURSOR_DISABLED : (window->cursor_visible
-                                                        ? GLFW_CURSOR_NORMAL
-                                                        : GLFW_CURSOR_HIDDEN));
+                   locked ? GLFW_CURSOR_DISABLED
+                          : (window->cursor_visible ? GLFW_CURSOR_NORMAL
+                                                    : GLFW_CURSOR_HIDDEN));
   window->cursor_locked = locked;
 }
 
@@ -1831,9 +1898,9 @@ bool AP_SetWindowFlags(uint32_t flags) {
   uint32_t enable = flags & ~current;
   uint32_t disable = current & ~flags;
   AP_WindowFlags known[] = {
-      AP_WINDOW_RESIZABLE, AP_WINDOW_DECORATED, AP_WINDOW_MAXIMIZED,
-      AP_WINDOW_FULLSCREEN, AP_WINDOW_HIDDEN, AP_WINDOW_FLOATING,
-      AP_WINDOW_VSYNC, AP_WINDOW_MINIMIZED, AP_WINDOW_MOUSE_PASSTHROUGH};
+      AP_WINDOW_RESIZABLE,  AP_WINDOW_DECORATED, AP_WINDOW_MAXIMIZED,
+      AP_WINDOW_FULLSCREEN, AP_WINDOW_HIDDEN,    AP_WINDOW_FLOATING,
+      AP_WINDOW_VSYNC,      AP_WINDOW_MINIMIZED, AP_WINDOW_MOUSE_PASSTHROUGH};
   size_t i;
 
   if (AP_WindowActive() == NULL) {
@@ -1950,24 +2017,10 @@ void *AP_GetNativeHandle(void) {
     return NULL;
   }
 
-#if defined(_WIN32)
-  return (void *)glfwGetWin32Window(window->handle);
-#elif defined(__APPLE__)
-  return (void *)glfwGetCocoaWindow(window->handle);
-#elif defined(__linux__)
-  if (glfwGetPlatform() == GLFW_PLATFORM_X11) {
-    return (void *)(uintptr_t)glfwGetX11Window(window->handle);
-  }
-
-  if (glfwGetPlatform() == GLFW_PLATFORM_WAYLAND) {
-    return glfwGetWaylandWindow(window->handle);
-  }
-
-  return NULL;
-#else
-  return NULL;
-#endif
+  return AP_PlatformGetNativeWindow(window->handle);
 }
+
+void *AP_GetNativeDisplay(void) { return AP_PlatformGetNativeDisplay(); }
 
 double AP_GetTime(void) {
   if (!g_glfw_initialized) {

@@ -1,3 +1,11 @@
+/*
+ * AP2 — Application Primitives
+ * Copyright (c) 2026 Jack Waechter
+ *
+ * Licensed under the MIT License.
+ * See LICENSE in the project root for full terms.
+ */
+
 #include "AP2/AP2_Font.h"
 
 #include "AP2_Internal.h"
@@ -8,7 +16,14 @@
 
 #define STB_TRUETYPE_IMPLEMENTATION
 #define STBTT_STATIC
+#if defined(__GNUC__)
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-function"
+#endif
 #include "stb_truetype.h"
+#if defined(__GNUC__)
+#pragma GCC diagnostic pop
+#endif
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -343,10 +358,10 @@ static bool AP_FontDrawGlyph(AP_Font *font, float x, float y,
                              float scale) {
   AP_FRect src = glyph->src;
   AP_FRect dst;
-  AP_U8 prev_r = 255;
-  AP_U8 prev_g = 255;
-  AP_U8 prev_b = 255;
-  AP_U8 prev_a = 255;
+  float red;
+  float green;
+  float blue;
+  float alpha;
   bool ok;
 
   if (glyph->width <= 0.0f || glyph->height <= 0.0f) {
@@ -358,13 +373,20 @@ static bool AP_FontDrawGlyph(AP_Font *font, float x, float y,
   dst.w = glyph->width * scale;
   dst.h = glyph->height * scale;
 
-  AP_GetTextureColorMod(font->atlas, &prev_r, &prev_g, &prev_b);
-  AP_GetTextureAlphaMod(font->atlas, &prev_a);
-  AP_SetTextureColorModFloat(font->atlas, color.r, color.g, color.b);
-  AP_SetTextureAlphaModFloat(font->atlas, color.a);
+  if (!AP_GetTextureColorModFloat(font->atlas, &red, &green, &blue) ||
+      !AP_GetTextureAlphaModFloat(font->atlas, &alpha)) {
+    return false;
+  }
+
+  if (!AP_SetTextureColorModFloat(font->atlas, color.r * red, color.g * green,
+                                  color.b * blue) ||
+      !AP_SetTextureAlphaModFloat(font->atlas, color.a * alpha)) {
+    return false;
+  }
+
   ok = AP_RenderTexture(font->atlas, &src, &dst);
-  AP_SetTextureColorMod(font->atlas, prev_r, prev_g, prev_b);
-  AP_SetTextureAlphaMod(font->atlas, prev_a);
+  AP_SetTextureColorModFloat(font->atlas, red, green, blue);
+  AP_SetTextureAlphaModFloat(font->atlas, alpha);
   return ok;
 }
 
@@ -386,10 +408,7 @@ bool AP_FontInit(void) {
 }
 
 void AP_FontShutdown(void) {
-  if (g_current_font == g_default_font) {
-    g_current_font = NULL;
-  }
-
+  g_current_font = NULL;
   AP_FontDestroy(g_default_font);
   g_default_font = NULL;
 }
