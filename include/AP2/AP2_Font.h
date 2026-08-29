@@ -21,7 +21,8 @@ extern "C" {
  * AP2 Font
  *
  * Text is drawn in window pixels, top-left origin. A built-in
- * 8x8 Latin font is always available after the window exists:
+ * 8x8 Latin font is always available after the window exists
+ * (not pretty — it's there so you can print a HUD before you have a TTF):
  *
  *     AP_SetDrawColor(1.0f, 1.0f, 1.0f, 1.0f);
  *     AP_DrawText(32.0f, 32.0f, "Hello");

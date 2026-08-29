@@ -1,4 +1,6 @@
 C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/CMakeFiles/ap2.dir
+C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/CMakeFiles/ap2_lib.dir
+C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/CMakeFiles/ap2_default.dir
 C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/CMakeFiles/package.dir
 C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/CMakeFiles/package_source.dir
 C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/CMakeFiles/edit_cache.dir

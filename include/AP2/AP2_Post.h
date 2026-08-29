@@ -39,7 +39,7 @@ typedef struct AP_Shader AP_Shader;
  *
  * AP_GUI_LAYER_OFF      skip GUI draw and input capture
  * AP_GUI_LAYER_SCENE    GUI is in the scene (affected by post)
- * AP_GUI_LAYER_OVERLAY  GUI is composited after post (default)
+ * AP_GUI_LAYER_OVERLAY  GUI is composited after post (default, and what you want)
  *
  * Exclude with AP2_NO_POST.
  */

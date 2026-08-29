@@ -155,6 +155,8 @@ typedef struct AP_Color8 {
 
 /* ============================================================
  * Rectangle (SDL_Rect layout: x, y, w, h)
+ *
+ * Same memory layout as SDL on purpose. memcpy is legal.
  * ============================================================ */
 
 typedef struct AP_Rect {

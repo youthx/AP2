@@ -15,6 +15,10 @@ license = "MIT"
 
 binary_type = "executable"
 
+# Debug (`cforge build` / `cforge run`): sample app from src/main.c
+# Release (`cforge build --config Release`): static library from src/core
+# See cmake/ap2-product.cmake
+
 c_standard = "17"
 cpp_standard = "17"
 
@@ -52,6 +56,9 @@ export_compile_commands = true
 generator = "Ninja Multi-Config"
 c_compiler = "C:/msys64/ucrt64/bin/gcc.exe"
 cxx_compiler = "C:/msys64/ucrt64/bin/g++.exe"
+inject_after_target = '''
+cmake_language(DEFER CALL include "${CMAKE_CURRENT_SOURCE_DIR}/cmake/ap2-product.cmake")
+'''
 
 [build.cmake_variables]
 CMAKE_C_COMPILER = "C:/msys64/ucrt64/bin/gcc.exe"

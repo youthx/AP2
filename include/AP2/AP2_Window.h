@@ -46,8 +46,8 @@ typedef struct AP_Window AP_Window;
  * Position sentinels
  * ========================================================= */
 
-#define AP_WINDOW_POS_UNDEFINED 0x1FFF0000
-#define AP_WINDOW_POS_CENTERED 0x2FFF0000
+#define AP_WINDOW_POS_UNDEFINED 0x1FFF0000 /* "put it wherever" */
+#define AP_WINDOW_POS_CENTERED 0x2FFF0000 /* not a pixel. don't add it to one. */
 
 /* =========================================================
  * Window flags
@@ -76,13 +76,19 @@ typedef enum AP_WindowFlags {
   AP_WINDOW_NO_AUTO_ICONIFY = 1u << 18,
   AP_WINDOW_NO_FOCUS = 1u << 19,
   AP_WINDOW_CENTER_CURSOR = 1u << 20,
-  AP_WINDOW_BORDERLESS = 1u << 21
+  AP_WINDOW_BORDERLESS = 1u << 21,
+  AP_WINDOW_NO_TITLE = 1u << 22,
+  AP_WINDOW_NO_MINIMIZE = 1u << 23,
+  AP_WINDOW_NO_MAXIMIZE = 1u << 24,
+  AP_WINDOW_NO_CLOSE = 1u << 25
 } AP_WindowFlags;
 
 #define AP_WINDOW_HIGH_PIXEL_DENSITY AP_WINDOW_HIGH_DPI
 #define AP_WINDOW_ALWAYS_ON_TOP AP_WINDOW_FLOATING
 #define AP_WINDOW_NOT_FOCUSABLE AP_WINDOW_NO_FOCUS
 #define AP_WINDOW_INPUT_FOCUS AP_WINDOW_FOCUSED
+#define AP_WINDOW_NO_BUTTONS                                                        \
+  (AP_WINDOW_NO_MINIMIZE | AP_WINDOW_NO_MAXIMIZE | AP_WINDOW_NO_CLOSE)
 
 /* =========================================================
  * Window configuration
@@ -140,7 +146,7 @@ AP_Window *AP_CreateWindow(const char *title, int width, int height,
 AP_Window *AP_CreateWindowEx(const AP_WindowConfig *config);
 
 /*
- * Destroys a window. Passing NULL destroys the active window.
+ * Destroys a window. NULL means the active one.
  */
 void AP_DestroyWindow(AP_Window *window);
 
@@ -166,7 +172,7 @@ void AP_WaitEvents(void);
 
 void AP_WaitEventsTimeout(double timeout);
 
-#define AP_PollEvents AP_PumpEvents
+#define AP_PollEvents AP_PumpEvents /* SDL muscle memory */
 
 /* =========================================================
  * Close / main loop
@@ -302,6 +308,28 @@ bool AP_IsWindowResizable(void);
 bool AP_SetWindowBordered(bool bordered);
 
 bool AP_IsWindowBordered(void);
+
+/*
+ * Caption chrome. These apply when the window is decorated.
+ * Title text can be hidden while the bar and buttons stay.
+ * Min / max hide the buttons. Close disables the button (and the
+ * OS close request); AP_RequestClose still works.
+ */
+bool AP_SetWindowTitleVisible(bool visible);
+
+bool AP_IsWindowTitleVisible(void);
+
+bool AP_SetWindowMinimizeButton(bool visible);
+
+bool AP_IsWindowMinimizeButton(void);
+
+bool AP_SetWindowMaximizeButton(bool visible);
+
+bool AP_IsWindowMaximizeButton(void);
+
+bool AP_SetWindowCloseButton(bool visible);
+
+bool AP_IsWindowCloseButton(void);
 
 bool AP_SetWindowAlwaysOnTop(bool on_top);
 

@@ -12,6 +12,7 @@
  */
 
 #include <AP2/AP2.h>
+#include <AP2/AP2_Post.h>
 
 #include <math.h>
 #include <stdio.h>
@@ -49,6 +50,7 @@ static void AP_SampleCameraUpdate(AP_SampleCamera *orbit) {
     orbit->pitch_deg += (float)AP_GetMouseDeltaY() * AP_SAMPLE_PITCH_SENS;
     orbit->pitch_deg =
         AP_Clampf(orbit->pitch_deg, AP_SAMPLE_PITCH_MIN, AP_SAMPLE_PITCH_MAX);
+    /* Stay off the poles. A flipping camera is a bad camera. */
   }
 
   orbit->distance -= (float)AP_GetMouseWheelY() * AP_SAMPLE_ZOOM_SENS;
@@ -93,7 +95,7 @@ static void AP_SampleDrawScene(AP_Mesh *cube, float time) {
   AP_DrawSphere(AP_V3(-0.4f, 0.55f, 2.6f), 0.55f,
                 AP_C4(0.95f, 0.82f, 0.28f, 1.0f));
 
-  AP_DrawSphere(lamp, 0.12f, AP_C4(1.0f, 0.85f, 0.45f, 1.0f));
+  AP_DrawSphere(lamp, 0.12f, AP_C4(1.0f, 0.85f, 0.45f, 1.0f)); /* so you can see the light */
   AP_DrawLine3D(lamp, AP_V3(lamp.x, 0.0f, lamp.z),
                 AP_C4(1.0f, 0.70f, 0.30f, 0.45f));
 }
@@ -130,7 +132,7 @@ int main(void) {
 
   if (!AP_CreateWindow("AP2 3D", 1280, 720,
                        AP_WINDOW_RESIZABLE | AP_WINDOW_HIGH_PIXEL_DENSITY |
-                           AP_WINDOW_MSAA | AP_WINDOW_VSYNC)) {
+                   AP_WINDOW_VSYNC)) {
     AP_ERROR("window: %s", AP_GetErrorMessage());
     AP_Quit();
     return 1;
@@ -138,6 +140,11 @@ int main(void) {
 
   cube = AP_CreateMeshCube(1.0f);
 
+  AP_PostConfig config = AP_PostDefaultConfig();
+  config.flags = AP_POST_CHROMATIC;
+  config.chromatic = 1.0f;
+
+  AP_SetPostConfig(&config);
   while (AP_IsRunning()) {
     float time;
 
@@ -153,6 +160,8 @@ int main(void) {
 
     AP_SetDrawColor(0.07f, 0.08f, 0.11f, 1.0f);
     AP_Clear();
+
+    AP_PostEnabled();
 
     AP_Begin3D(&camera);
     AP_SampleDrawScene(cube, time);

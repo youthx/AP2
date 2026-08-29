@@ -36,6 +36,8 @@ extern "C" {
  *     AP_End3D();
  *
  * Exclude with AP2_NO_3D. Requires math, renderer, and shader.
+ *
+ * There is no scene graph. Draw it this frame or it isn't there.
  */
 
 typedef struct AP_Mesh AP_Mesh;

@@ -134,7 +134,7 @@ bool AP_CloseSubsystem(AP_Subsystem subsystem);
  *     AP_Init(AP_INIT_WINDOWING | AP_INIT_VIDEO);
  *
  * AP_INIT_VIDEO also enables windowing. AP_INIT_ALL starts every
- * registered subsystem.
+ * registered subsystem. Fine for samples; games usually want a subset.
  */
 bool AP_Init(AP_InitFlags flags);
 

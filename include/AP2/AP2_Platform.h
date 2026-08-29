@@ -146,6 +146,14 @@ void *AP_PlatformGetNativeWindow(void *glfw_window);
 
 void *AP_PlatformGetNativeDisplay(void);
 
+/*
+ * Native caption: title text and min / max / close.
+ * Decorated windows only. Wayland may ignore this.
+ */
+void AP_PlatformSetWindowChrome(void *glfw_window, bool title, bool minimize,
+                                 bool maximize, bool close,
+                                 const char *title_text);
+
 bool AP_PlatformIsMainThread(void);
 
 uint64_t AP_PlatformGetTimerFrequency(void);

@@ -27,7 +27,7 @@ extern "C" {
  *     AP_SetUniformMat4("u_mvp", mvp.m, false);
  *
  * 3D space is right-handed and Y-up. This is independent of the
- * 2D renderer, which uses a top-left origin.
+ * 2D renderer, which uses a top-left origin. Mixing them is normal.
  *
  * Exclude with AP2_NO_MATH before including <AP2/AP2.h>.
  */
@@ -37,7 +37,7 @@ extern "C" {
 #endif
 
 #ifndef AP_TAU
-#define AP_TAU (AP_PI * 2.0f)
+#define AP_TAU (AP_PI * 2.0f) /* a full turn. π is the half-constant. */
 #endif
 
 #ifndef AP_DEG2RAD

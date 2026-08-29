@@ -177,9 +177,7 @@ void AP_LogV(AP_LogLevel level, const char *format, va_list args) {
 
   fflush(output);
 
-  /*
-   * Fatal messages terminate the process.
-   */
+  /* Used to abort here. Libraries shouldn't. Flush and hope someone is looking. */
   if (level == AP_LOG_FATAL) {
     fflush(output);
   }

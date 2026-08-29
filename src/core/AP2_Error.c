@@ -13,6 +13,8 @@
 
 /* ---------------------------------------------------------
  * Internal state
+ *
+ * Per-thread so a worker's failure doesn't clobber the main thread.
  * --------------------------------------------------------- */
 
 static _Thread_local AP_Error g_error = {.code = AP_ERROR_NONE,

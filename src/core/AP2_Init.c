@@ -36,16 +36,10 @@ static bool g_ap2_initialized = false;
  * --------------------------------------------------------- */
 
 static void AP_RegisterBuiltInSubsystems(void) {
-  /*
-   * Windowing
-   */
+  /* Windowing first, then video. Audio can show up whenever. */
 
   AP_RegisterSubsystem(AP_SUBSYSTEM_WINDOWING, "Windowing",
                        AP_WindowingSubsystem);
-
-  /*
-   * Video
-   */
 
   AP_RegisterSubsystem(AP_SUBSYSTEM_VIDEO, "Video", AP_VideoSubsystem);
 

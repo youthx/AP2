@@ -29,6 +29,7 @@
 /*
  * Avoid glfw3native.h on Linux: it pulls X11/Wayland system headers
  * that are not always present. GLFW 3.4+ still exports these symbols.
+ * CI boxes without those headers will thank you.
  */
 GLFWAPI unsigned long glfwGetX11Window(GLFWwindow *window);
 GLFWAPI void *glfwGetX11Display(void);

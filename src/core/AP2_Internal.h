@@ -12,8 +12,8 @@
 /*
  * Private AP2 internals.
  *
- * These declarations are for AP2 source files only. They must never
- * appear in public headers and must never be used by applications.
+ * For src/core only. Not secret — just not a stable API.
+ * If this header showed up in your game, something went sideways.
  */
 
 #if defined(AP2_PUBLIC_API_INCLUDED) && !defined(AP2_ALLOW_INTERNAL)

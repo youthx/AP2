@@ -81,6 +81,75 @@ rule C_EXECUTABLE_LINKER__ap2_RelWithDebInfo
 
 
 #############################################
+# Rule for compiling C files.
+
+rule C_COMPILER__ap2_lib_unscanned_Debug
+  depfile = $DEP_FILE
+  deps = gcc
+  command = ${LAUNCHER}${CODE_CHECK}C:\msys64\ucrt64\bin\gcc.exe @$RSP_FILE -MD -MT $out -MF $DEP_FILE -o $out -c $in
+  description = Building C object $out
+  rspfile = $RSP_FILE
+  rspfile_content =  $DEFINES $INCLUDES $FLAGS
+
+
+#############################################
+# Rule for linking C static library.
+
+rule C_STATIC_LIBRARY_LINKER__ap2_lib_Debug
+  command = C:\WINDOWS\system32\cmd.exe /C "$PRE_LINK && "C:\Program Files\CMake\bin\cmake.exe" -E rm -f $TARGET_FILE && C:\msys64\ucrt64\bin\ar.exe qc $TARGET_FILE $LINK_FLAGS @$RSP_FILE && C:\msys64\ucrt64\bin\ranlib.exe $TARGET_FILE && $POST_BUILD"
+  description = Linking C static library $TARGET_FILE
+  rspfile = $RSP_FILE
+  rspfile_content = $in $LINK_PATH $LINK_LIBRARIES
+  restat = $RESTAT
+
+
+#############################################
+# Rule for compiling C files.
+
+rule C_COMPILER__ap2_lib_unscanned_Release
+  depfile = $DEP_FILE
+  deps = gcc
+  command = ${LAUNCHER}${CODE_CHECK}C:\msys64\ucrt64\bin\gcc.exe @$RSP_FILE -MD -MT $out -MF $DEP_FILE -o $out -c $in
+  description = Building C object $out
+  rspfile = $RSP_FILE
+  rspfile_content =  $DEFINES $INCLUDES $FLAGS
+
+
+#############################################
+# Rule for linking C static library.
+
+rule C_STATIC_LIBRARY_LINKER__ap2_lib_Release
+  command = C:\WINDOWS\system32\cmd.exe /C "$PRE_LINK && "C:\Program Files\CMake\bin\cmake.exe" -E rm -f $TARGET_FILE && C:\msys64\ucrt64\bin\ar.exe qc $TARGET_FILE $LINK_FLAGS @$RSP_FILE && C:\msys64\ucrt64\bin\ranlib.exe $TARGET_FILE && $POST_BUILD"
+  description = Linking C static library $TARGET_FILE
+  rspfile = $RSP_FILE
+  rspfile_content = $in $LINK_PATH $LINK_LIBRARIES
+  restat = $RESTAT
+
+
+#############################################
+# Rule for compiling C files.
+
+rule C_COMPILER__ap2_lib_unscanned_RelWithDebInfo
+  depfile = $DEP_FILE
+  deps = gcc
+  command = ${LAUNCHER}${CODE_CHECK}C:\msys64\ucrt64\bin\gcc.exe @$RSP_FILE -MD -MT $out -MF $DEP_FILE -o $out -c $in
+  description = Building C object $out
+  rspfile = $RSP_FILE
+  rspfile_content =  $DEFINES $INCLUDES $FLAGS
+
+
+#############################################
+# Rule for linking C static library.
+
+rule C_STATIC_LIBRARY_LINKER__ap2_lib_RelWithDebInfo
+  command = C:\WINDOWS\system32\cmd.exe /C "$PRE_LINK && "C:\Program Files\CMake\bin\cmake.exe" -E rm -f $TARGET_FILE && C:\msys64\ucrt64\bin\ar.exe qc $TARGET_FILE $LINK_FLAGS @$RSP_FILE && C:\msys64\ucrt64\bin\ranlib.exe $TARGET_FILE && $POST_BUILD"
+  description = Linking C static library $TARGET_FILE
+  rspfile = $RSP_FILE
+  rspfile_content = $in $LINK_PATH $LINK_LIBRARIES
+  restat = $RESTAT
+
+
+#############################################
 # Rule for running custom commands.
 
 rule CUSTOM_COMMAND
@@ -232,6 +301,15 @@ rule C_STATIC_LIBRARY_LINKER__glad_RelWithDebInfo
 rule RERUN_CMAKE
   command = "C:\Program Files\CMake\bin\cmake.exe" --regenerate-during-build -SC:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2 -BC:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build
   description = Re-running CMake...
+  generator = 1
+
+
+#############################################
+# Rule for re-checking globbed directories.
+
+rule VERIFY_GLOBS
+  command = "C:\Program Files\CMake\bin\cmake.exe" -P C:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build\CMakeFiles\VerifyGlobs.cmake
+  description = Re-checking globbed directories...
   generator = 1
 
 

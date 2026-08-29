@@ -26,7 +26,7 @@
 #define AP_INPUT_DROP_MAX 32
 #define AP_INPUT_DROP_PATH 1024
 #define AP_INPUT_GAMEPAD_NAME 128
-#define AP_INPUT_DEFAULT_DEADZONE 0.15f
+#define AP_INPUT_DEFAULT_DEADZONE 0.15f /* sticks rest a little dirty */
 
 typedef struct AP_InputGamepad {
   bool connected;

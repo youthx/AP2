@@ -36,6 +36,8 @@ extern "C" {
  * Pressed  = went down this frame
  * Released = went up this frame
  *
+ * Skip AP_PumpEvents() and Pressed never fires. That's not a bug.
+ *
  * Keyboard, mouse, and gamepad queries operate on the focused
  * window. GLFW is never exposed.
  */

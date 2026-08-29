@@ -48,6 +48,8 @@
  *
  * AP2_Internal.h is private. Including it from application code is an
  * error unless AP2_ALLOW_INTERNAL is defined.
+ *
+ * Started in 2024. The long name changed; AP2 didn't.
  */
 
 #ifdef AP2_INTERNAL_H
@@ -63,7 +65,7 @@
  * ========================================================= */
 
 #define AP2_NAME "AP2"
-#define AP2_FULL_NAME "Application Primitives"
+#define AP2_FULL_NAME "Application Primitives" /* used to mean something else */
 #define AP2_DESCRIPTION "Application Primitives — a C17 kit for games and tools"
 #define AP2_AUTHOR "Jack Waechter"
 #define AP2_LICENSE "MIT"

@@ -39,6 +39,8 @@ extern "C" {
  *
  * Rotation is in degrees. Positive angles rotate clockwise in
  * window space (Y increases downward).
+ *
+ * 2D is Y-down. 3D is Y-up. Both are correct. Both will get you once.
  */
 
 /* =========================================================

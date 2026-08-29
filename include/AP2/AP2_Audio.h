@@ -39,6 +39,8 @@ extern "C" {
  *
  * Spatial layout is right-handed: +Y up, -Z forward (OpenGL). 2D helpers
  * place sounds in XY with +Z as world-up so screen X is left/right.
+ *
+ * 2D "up" and 3D "up" are different axes. Pick one per game and live with it.
  */
 
 typedef struct AP_Sound AP_Sound;

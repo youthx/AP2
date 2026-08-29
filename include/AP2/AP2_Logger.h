@@ -71,7 +71,7 @@ void AP_LogDebug(const char *format, ...);
 void AP_LogInfo(const char *format, ...);
 void AP_LogWarn(const char *format, ...);
 void AP_LogError(const char *format, ...);
-void AP_LogFatal(const char *format, ...);
+void AP_LogFatal(const char *format, ...); /* logs. does not abort. */
 
 /* ---------------------------------------------------------
  * Macros

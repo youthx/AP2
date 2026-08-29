@@ -89,9 +89,15 @@ build ap2: phony bin/Debug/ap2.exe
 
 build ap2.exe: phony bin/Debug/ap2.exe
 
+build ap2_default: phony ap2_default$:Debug
+
+build ap2_lib: phony lib/Debug/libap2.a
+
 build glad: phony lib/Debug/libglad.a
 
 build glfw: phony lib/Debug/libglfw3.a
+
+build libap2.a: phony lib/Debug/libap2.a
 
 build libglad.a: phony lib/Debug/libglad.a
 

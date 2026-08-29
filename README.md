@@ -51,8 +51,9 @@ One include, opaque handles, no renderer pointer on every call. GLFW and OpenGL 
 Needs CMake 3.15+, a C17 compiler, and Python once (to generate GLAD).
 
 ```bash
-cforge build
+cforge build                         # Debug sample app (src/main.c)
 cforge run
+cforge build --config Release        # static library (src/core)
 ```
 
 Or CMake:

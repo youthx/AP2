@@ -40,6 +40,7 @@ typedef struct AP_PostState {
 static AP_PostState g_post;
 static bool g_config_ready = false;
 
+/* Grain hash. Looks like numerology. Grain doesn't care. */
 static const char *AP_POST_FRAGMENT =
     "#version 330 core\n"
     "in vec4 v_color;\n"

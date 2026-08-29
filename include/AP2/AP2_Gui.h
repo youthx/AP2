@@ -44,7 +44,8 @@ typedef struct AP_Texture AP_Texture;
  *     }
  *
  * Labels may use "##id" to keep a unique ID while showing a
- * shorter name: AP_GuiButton("OK##save").
+ * shorter name: AP_GuiButton("OK##save"). Two buttons named "OK"
+ * will steal each other's clicks. That's what ## is for.
  *
  * Style: AP_GuiDarkStyle() is the default. Copy, edit, and pass
  * to AP_GuiSetStyle(), or mutate AP_GuiGetStyle() in place.

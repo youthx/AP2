@@ -29,7 +29,7 @@ extern "C" {
  *     AP_UseShader(wave);
  *     AP_SetUniformF("u_time", time);
  *     AP_FillRect(&(AP_FRect){0.0f, 0.0f, 1280.0f, 720.0f});
- *     AP_UseShader(NULL);
+ *     AP_UseShader(NULL);  // back to the built-in. easy to forget.
  *
  * Advanced path — extra stages, defines, explicit bindings:
  *

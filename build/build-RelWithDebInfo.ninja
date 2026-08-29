@@ -50,9 +50,15 @@ build ap2: phony bin/RelWithDebInfo/ap2.exe
 
 build ap2.exe: phony bin/RelWithDebInfo/ap2.exe
 
+build ap2_default: phony ap2_default$:RelWithDebInfo
+
+build ap2_lib: phony lib/RelWithDebInfo/libap2.a
+
 build glad: phony lib/RelWithDebInfo/libglad.a
 
 build glfw: phony lib/RelWithDebInfo/libglfw3.a
+
+build libap2.a: phony lib/RelWithDebInfo/libap2.a
 
 build libglad.a: phony lib/RelWithDebInfo/libglad.a
 
