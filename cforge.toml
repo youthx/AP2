@@ -22,7 +22,6 @@ binary_type = "executable"
 c_standard = "17"
 cpp_standard = "17"
 
-
 # =========================================================
 # Build
 # =========================================================
@@ -31,20 +30,16 @@ cpp_standard = "17"
 build_type = "Debug"
 directory = "build"
 
-source_dirs = [
-    "src",
-    "src/core"
-]
+source_dirs = ["src", "src/core"]
 
 include_dirs = [
     "include",
     "include/AP2",
     "third_party/stb",
-    "third_party/miniaudio"
+    "third_party/miniaudio",
 ]
 
 export_compile_commands = true
-
 
 # =========================================================
 # CMake
@@ -75,7 +70,6 @@ CMAKE_NINJA_FORCE_RESPONSE_FILE = "ON"
 CMAKE_C_FLAGS = "-B C:/msys64/ucrt64/bin"
 CMAKE_CXX_FLAGS = "-B C:/msys64/ucrt64/bin"
 
-
 # =========================================================
 # Debug
 # =========================================================
@@ -85,11 +79,7 @@ optimize = ""
 debug_info = true
 warnings = "all"
 
-defines = [
-    "DEBUG=1",
-    "_CRT_SECURE_NO_WARNINGS"
-]
-
+defines = ["DEBUG=1", "_CRT_SECURE_NO_WARNINGS"]
 
 # =========================================================
 # Release
@@ -101,11 +91,7 @@ debug_info = false
 warnings = "all"
 lto = true
 
-defines = [
-    "NDEBUG",
-    "_CRT_SECURE_NO_WARNINGS"
-]
-
+defines = ["NDEBUG", "_CRT_SECURE_NO_WARNINGS"]
 
 # =========================================================
 # RelWithDebInfo
@@ -116,11 +102,7 @@ optimize = "speed"
 debug_info = true
 warnings = "all"
 
-defines = [
-    "NDEBUG",
-    "_CRT_SECURE_NO_WARNINGS"
-]
-
+defines = ["NDEBUG", "_CRT_SECURE_NO_WARNINGS"]
 
 # =========================================================
 # MinSizeRel
@@ -131,11 +113,7 @@ optimize = "size"
 debug_info = false
 warnings = "all"
 
-defines = [
-    "NDEBUG",
-    "_CRT_SECURE_NO_WARNINGS"
-]
-
+defines = ["NDEBUG", "_CRT_SECURE_NO_WARNINGS"]
 
 # =========================================================
 # MSVC
@@ -144,46 +122,26 @@ defines = [
 [compiler.msvc]
 warnings = "all"
 
-defines = [
-    "_CRT_SECURE_NO_WARNINGS"
-]
-
+defines = ["_CRT_SECURE_NO_WARNINGS"]
 
 # =========================================================
 # Windows
 # =========================================================
 
 [platform.windows]
-defines = [
-    "WIN32",
-    "_WINDOWS"
-]
+defines = ["WIN32", "_WINDOWS"]
 
-links = [
-    "user32",
-    "kernel32",
-    "opengl32",
-    "gdi32"
-]
+links = ["user32", "kernel32", "opengl32", "gdi32"]
 
 [platform.linux]
-links = [
-    "GL",
-    "dl",
-    "m",
-    "pthread"
-]
+links = ["GL", "dl", "m", "pthread"]
 
 [platform.macos]
-defines = [
-    "GL_SILENCE_DEPRECATION"
-]
-
+defines = ["GL_SILENCE_DEPRECATION"]
 
 # =========================================================
 # Dependencies
 # =========================================================
-
 
 [dependencies]
 glad = "2.0.8"
@@ -196,7 +154,6 @@ glfw = "3.5.1"
 [test]
 enabled = false
 
-
 # =========================================================
 # Packaging
 # =========================================================
@@ -207,7 +164,6 @@ generators = []
 
 vendor = "Jack Waechter"
 contact = "Jack Waechter"
-
 
 # =========================================================
 # Hot Reload
@@ -221,7 +177,4 @@ module = "src/main.c"
 
 entry_point = "main"
 
-watch_dirs = [
-    "src",
-    "include"
-]
+watch_dirs = ["src", "include"]

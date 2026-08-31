@@ -20,6 +20,7 @@ set(_AP2_LIB_SOURCES
   ${CMAKE_CURRENT_SOURCE_DIR}/src/core/AP2_Input.c
   ${CMAKE_CURRENT_SOURCE_DIR}/src/core/AP2_List.c
   ${CMAKE_CURRENT_SOURCE_DIR}/src/core/AP2_Logger.c
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/core/AP2_Material.c
   ${CMAKE_CURRENT_SOURCE_DIR}/src/core/AP2_Math.c
   ${CMAKE_CURRENT_SOURCE_DIR}/src/core/AP2_Miniaudio.c
   ${CMAKE_CURRENT_SOURCE_DIR}/src/core/AP2_Opengl.c

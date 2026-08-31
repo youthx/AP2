@@ -345,6 +345,8 @@ bool AP_GetRenderClipRect(AP_Rect *rect);
 
 bool AP_RenderClipEnabled(void);
 
+bool AP_RenderFill(AP_F32 r, AP_F32 g, AP_F32 b, AP_F32 a);
+
 /* =========================================================
  * Compatibility names
  * ========================================================= */
@@ -358,6 +360,7 @@ bool AP_RenderClipEnabled(void);
 #define AP_SetBlendMode AP_SetRenderDrawBlendMode
 #define AP_GetBlendMode AP_GetRenderDrawBlendMode
 #define AP_Clear AP_RenderClear
+#define AP_Fill AP_RenderFill
 #define AP_Flush AP_FlushRenderer
 #define AP_Present AP_RenderPresent
 #define AP_SetDrawFlags AP_SetRenderDrawFlags

@@ -1067,6 +1067,11 @@ bool AP_FlushRenderer(void) {
   return true;
 }
 
+bool AP_RenderFill(AP_F32 r, AP_F32 g, AP_F32 b, AP_F32 a) {
+  AP_SetRenderDrawColorFloat(r, g, b, a);
+  return AP_RenderClear();
+}
+
 bool AP_RenderPresent(void) {
   AP_Renderer *renderer = AP_RendererActive();
 

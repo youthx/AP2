@@ -1,25 +1,19 @@
-[1/5] Building C object CMakeFiles/ap2_lib.dir/Debug/src/core/AP2_Post.c.obj
-FAILED: [code=1] CMakeFiles/ap2_lib.dir/Debug/src/core/AP2_Post.c.obj 
-C:\msys64\ucrt64\bin\gcc.exe @CMakeFiles\ap2_lib.dir\Debug\src\core\AP2_Post.c.obj.rsp -MD -MT CMakeFiles/ap2_lib.dir/Debug/src/core/AP2_Post.c.obj -MF CMakeFiles\ap2_lib.dir\Debug\src\core\AP2_Post.c.obj.d -o CMakeFiles/ap2_lib.dir/Debug/src/core/AP2_Post.c.obj -c C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/src/core/AP2_Post.c
-C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/src/core/AP2_Post.c:716:22: error: redefinition of 'AP_SetPostSharpen'
-  716 | AP_POST_EXTRA_SETTER(AP_SetPostSharpen, sharpen, 0.0f, 2.0f)
-      |                      ^~~~~~~~~~~~~~~~~
-C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/src/core/AP2_Post.c:701:8: note: in definition of macro 'AP_POST_EXTRA_SETTER'
-  701 |   bool name(float value) { \
-      |        ^~~~
-C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/src/core/AP2_Post.c:680:7: note: previous definition of 'AP_SetPostSharpen' with type '_Bool(float)'
-  680 |  bool AP_SetPostSharpen(float amount) {
-      |       ^~~~~~~~~~~~~~~~~
-[2/5] Building C object CMakeFiles/ap2_app.dir/Debug/src/core/AP2_Post.c.obj
-FAILED: [code=1] CMakeFiles/ap2_app.dir/Debug/src/core/AP2_Post.c.obj 
-C:\msys64\ucrt64\bin\gcc.exe @CMakeFiles\ap2_app.dir\Debug\src\core\AP2_Post.c.obj.rsp -MD -MT CMakeFiles/ap2_app.dir/Debug/src/core/AP2_Post.c.obj -MF CMakeFiles\ap2_app.dir\Debug\src\core\AP2_Post.c.obj.d -o CMakeFiles/ap2_app.dir/Debug/src/core/AP2_Post.c.obj -c C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/src/core/AP2_Post.c
-C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/src/core/AP2_Post.c:716:22: error: redefinition of 'AP_SetPostSharpen'
-  716 | AP_POST_EXTRA_SETTER(AP_SetPostSharpen, sharpen, 0.0f, 2.0f)
-      |                      ^~~~~~~~~~~~~~~~~
-C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/src/core/AP2_Post.c:701:8: note: in definition of macro 'AP_POST_EXTRA_SETTER'
-  701 |   bool name(float value) { \
-      |        ^~~~
-C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/src/core/AP2_Post.c:680:7: note: previous definition of 'AP_SetPostSharpen' with type '_Bool(float)'
-  680 |  bool AP_SetPostSharpen(float amount) {
-      |       ^~~~~~~~~~~~~~~~~
+[1/8] Building C object CMakeFiles/ap2_lib.dir/Debug/src/core/AP2_Material.c.obj
+FAILED: [code=1] CMakeFiles/ap2_lib.dir/Debug/src/core/AP2_Material.c.obj 
+ccache C:\msys64\ucrt64\bin\gcc.exe @CMakeFiles\ap2_lib.dir\Debug\src\core\AP2_Material.c.obj.rsp -MD -MT CMakeFiles/ap2_lib.dir/Debug/src/core/AP2_Material.c.obj -MF CMakeFiles\ap2_lib.dir\Debug\src\core\AP2_Material.c.obj.d -o CMakeFiles/ap2_lib.dir/Debug/src/core/AP2_Material.c.obj -c C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/src/core/AP2_Material.c
+C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/src/core/AP2_Material.c:1:10: fatal error: AP2_Material.h: No such file or directory
+    1 | #include "AP2_Material.h"
+      |          ^~~~~~~~~~~~~~~~
+compilation terminated.
+[2/8] Building C object CMakeFiles/ap2_app.dir/Debug/src/core/AP2_Material.c.obj
+[3/8] Building C object CMakeFiles/ap2_app.dir/Debug/src/main.c.obj
+C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/src/main.c: In function 'main':
+C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/src/main.c:3:14: warning: unused parameter 'argc' [-Wunused-parameter]
+    3 | int main(int argc, char *argv[]) {
+      |          ~~~~^~~~
+C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/src/main.c:3:26: warning: unused parameter 'argv' [-Wunused-parameter]
+    3 | int main(int argc, char *argv[]) {
+      |                    ~~~~~~^~~~~~
+[4/8] Building C object CMakeFiles/ap2_app.dir/Debug/src/core/AP2_3D.c.obj
+[5/8] Building C object CMakeFiles/ap2_lib.dir/Debug/src/core/AP2_3D.c.obj
 ninja: build stopped: subcommand failed.
