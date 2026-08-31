@@ -34,7 +34,6 @@ typedef struct AP_PostState {
   bool capturing;
   bool applying;
   bool gui_active;
-  bool gui_cleared;
 } AP_PostState;
 
 static AP_PostState g_post;
@@ -62,7 +61,7 @@ static const char *AP_POST_FRAGMENT =
     "  return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453);\n"
     "}\n"
     "void main() {\n"
-    "  vec2 uv = v_uv;\n"
+    "  vec2 uv = vec2(v_uv.x, 1.0 - v_uv.y);\n"
     "  vec2 texel = 1.0 / max(u_resolution, vec2(1.0));\n"
     "  vec2 from_center = uv - 0.5;\n"
     "  vec3 color;\n"
@@ -226,38 +225,31 @@ static bool AP_PostBlit(AP_Texture *source, AP_Shader *shader) {
   if (shader != NULL) {
     uint32_t flags = AP_PostActiveFlags();
     AP_SetUniformF("u_time", (float)AP_GetTime());
-    AP_SetUniformF("u_vignette",
-                   (flags & (uint32_t)AP_POST_VIGNETTE) != 0
-                       ? g_post.config.vignette
-                       : 0.0f);
+    AP_SetUniformF("u_vignette", (flags & (uint32_t)AP_POST_VIGNETTE) != 0
+                                     ? g_post.config.vignette
+                                     : 0.0f);
     AP_SetUniformF("u_bloom_threshold", g_post.config.bloom_threshold);
-    AP_SetUniformF("u_bloom_intensity",
-                   (flags & (uint32_t)AP_POST_BLOOM) != 0
-                       ? g_post.config.bloom_intensity
-                       : 0.0f);
-    AP_SetUniformF("u_saturation",
-                   (flags & (uint32_t)AP_POST_COLOR_GRADE) != 0
-                       ? g_post.config.saturation
-                       : 1.0f);
-    AP_SetUniformF("u_contrast",
-                   (flags & (uint32_t)AP_POST_COLOR_GRADE) != 0
-                       ? g_post.config.contrast
-                       : 1.0f);
-    AP_SetUniformF("u_brightness",
-                   (flags & (uint32_t)AP_POST_COLOR_GRADE) != 0
-                       ? g_post.config.brightness
-                       : 0.0f);
-    AP_SetUniformF("u_chromatic",
-                   (flags & (uint32_t)AP_POST_CHROMATIC) != 0
-                       ? g_post.config.chromatic
-                       : 0.0f);
-    AP_SetUniformF("u_grain",
-                   (flags & (uint32_t)AP_POST_GRAIN) != 0 ? g_post.config.grain
-                                                            : 0.0f);
-    AP_SetUniformF("u_sharpen",
-                   (flags & (uint32_t)AP_POST_SHARPEN) != 0
-                       ? g_post.config.sharpen
-                       : 0.0f);
+    AP_SetUniformF("u_bloom_intensity", (flags & (uint32_t)AP_POST_BLOOM) != 0
+                                            ? g_post.config.bloom_intensity
+                                            : 0.0f);
+    AP_SetUniformF("u_saturation", (flags & (uint32_t)AP_POST_COLOR_GRADE) != 0
+                                       ? g_post.config.saturation
+                                       : 1.0f);
+    AP_SetUniformF("u_contrast", (flags & (uint32_t)AP_POST_COLOR_GRADE) != 0
+                                     ? g_post.config.contrast
+                                     : 1.0f);
+    AP_SetUniformF("u_brightness", (flags & (uint32_t)AP_POST_COLOR_GRADE) != 0
+                                       ? g_post.config.brightness
+                                       : 0.0f);
+    AP_SetUniformF("u_chromatic", (flags & (uint32_t)AP_POST_CHROMATIC) != 0
+                                      ? g_post.config.chromatic
+                                      : 0.0f);
+    AP_SetUniformF("u_grain", (flags & (uint32_t)AP_POST_GRAIN) != 0
+                                  ? g_post.config.grain
+                                  : 0.0f);
+    AP_SetUniformF("u_sharpen", (flags & (uint32_t)AP_POST_SHARPEN) != 0
+                                    ? g_post.config.sharpen
+                                    : 0.0f);
   }
 
   ok = AP_RenderTexture(source, NULL, NULL);
@@ -330,7 +322,8 @@ bool AP_SetPostConfig(const AP_PostConfig *config) {
       AP_PostClampf(g_post.config.bloom_threshold, 0.0f, 1.0f);
   g_post.config.bloom_intensity =
       AP_PostClampf(g_post.config.bloom_intensity, 0.0f, 4.0f);
-  g_post.config.saturation = AP_PostClampf(g_post.config.saturation, 0.0f, 2.0f);
+  g_post.config.saturation =
+      AP_PostClampf(g_post.config.saturation, 0.0f, 2.0f);
   g_post.config.contrast = AP_PostClampf(g_post.config.contrast, 0.0f, 3.0f);
   g_post.config.brightness =
       AP_PostClampf(g_post.config.brightness, -1.0f, 1.0f);
@@ -468,9 +461,7 @@ void AP_SetPostIncludeGui(bool include) {
   AP_SetGuiLayer(include ? AP_GUI_LAYER_SCENE : AP_GUI_LAYER_OVERLAY);
 }
 
-bool AP_PostIncludeGui(void) {
-  return AP_GetGuiLayer() == AP_GUI_LAYER_SCENE;
-}
+bool AP_PostIncludeGui(void) { return AP_GetGuiLayer() == AP_GUI_LAYER_SCENE; }
 
 void AP_PostBeginFrame(void) {
   AP_Texture *current;
@@ -483,7 +474,6 @@ void AP_PostBeginFrame(void) {
   }
 
   g_post.gui_active = false;
-  g_post.gui_cleared = false;
 
   if (!g_post.config.enabled) {
     g_post.capturing = false;
@@ -508,6 +498,11 @@ void AP_PostBeginFrame(void) {
   }
 
   g_post.capturing = true;
+  if (AP_PostIncludeGui()) {
+    AP_SetGuiLayer(AP_GUI_LAYER_SCENE);
+  } else {
+    AP_SetGuiLayer(AP_GUI_LAYER_OVERLAY);
+  }
 }
 
 bool AP_PostBeginGuiLayer(void) {
@@ -530,11 +525,8 @@ bool AP_PostBeginGuiLayer(void) {
       return true;
     }
 
-    if (!g_post.gui_cleared) {
-      AP_OpenGLSetClearColor(0.0f, 0.0f, 0.0f, 0.0f);
-      AP_OpenGLClear(true, true, true);
-      g_post.gui_cleared = true;
-    }
+    AP_OpenGLSetClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+    AP_OpenGLClear(true, true, true);
 
     g_post.gui_active = true;
   }
@@ -553,7 +545,7 @@ void AP_PostPresent(void) {
 
   if (g_post.gui_active && g_post.gui != NULL) {
     AP_BlendMode blend = AP_GetTextureBlendMode(g_post.gui);
-    AP_SetTextureBlendMode(g_post.gui, AP_BLENDMODE_BLEND);
+    AP_SetTextureBlendMode(g_post.gui, AP_BLENDMODE_PREMULTIPLIED);
     AP_RenderTexture(g_post.gui, NULL, NULL);
     AP_SetTextureBlendMode(g_post.gui, blend);
   }
@@ -582,7 +574,6 @@ void AP_PostShutdown(void) {
   g_post.capturing = false;
   g_post.applying = false;
   g_post.gui_active = false;
-  g_post.gui_cleared = false;
   g_config_ready = false;
   memset(&g_post.config, 0, sizeof(g_post.config));
 }
