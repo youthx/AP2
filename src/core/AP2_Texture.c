@@ -26,6 +26,7 @@
 struct AP_Texture {
   GLuint id;
   GLuint fbo;
+  GLuint depth_rbo;
   int width;
   int height;
   AP_TextureAccess access;
@@ -104,6 +105,17 @@ static bool AP_TextureEnsureFbo(AP_Texture *texture) {
   glBindFramebuffer(GL_FRAMEBUFFER, texture->fbo);
   glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D,
                          texture->id, 0);
+
+  /* Color-only FBOs make GL_DEPTH_TEST a no-op, so every 3D fragment wins
+     and you see meshes through each other whenever post/GUI capture is on. */
+  glGenRenderbuffers(1, &texture->depth_rbo);
+  glBindRenderbuffer(GL_RENDERBUFFER, texture->depth_rbo);
+  glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH24_STENCIL8, texture->width,
+                        texture->height);
+  glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_STENCIL_ATTACHMENT,
+                            GL_RENDERBUFFER, texture->depth_rbo);
+  glBindRenderbuffer(GL_RENDERBUFFER, 0);
+
   if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE) {
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
     AP_SET_ERROR(AP_ERROR_OPERATION_FAILED, "Texture framebuffer is incomplete");
@@ -549,6 +561,10 @@ void AP_DestroyTexture(AP_Texture *texture) {
   }
 
   if (AP_OpenGLHasContext()) {
+    if (texture->depth_rbo != 0) {
+      glDeleteRenderbuffers(1, &texture->depth_rbo);
+      texture->depth_rbo = 0;
+    }
     if (texture->fbo != 0) {
       glDeleteFramebuffers(1, &texture->fbo);
     }

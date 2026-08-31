@@ -13,6 +13,7 @@
 #include "AP2/AP2_Error.h"
 #include "AP2/AP2_Logger.h"
 #include "AP2/AP2_Opengl.h"
+#include "AP2/AP2_Renderer.h"
 #include "AP2/AP2_Shader.h"
 #include "AP2/AP2_Texture.h"
 #include "AP2/AP2_Window.h"
@@ -62,6 +63,10 @@ typedef struct AP_3DState {
   AP_F32 shininess;
   AP_F32 specular;
   GLuint texture;
+  GLuint depth_rbo;
+  GLuint depth_fbo;
+  int depth_w;
+  int depth_h;
   bool depth_test;
   bool cull;
   bool lights_ready;
@@ -428,9 +433,62 @@ static bool AP_3DEnsure(void) {
   return true;
 }
 
+static void AP_3DEnsureDepthBuffer(void) {
+  GLint fbo = 0;
+  GLint attached = GL_NONE;
+  GLint viewport[4];
+  int width;
+  int height;
+
+  glGetIntegerv(GL_FRAMEBUFFER_BINDING, &fbo);
+  glGetIntegerv(GL_VIEWPORT, viewport);
+  width = viewport[2];
+  height = viewport[3];
+  if (width <= 0 || height <= 0) {
+    return;
+  }
+
+  glGetFramebufferAttachmentParameteriv(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT,
+                                        GL_FRAMEBUFFER_ATTACHMENT_OBJECT_TYPE,
+                                        &attached);
+
+  /* Default window FB or a TARGET texture that already has depth. */
+  if (attached != GL_NONE && (GLuint)fbo != g_3d.depth_fbo) {
+    return;
+  }
+
+  if (g_3d.depth_rbo == 0) {
+    glGenRenderbuffers(1, &g_3d.depth_rbo);
+  }
+
+  if (g_3d.depth_w != width || g_3d.depth_h != height) {
+    glBindRenderbuffer(GL_RENDERBUFFER, g_3d.depth_rbo);
+    glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH24_STENCIL8, width, height);
+    glBindRenderbuffer(GL_RENDERBUFFER, 0);
+    g_3d.depth_w = width;
+    g_3d.depth_h = height;
+  }
+
+  /* Can't attach an RBO to the default framebuffer. GLFW already requested
+     24-bit depth there. Offscreen color targets (post) need this. */
+  if (fbo != 0) {
+    glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_STENCIL_ATTACHMENT,
+                              GL_RENDERBUFFER, g_3d.depth_rbo);
+    g_3d.depth_fbo = (GLuint)fbo;
+  }
+}
+
 static AP_F32 AP_3DAspect(void) {
-  int width = AP_GetWindowPixelWidth();
-  int height = AP_GetWindowPixelHeight();
+  AP_Rect viewport;
+  int width;
+  int height;
+
+  if (AP_GetRenderViewport(&viewport) && viewport.w > 0 && viewport.h > 0) {
+    return (AP_F32)viewport.w / (AP_F32)viewport.h;
+  }
+
+  width = AP_GetWindowPixelWidth();
+  height = AP_GetWindowPixelHeight();
   if (width <= 0 || height <= 0) {
     return 16.0f / 9.0f;
   }
@@ -438,11 +496,20 @@ static AP_F32 AP_3DAspect(void) {
 }
 
 static void AP_3DApplyRasterState(void) {
+  /* 2D/GUI leave scissor + blend on. Either one makes meshes draw through
+     each other (scissor skips the depth clear; blend composites instead of
+     occluding). */
+  glDisable(GL_SCISSOR_TEST);
+  glDisable(GL_BLEND);
+  glColorMask(GL_TRUE, GL_TRUE, GL_TRUE, GL_TRUE);
+
   if (g_3d.depth_test) {
     glEnable(GL_DEPTH_TEST);
     glDepthFunc(GL_LESS);
+    glDepthMask(GL_TRUE);
   } else {
     glDisable(GL_DEPTH_TEST);
+    glDepthMask(GL_FALSE);
   }
 
   if (g_3d.cull) {
@@ -464,6 +531,8 @@ static bool AP_3DSubmit(const AP_Mesh *mesh, const AP_Mat4 *model, AP_Color tint
     AP_SET_ERROR(AP_ERROR_INVALID_STATE, "3D pass is not active");
     return false;
   }
+
+  AP_3DApplyRasterState();
 
   AP_ShaderBind(g_3d.shader);
   AP_ShaderSetUniformMat4(g_3d.shader, "u_mvp", mvp.m, false);
@@ -500,6 +569,8 @@ static bool AP_3DSubmitLines(const AP_Vertex3 *vertices, int count,
   if (count > AP_3D_LINE_MAX) {
     count = AP_3D_LINE_MAX;
   }
+
+  AP_3DApplyRasterState();
 
   mvp = AP_Mat4Mul(g_3d.proj, AP_Mat4Mul(g_3d.view, g_3d.model));
   normal = AP_Mat4NormalMatrix(g_3d.model);
@@ -639,12 +710,13 @@ AP_Mesh *AP_CreateMeshSphere(AP_F32 radius, int slices, int stacks) {
     for (slice = 0; slice < slices; ++slice) {
       AP_U32 a = (AP_U32)(stack * (slices + 1) + slice);
       AP_U32 b = a + (AP_U32)(slices + 1);
+      /* CCW when viewed from outside (GL_CCW + back-face cull). */
       indices[i++] = a;
-      indices[i++] = b;
-      indices[i++] = a + 1;
       indices[i++] = a + 1;
       indices[i++] = b;
+      indices[i++] = a + 1;
       indices[i++] = b + 1;
+      indices[i++] = b;
     }
   }
 
@@ -716,7 +788,11 @@ bool AP_Begin3D(const AP_Camera *camera) {
   g_3d.texture = g_3d.white_texture;
   g_3d.active = true;
 
+  AP_3DEnsureDepthBuffer();
   AP_3DApplyRasterState();
+  glDepthMask(GL_TRUE);
+  glClearDepth(1.0);
+  glClear(GL_DEPTH_BUFFER_BIT);
   AP_ShaderBind(g_3d.shader);
   return true;
 }
@@ -728,7 +804,11 @@ void AP_End3D(void) {
 
   g_3d.active = false;
   glDisable(GL_DEPTH_TEST);
+  glDepthMask(GL_TRUE);
   glDisable(GL_CULL_FACE);
+  glEnable(GL_BLEND);
+  glBlendFuncSeparate(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA, GL_ONE,
+                      GL_ONE_MINUS_SRC_ALPHA);
   glBindVertexArray(0);
   AP_ShaderUnbind();
 }
@@ -1101,6 +1181,10 @@ void AP_3DShutdown(void) {
   if (g_3d.white_texture != 0) {
     glDeleteTextures(1, &g_3d.white_texture);
     g_3d.white_texture = 0;
+  }
+  if (g_3d.depth_rbo != 0) {
+    glDeleteRenderbuffers(1, &g_3d.depth_rbo);
+    g_3d.depth_rbo = 0;
   }
   if (g_3d.shader != NULL) {
     AP_ShaderDestroyInternal(g_3d.shader);

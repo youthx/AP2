@@ -146,7 +146,3 @@ int main(void) {
 Walk toward the beacon and tap Space: the ping should pan and get quieter with distance.
 
 Swap `AP_FillCircleF` for `AP_DrawSprite` once you have a texture ([tutorial 03](03-sprites-and-textures.md)), or drop in a tilemap for the ground ([tutorial 13](13-tilemaps.md)).
-
-## Next
-
-[Desktop tool](12-desktop-tool.md)

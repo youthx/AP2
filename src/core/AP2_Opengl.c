@@ -474,6 +474,8 @@ bool AP_OpenGLClear(bool color, bool depth, bool stencil) {
   }
 
   if (depth) {
+    glDepthMask(GL_TRUE);
+    glClearDepth(1.0);
     mask |= GL_DEPTH_BUFFER_BIT;
   }
 

@@ -11,6 +11,7 @@
  
  #include "AP2/AP2_Error.h"
  #include "AP2/AP2_Input.h"
+ #include "AP2/AP2_Opengl.h"
  #include "AP2/AP2_Renderer.h"
  #include "AP2/AP2_Texture.h"
  #include "AP2/AP2_Window.h"
@@ -140,6 +141,13 @@
  static bool g_in_menu_bar = false;
  static AP_U32 g_menu_bar_open = 0;
  static AP_FRect g_menu_bar_rect;
+
+ static AP_Texture *g_popup_layer = NULL;
+ static AP_Texture *g_popup_prev_target = NULL;
+ static bool g_popup_layer_ready = false;
+ static int g_popup_capture_depth = 0;
+ static int g_popup_layer_w = 0;
+ static int g_popup_layer_h = 0;
  
  static bool g_tab_active = false;
  static AP_U32 g_tab_bar_id = 0;
@@ -163,6 +171,112 @@
  
  static float AP_GuiClampf(float x, float lo, float hi) {
    return AP_GuiMaxf(lo, AP_GuiMinf(x, hi));
+ }
+
+ static void AP_GuiDestroyPopupLayer(void) {
+   if (g_popup_layer != NULL) {
+     if (AP_GetRenderTarget() == g_popup_layer) {
+       AP_SetRenderTarget(g_popup_prev_target);
+     }
+     AP_DestroyTexture(g_popup_layer);
+     g_popup_layer = NULL;
+   }
+   g_popup_prev_target = NULL;
+   g_popup_layer_ready = false;
+   g_popup_capture_depth = 0;
+   g_popup_layer_w = 0;
+   g_popup_layer_h = 0;
+ }
+
+ static bool AP_GuiEnsurePopupLayer(void) {
+   int width = 0;
+   int height = 0;
+
+   AP_GetWindowSizeInPixels(&width, &height);
+   if (width <= 0 || height <= 0) {
+     return false;
+   }
+
+   if (g_popup_layer != NULL && g_popup_layer_w == width &&
+       g_popup_layer_h == height) {
+     return true;
+   }
+
+   AP_GuiDestroyPopupLayer();
+   g_popup_layer =
+       AP_CreateTextureWithAccess(width, height, AP_TEXTUREACCESS_TARGET);
+   if (g_popup_layer == NULL) {
+     return false;
+   }
+
+   AP_SetTextureBlendMode(g_popup_layer, AP_BLENDMODE_BLEND);
+   AP_SetTextureScaleMode(g_popup_layer, AP_SCALEMODE_NEAREST);
+   g_popup_layer_w = width;
+   g_popup_layer_h = height;
+   return true;
+ }
+
+ static void AP_GuiBeginPopupCapture(void) {
+   if (g_popup_capture_depth > 0) {
+     g_popup_capture_depth += 1;
+     return;
+   }
+
+   AP_FlushRenderer();
+   if (!AP_GuiEnsurePopupLayer()) {
+     return;
+   }
+
+   g_popup_prev_target = AP_GetRenderTarget();
+   if (!AP_SetRenderTarget(g_popup_layer)) {
+     return;
+   }
+
+   if (!g_popup_layer_ready) {
+     AP_OpenGLSetClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+     AP_OpenGLClear(true, false, false);
+     g_popup_layer_ready = true;
+   }
+
+   g_popup_capture_depth = 1;
+ }
+
+ static void AP_GuiEndPopupCapture(void) {
+   if (g_popup_capture_depth <= 0) {
+     return;
+   }
+
+   g_popup_capture_depth -= 1;
+   if (g_popup_capture_depth == 0) {
+     AP_FlushRenderer();
+     AP_SetRenderTarget(g_popup_prev_target);
+   }
+ }
+
+ static void AP_GuiCompositePopupLayer(void) {
+   AP_BlendMode blend;
+
+   if (!g_popup_layer_ready || g_popup_layer == NULL) {
+     g_popup_capture_depth = 0;
+     return;
+   }
+
+   AP_FlushRenderer();
+   if (g_popup_capture_depth > 0) {
+     AP_SetRenderTarget(g_popup_prev_target);
+     g_popup_capture_depth = 0;
+   }
+
+   blend = AP_GetTextureBlendMode(g_popup_layer);
+   AP_SetTextureBlendMode(g_popup_layer, AP_BLENDMODE_BLEND);
+   /* FBO color is stored with GL's bottom-left origin. The 2D shader already
+      maps AP2 y=0 to NDC top, so a straight blit shows menus at the bottom
+      of the screen, upside down. Flip V to restore top-left. */
+   AP_RenderTextureRotated(g_popup_layer, NULL, NULL, 0.0f, NULL,
+                           AP_FLIP_VERTICAL);
+   AP_SetTextureBlendMode(g_popup_layer, blend);
+   AP_FlushRenderer();
+   g_popup_layer_ready = false;
  }
  
  static AP_U32 AP_GuiHash(const char *text) {
@@ -658,10 +772,10 @@
    style.dim = AP_GuiColor(0.0f, 0.0f, 0.0f, 0.45f);
    style.scrollbar = AP_GuiColor(0.40f, 0.45f, 0.55f, 1.0f);
    style.rounding = 6.0f;
-   style.padding = 10.0f;
-   style.spacing = 8.0f;
-   style.title_height = 30.0f;
-   style.widget_height = 26.0f;
+   style.padding = 12.0f;
+   style.spacing = 10.0f;
+   style.title_height = 32.0f;
+   style.widget_height = 28.0f;
    style.border_width = 1.0f;
    style.font_size = 15.0f;
    style.grab_width = 11.0f;
@@ -782,6 +896,7 @@
    g_popup_id = 0;
    g_popup_queued = 0;
    g_disabled_count = 0;
+   AP_GuiDestroyPopupLayer();
  }
  
  static void AP_GuiBeginFrame(void) {
@@ -1116,6 +1231,7 @@
  
    if (g_panel_count == 0) {
      AP_GuiDrawTooltip();
+     AP_GuiCompositePopupLayer();
    }
  }
  
@@ -1609,6 +1725,8 @@
  
    AP_GuiSaveClip(&clip);
    AP_SetRenderClipRect(NULL);
+   AP_GuiBeginPopupCapture();
+   AP_SetRenderClipRect(NULL);
    AP_GuiSetNextWindowFlags(AP_GUI_WINDOW_NO_TITLE | AP_GUI_WINDOW_NO_MOVE |
                             AP_GUI_WINDOW_NO_RESIZE | AP_GUI_WINDOW_NO_COLLAPSE |
                             AP_GUI_WINDOW_AUTO_RESIZE | AP_GUI_WINDOW_NO_SCROLL);
@@ -1623,9 +1741,16 @@
      AP_GuiPanel *panel = AP_GuiCurrentPanel();
      if (panel != NULL) {
        panel->is_popup = true;
-       panel->prev_clip = clip;
+       if (panel->clip) {
+         AP_GuiRestoreClip(&panel->prev_clip);
+         panel->clip = false;
+       }
+       AP_SetRenderClipRect(NULL);
        AP_GuiDrawRect(&panel->rect, g_style.popup_bg, true);
      }
+   } else {
+     AP_GuiEndPopupCapture();
+     AP_GuiRestoreClip(&clip);
    }
    return opened;
  }
@@ -1684,6 +1809,7 @@
    }
  
    AP_GuiEndPanel();
+   AP_GuiEndPopupCapture();
  }
  
  bool AP_GuiBeginMenu(const char *label) {
@@ -1790,16 +1916,16 @@
  
    AP_GuiEnsureStyle();
    id = AP_GuiId(label);
-   /* Full widget height so items are not cramped vertically */
-   rect = AP_GuiNextRect(g_style.widget_height, 0.0f);
+   /* Extra vertical room so dropdown / menu rows are not cramped */
+   rect = AP_GuiNextRect(g_style.widget_height + 8.0f, 0.0f);
    hovered = AP_GuiHovered(&rect);
    clicked = AP_GuiClicked(id, &rect);
    AP_GuiDrawRect(&rect, hovered ? g_style.widget_hovered : g_style.popup_bg,
                   true);
- 
-   pad = g_style.padding * 0.75f;
-   if (pad < 6.0f) {
-     pad = 6.0f;
+
+   pad = g_style.padding;
+   if (pad < 10.0f) {
+     pad = 10.0f;
    }
  
    AP_GuiVisibleLabel(label, visible, sizeof(visible));
@@ -2115,7 +2241,7 @@
  
    AP_GuiEnsureStyle();
    id = AP_GuiId(label);
-   rect = AP_GuiNextRect(g_style.widget_height, 0.0f);
+   rect = AP_GuiNextRect(g_style.widget_height + 8.0f, 0.0f);
    hovered = AP_GuiHovered(&rect);
    clicked = AP_GuiClicked(id, &rect);
    AP_GuiDrawRect(&rect,
@@ -2125,8 +2251,8 @@
                   true);
    {
      AP_FRect text = rect;
-     float pad = g_style.padding * 0.6f;
-     if (pad < 6.0f) pad = 6.0f;
+     float pad = g_style.padding;
+     if (pad < 10.0f) pad = 10.0f;
      text.x += pad;
      text.w -= pad * 2.0f;
      AP_RenderTextAligned(AP_GuiFont(), &text,
