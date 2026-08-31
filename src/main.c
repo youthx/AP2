@@ -1,21 +1,10 @@
 #include <AP2/AP2.h>
+#include<AP2/AP2_Post_extra.h>
 
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
-/* New post setters (add these to include/AP2/AP2_Post.h if missing). */
-bool AP_SetPostExposure(float exposure);
-bool AP_SetPostGamma(float gamma);
-bool AP_SetPostFilmic(float amount);
-bool AP_SetPostPixelate(float pixels);
-bool AP_SetPostScanlines(float amount);
-bool AP_SetPostBarrel(float amount);
-bool AP_SetPostSepia(float amount);
-bool AP_SetPostGrayscale(float amount);
-bool AP_SetPostPosterize(float levels);
-bool AP_SetPostEdge(float amount);
 
 /* -------------------------------------------------------------
  * Config
@@ -2038,7 +2027,7 @@ static void app_shutdown(void) {
 
   AP_Set3DDepthTest(true);
   AP_Set3DCullFace(true);
-
+  
   AP_Set3DShininess(32.0f);
   AP_Set3DSpecular(0.55f);
 

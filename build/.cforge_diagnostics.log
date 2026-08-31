@@ -1,6 +1,25 @@
-[1/3] Building C object CMakeFiles/ap2_app.dir/Debug/src/main.c.obj
-C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/src/main.c:113:16: warning: 'trs' defined but not used [-Wunused-function]
-  113 | static AP_Mat4 trs(AP_Vec3 t,
-      |                ^~~
-[2/3] Linking C executable bin\Debug\ap2.exe
-[3/3] AP2 Debug product
+[1/5] Building C object CMakeFiles/ap2_lib.dir/Debug/src/core/AP2_Post.c.obj
+FAILED: [code=1] CMakeFiles/ap2_lib.dir/Debug/src/core/AP2_Post.c.obj 
+C:\msys64\ucrt64\bin\gcc.exe @CMakeFiles\ap2_lib.dir\Debug\src\core\AP2_Post.c.obj.rsp -MD -MT CMakeFiles/ap2_lib.dir/Debug/src/core/AP2_Post.c.obj -MF CMakeFiles\ap2_lib.dir\Debug\src\core\AP2_Post.c.obj.d -o CMakeFiles/ap2_lib.dir/Debug/src/core/AP2_Post.c.obj -c C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/src/core/AP2_Post.c
+C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/src/core/AP2_Post.c:716:22: error: redefinition of 'AP_SetPostSharpen'
+  716 | AP_POST_EXTRA_SETTER(AP_SetPostSharpen, sharpen, 0.0f, 2.0f)
+      |                      ^~~~~~~~~~~~~~~~~
+C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/src/core/AP2_Post.c:701:8: note: in definition of macro 'AP_POST_EXTRA_SETTER'
+  701 |   bool name(float value) { \
+      |        ^~~~
+C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/src/core/AP2_Post.c:680:7: note: previous definition of 'AP_SetPostSharpen' with type '_Bool(float)'
+  680 |  bool AP_SetPostSharpen(float amount) {
+      |       ^~~~~~~~~~~~~~~~~
+[2/5] Building C object CMakeFiles/ap2_app.dir/Debug/src/core/AP2_Post.c.obj
+FAILED: [code=1] CMakeFiles/ap2_app.dir/Debug/src/core/AP2_Post.c.obj 
+C:\msys64\ucrt64\bin\gcc.exe @CMakeFiles\ap2_app.dir\Debug\src\core\AP2_Post.c.obj.rsp -MD -MT CMakeFiles/ap2_app.dir/Debug/src/core/AP2_Post.c.obj -MF CMakeFiles\ap2_app.dir\Debug\src\core\AP2_Post.c.obj.d -o CMakeFiles/ap2_app.dir/Debug/src/core/AP2_Post.c.obj -c C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/src/core/AP2_Post.c
+C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/src/core/AP2_Post.c:716:22: error: redefinition of 'AP_SetPostSharpen'
+  716 | AP_POST_EXTRA_SETTER(AP_SetPostSharpen, sharpen, 0.0f, 2.0f)
+      |                      ^~~~~~~~~~~~~~~~~
+C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/src/core/AP2_Post.c:701:8: note: in definition of macro 'AP_POST_EXTRA_SETTER'
+  701 |   bool name(float value) { \
+      |        ^~~~
+C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/src/core/AP2_Post.c:680:7: note: previous definition of 'AP_SetPostSharpen' with type '_Bool(float)'
+  680 |  bool AP_SetPostSharpen(float amount) {
+      |       ^~~~~~~~~~~~~~~~~
+ninja: build stopped: subcommand failed.
