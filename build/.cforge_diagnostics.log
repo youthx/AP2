@@ -1,19 +1,46 @@
-[1/8] Building C object CMakeFiles/ap2_lib.dir/Debug/src/core/AP2_Material.c.obj
-FAILED: [code=1] CMakeFiles/ap2_lib.dir/Debug/src/core/AP2_Material.c.obj 
-ccache C:\msys64\ucrt64\bin\gcc.exe @CMakeFiles\ap2_lib.dir\Debug\src\core\AP2_Material.c.obj.rsp -MD -MT CMakeFiles/ap2_lib.dir/Debug/src/core/AP2_Material.c.obj -MF CMakeFiles\ap2_lib.dir\Debug\src\core\AP2_Material.c.obj.d -o CMakeFiles/ap2_lib.dir/Debug/src/core/AP2_Material.c.obj -c C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/src/core/AP2_Material.c
-C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/src/core/AP2_Material.c:1:10: fatal error: AP2_Material.h: No such file or directory
-    1 | #include "AP2_Material.h"
-      |          ^~~~~~~~~~~~~~~~
-compilation terminated.
-[2/8] Building C object CMakeFiles/ap2_app.dir/Debug/src/core/AP2_Material.c.obj
-[3/8] Building C object CMakeFiles/ap2_app.dir/Debug/src/main.c.obj
+[1/10] Building C object CMakeFiles/ap2_app.dir/Debug/src/main.c.obj
+FAILED: [code=1] CMakeFiles/ap2_app.dir/Debug/src/main.c.obj 
+ccache C:\msys64\ucrt64\bin\gcc.exe @CMakeFiles\ap2_app.dir\Debug\src\main.c.obj.rsp -MD -MT CMakeFiles/ap2_app.dir/Debug/src/main.c.obj -MF CMakeFiles\ap2_app.dir\Debug\src\main.c.obj.d -o CMakeFiles/ap2_app.dir/Debug/src/main.c.obj -c C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/src/main.c
 C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/src/main.c: In function 'main':
-C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/src/main.c:3:14: warning: unused parameter 'argc' [-Wunused-parameter]
-    3 | int main(int argc, char *argv[]) {
-      |          ~~~~^~~~
-C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/src/main.c:3:26: warning: unused parameter 'argv' [-Wunused-parameter]
-    3 | int main(int argc, char *argv[]) {
-      |                    ~~~~~~^~~~~~
-[4/8] Building C object CMakeFiles/ap2_app.dir/Debug/src/core/AP2_3D.c.obj
-[5/8] Building C object CMakeFiles/ap2_lib.dir/Debug/src/core/AP2_3D.c.obj
+C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/src/main.c:54:87: error: incompatible type for argument 2 of 'AP_Vec3Mul'
+   54 |         if (AP_IsKeyDown(AP_KEY_W)) cam_pos = AP_Vec3Add(cam_pos, AP_Vec3Mul(forward, speed));
+      |                                                                                       ^~~~~
+      |                                                                                       |
+      |                                                                                       float
+In file included from C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/include/AP2/AP2_Camera.h:12,
+                 from C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/include/AP2/AP2_3D.h:12,
+                 from C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/src/main.c:1:
+C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/include/AP2/AP2_Math.h:232:39: note: expected 'AP_Vec3' but argument is of type 'float'
+  232 | AP_Vec3 AP_Vec3Mul(AP_Vec3 a, AP_Vec3 b);
+      |                               ~~~~~~~~^
+C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/src/main.c:55:87: error: incompatible type for argument 2 of 'AP_Vec3Mul'
+   55 |         if (AP_IsKeyDown(AP_KEY_S)) cam_pos = AP_Vec3Sub(cam_pos, AP_Vec3Mul(forward, speed));
+      |                                                                                       ^~~~~
+      |                                                                                       |
+      |                                                                                       float
+C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/include/AP2/AP2_Math.h:232:39: note: expected 'AP_Vec3' but argument is of type 'float'
+  232 | AP_Vec3 AP_Vec3Mul(AP_Vec3 a, AP_Vec3 b);
+      |                               ~~~~~~~~^
+C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/src/main.c:56:85: error: incompatible type for argument 2 of 'AP_Vec3Mul'
+   56 |         if (AP_IsKeyDown(AP_KEY_A)) cam_pos = AP_Vec3Sub(cam_pos, AP_Vec3Mul(right, speed));
+      |                                                                                     ^~~~~
+      |                                                                                     |
+      |                                                                                     float
+C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/include/AP2/AP2_Math.h:232:39: note: expected 'AP_Vec3' but argument is of type 'float'
+  232 | AP_Vec3 AP_Vec3Mul(AP_Vec3 a, AP_Vec3 b);
+      |                               ~~~~~~~~^
+C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/src/main.c:57:85: error: incompatible type for argument 2 of 'AP_Vec3Mul'
+   57 |         if (AP_IsKeyDown(AP_KEY_D)) cam_pos = AP_Vec3Add(cam_pos, AP_Vec3Mul(right, speed));
+      |                                                                                     ^~~~~
+      |                                                                                     |
+      |                                                                                     float
+C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/include/AP2/AP2_Math.h:232:39: note: expected 'AP_Vec3' but argument is of type 'float'
+  232 | AP_Vec3 AP_Vec3Mul(AP_Vec3 a, AP_Vec3 b);
+      |                               ~~~~~~~~^
+[2/10] Building C object CMakeFiles/ap2_app.dir/Debug/src/core/AP2_Camera.c.obj
+[3/10] Building C object CMakeFiles/ap2_lib.dir/Debug/src/core/AP2_Camera.c.obj
+[4/10] Building C object CMakeFiles/ap2_app.dir/Debug/src/core/AP2_Math.c.obj
+[5/10] Building C object CMakeFiles/ap2_lib.dir/Debug/src/core/AP2_Math.c.obj
+[6/10] Building C object CMakeFiles/ap2_app.dir/Debug/src/core/AP2_3D.c.obj
+[7/10] Building C object CMakeFiles/ap2_lib.dir/Debug/src/core/AP2_3D.c.obj
 ninja: build stopped: subcommand failed.

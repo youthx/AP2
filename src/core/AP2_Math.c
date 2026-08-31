@@ -15,6 +15,69 @@
  * Scalar
  * ========================================================= */
 
+ AP_F32 AP_Radians(AP_F32 degrees) {
+  return degrees * AP_DEG2RAD;
+}
+
+AP_F32 AP_Degrees(AP_F32 radians) {
+  return radians * AP_RAD2DEG;
+}
+
+AP_F32 AP_AngleNormalize360(AP_F32 degrees) {
+  AP_F32 r = fmodf(degrees, 360.0f);
+  return (r < 0.0f) ? r + 360.0f : r;
+}
+
+AP_F32 AP_AngleNormalize180(AP_F32 degrees) {
+  AP_F32 r = AP_AngleNormalize360(degrees);
+  return (r > 180.0f) ? r - 360.0f : r;
+}
+
+AP_F32 AP_AngleDelta(AP_F32 a_deg, AP_F32 b_deg) {
+  return AP_AngleNormalize180(b_deg - a_deg);
+}
+
+AP_F32 AP_SmoothDampF(AP_F32 current, AP_F32 target,
+  AP_F32 *velocity, AP_F32 smooth_time, AP_F32 dt)
+{
+smooth_time = AP_Maxf(0.0001f, smooth_time);
+AP_F32 omega = 2.0f / smooth_time;
+
+AP_F32 x = omega * dt;
+AP_F32 exp = 1.0f / (1.0f + x + 0.48f*x*x + 0.235f*x*x*x);
+
+AP_F32 change = current - target;
+AP_F32 temp = (*velocity + omega * change) * dt;
+
+*velocity = (*velocity - omega * temp) * exp;
+
+return target + (change + temp) * exp;
+}
+
+AP_Vec3 AP_SmoothDampV3(AP_Vec3 current, AP_Vec3 target,
+    AP_Vec3 *velocity, AP_F32 smooth_time, AP_F32 dt)
+{
+AP_Vec3 result;
+result.x = AP_SmoothDampF(current.x, target.x, &velocity->x, smooth_time, dt);
+result.y = AP_SmoothDampF(current.y, target.y, &velocity->y, smooth_time, dt);
+result.z = AP_SmoothDampF(current.z, target.z, &velocity->z, smooth_time, dt);
+return result;
+}
+
+AP_Quat AP_SmoothDampQuat(AP_Quat current, AP_Quat target,
+      AP_F32 *velocity, AP_F32 smooth_time, AP_F32 dt)
+{
+AP_F32 t = AP_SmoothDampF(0.0f, 1.0f, velocity, smooth_time, dt);
+return AP_QuatSlerp(current, target, t);
+}
+
+AP_F32 AP_AngleSmoothDamp(AP_F32 current, AP_F32 target,
+                        AP_F32 *velocity, AP_F32 smooth_time, AP_F32 dt)
+{
+  target = current + AP_AngleDelta(current, target);
+  return AP_SmoothDampF(current, target, velocity, smooth_time, dt);
+}
+
 AP_F32 AP_DegToRad(AP_F32 degrees) { return degrees * AP_DEG2RAD; }
 
 AP_F32 AP_RadToDeg(AP_F32 radians) { return radians * AP_RAD2DEG; }
@@ -1035,3 +1098,4 @@ bool AP_RayIntersectAABB(AP_Ray ray, AP_AABB box, AP_F32 *out_t) {
   }
   return true;
 }
+

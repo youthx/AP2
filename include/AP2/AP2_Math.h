@@ -94,6 +94,33 @@ typedef struct AP_Plane {
  * Scalar
  * ========================================================= */
 
+/* =========================================================
+ * Angle / Radian Helpers
+ * ========================================================= */
+
+AP_F32 AP_SmoothDampF(AP_F32 current, AP_F32 target, AP_F32 *velocity,
+                      AP_F32 smooth_time, AP_F32 dt);
+
+AP_Vec3 AP_SmoothDampV3(AP_Vec3 current, AP_Vec3 target, AP_Vec3 *velocity,
+                        AP_F32 smooth_time, AP_F32 dt);
+AP_Quat AP_SmoothDampQuat(AP_Quat current, AP_Quat target, AP_F32 *velocity,
+                          AP_F32 smooth_time, AP_F32 dt);
+AP_F32 AP_Radians(AP_F32 degrees);
+AP_F32 AP_Degrees(AP_F32 radians);
+
+/* Normalize angle to [0, 360) */
+AP_F32 AP_AngleNormalize360(AP_F32 degrees);
+
+/* Normalize angle to [-180, 180) */
+AP_F32 AP_AngleNormalize180(AP_F32 degrees);
+
+/* Shortest angle difference (degrees) */
+AP_F32 AP_AngleDelta(AP_F32 a_deg, AP_F32 b_deg);
+
+/* Smooth damp angle (degrees) */
+AP_F32 AP_AngleSmoothDamp(AP_F32 current, AP_F32 target, AP_F32 *velocity,
+                          AP_F32 smooth_time, AP_F32 dt);
+
 AP_F32 AP_DegToRad(AP_F32 degrees);
 
 AP_F32 AP_RadToDeg(AP_F32 radians);

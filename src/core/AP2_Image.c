@@ -24,6 +24,14 @@
 #pragma GCC diagnostic pop
 #endif
 
+#if defined (_WIN32) || defined (_WIN64)
+#include <direct.h>
+#define GETCWD(buffer, size) _getcwd(buffer, size)
+#else 
+#include <unistd.h>
+#define GETCWD(buffer, size) getcwd(buffer, size)
+#endif 
+
 #include <stdlib.h>
 #include <string.h>
 
@@ -374,6 +382,8 @@ AP_Image *AP_LoadImage(const char *path) {
     return NULL;
   }
 
+  char cwd[1024];
+  GETCWD(cwd, 1024);
   pixels = stbi_load(path, &width, &height, &channels, 4);
   if (pixels == NULL) {
     AP_SET_ERROR(AP_ERROR_NOT_FOUND, "Failed to load image file");
