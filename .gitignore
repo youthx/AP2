@@ -56,5 +56,12 @@ compile_commands.json
 Thumbs.db
 desktop.ini
 
+__pycache__/
+cmake/
+packages/
+wiki-out/
+*.txt
+.lock
+
 # Logs
 *.log
