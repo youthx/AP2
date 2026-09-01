@@ -10,8 +10,7 @@
 
 #include "shaders_post.h"
 
-int Example_ShadersPost(void)
-{
+int Example_ShadersPost(void) {
   AP_Init(AP_INIT_VIDEO);
   AP_CreateWindow("AP2 - Shaders & Post", 1280, 720,
                   AP_WINDOW_CENTERED | AP_WINDOW_RESIZABLE);
@@ -33,12 +32,10 @@ int Example_ShadersPost(void)
   AP_SetPostWave(0.0f);
   AP_SetPostChromatic(0.002f);
 
-  while (AP_IsRunning())
-  {
+  while (AP_IsRunning()) {
     AP_PumpEvents();
 
-    if (AP_IsKeyPressed(AP_KEY_ESCAPE))
-    {
+    if (AP_IsKeyPressed(AP_KEY_ESCAPE)) {
       AP_RequestClose();
     }
 

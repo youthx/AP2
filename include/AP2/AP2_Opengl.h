@@ -9,7 +9,6 @@
 #ifndef AP2_OPENGL_H
 #define AP2_OPENGL_H
 
-
 #include "AP2/AP2_Init.h"
 #include "AP2/AP2_Types.h"
 

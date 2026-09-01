@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build-release\_deps\glad-subbuild\CMakeFiles\5714430d14dc8268b753c7f003296765\glad-populate-mkdir.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build-release\_deps\glad-subbuild\CMakeFiles\5714430d14dc8268b753c7f003296765\glad-populate-download.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build-release\_deps\glad-subbuild\CMakeFiles\5714430d14dc8268b753c7f003296765\glad-populate-update.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build-release\_deps\glad-subbuild\CMakeFiles\5714430d14dc8268b753c7f003296765\glad-populate-patch.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build-release\_deps\glad-subbuild\CMakeFiles\5714430d14dc8268b753c7f003296765\glad-populate-configure.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build-release\_deps\glad-subbuild\CMakeFiles\5714430d14dc8268b753c7f003296765\glad-populate-build.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build-release\_deps\glad-subbuild\CMakeFiles\5714430d14dc8268b753c7f003296765\glad-populate-install.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build-release\_deps\glad-subbuild\CMakeFiles\5714430d14dc8268b753c7f003296765\glad-populate-test.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build-release\_deps\glad-subbuild\CMakeFiles\38fa911a0548ec82eedbe8a1b06e5687\glad-populate-complete.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build-release\_deps\glad-subbuild\CMakeFiles\4b7134c258f03c837afd6f45e3ee5c30\glad-populate.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build-release\_deps\glad-subbuild\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="C:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build-release\_deps\glad-subbuild\CMakeFiles\glad-populate" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{ABB37085-A276-3AF8-93F5-030E6E108153}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

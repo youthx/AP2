@@ -90,6 +90,12 @@ struct AP_Window
   int msaa_samples;
   float opacity;
 
+  /* Popup windows */
+  bool is_popup;
+  bool close_on_focus_loss;
+  bool destroying; /* re-entrancy guard: set while in AP_WindowDestroyInternal */
+  AP_Window *popup_parent;
+
   double cursor_x;
   double cursor_y;
 
@@ -103,6 +109,11 @@ static AP_Window *g_windows[AP_WINDOW_MAX];
 static int g_window_count = 0;
 static AP_Window *g_active_window = NULL;
 static bool g_glfw_initialized = false;
+
+/* While a popup is being created, its GL context is shared with this
+ * window so fonts/shaders/textures created for the parent remain valid.
+ * NULL outside AP_CreatePopupWindow. */
+static AP_Window *g_context_share_window = NULL;
 
 #define AP_DELTA_TIME_MAX 0.1
 
@@ -138,6 +149,8 @@ static void AP_WindowCopyTitle(AP_Window *window, const char *title)
   memset(window->title, 0, sizeof(window->title));
   strncpy(window->title, source, sizeof(window->title) - 1);
 }
+
+static void AP_WindowDestroyInternal(AP_Window *window);
 
 static bool AP_WindowRegister(AP_Window *window)
 {
@@ -342,6 +355,15 @@ static void AP_WindowFocusCallback(GLFWwindow *handle, int focused)
 
   window->focused = focused != 0;
   AP_InputOnFocusChanged(window->focused);
+
+  /* A popup with close-on-focus-loss destroys itself the moment the
+   * user clicks back into the parent (or any other window). */
+  if (!focused && window->is_popup && window->close_on_focus_loss &&
+      !window->destroying)
+  {
+    AP_INFO("Closing popup on focus loss: %s", window->title);
+    AP_WindowDestroyInternal(window);
+  }
 }
 
 static void AP_WindowIconifyCallback(GLFWwindow *handle, int iconified)
@@ -624,14 +646,61 @@ static bool AP_WindowAttachGraphics(AP_Window *window)
   return true;
 }
 
+static void AP_WindowDestroyInternal(AP_Window *window);
+
+static void AP_WindowDestroyPopupsOf(AP_Window *parent)
+{
+  AP_Window *snapshot[AP_WINDOW_MAX];
+  int count = 0;
+  int i;
+
+  /* Snapshot first: destroying popups mutates g_windows mid-iteration. */
+  for (i = 0; i < g_window_count; ++i)
+  {
+    if (g_windows[i] != NULL && g_windows[i]->is_popup &&
+        g_windows[i]->popup_parent == parent)
+    {
+      snapshot[count++] = g_windows[i];
+    }
+  }
+
+  for (i = 0; i < count; ++i)
+  {
+    AP_WindowDestroyInternal(snapshot[i]);
+  }
+}
+
 static void AP_WindowDestroyInternal(AP_Window *window)
 {
-  if (window == NULL)
+  if (window == NULL || window->destroying)
   {
     return;
   }
 
-  AP_RendererUnbindWindow(window);
+  window->destroying = true;
+
+  /* A destroyed parent takes its still-open popups with it. */
+  AP_WindowDestroyPopupsOf(window);
+
+  /* A popup shares the parent's GL context and renderer — there is
+   * nothing renderer-side to tear down, and unbinding here would destroy
+   * the renderer the parent is still drawing with. Just fall back to it. */
+  if (window->is_popup)
+  {
+    if (g_active_window == window)
+    {
+      g_active_window = window->popup_parent;
+      if (g_active_window != NULL && g_active_window->handle != NULL)
+      {
+        glfwMakeContextCurrent(g_active_window->handle);
+        AP_RendererMakeCurrent(g_active_window);
+      }
+    }
+  }
+  else
+  {
+    AP_RendererUnbindWindow(window);
+  }
 
   if (g_active_window == window)
   {
@@ -717,10 +786,9 @@ AP_WindowConfig AP_WindowDefaultConfig(void)
   config.height = AP_WINDOW_DEFAULT_HEIGHT;
   config.x = AP_WINDOW_POS_CENTERED;
   config.y = AP_WINDOW_POS_CENTERED;
-  config.flags = AP_WINDOW_DECORATED | AP_WINDOW_VSYNC |
-                 AP_WINDOW_CENTERED | AP_WINDOW_FOCUS_ON_SHOW |
-                 AP_WINDOW_SCALE_TO_MONITOR | AP_WINDOW_HIGH_DPI |
-                 AP_WINDOW_MSAA;
+  config.flags = AP_WINDOW_DECORATED | AP_WINDOW_VSYNC | AP_WINDOW_CENTERED |
+                 AP_WINDOW_FOCUS_ON_SHOW | AP_WINDOW_SCALE_TO_MONITOR |
+                 AP_WINDOW_HIGH_DPI | AP_WINDOW_MSAA;
   config.monitor_index = 0;
   config.swap_interval = 1;
   config.msaa_samples = 4;
@@ -877,7 +945,10 @@ AP_Window *AP_CreateWindowEx(const AP_WindowConfig *config)
     minor = (int)minors[version_index];
     AP_WindowApplyHints(&actual, major, minor);
     handle = glfwCreateWindow(actual.width, actual.height, actual.title,
-                              monitor, NULL);
+                              monitor,
+                              g_context_share_window != NULL
+                                  ? g_context_share_window->handle
+                                  : NULL);
     if (handle != NULL)
     {
       AP_INFO("Created OpenGL %d.%d context", major, minor);
@@ -1000,7 +1071,19 @@ AP_Window *AP_CreateWindowEx(const AP_WindowConfig *config)
 
   g_active_window = window;
 
-  if (!AP_WindowAttachGraphics(window))
+  if (g_context_share_window != NULL)
+  {
+    /* Popup path: the context already shares objects with the parent, and
+     * the parent's renderer/fonts/shaders must stay alive. Just point the
+     * existing renderer at this window instead of re-initializing. */
+    if (!AP_RendererMakeCurrent(window))
+    {
+      AP_ERROR("Failed to attach popup to shared renderer");
+      AP_WindowDestroyInternal(window);
+      return NULL;
+    }
+  }
+  else if (!AP_WindowAttachGraphics(window))
   {
     AP_ERROR("Failed to initialize graphics for window");
     AP_WindowDestroyInternal(window);
@@ -1040,6 +1123,163 @@ void AP_DestroyWindow(AP_Window *window)
 bool AP_WindowIsValid(const AP_Window *window)
 {
   return window != NULL && window->handle != NULL;
+}
+
+/* =========================================================
+ * Popup windows
+ * ========================================================= */
+
+AP_PopupConfig AP_PopupDefaultConfig(void)
+{
+  AP_PopupConfig config;
+
+  memset(&config, 0, sizeof(config));
+
+  config.parent = NULL; /* resolved to the active window at creation */
+  config.offset_x = 0;
+  config.offset_y = 0;
+  config.width = 240;
+  config.height = 160;
+  config.close_on_focus_loss = true;
+  config.decorated = false;
+  config.title = "Popup";
+  config.show_in_taskbar = false;
+  config.flags = 0;
+
+  return config;
+}
+
+AP_Window *AP_CreatePopupWindow(const AP_PopupConfig *config)
+{
+  AP_PopupConfig cfg;
+  AP_Window *parent;
+  AP_WindowConfig window_config;
+  AP_Window *popup;
+  int parent_x = 0;
+  int parent_y = 0;
+
+  cfg = (config != NULL) ? *config : AP_PopupDefaultConfig();
+
+  parent = cfg.parent;
+  if (parent == NULL)
+  {
+    parent = AP_WindowActive();
+  }
+
+  if (parent == NULL || parent->handle == NULL)
+  {
+    AP_SET_ERROR(AP_ERROR_INVALID_ARGUMENT,
+                 "Popup windows require a valid parent window");
+    return NULL;
+  }
+
+  if (parent->is_popup)
+  {
+    /* Popups of popups anchor to the topmost non-popup ancestor so the
+     * parent chain stays a tree and dies together. */
+    parent = parent->popup_parent != NULL ? parent->popup_parent : parent;
+  }
+
+  if (cfg.width <= 0)
+  {
+    cfg.width = 240;
+  }
+  if (cfg.height <= 0)
+  {
+    cfg.height = 160;
+  }
+
+  glfwGetWindowPos(parent->handle, &parent_x, &parent_y);
+
+  memset(&window_config, 0, sizeof(window_config));
+  window_config.title = (cfg.title != NULL) ? cfg.title : "Popup";
+  window_config.width = cfg.width;
+  window_config.height = cfg.height;
+
+  if (cfg.decorated)
+  {
+    /* A normal-looking OS window: real title bar the user can drag
+     * around, plus whatever chrome the caller's flags allow. */
+    window_config.flags = AP_WINDOW_DECORATED | AP_WINDOW_FOCUS_ON_SHOW |
+                          (cfg.flags & ~(uint32_t)AP_WINDOW_BORDERLESS &
+                         ~(uint32_t)AP_WINDOW_FULLSCREEN);
+  }
+  else
+  {
+    /* Inlay-style popup: undecorated + floating, always on top of the
+     * parent. BORDERLESS is what makes AP_CreateWindowEx drop the
+     * decorations. */
+    window_config.flags = AP_WINDOW_FLOATING | AP_WINDOW_FOCUS_ON_SHOW |
+                          AP_WINDOW_BORDERLESS |
+                          (cfg.flags & ~(uint32_t)AP_WINDOW_DECORATED &
+                           ~(uint32_t)AP_WINDOW_BORDERLESS &
+                           ~(uint32_t)AP_WINDOW_FULLSCREEN);
+  }
+
+  window_config.x = parent_x + cfg.offset_x;
+  window_config.y = parent_y + cfg.offset_y;
+  window_config.swap_interval = parent->swap_interval;
+  window_config.msaa_samples = parent->msaa_samples;
+
+  /* Share the parent's GL context: the popup can then draw fonts, shaders
+   * and textures created for the parent, and none of those resources are
+   * destroyed when the popup closes. */
+  g_context_share_window = parent;
+  popup = AP_CreateWindowEx(&window_config);
+  g_context_share_window = NULL;
+  if (popup == NULL)
+  {
+    return NULL;
+  }
+
+  popup->is_popup = true;
+  popup->close_on_focus_loss = cfg.close_on_focus_loss;
+  popup->popup_parent = parent;
+
+  /* Decorated popups are real OS windows: show them in the taskbar unless
+   * the caller asked for a tool-window style entry. Borderless inlay
+   * popups never get a taskbar button. */
+  if (cfg.decorated)
+  {
+    AP_PlatformSetWindowTaskbarVisible(popup->handle, cfg.show_in_taskbar);
+  }
+
+  /* The popup starts focused so that the user clicking back into the
+   * parent (or anywhere else) triggers the focus-loss close. */
+  glfwFocusWindow(popup->handle);
+
+  AP_INFO("Created popup window (%dx%d) on '%s'", popup->width, popup->height,
+          parent->title);
+
+  return popup;
+}
+
+bool AP_IsPopupWindow(const AP_Window *window)
+{
+  return window != NULL && window->is_popup;
+}
+
+AP_Window *AP_GetPopupParent(const AP_Window *window)
+{
+  if (window == NULL || !window->is_popup)
+  {
+    return NULL;
+  }
+
+  /* A destroyed parent frees itself and clears nothing here, so verify
+   * it is still a live, registered window before handing it out. */
+  {
+    int i;
+    for (i = 0; i < g_window_count; ++i)
+    {
+      if (g_windows[i] == window->popup_parent)
+      {
+        return window->popup_parent;
+      }
+    }
+  }
+
+  return NULL;
 }
 
 /* =========================================================

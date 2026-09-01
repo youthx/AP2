@@ -17,8 +17,8 @@
 #endif
 
 #define GLFW_INCLUDE_NONE
-#include <glad/gl.h>
 #include <GLFW/glfw3.h>
+#include <glad/gl.h>
 
 #include <stdio.h>
 #include <string.h>
@@ -63,7 +63,7 @@ static bool AP_OpenGLEnsure(void) {
 }
 
 static void AP_OpenGLCopyString(char *destination, size_t capacity,
-                               const GLubyte *source) {
+                                const GLubyte *source) {
   memset(destination, 0, capacity);
 
   if (source == NULL || capacity == 0) {
@@ -111,8 +111,7 @@ static void AP_OpenGLQueryState(void) {
   {
     GLint profile = 0;
     glGetIntegerv(GL_CONTEXT_PROFILE_MASK, &profile);
-    g_opengl_info.core_profile =
-        (profile & GL_CONTEXT_CORE_PROFILE_BIT) != 0;
+    g_opengl_info.core_profile = (profile & GL_CONTEXT_CORE_PROFILE_BIT) != 0;
   }
 
   {
@@ -149,10 +148,9 @@ static void AP_OpenGLQueryState(void) {
   g_opengl_capabilities.vertex_arrays = true;
   g_opengl_capabilities.framebuffer_objects = true;
   g_opengl_capabilities.multisampling = g_opengl_limits.max_samples > 1;
-  g_opengl_capabilities.instancing =
-      g_opengl_info.version_number.major > 3 ||
-      (g_opengl_info.version_number.major == 3 &&
-       g_opengl_info.version_number.minor >= 3);
+  g_opengl_capabilities.instancing = g_opengl_info.version_number.major > 3 ||
+                                     (g_opengl_info.version_number.major == 3 &&
+                                      g_opengl_info.version_number.minor >= 3);
   g_opengl_capabilities.uniform_buffers =
       g_opengl_info.version_number.major > 3 ||
       (g_opengl_info.version_number.major == 3 &&
@@ -171,10 +169,10 @@ static void AP_OpenGLQueryState(void) {
 }
 
 static void GLAPIENTRY AP_OpenGLDebugCallback(GLenum source, GLenum type,
-                                              GLuint id,
-                                   GLenum severity, GLsizei length,
-                                   const GLchar *message,
-                                   const void *user_param) {
+                                              GLuint id, GLenum severity,
+                                              GLsizei length,
+                                              const GLchar *message,
+                                              const void *user_param) {
   (void)source;
   (void)type;
   (void)id;
@@ -260,8 +258,9 @@ static void AP_OpenGLDeleteShaderList(GLuint *shaders, int count) {
   }
 }
 
-static bool AP_OpenGLAttachStage(GLuint program, GLenum type, const char *source,
-                                 GLuint *shaders, int *shader_count) {
+static bool AP_OpenGLAttachStage(GLuint program, GLenum type,
+                                 const char *source, GLuint *shaders,
+                                 int *shader_count) {
   GLuint shader;
 
   if (source == NULL) {
@@ -320,7 +319,8 @@ bool AP_OpenGLInit(const AP_OpenGLConfig *config) {
   }
 
   if (!gladLoadGL((GLADloadfunc)glfwGetProcAddress)) {
-    AP_SET_ERROR(AP_ERROR_INITIALIZATION_FAILED, "Failed to load OpenGL functions");
+    AP_SET_ERROR(AP_ERROR_INITIALIZATION_FAILED,
+                 "Failed to load OpenGL functions");
     return false;
   }
 
@@ -747,7 +747,8 @@ bool AP_OpenGLCheckError(const char *operation) {
   }
 
   if (operation != NULL) {
-    AP_ERROR("OpenGL error during %s: %s", operation, AP_OpenGLErrorName(error));
+    AP_ERROR("OpenGL error during %s: %s", operation,
+             AP_OpenGLErrorName(error));
   } else {
     AP_ERROR("OpenGL error: %s", AP_OpenGLErrorName(error));
   }
@@ -817,15 +818,16 @@ AP_UInt AP_OpenGLCreateProgramEx(const AP_OpenGLProgramConfig *config) {
   }
 
   if (config == NULL) {
-    AP_SET_ERROR(AP_ERROR_INVALID_ARGUMENT, "Program configuration cannot be NULL");
+    AP_SET_ERROR(AP_ERROR_INVALID_ARGUMENT,
+                 "Program configuration cannot be NULL");
     return 0;
   }
 
   has_compute = config->compute_source != NULL;
-  has_graphics = config->vertex_source != NULL || config->fragment_source != NULL ||
-                 config->geometry_source != NULL ||
-                 config->tess_control_source != NULL ||
-                 config->tess_eval_source != NULL;
+  has_graphics =
+      config->vertex_source != NULL || config->fragment_source != NULL ||
+      config->geometry_source != NULL || config->tess_control_source != NULL ||
+      config->tess_eval_source != NULL;
 
   if (has_compute && has_graphics) {
     AP_SET_ERROR(AP_ERROR_INVALID_ARGUMENT,
@@ -856,7 +858,8 @@ AP_UInt AP_OpenGLCreateProgramEx(const AP_OpenGLProgramConfig *config) {
 
   if (config->tess_control_source != NULL &&
       !capabilities->tessellation_shaders) {
-    AP_SET_ERROR(AP_ERROR_UNSUPPORTED, "Tessellation shaders are not supported");
+    AP_SET_ERROR(AP_ERROR_UNSUPPORTED,
+                 "Tessellation shaders are not supported");
     return 0;
   }
 
@@ -877,10 +880,10 @@ AP_UInt AP_OpenGLCreateProgramEx(const AP_OpenGLProgramConfig *config) {
 
   if (!AP_OpenGLAttachStage(program, GL_VERTEX_SHADER, config->vertex_source,
                             shaders, &shader_count) ||
-      !AP_OpenGLAttachStage(program, GL_FRAGMENT_SHADER, config->fragment_source,
-                            shaders, &shader_count) ||
-      !AP_OpenGLAttachStage(program, GL_GEOMETRY_SHADER, config->geometry_source,
-                            shaders, &shader_count) ||
+      !AP_OpenGLAttachStage(program, GL_FRAGMENT_SHADER,
+                            config->fragment_source, shaders, &shader_count) ||
+      !AP_OpenGLAttachStage(program, GL_GEOMETRY_SHADER,
+                            config->geometry_source, shaders, &shader_count) ||
       !AP_OpenGLAttachStage(program, GL_TESS_CONTROL_SHADER,
                             config->tess_control_source, shaders,
                             &shader_count) ||

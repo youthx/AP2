@@ -16,470 +16,541 @@
 #include <stdint.h>
 
 #ifdef __cplusplus
-extern "C" {
+extern "C"
+{
 #endif
 
-/*
- * AP2 Window
- *
- * The window implementation is opaque. Applications never access
- * native handles, GLFW, or window internals.
- *
- * After AP_CreateWindow(), every function below operates on the
- * active window. Typical usage:
- *
- *     AP_CreateWindow("Game", 1280, 720, AP_WINDOW_RESIZABLE);
- *
- *     AP_SetWindowTitleVisible(false);
- *     AP_SetWindowMinimizeButton(false);
- *
- *     while (AP_IsRunning()) {
- *         AP_PumpEvents();
- *         AP_SetRenderDrawColorFloat(0.1f, 0.1f, 0.1f, 1.0f);
- *         AP_RenderClear();
- *         AP_RenderPresent();
- *     }
- *
- *     AP_DestroyWindow(NULL);
- */
+  /*
+   * AP2 Window
+   *
+   * The window implementation is opaque. Applications never access
+   * native handles, GLFW, or window internals.
+   *
+   * After AP_CreateWindow(), every function below operates on the
+   * active window. Typical usage:
+   *
+   *     AP_CreateWindow("Game", 1280, 720, AP_WINDOW_RESIZABLE);
+   *
+   *     AP_SetWindowTitleVisible(false);
+   *     AP_SetWindowMinimizeButton(false);
+   *
+   *     while (AP_IsRunning()) {
+   *         AP_PumpEvents();
+   *         AP_SetRenderDrawColorFloat(0.1f, 0.1f, 0.1f, 1.0f);
+   *         AP_RenderClear();
+   *         AP_RenderPresent();
+   *     }
+   *
+   *     AP_DestroyWindow(NULL);
+   */
 
-typedef struct AP_Window AP_Window;
+  typedef struct AP_Window AP_Window;
 
-/* =========================================================
- * Position sentinels
- * ========================================================= */
+  /* =========================================================
+   * Position sentinels
+   * ========================================================= */
 
 #define AP_WINDOW_POS_UNDEFINED 0x1FFF0000 /* "put it wherever" */
-#define AP_WINDOW_POS_CENTERED 0x2FFF0000 /* not a pixel. don't add it to one. */
+#define AP_WINDOW_POS_CENTERED \
+  0x2FFF0000 /* not a pixel. don't add it to one. */
 
-/* =========================================================
- * Window flags
- * ========================================================= */
+  /* =========================================================
+   * Window flags
+   * ========================================================= */
 
-typedef enum AP_WindowFlags {
-  AP_WINDOW_NONE = 0,
-  AP_WINDOW_RESIZABLE = 1u << 0,
-  AP_WINDOW_DECORATED = 1u << 1,
-  AP_WINDOW_MAXIMIZED = 1u << 2,
-  AP_WINDOW_FULLSCREEN = 1u << 3,
-  AP_WINDOW_HIDDEN = 1u << 4,
-  AP_WINDOW_FLOATING = 1u << 5,
-  AP_WINDOW_TRANSPARENT = 1u << 6,
-  AP_WINDOW_VSYNC = 1u << 7,
-  AP_WINDOW_CENTERED = 1u << 8,
-  AP_WINDOW_MINIMIZED = 1u << 9,
-  AP_WINDOW_FOCUSED = 1u << 10,
-  AP_WINDOW_HIGH_DPI = 1u << 11,
-  AP_WINDOW_MOUSE_PASSTHROUGH = 1u << 12,
-  AP_WINDOW_FOCUS_ON_SHOW = 1u << 13,
-  AP_WINDOW_SCALE_TO_MONITOR = 1u << 14,
-  AP_WINDOW_MSAA = 1u << 15,
-  AP_WINDOW_SRGB = 1u << 16,
-  AP_WINDOW_DEBUG = 1u << 17,
-  AP_WINDOW_NO_AUTO_ICONIFY = 1u << 18,
-  AP_WINDOW_NO_FOCUS = 1u << 19,
-  AP_WINDOW_CENTER_CURSOR = 1u << 20,
-  AP_WINDOW_BORDERLESS = 1u << 21,
-  AP_WINDOW_NO_TITLE = 1u << 22, /* hide caption text; bar can stay */
-  AP_WINDOW_NO_MINIMIZE = 1u << 23,
-  AP_WINDOW_NO_MAXIMIZE = 1u << 24,
-  AP_WINDOW_NO_CLOSE = 1u << 25
-} AP_WindowFlags;
+  typedef enum AP_WindowFlags
+  {
+    AP_WINDOW_NONE = 0,
+    AP_WINDOW_RESIZABLE = 1u << 0,
+    AP_WINDOW_DECORATED = 1u << 1,
+    AP_WINDOW_MAXIMIZED = 1u << 2,
+    AP_WINDOW_FULLSCREEN = 1u << 3,
+    AP_WINDOW_HIDDEN = 1u << 4,
+    AP_WINDOW_FLOATING = 1u << 5,
+    AP_WINDOW_TRANSPARENT = 1u << 6,
+    AP_WINDOW_VSYNC = 1u << 7,
+    AP_WINDOW_CENTERED = 1u << 8,
+    AP_WINDOW_MINIMIZED = 1u << 9,
+    AP_WINDOW_FOCUSED = 1u << 10,
+    AP_WINDOW_HIGH_DPI = 1u << 11,
+    AP_WINDOW_MOUSE_PASSTHROUGH = 1u << 12,
+    AP_WINDOW_FOCUS_ON_SHOW = 1u << 13,
+    AP_WINDOW_SCALE_TO_MONITOR = 1u << 14,
+    AP_WINDOW_MSAA = 1u << 15,
+    AP_WINDOW_SRGB = 1u << 16,
+    AP_WINDOW_DEBUG = 1u << 17,
+    AP_WINDOW_NO_AUTO_ICONIFY = 1u << 18,
+    AP_WINDOW_NO_FOCUS = 1u << 19,
+    AP_WINDOW_CENTER_CURSOR = 1u << 20,
+    AP_WINDOW_BORDERLESS = 1u << 21,
+    AP_WINDOW_NO_TITLE = 1u << 22, /* hide caption text; bar can stay */
+    AP_WINDOW_NO_MINIMIZE = 1u << 23,
+    AP_WINDOW_NO_MAXIMIZE = 1u << 24,
+    AP_WINDOW_NO_CLOSE = 1u << 25
+  } AP_WindowFlags;
 
 #define AP_WINDOW_HIGH_PIXEL_DENSITY AP_WINDOW_HIGH_DPI
 #define AP_WINDOW_ALWAYS_ON_TOP AP_WINDOW_FLOATING
 #define AP_WINDOW_NOT_FOCUSABLE AP_WINDOW_NO_FOCUS
 #define AP_WINDOW_INPUT_FOCUS AP_WINDOW_FOCUSED
-#define AP_WINDOW_NO_BUTTONS                                                       \
+#define AP_WINDOW_NO_BUTTONS \
   (AP_WINDOW_NO_MINIMIZE | AP_WINDOW_NO_MAXIMIZE | AP_WINDOW_NO_CLOSE)
 
-/* =========================================================
- * Window configuration
- * ========================================================= */
+  /* =========================================================
+   * Window configuration
+   * ========================================================= */
 
-typedef struct AP_WindowConfig {
-  const char *title;
+  typedef struct AP_WindowConfig
+  {
+    const char *title;
 
-  int width;
-  int height;
+    int width;
+    int height;
 
-  int x;
-  int y;
+    int x;
+    int y;
 
-  uint32_t flags;
+    uint32_t flags;
 
-  int monitor_index;
-  int swap_interval;
+    int monitor_index;
+    int swap_interval;
+
+    /*
+     * Multisample count used when AP_WINDOW_MSAA is set.
+     * 0 selects a default of 4 samples.
+     */
+    int msaa_samples;
+
+    /*
+     * Window opacity in the range (0, 1]. 0 selects fully opaque.
+     */
+    float opacity;
+
+    int min_width;
+    int min_height;
+    int max_width;
+    int max_height;
+  } AP_WindowConfig;
 
   /*
-   * Multisample count used when AP_WINDOW_MSAA is set.
-   * 0 selects a default of 4 samples.
+   * Returns the default window configuration:
+   *   1280x720, resizable, decorated, visible, VSync, centered.
    */
-  int msaa_samples;
+  AP_WindowConfig AP_WindowDefaultConfig(void);
+
+  bool AP_WindowValidateConfig(const AP_WindowConfig *config);
+
+  /* =========================================================
+   * Creation
+   *
+   * The renderer is created automatically. Applications must not
+   * create a renderer themselves.
+   * ========================================================= */
+
+  AP_Window *AP_CreateWindow(const char *title, int width, int height,
+                             AP_WindowFlags flags);
+
+  AP_Window *AP_CreateWindowEx(const AP_WindowConfig *config);
 
   /*
-   * Window opacity in the range (0, 1]. 0 selects fully opaque.
+   * Destroys a window. NULL means the active one.
    */
-  float opacity;
+  void AP_DestroyWindow(AP_Window *window);
 
-  int min_width;
-  int min_height;
-  int max_width;
-  int max_height;
-} AP_WindowConfig;
+  bool AP_WindowIsValid(const AP_Window *window);
 
-/*
- * Returns the default window configuration:
- *   1280x720, resizable, decorated, visible, VSync, centered.
- */
-AP_WindowConfig AP_WindowDefaultConfig(void);
+  /* =========================================================
+   * Popup windows
+   *
+   * A lightweight secondary window positioned relative to a parent window.
+   *
+   * Two styles:
+   *
+   *  - Borderless (decorated = false, the default): an "inlay" popup —
+   *    floating, undecorated, no taskbar entry. Useful for tooltips,
+   *    context menus, splash screens, or a detached tool palette. It can
+   *    auto-close itself the moment it loses input focus.
+   *
+   *  - Decorated (decorated = true): a normal-looking OS window with a
+   *    title bar the user can drag around and (with AP_WINDOW_RESIZABLE)
+   *    resize. By default it stays out of the taskbar like a tool window;
+   *    set show_in_taskbar = true to give it a real taskbar entry.
+   *
+   *     AP_PopupConfig cfg = AP_PopupDefaultConfig();
+   *     cfg.offset_x = 0;
+   *     cfg.offset_y = 40;
+   *     cfg.width = 220;
+   *     cfg.height = 160;
+   *     AP_Window *popup = AP_CreatePopupWindow(&cfg);
+   *
+   *     // each frame:
+   *     if (AP_WindowIsValid(popup) && AP_WindowShouldClose(popup)) {
+   *       AP_DestroyWindow(popup);
+   *       popup = NULL;
+   *     }
+   *
+   * Destroying the parent window destroys every popup still open on
+   * it. AP_CreatePopupWindow makes the new popup the active window,
+   * exactly like AP_CreateWindow; call AP_SetActiveWindow to switch
+   * back before continuing to draw into the parent.
+   * ========================================================= */
 
-bool AP_WindowValidateConfig(const AP_WindowConfig *config);
+  typedef struct AP_PopupConfig
+  {
+    AP_Window *parent; /* NULL = the currently active window */
+    int offset_x;      /* position relative to the parent's top-left */
+    int offset_y;
+    int width;
+    int height;
+    bool close_on_focus_loss; /* default true */
+    bool decorated;           /* default false: real OS title bar + move/resize */
+    const char *title;        /* default "Popup"; used when decorated */
+    bool show_in_taskbar;     /* default false; only meaningful when decorated */
+    uint32_t flags;           /* extra AP_WindowFlags, merged with popup defaults */
+  } AP_PopupConfig;
 
-/* =========================================================
- * Creation
- *
- * The renderer is created automatically. Applications must not
- * create a renderer themselves.
- * ========================================================= */
+  /*
+   * Returns the default popup configuration: 240x160, anchored at the
+   * parent's top-left with no offset, closes on focus loss, borderless,
+   * hidden from the taskbar.
+   */
+  AP_PopupConfig AP_PopupDefaultConfig(void);
 
-AP_Window *AP_CreateWindow(const char *title, int width, int height,
-                           AP_WindowFlags flags);
+  AP_Window *AP_CreatePopupWindow(const AP_PopupConfig *config);
 
-AP_Window *AP_CreateWindowEx(const AP_WindowConfig *config);
+  bool AP_IsPopupWindow(const AP_Window *window);
 
-/*
- * Destroys a window. NULL means the active one.
- */
-void AP_DestroyWindow(AP_Window *window);
+  /*
+   * The window a popup is anchored to. NULL for non-popups or if the
+   * parent has since been destroyed.
+   */
+  AP_Window *AP_GetPopupParent(const AP_Window *window);
 
-bool AP_WindowIsValid(const AP_Window *window);
+  /* =========================================================
+   * Active window
+   * ========================================================= */
 
-/* =========================================================
- * Active window
- * ========================================================= */
+  AP_Window *AP_GetWindow(void);
 
-AP_Window *AP_GetWindow(void);
+  bool AP_SetActiveWindow(AP_Window *window);
 
-bool AP_SetActiveWindow(AP_Window *window);
+  /* =========================================================
+   * Events
+   *
+   * Pumps window events and updates input state for this frame.
+   * ========================================================= */
 
-/* =========================================================
- * Events
- *
- * Pumps window events and updates input state for this frame.
- * ========================================================= */
+  void AP_PumpEvents(void);
 
-void AP_PumpEvents(void);
+  void AP_WaitEvents(void);
 
-void AP_WaitEvents(void);
-
-void AP_WaitEventsTimeout(double timeout);
+  void AP_WaitEventsTimeout(double timeout);
 
 #define AP_PollEvents AP_PumpEvents /* SDL muscle memory */
 
-/* =========================================================
- * Close / main loop
- * ========================================================= */
+  /* =========================================================
+   * Close / main loop
+   * ========================================================= */
 
-/*
- * Returns true while the active window exists and has not been
- * asked to close.
- */
-bool AP_IsRunning(void);
+  /*
+   * Returns true while the active window exists and has not been
+   * asked to close.
+   */
+  bool AP_IsRunning(void);
 
-void AP_RequestClose(void);
+  void AP_RequestClose(void);
 
-void AP_CancelClose(void);
+  void AP_CancelClose(void);
 
-bool AP_WindowShouldClose(const AP_Window *window);
+  bool AP_WindowShouldClose(const AP_Window *window);
 
-void AP_WindowSetShouldClose(AP_Window *window, bool should_close);
+  void AP_WindowSetShouldClose(AP_Window *window, bool should_close);
 
-/* =========================================================
- * Title
- * ========================================================= */
+  /* =========================================================
+   * Title
+   * ========================================================= */
 
-bool AP_SetWindowTitle(const char *title);
+  bool AP_SetWindowTitle(const char *title);
 
-const char *AP_GetWindowTitle(void);
+  const char *AP_GetWindowTitle(void);
 
-/* =========================================================
- * Size
- * ========================================================= */
+  /* =========================================================
+   * Size
+   * ========================================================= */
 
-bool AP_SetWindowSize(int width, int height);
+  bool AP_SetWindowSize(int width, int height);
 
-bool AP_GetWindowSize(int *w, int *h);
+  bool AP_GetWindowSize(int *w, int *h);
 
-int AP_GetWindowWidth(void);
+  int AP_GetWindowWidth(void);
 
-int AP_GetWindowHeight(void);
+  int AP_GetWindowHeight(void);
 
 #define AP_GetWindowSizeEx AP_GetWindowSize
 
-/* =========================================================
- * Framebuffer size
- * ========================================================= */
+  /* =========================================================
+   * Framebuffer size
+   * ========================================================= */
 
-bool AP_GetWindowSizeInPixels(int *w, int *h);
+  bool AP_GetWindowSizeInPixels(int *w, int *h);
 
-int AP_GetWindowPixelWidth(void);
+  int AP_GetWindowPixelWidth(void);
 
-int AP_GetWindowPixelHeight(void);
+  int AP_GetWindowPixelHeight(void);
 
 #define AP_GetFramebufferSizeEx AP_GetWindowSizeInPixels
 #define AP_GetFramebufferWidth AP_GetWindowPixelWidth
 #define AP_GetFramebufferHeight AP_GetWindowPixelHeight
 
-/* =========================================================
- * Position
- * ========================================================= */
+  /* =========================================================
+   * Position
+   * ========================================================= */
 
-bool AP_SetWindowPosition(int x, int y);
+  bool AP_SetWindowPosition(int x, int y);
 
-bool AP_GetWindowPosition(int *x, int *y);
+  bool AP_GetWindowPosition(int *x, int *y);
 
 #define AP_GetWindowPositionEx AP_GetWindowPosition
 
-bool AP_CenterWindow(void);
+  bool AP_CenterWindow(void);
 
-/* =========================================================
- * Visibility / focus
- * ========================================================= */
+  /* =========================================================
+   * Visibility / focus
+   * ========================================================= */
 
-void AP_ShowWindow(void);
+  void AP_ShowWindow(void);
 
-void AP_HideWindow(void);
+  void AP_HideWindow(void);
 
-bool AP_IsWindowVisible(void);
+  bool AP_IsWindowVisible(void);
 
-void AP_RaiseWindow(void);
+  void AP_RaiseWindow(void);
 
-bool AP_IsWindowFocused(void);
+  bool AP_IsWindowFocused(void);
 
-void AP_FlashWindow(void);
+  void AP_FlashWindow(void);
 
 #define AP_FocusWindow AP_RaiseWindow
 #define AP_RequestWindowAttention AP_FlashWindow
 
-/* =========================================================
- * Window state
- * ========================================================= */
+  /* =========================================================
+   * Window state
+   * ========================================================= */
 
-void AP_MinimizeWindow(void);
+  void AP_MinimizeWindow(void);
 
-void AP_MaximizeWindow(void);
+  void AP_MaximizeWindow(void);
 
-void AP_RestoreWindow(void);
+  void AP_RestoreWindow(void);
 
-bool AP_IsWindowMinimized(void);
+  bool AP_IsWindowMinimized(void);
 
-bool AP_IsWindowMaximized(void);
+  bool AP_IsWindowMaximized(void);
 
-bool AP_IsWindowOpen(void);
+  bool AP_IsWindowOpen(void);
 
-/* =========================================================
- * Fullscreen
- * ========================================================= */
+  /* =========================================================
+   * Fullscreen
+   * ========================================================= */
 
-bool AP_SetWindowFullscreen(bool fullscreen);
+  bool AP_SetWindowFullscreen(bool fullscreen);
 
-bool AP_IsFullscreen(void);
+  bool AP_IsFullscreen(void);
 
-bool AP_ToggleFullscreen(void);
+  bool AP_ToggleFullscreen(void);
 
 #define AP_SetFullscreen AP_SetWindowFullscreen
 
-/* =========================================================
- * Monitor
- * ========================================================= */
+  /* =========================================================
+   * Monitor
+   * ========================================================= */
 
-int AP_GetMonitorCount(void);
+  int AP_GetMonitorCount(void);
 
-int AP_GetWindowMonitor(void);
+  int AP_GetWindowMonitor(void);
 
-bool AP_SetWindowMonitor(int monitor_index);
+  bool AP_SetWindowMonitor(int monitor_index);
 
-/* =========================================================
- * Window attributes
- * ========================================================= */
+  /* =========================================================
+   * Window attributes
+   * ========================================================= */
 
-bool AP_SetWindowResizable(bool enabled);
+  bool AP_SetWindowResizable(bool enabled);
 
-bool AP_IsWindowResizable(void);
+  bool AP_IsWindowResizable(void);
 
-bool AP_SetWindowBordered(bool bordered);
+  bool AP_SetWindowBordered(bool bordered);
 
-bool AP_IsWindowBordered(void);
+  bool AP_IsWindowBordered(void);
 
-/*
- * Caption chrome. These apply when the window is decorated.
- * Title text can be hidden while the bar and buttons stay.
- * Min / max hide the buttons. Close disables the button (and the
- * OS close request); AP_RequestClose still works.
- */
-bool AP_SetWindowTitleVisible(bool visible);
+  /*
+   * Caption chrome. These apply when the window is decorated.
+   * Title text can be hidden while the bar and buttons stay.
+   * Min / max hide the buttons. Close disables the button (and the
+   * OS close request); AP_RequestClose still works.
+   */
+  bool AP_SetWindowTitleVisible(bool visible);
 
-bool AP_IsWindowTitleVisible(void);
+  bool AP_IsWindowTitleVisible(void);
 
-bool AP_SetWindowMinimizeButton(bool visible);
+  bool AP_SetWindowMinimizeButton(bool visible);
 
-bool AP_IsWindowMinimizeButton(void);
+  bool AP_IsWindowMinimizeButton(void);
 
-bool AP_SetWindowMaximizeButton(bool visible);
+  bool AP_SetWindowMaximizeButton(bool visible);
 
-bool AP_IsWindowMaximizeButton(void);
+  bool AP_IsWindowMaximizeButton(void);
 
-bool AP_SetWindowCloseButton(bool visible);
+  bool AP_SetWindowCloseButton(bool visible);
 
-bool AP_IsWindowCloseButton(void);
+  bool AP_IsWindowCloseButton(void);
 
-bool AP_SetWindowAlwaysOnTop(bool on_top);
+  bool AP_SetWindowAlwaysOnTop(bool on_top);
 
-bool AP_IsWindowAlwaysOnTop(void);
+  bool AP_IsWindowAlwaysOnTop(void);
 
 #define AP_SetWindowDecorated AP_SetWindowBordered
 #define AP_IsWindowDecorated AP_IsWindowBordered
 #define AP_SetWindowFloating AP_SetWindowAlwaysOnTop
 #define AP_IsWindowFloating AP_IsWindowAlwaysOnTop
 
-bool AP_SetWindowOpacity(float opacity);
+  bool AP_SetWindowOpacity(float opacity);
 
-float AP_GetWindowOpacity(void);
+  float AP_GetWindowOpacity(void);
 
-bool AP_SetWindowMousePassthrough(bool enabled);
+  bool AP_SetWindowMousePassthrough(bool enabled);
 
-bool AP_IsWindowMousePassthrough(void);
+  bool AP_IsWindowMousePassthrough(void);
 
-bool AP_SetWindowSizeLimits(int min_width, int min_height, int max_width,
-                            int max_height);
+  bool AP_SetWindowSizeLimits(int min_width, int min_height, int max_width,
+                              int max_height);
 
-bool AP_SetWindowAspectRatio(int numerator, int denominator);
+  bool AP_SetWindowAspectRatio(int numerator, int denominator);
 
-bool AP_SetWindowAutoIconify(bool enabled);
+  bool AP_SetWindowAutoIconify(bool enabled);
 
-bool AP_GetWindowAutoIconify(void);
+  bool AP_GetWindowAutoIconify(void);
 
-/* =========================================================
- * Presentation
- * ========================================================= */
+  /* =========================================================
+   * Presentation
+   * ========================================================= */
 
-bool AP_SetSwapInterval(int interval);
+  bool AP_SetSwapInterval(int interval);
 
-int AP_GetSwapInterval(void);
+  int AP_GetSwapInterval(void);
 
-bool AP_SetVSync(bool enabled);
+  bool AP_SetVSync(bool enabled);
 
-bool AP_GetVSync(void);
+  bool AP_GetVSync(void);
 
-/* =========================================================
- * Cursor
- * ========================================================= */
+  /* =========================================================
+   * Cursor
+   * ========================================================= */
 
-void AP_SetCursorVisible(bool visible);
+  void AP_SetCursorVisible(bool visible);
 
-bool AP_IsCursorVisible(void);
+  bool AP_IsCursorVisible(void);
 
-void AP_SetCursorLocked(bool locked);
+  void AP_SetCursorLocked(bool locked);
 
-bool AP_IsCursorLocked(void);
+  bool AP_IsCursorLocked(void);
 
-bool AP_SetRawMouseInput(bool enabled);
+  bool AP_SetRawMouseInput(bool enabled);
 
-bool AP_IsRawMouseInput(void);
+  bool AP_IsRawMouseInput(void);
 
-bool AP_GetCursorPosition(double *x, double *y);
+  bool AP_GetCursorPosition(double *x, double *y);
 
-bool AP_SetCursorPosition(double x, double y);
+  bool AP_SetCursorPosition(double x, double y);
 
-double AP_GetCursorX(void);
+  double AP_GetCursorX(void);
 
-double AP_GetCursorY(void);
+  double AP_GetCursorY(void);
 
-/* =========================================================
- * Content scale / DPI
- * ========================================================= */
+  /* =========================================================
+   * Content scale / DPI
+   * ========================================================= */
 
-float AP_GetContentScaleX(void);
+  float AP_GetContentScaleX(void);
 
-float AP_GetContentScaleY(void);
+  float AP_GetContentScaleY(void);
 
-bool AP_GetContentScale(float *x, float *y);
+  bool AP_GetContentScale(float *x, float *y);
 
-/* =========================================================
- * User data
- * ========================================================= */
+  /* =========================================================
+   * User data
+   * ========================================================= */
 
-void AP_SetWindowUserData(void *user_data);
+  void AP_SetWindowUserData(void *user_data);
 
-void *AP_GetWindowUserData(void);
+  void *AP_GetWindowUserData(void);
 
-/* =========================================================
- * Flags
- * ========================================================= */
+  /* =========================================================
+   * Flags
+   * ========================================================= */
 
-uint32_t AP_GetWindowFlags(void);
+  uint32_t AP_GetWindowFlags(void);
 
-bool AP_WindowHasFlag(AP_WindowFlags flag);
+  bool AP_WindowHasFlag(AP_WindowFlags flag);
 
-bool AP_SetWindowFlags(uint32_t flags);
+  bool AP_SetWindowFlags(uint32_t flags);
 
-bool AP_EnableWindowFlag(AP_WindowFlags flag);
+  bool AP_EnableWindowFlag(AP_WindowFlags flag);
 
-bool AP_DisableWindowFlag(AP_WindowFlags flag);
+  bool AP_DisableWindowFlag(AP_WindowFlags flag);
 
-/* =========================================================
- * Native handle
- *
- * Platform-specific window pointer (HWND, NSWindow, X11 Window).
- * Intended for advanced embedding only.
- * ========================================================= */
+  /* =========================================================
+   * Native handle
+   *
+   * Platform-specific window pointer (HWND, NSWindow, X11 Window).
+   * Intended for advanced embedding only.
+   * ========================================================= */
 
-void *AP_GetNativeHandle(void);
+  void *AP_GetNativeHandle(void);
 
-void *AP_GetNativeDisplay(void);
+  void *AP_GetNativeDisplay(void);
 
-/* =========================================================
- * Time
- * ========================================================= */
+  /* =========================================================
+   * Time
+   * ========================================================= */
 
-double AP_GetTime(void);
+  double AP_GetTime(void);
 
-uint64_t AP_GetTicks(void);
+  uint64_t AP_GetTicks(void);
 
-void AP_SetTime(double time);
+  void AP_SetTime(double time);
 
-/*
- * Frame clock (pygame Clock.tick).
- *
- *     AP_SetTargetFPS(60);
- *     while (AP_IsRunning()) {
- *         AP_PumpEvents();
- *         double dt = AP_Tick();
- *         AP_Present();
- *     }
- *
- * Target 0 is uncapped: Tick still measures dt, it just does not wait.
- * dt is seconds, clamped after a hitch so physics does not explode.
- * AP_TickFPS(60) is pygame's clock.tick(60).
- */
-void AP_SetTargetFPS(int fps);
+  /*
+   * Frame clock (pygame Clock.tick).
+   *
+   *     AP_SetTargetFPS(60);
+   *     while (AP_IsRunning()) {
+   *         AP_PumpEvents();
+   *         double dt = AP_Tick();
+   *         AP_Present();
+   *     }
+   *
+   * Target 0 is uncapped: Tick still measures dt, it just does not wait.
+   * dt is seconds, clamped after a hitch so physics does not explode.
+   * AP_TickFPS(60) is pygame's clock.tick(60).
+   */
+  void AP_SetTargetFPS(int fps);
 
-int AP_GetTargetFPS(void);
+  int AP_GetTargetFPS(void);
 
-double AP_Tick(void);
+  double AP_Tick(void);
 
-double AP_TickFPS(int fps);
+  double AP_TickFPS(int fps);
 
-double AP_GetDeltaTime(void);
+  double AP_GetDeltaTime(void);
 
-double AP_GetFPS(void);
+  double AP_GetFPS(void);
 
-/* =========================================================
- * Subsystem
- * ========================================================= */
+  /* =========================================================
+   * Subsystem
+   * ========================================================= */
 
-extern const AP_SubsystemMetadata AP_WindowingSubsystem;
+  extern const AP_SubsystemMetadata AP_WindowingSubsystem;
 
 #ifdef __cplusplus
 }

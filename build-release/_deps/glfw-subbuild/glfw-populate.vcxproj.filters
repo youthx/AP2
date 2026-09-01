@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build-release\_deps\glfw-subbuild\CMakeFiles\b7d918e39d872b7f57b0e43c7cb5ada1\glfw-populate-mkdir.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build-release\_deps\glfw-subbuild\CMakeFiles\b7d918e39d872b7f57b0e43c7cb5ada1\glfw-populate-download.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build-release\_deps\glfw-subbuild\CMakeFiles\b7d918e39d872b7f57b0e43c7cb5ada1\glfw-populate-update.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build-release\_deps\glfw-subbuild\CMakeFiles\b7d918e39d872b7f57b0e43c7cb5ada1\glfw-populate-patch.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build-release\_deps\glfw-subbuild\CMakeFiles\b7d918e39d872b7f57b0e43c7cb5ada1\glfw-populate-configure.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build-release\_deps\glfw-subbuild\CMakeFiles\b7d918e39d872b7f57b0e43c7cb5ada1\glfw-populate-build.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build-release\_deps\glfw-subbuild\CMakeFiles\b7d918e39d872b7f57b0e43c7cb5ada1\glfw-populate-install.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build-release\_deps\glfw-subbuild\CMakeFiles\b7d918e39d872b7f57b0e43c7cb5ada1\glfw-populate-test.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build-release\_deps\glfw-subbuild\CMakeFiles\538fe95523ec148d0bf42f2089cd8242\glfw-populate-complete.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build-release\_deps\glfw-subbuild\CMakeFiles\dff1e0c090932b2594eb52c2aa1692c2\glfw-populate.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build-release\_deps\glfw-subbuild\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="C:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build-release\_deps\glfw-subbuild\CMakeFiles\glfw-populate" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{73AF54E1-1901-3495-BF22-84FFF739E164}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

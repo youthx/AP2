@@ -206,7 +206,8 @@ int AP_TilesetGetCount(const AP_Tileset *tileset) {
   return tileset != NULL ? tileset->count : 0;
 }
 
-bool AP_TilesetGetSource(const AP_Tileset *tileset, int tile_id, AP_FRect *src) {
+bool AP_TilesetGetSource(const AP_Tileset *tileset, int tile_id,
+                         AP_FRect *src) {
   int index;
   int col;
   int row;
@@ -220,8 +221,10 @@ bool AP_TilesetGetSource(const AP_Tileset *tileset, int tile_id, AP_FRect *src) 
   index = AP_TilesetIndex(tile_id);
   col = index % tileset->columns;
   row = index / tileset->columns;
-  src->x = (float)(tileset->margin + col * (tileset->tile_width + tileset->spacing));
-  src->y = (float)(tileset->margin + row * (tileset->tile_height + tileset->spacing));
+  src->x =
+      (float)(tileset->margin + col * (tileset->tile_width + tileset->spacing));
+  src->y = (float)(tileset->margin +
+                   row * (tileset->tile_height + tileset->spacing));
   src->w = (float)tileset->tile_width;
   src->h = (float)tileset->tile_height;
   return true;
@@ -474,7 +477,8 @@ static bool AP_TilemapParseCSV(const char *csv, int **out_tiles, int *out_width,
           width = col;
         } else if (col != width) {
           free(tiles);
-          AP_SET_ERROR(AP_ERROR_INVALID_ARGUMENT, "Tilemap CSV rows differ in length");
+          AP_SET_ERROR(AP_ERROR_INVALID_ARGUMENT,
+                       "Tilemap CSV rows differ in length");
           return false;
         }
         rows++;
@@ -492,7 +496,8 @@ static bool AP_TilemapParseCSV(const char *csv, int **out_tiles, int *out_width,
     value = strtoul(p, &end, 10);
     if (end == p) {
       free(tiles);
-      AP_SET_ERROR(AP_ERROR_INVALID_ARGUMENT, "Tilemap CSV has a non-integer cell");
+      AP_SET_ERROR(AP_ERROR_INVALID_ARGUMENT,
+                   "Tilemap CSV has a non-integer cell");
       return false;
     }
 
@@ -517,7 +522,8 @@ static bool AP_TilemapParseCSV(const char *csv, int **out_tiles, int *out_width,
       width = col;
     } else if (col != width) {
       free(tiles);
-      AP_SET_ERROR(AP_ERROR_INVALID_ARGUMENT, "Tilemap CSV rows differ in length");
+      AP_SET_ERROR(AP_ERROR_INVALID_ARGUMENT,
+                   "Tilemap CSV rows differ in length");
       return false;
     }
     rows++;
@@ -638,8 +644,9 @@ int AP_TilemapGetHeight(const AP_Tilemap *map) {
 }
 
 float AP_TilemapGetPixelWidth(const AP_Tilemap *map) {
-  return AP_TilemapIsValid(map) ? (float)map->width * AP_TilemapTilePixelWidth(map)
-                                : 0.0f;
+  return AP_TilemapIsValid(map)
+             ? (float)map->width * AP_TilemapTilePixelWidth(map)
+             : 0.0f;
 }
 
 float AP_TilemapGetPixelHeight(const AP_Tilemap *map) {
@@ -704,7 +711,8 @@ AP_FColor AP_TilemapGetColor(const AP_Tilemap *map) {
 
 bool AP_TilemapSet(AP_Tilemap *map, int x, int y, int tile) {
   if (!AP_TilemapInBounds(map, x, y)) {
-    AP_SET_ERROR(AP_ERROR_INVALID_ARGUMENT, "Tile coordinates are out of range");
+    AP_SET_ERROR(AP_ERROR_INVALID_ARGUMENT,
+                 "Tile coordinates are out of range");
     return false;
   }
 
@@ -832,8 +840,8 @@ bool AP_TilemapTileToWorld(const AP_Tilemap *map, int tile_x, int tile_y,
 
 bool AP_TilemapGetTileRect(const AP_Tilemap *map, int tile_x, int tile_y,
                            AP_FRect *rect) {
-  if (rect == NULL || !AP_TilemapTileToWorld(map, tile_x, tile_y, &rect->x,
-                                             &rect->y)) {
+  if (rect == NULL ||
+      !AP_TilemapTileToWorld(map, tile_x, tile_y, &rect->x, &rect->y)) {
     if (rect == NULL) {
       AP_SET_ERROR(AP_ERROR_INVALID_ARGUMENT, "Tile rectangle cannot be NULL");
     }
@@ -900,8 +908,8 @@ bool AP_TilemapRectSolid(const AP_Tilemap *map, const AP_FRect *rect) {
   }
 
   AP_TilemapWorldToTile(map, rect->x, rect->y, &x0, &y0);
-  AP_TilemapWorldToTile(map, rect->x + rect->w - 0.001f, rect->y + rect->h - 0.001f,
-                        &x1, &y1);
+  AP_TilemapWorldToTile(map, rect->x + rect->w - 0.001f,
+                        rect->y + rect->h - 0.001f, &x1, &y1);
 
   if (x0 < 0) {
     x0 = 0;
@@ -938,7 +946,8 @@ static void AP_TilemapFlipFromCell(int cell, float *angle, AP_FlipMode *flip) {
     *flip = AP_FLIP_HORIZONTAL;
   }
   if ((bits & AP_TILE_FLIP_H) != 0u) {
-    *flip = (AP_FlipMode)((unsigned int)*flip | (unsigned int)AP_FLIP_HORIZONTAL);
+    *flip =
+        (AP_FlipMode)((unsigned int)*flip | (unsigned int)AP_FLIP_HORIZONTAL);
   }
   if ((bits & AP_TILE_FLIP_V) != 0u) {
     *flip = (AP_FlipMode)((unsigned int)*flip | (unsigned int)AP_FLIP_VERTICAL);
@@ -1032,7 +1041,8 @@ static AP_Color AP_TilemapDrawTint(const AP_Tilemap *map) {
   return tint;
 }
 
-bool AP_RenderTilemapEx(AP_Tilemap *map, float x, float y, const AP_FRect *view) {
+bool AP_RenderTilemapEx(AP_Tilemap *map, float x, float y,
+                        const AP_FRect *view) {
   int x0 = 0;
   int y0 = 0;
   int x1 = 0;

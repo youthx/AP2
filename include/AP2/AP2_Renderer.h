@@ -232,7 +232,8 @@ bool AP_RenderFillPie(float x, float y, float radius, float start_deg,
 
 bool AP_RenderRing(float x, float y, float inner_radius, float outer_radius);
 
-bool AP_RenderFillRing(float x, float y, float inner_radius, float outer_radius);
+bool AP_RenderFillRing(float x, float y, float inner_radius,
+                       float outer_radius);
 
 /* =========================================================
  * Triangles / polygons

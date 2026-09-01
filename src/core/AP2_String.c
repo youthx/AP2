@@ -206,7 +206,7 @@ char AP_StringCharAt(const AP_String *str, size_t index) {
 }
 
 static bool AP_StringFormatVInternal(AP_String *str, bool append,
-                                    const char *format, va_list args) {
+                                     const char *format, va_list args) {
   va_list copy;
   int needed;
   size_t offset;

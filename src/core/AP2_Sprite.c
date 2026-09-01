@@ -231,8 +231,7 @@ bool AP_SpriteUpdate(AP_Sprite *sprite, float delta_seconds) {
 
   sprite->anim_elapsed -= (float)advanced / sprite->anim_fps;
   if (sprite->anim_loop) {
-    sprite->anim_index =
-        (sprite->anim_index + advanced) % sprite->anim_count;
+    sprite->anim_index = (sprite->anim_index + advanced) % sprite->anim_count;
   } else {
     sprite->anim_index += advanced;
     if (sprite->anim_index >= sprite->anim_count) {
@@ -261,7 +260,8 @@ bool AP_RenderSpriteEx(const AP_Sprite *sprite, const AP_FRect *dst) {
   float alpha;
 
   if (sprite == NULL || dst == NULL) {
-    AP_SET_ERROR(AP_ERROR_INVALID_ARGUMENT, "Sprite draw arguments cannot be NULL");
+    AP_SET_ERROR(AP_ERROR_INVALID_ARGUMENT,
+                 "Sprite draw arguments cannot be NULL");
     return false;
   }
 

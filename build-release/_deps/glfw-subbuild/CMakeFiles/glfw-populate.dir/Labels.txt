@@ -1,0 +1,14 @@
+# Target labels
+ glfw-populate
+# Source files and their labels
+C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build-release/_deps/glfw-subbuild/CMakeFiles/glfw-populate
+C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build-release/_deps/glfw-subbuild/CMakeFiles/dff1e0c090932b2594eb52c2aa1692c2/glfw-populate.rule
+C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build-release/_deps/glfw-subbuild/CMakeFiles/538fe95523ec148d0bf42f2089cd8242/glfw-populate-complete.rule
+C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build-release/_deps/glfw-subbuild/CMakeFiles/b7d918e39d872b7f57b0e43c7cb5ada1/glfw-populate-build.rule
+C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build-release/_deps/glfw-subbuild/CMakeFiles/b7d918e39d872b7f57b0e43c7cb5ada1/glfw-populate-configure.rule
+C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build-release/_deps/glfw-subbuild/CMakeFiles/b7d918e39d872b7f57b0e43c7cb5ada1/glfw-populate-download.rule
+C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build-release/_deps/glfw-subbuild/CMakeFiles/b7d918e39d872b7f57b0e43c7cb5ada1/glfw-populate-install.rule
+C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build-release/_deps/glfw-subbuild/CMakeFiles/b7d918e39d872b7f57b0e43c7cb5ada1/glfw-populate-mkdir.rule
+C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build-release/_deps/glfw-subbuild/CMakeFiles/b7d918e39d872b7f57b0e43c7cb5ada1/glfw-populate-patch.rule
+C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build-release/_deps/glfw-subbuild/CMakeFiles/b7d918e39d872b7f57b0e43c7cb5ada1/glfw-populate-test.rule
+C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build-release/_deps/glfw-subbuild/CMakeFiles/b7d918e39d872b7f57b0e43c7cb5ada1/glfw-populate-update.rule

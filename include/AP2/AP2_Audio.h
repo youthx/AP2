@@ -25,8 +25,8 @@ extern "C" {
  * Independent of the graphics stack — initialize with AP_INIT_AUDIO.
  *
  *     AP_Init(AP_INIT_AUDIO);
- *     AP_Sound *blip = AP_CreateSoundWave(AP_WAVEFORM_SINE, 880.0f, 0.12f, 0.4f);
- *     AP_PlayOneShot(blip);
+ *     AP_Sound *blip = AP_CreateSoundWave(AP_WAVEFORM_SINE, 880.0f, 0.12f,
+ * 0.4f); AP_PlayOneShot(blip);
  *
  *     AP_PlaySoundDesc desc = AP_PlaySoundDescDefault();
  *     desc.spatial = true;

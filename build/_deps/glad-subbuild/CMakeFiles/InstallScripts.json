@@ -1,8 +1,4 @@
 {
-	"Configs" : 
-	[
-		"Debug"
-	],
 	"InstallScripts" : 
 	[
 		"C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glad-subbuild/cmake_install.cmake"

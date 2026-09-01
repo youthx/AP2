@@ -150,9 +150,15 @@ void *AP_PlatformGetNativeDisplay(void);
  * Native caption: title text and min / max / close.
  * Decorated windows only. Wayland may ignore this.
  */
+/*
+ * Shows or hides a window's taskbar button. On Windows this toggles the
+ * WS_EX_TOOLWINDOW style; on other platforms it is a no-op.
+ */
+void AP_PlatformSetWindowTaskbarVisible(void *glfw_window, bool visible);
+
 void AP_PlatformSetWindowChrome(void *glfw_window, bool title, bool minimize,
-                                 bool maximize, bool close,
-                                 const char *title_text);
+                                bool maximize, bool close,
+                                const char *title_text);
 
 bool AP_PlatformIsMainThread(void);
 

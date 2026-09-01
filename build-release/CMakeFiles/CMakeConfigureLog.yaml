@@ -1,0 +1,2378 @@
+
+---
+events:
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineSystem.cmake:212 (message)"
+      - "CMakeLists.txt:7 (project)"
+    message: |
+      The system is: Windows - 10.0.26200 - AMD64
+  -
+    kind: "find-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:468 (find_file)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:506 (CMAKE_DETERMINE_COMPILER_ID_WRITE)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:8 (CMAKE_DETERMINE_COMPILER_ID_BUILD)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCCompiler.cmake:122 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:7 (project)"
+    mode: "file"
+    variable: "src_in"
+    description: "Path to a file."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "CMakeCCompilerId.c.in"
+    candidate_directories:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/"
+    found: "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeCCompilerId.c.in"
+    search_context:
+      ENV{PATH}:
+        - "C:\\Program Files (x86)\\Microsoft\\Edge\\Application"
+        - "C:\\Python314\\Scripts\\"
+        - "C:\\Python314\\"
+        - "C:\\WINDOWS\\system32"
+        - "C:\\WINDOWS"
+        - "C:\\WINDOWS\\System32\\Wbem"
+        - "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\WINDOWS\\System32\\OpenSSH\\"
+        - "C:\\Program Files\\Intel\\WiFi\\bin\\"
+        - "C:\\Program Files\\Common Files\\Intel\\WirelessCommon\\"
+        - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\CMake\\bin"
+        - "C:\\Users\\jackw\\.rokit\\bin"
+        - "C:\\Program Files\\nodejs\\"
+        - "C:\\ProgramData\\chocolatey\\bin"
+        - "C:\\Program Files\\GitHub CLI\\"
+        - "C:\\Program Files\\Neovim\\bin"
+        - "C:\\msys64\\ucrt64\\bin"
+        - "C:\\Users\\jackw\\AppData\\Local\\cforge\\installed\\cforge\\bin"
+        - "C:\\Python314\\Scripts\\"
+        - "C:\\Python314\\"
+        - "C:\\WINDOWS\\system32"
+        - "C:\\WINDOWS"
+        - "C:\\WINDOWS\\System32\\Wbem"
+        - "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\WINDOWS\\System32\\OpenSSH\\"
+        - "C:\\Program Files\\Intel\\WiFi\\bin\\"
+        - "C:\\Program Files\\Common Files\\Intel\\WirelessCommon\\"
+        - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\CMake\\bin"
+        - "C:\\Users\\jackw\\.rokit\\bin"
+        - "C:\\Program Files\\nodejs\\"
+        - "C:\\ProgramData\\chocolatey\\bin"
+        - "C:\\Program Files\\GitHub CLI\\"
+        - "C:\\Program Files\\Neovim\\bin"
+        - "C:\\Users\\jackw\\AppData\\Local\\Programs\\Sere\\bin"
+        - "c:\\Users\\jackw\\AppData\\Local\\Programs\\cursor\\resources\\app\\codeBin"
+        - "C:\\Users\\jackw\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "C:\\Users\\jackw\\AppData\\Local\\Python\\bin"
+        - "C:\\Users\\jackw\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\Users\\jackw\\AppData\\Local\\Microsoft\\WinGet\\Links"
+        - "C:\\msys64\\ucrt64\\bin\\"
+        - "C:\\Users\\jackw\\.rokit\\bin"
+        - "C:\\Users\\jackw\\AppData\\Roaming\\npm"
+        - "C:\\Users\\jackw\\AppData\\Local\\Programs\\cursor\\resources\\app\\bin"
+        - "C:\\Users\\jackw\\OneDrive\\Desktop\\git-projects\\C\\vcpkg"
+        - "C:\\Program Files (x86)\\Microsoft Visual Studio\\18\\BuildTools\\VC\\Tools\\MSVC\\14.51.36231\\bin\\Hostx64\\x64"
+        - "C:\\Users\\jackw\\AppData\\Local\\cforge\\installed\\ap2-project\\bin"
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCCompiler.cmake:122 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:7 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+      Compiler:  
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      0
+      MSBuild version 17.14.51+25f168cee for .NET Framework
+      Build started 8/31/2026 11:35:06 PM.
+      
+      Project "C:\\Users\\jackw\\OneDrive\\Desktop\\git-projects\\aphelion-engine\\ap2\\build-release\\CMakeFiles\\4.3.3\\CompilerIdC\\CompilerIdC.vcxproj" on node 1 (default targets).
+      PrepareForBuild:
+        Creating directory "Debug\\".
+        Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
+        Creating directory "Debug\\CompilerIdC.tlog\\".
+      InitializeBuildStatus:
+        Creating "Debug\\CompilerIdC.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
+        Touching "Debug\\CompilerIdC.tlog\\unsuccessfulbuild".
+      VcpkgTripletSelection:
+        Using triplet "x64-windows" from "C:\\Users\\jackw\\OneDrive\\Desktop\\git-projects\\C\\vcpkg\\installed\\x64-windows\\"
+        Using normalized configuration "Release"
+      ClCompile:
+        C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\CL.exe /c /I"C:\\Users\\jackw\\OneDrive\\Desktop\\git-projects\\C\\vcpkg\\installed\\x64-windows\\include" /nologo /W0 /WX- /diagnostics:column /Od /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\\\" /Fd"Debug\\vc143.pdb" /external:W0 /Gd /TC /FC /errorReport:queue CMakeCCompilerId.c
+        CMakeCCompilerId.c
+      Link:
+        C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:".\\CompilerIdC.exe" /INCREMENTAL:NO /NOLOGO /LIBPATH:"C:\\Users\\jackw\\OneDrive\\Desktop\\git-projects\\C\\vcpkg\\installed\\x64-windows\\lib" /LIBPATH:"C:\\Users\\jackw\\OneDrive\\Desktop\\git-projects\\C\\vcpkg\\installed\\x64-windows\\lib\\manual-link" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib "C:\\Users\\jackw\\OneDrive\\Desktop\\git-projects\\C\\vcpkg\\installed\\x64-windows\\lib\\*.lib" /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /PDB:".\\CompilerIdC.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:".\\CompilerIdC.lib" /MACHINE:X64 Debug\\CMakeCCompilerId.obj
+        CompilerIdC.vcxproj -> C:\\Users\\jackw\\OneDrive\\Desktop\\git-projects\\aphelion-engine\\ap2\\build-release\\CMakeFiles\\4.3.3\\CompilerIdC\\CompilerIdC.exe
+      AppLocalFromInstalled:
+        "C:\\Users\\jackw\\OneDrive\\Desktop\\git-projects\\C\\vcpkg\\vcpkg.exe" z-applocal --target-binary="C:\\Users\\jackw\\OneDrive\\Desktop\\git-projects\\aphelion-engine\\ap2\\build-release\\CMakeFiles\\4.3.3\\CompilerIdC\\CompilerIdC.exe" --installed-bin-dir="C:\\Users\\jackw\\OneDrive\\Desktop\\git-projects\\C\\vcpkg\\installed\\x64-windows\\bin" --tlog-file="Debug\\CompilerIdC.tlog\\CompilerIdC.write.1u.tlog" --copied-files-log="Debug\\vcpkg.applocal.log"
+      PostBuildEvent:
+        for %%i in (cl.exe) do @echo CMAKE_C_COMPILER=%%~$PATH:i
+        :VCEnd
+        CMAKE_C_COMPILER=C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.44.35207\\bin\\Hostx64\\x64\\cl.exe
+      FinalizeBuildStatus:
+        Deleting file "Debug\\CompilerIdC.tlog\\unsuccessfulbuild".
+        Touching "Debug\\CompilerIdC.tlog\\CompilerIdC.lastbuildstate".
+      Done Building Project "C:\\Users\\jackw\\OneDrive\\Desktop\\git-projects\\aphelion-engine\\ap2\\build-release\\CMakeFiles\\4.3.3\\CompilerIdC\\CompilerIdC.vcxproj" (default targets).
+      
+      Build succeeded.
+          0 Warning(s)
+          0 Error(s)
+      
+      Time Elapsed 00:00:04.48
+      
+      
+      Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CompilerIdC.exe"
+      
+      Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CompilerIdC.vcxproj"
+      
+      The C compiler identification is MSVC, found in:
+        C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build-release/CMakeFiles/4.3.3/CompilerIdC/CompilerIdC.exe
+      
+  -
+    kind: "find-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeFindBinUtils.cmake:37 (find_program)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeFindBinUtils.cmake:65 (__resolve_tool_path)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeFindBinUtils.cmake:103 (__resolve_linker_path)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
+      - "CMakeLists.txt:7 (project)"
+    mode: "program"
+    variable: "_CMAKE_TOOL_WITH_PATH"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "link"
+    candidate_directories:
+      - "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/VC/Tools/MSVC/14.44.35207/bin/Hostx64/x64/"
+      - "C:/Program Files (x86)/Microsoft/Edge/Application/"
+      - "C:/Python314/Scripts/"
+      - "C:/Python314/"
+      - "C:/Windows/System32/"
+      - "C:/Windows/"
+      - "C:/Windows/System32/wbem/"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/"
+      - "C:/Windows/System32/OpenSSH/"
+      - "C:/Program Files/Intel/WiFi/bin/"
+      - "C:/Program Files/Common Files/Intel/WirelessCommon/"
+      - "C:/Program Files/Git/cmd/"
+      - "C:/Program Files/CMake/bin/"
+      - "C:/Users/jackw/.rokit/bin/"
+      - "C:/Program Files/nodejs/"
+      - "C:/ProgramData/chocolatey/bin/"
+      - "C:/Program Files/GitHub CLI/"
+      - "C:/Program Files/Neovim/bin/"
+      - "C:/msys64/ucrt64/bin/"
+      - "C:/Users/jackw/AppData/Local/cforge/installed/cforge/bin/"
+      - "C:/Users/jackw/AppData/Local/Programs/Sere/bin/"
+      - "C:/Users/jackw/AppData/Local/Programs/cursor/resources/app/codeBin/"
+      - "C:/Users/jackw/AppData/Local/Microsoft/WindowsApps/"
+      - "C:/Users/jackw/AppData/Local/Python/bin/"
+      - "C:/Users/jackw/AppData/Local/Programs/Microsoft VS Code/bin/"
+      - "C:/Users/jackw/AppData/Local/Microsoft/WinGet/Links/"
+      - "C:/Users/jackw/AppData/Roaming/npm/"
+      - "C:/Users/jackw/AppData/Local/Programs/cursor/resources/app/bin/"
+      - "C:/Users/jackw/OneDrive/Desktop/git-projects/C/vcpkg/"
+      - "C:/Program Files (x86)/Microsoft Visual Studio/18/BuildTools/VC/Tools/MSVC/14.51.36231/bin/Hostx64/x64/"
+      - "C:/Users/jackw/AppData/Local/cforge/installed/ap2-project/bin/"
+    searched_directories:
+      - "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/VC/Tools/MSVC/14.44.35207/bin/Hostx64/x64/link.com"
+    found: "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/VC/Tools/MSVC/14.44.35207/bin/Hostx64/x64/link.exe"
+    search_context:
+      ENV{PATH}:
+        - "C:\\Program Files (x86)\\Microsoft\\Edge\\Application"
+        - "C:\\Python314\\Scripts\\"
+        - "C:\\Python314\\"
+        - "C:\\WINDOWS\\system32"
+        - "C:\\WINDOWS"
+        - "C:\\WINDOWS\\System32\\Wbem"
+        - "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\WINDOWS\\System32\\OpenSSH\\"
+        - "C:\\Program Files\\Intel\\WiFi\\bin\\"
+        - "C:\\Program Files\\Common Files\\Intel\\WirelessCommon\\"
+        - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\CMake\\bin"
+        - "C:\\Users\\jackw\\.rokit\\bin"
+        - "C:\\Program Files\\nodejs\\"
+        - "C:\\ProgramData\\chocolatey\\bin"
+        - "C:\\Program Files\\GitHub CLI\\"
+        - "C:\\Program Files\\Neovim\\bin"
+        - "C:\\msys64\\ucrt64\\bin"
+        - "C:\\Users\\jackw\\AppData\\Local\\cforge\\installed\\cforge\\bin"
+        - "C:\\Python314\\Scripts\\"
+        - "C:\\Python314\\"
+        - "C:\\WINDOWS\\system32"
+        - "C:\\WINDOWS"
+        - "C:\\WINDOWS\\System32\\Wbem"
+        - "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\WINDOWS\\System32\\OpenSSH\\"
+        - "C:\\Program Files\\Intel\\WiFi\\bin\\"
+        - "C:\\Program Files\\Common Files\\Intel\\WirelessCommon\\"
+        - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\CMake\\bin"
+        - "C:\\Users\\jackw\\.rokit\\bin"
+        - "C:\\Program Files\\nodejs\\"
+        - "C:\\ProgramData\\chocolatey\\bin"
+        - "C:\\Program Files\\GitHub CLI\\"
+        - "C:\\Program Files\\Neovim\\bin"
+        - "C:\\Users\\jackw\\AppData\\Local\\Programs\\Sere\\bin"
+        - "c:\\Users\\jackw\\AppData\\Local\\Programs\\cursor\\resources\\app\\codeBin"
+        - "C:\\Users\\jackw\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "C:\\Users\\jackw\\AppData\\Local\\Python\\bin"
+        - "C:\\Users\\jackw\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\Users\\jackw\\AppData\\Local\\Microsoft\\WinGet\\Links"
+        - "C:\\msys64\\ucrt64\\bin\\"
+        - "C:\\Users\\jackw\\.rokit\\bin"
+        - "C:\\Users\\jackw\\AppData\\Roaming\\npm"
+        - "C:\\Users\\jackw\\AppData\\Local\\Programs\\cursor\\resources\\app\\bin"
+        - "C:\\Users\\jackw\\OneDrive\\Desktop\\git-projects\\C\\vcpkg"
+        - "C:\\Program Files (x86)\\Microsoft Visual Studio\\18\\BuildTools\\VC\\Tools\\MSVC\\14.51.36231\\bin\\Hostx64\\x64"
+        - "C:\\Users\\jackw\\AppData\\Local\\cforge\\installed\\ap2-project\\bin"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeFindBinUtils.cmake:37 (find_program)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeFindBinUtils.cmake:65 (__resolve_tool_path)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeFindBinUtils.cmake:104 (__resolve_linker_path)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
+      - "CMakeLists.txt:7 (project)"
+    mode: "program"
+    variable: "_CMAKE_TOOL_WITH_PATH"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "lld-link"
+    candidate_directories:
+      - "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/VC/Tools/MSVC/14.44.35207/bin/Hostx64/x64/"
+      - "C:/Program Files (x86)/Microsoft/Edge/Application/"
+      - "C:/Python314/Scripts/"
+      - "C:/Python314/"
+      - "C:/Windows/System32/"
+      - "C:/Windows/"
+      - "C:/Windows/System32/wbem/"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/"
+      - "C:/Windows/System32/OpenSSH/"
+      - "C:/Program Files/Intel/WiFi/bin/"
+      - "C:/Program Files/Common Files/Intel/WirelessCommon/"
+      - "C:/Program Files/Git/cmd/"
+      - "C:/Program Files/CMake/bin/"
+      - "C:/Users/jackw/.rokit/bin/"
+      - "C:/Program Files/nodejs/"
+      - "C:/ProgramData/chocolatey/bin/"
+      - "C:/Program Files/GitHub CLI/"
+      - "C:/Program Files/Neovim/bin/"
+      - "C:/msys64/ucrt64/bin/"
+      - "C:/Users/jackw/AppData/Local/cforge/installed/cforge/bin/"
+      - "C:/Users/jackw/AppData/Local/Programs/Sere/bin/"
+      - "C:/Users/jackw/AppData/Local/Programs/cursor/resources/app/codeBin/"
+      - "C:/Users/jackw/AppData/Local/Microsoft/WindowsApps/"
+      - "C:/Users/jackw/AppData/Local/Python/bin/"
+      - "C:/Users/jackw/AppData/Local/Programs/Microsoft VS Code/bin/"
+      - "C:/Users/jackw/AppData/Local/Microsoft/WinGet/Links/"
+      - "C:/Users/jackw/AppData/Roaming/npm/"
+      - "C:/Users/jackw/AppData/Local/Programs/cursor/resources/app/bin/"
+      - "C:/Users/jackw/OneDrive/Desktop/git-projects/C/vcpkg/"
+      - "C:/Program Files (x86)/Microsoft Visual Studio/18/BuildTools/VC/Tools/MSVC/14.51.36231/bin/Hostx64/x64/"
+      - "C:/Users/jackw/AppData/Local/cforge/installed/ap2-project/bin/"
+    searched_directories:
+      - "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/VC/Tools/MSVC/14.44.35207/bin/Hostx64/x64/lld-link.com"
+      - "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/VC/Tools/MSVC/14.44.35207/bin/Hostx64/x64/lld-link.exe"
+      - "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/VC/Tools/MSVC/14.44.35207/bin/Hostx64/x64/lld-link"
+      - "C:/Program Files (x86)/Microsoft/Edge/Application/lld-link.com"
+      - "C:/Program Files (x86)/Microsoft/Edge/Application/lld-link.exe"
+      - "C:/Program Files (x86)/Microsoft/Edge/Application/lld-link"
+      - "C:/Python314/Scripts/lld-link.com"
+      - "C:/Python314/Scripts/lld-link.exe"
+      - "C:/Python314/Scripts/lld-link"
+      - "C:/Python314/lld-link.com"
+      - "C:/Python314/lld-link.exe"
+      - "C:/Python314/lld-link"
+      - "C:/Windows/System32/lld-link.com"
+      - "C:/Windows/System32/lld-link.exe"
+      - "C:/Windows/System32/lld-link"
+      - "C:/Windows/lld-link.com"
+      - "C:/Windows/lld-link.exe"
+      - "C:/Windows/lld-link"
+      - "C:/Windows/System32/wbem/lld-link.com"
+      - "C:/Windows/System32/wbem/lld-link.exe"
+      - "C:/Windows/System32/wbem/lld-link"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/lld-link.com"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/lld-link.exe"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/lld-link"
+      - "C:/Windows/System32/OpenSSH/lld-link.com"
+      - "C:/Windows/System32/OpenSSH/lld-link.exe"
+      - "C:/Windows/System32/OpenSSH/lld-link"
+      - "C:/Program Files/Intel/WiFi/bin/lld-link.com"
+      - "C:/Program Files/Intel/WiFi/bin/lld-link.exe"
+      - "C:/Program Files/Intel/WiFi/bin/lld-link"
+      - "C:/Program Files/Common Files/Intel/WirelessCommon/lld-link.com"
+      - "C:/Program Files/Common Files/Intel/WirelessCommon/lld-link.exe"
+      - "C:/Program Files/Common Files/Intel/WirelessCommon/lld-link"
+      - "C:/Program Files/Git/cmd/lld-link.com"
+      - "C:/Program Files/Git/cmd/lld-link.exe"
+      - "C:/Program Files/Git/cmd/lld-link"
+      - "C:/Program Files/CMake/bin/lld-link.com"
+      - "C:/Program Files/CMake/bin/lld-link.exe"
+      - "C:/Program Files/CMake/bin/lld-link"
+      - "C:/Users/jackw/.rokit/bin/lld-link.com"
+      - "C:/Users/jackw/.rokit/bin/lld-link.exe"
+      - "C:/Users/jackw/.rokit/bin/lld-link"
+      - "C:/Program Files/nodejs/lld-link.com"
+      - "C:/Program Files/nodejs/lld-link.exe"
+      - "C:/Program Files/nodejs/lld-link"
+      - "C:/ProgramData/chocolatey/bin/lld-link.com"
+      - "C:/ProgramData/chocolatey/bin/lld-link.exe"
+      - "C:/ProgramData/chocolatey/bin/lld-link"
+      - "C:/Program Files/GitHub CLI/lld-link.com"
+      - "C:/Program Files/GitHub CLI/lld-link.exe"
+      - "C:/Program Files/GitHub CLI/lld-link"
+      - "C:/Program Files/Neovim/bin/lld-link.com"
+      - "C:/Program Files/Neovim/bin/lld-link.exe"
+      - "C:/Program Files/Neovim/bin/lld-link"
+      - "C:/msys64/ucrt64/bin/lld-link.com"
+      - "C:/msys64/ucrt64/bin/lld-link.exe"
+      - "C:/msys64/ucrt64/bin/lld-link"
+      - "C:/Users/jackw/AppData/Local/cforge/installed/cforge/bin/lld-link.com"
+      - "C:/Users/jackw/AppData/Local/cforge/installed/cforge/bin/lld-link.exe"
+      - "C:/Users/jackw/AppData/Local/cforge/installed/cforge/bin/lld-link"
+      - "C:/Users/jackw/AppData/Local/Programs/Sere/bin/lld-link.com"
+      - "C:/Users/jackw/AppData/Local/Programs/Sere/bin/lld-link.exe"
+      - "C:/Users/jackw/AppData/Local/Programs/Sere/bin/lld-link"
+      - "C:/Users/jackw/AppData/Local/Programs/cursor/resources/app/codeBin/lld-link.com"
+      - "C:/Users/jackw/AppData/Local/Programs/cursor/resources/app/codeBin/lld-link.exe"
+      - "C:/Users/jackw/AppData/Local/Programs/cursor/resources/app/codeBin/lld-link"
+      - "C:/Users/jackw/AppData/Local/Microsoft/WindowsApps/lld-link.com"
+      - "C:/Users/jackw/AppData/Local/Microsoft/WindowsApps/lld-link.exe"
+      - "C:/Users/jackw/AppData/Local/Microsoft/WindowsApps/lld-link"
+      - "C:/Users/jackw/AppData/Local/Python/bin/lld-link.com"
+      - "C:/Users/jackw/AppData/Local/Python/bin/lld-link.exe"
+      - "C:/Users/jackw/AppData/Local/Python/bin/lld-link"
+      - "C:/Users/jackw/AppData/Local/Programs/Microsoft VS Code/bin/lld-link.com"
+      - "C:/Users/jackw/AppData/Local/Programs/Microsoft VS Code/bin/lld-link.exe"
+      - "C:/Users/jackw/AppData/Local/Programs/Microsoft VS Code/bin/lld-link"
+      - "C:/Users/jackw/AppData/Local/Microsoft/WinGet/Links/lld-link.com"
+      - "C:/Users/jackw/AppData/Local/Microsoft/WinGet/Links/lld-link.exe"
+      - "C:/Users/jackw/AppData/Local/Microsoft/WinGet/Links/lld-link"
+      - "C:/Users/jackw/AppData/Roaming/npm/lld-link.com"
+      - "C:/Users/jackw/AppData/Roaming/npm/lld-link.exe"
+      - "C:/Users/jackw/AppData/Roaming/npm/lld-link"
+      - "C:/Users/jackw/AppData/Local/Programs/cursor/resources/app/bin/lld-link.com"
+      - "C:/Users/jackw/AppData/Local/Programs/cursor/resources/app/bin/lld-link.exe"
+      - "C:/Users/jackw/AppData/Local/Programs/cursor/resources/app/bin/lld-link"
+      - "C:/Users/jackw/OneDrive/Desktop/git-projects/C/vcpkg/lld-link.com"
+      - "C:/Users/jackw/OneDrive/Desktop/git-projects/C/vcpkg/lld-link.exe"
+      - "C:/Users/jackw/OneDrive/Desktop/git-projects/C/vcpkg/lld-link"
+      - "C:/Program Files (x86)/Microsoft Visual Studio/18/BuildTools/VC/Tools/MSVC/14.51.36231/bin/Hostx64/x64/lld-link.com"
+      - "C:/Program Files (x86)/Microsoft Visual Studio/18/BuildTools/VC/Tools/MSVC/14.51.36231/bin/Hostx64/x64/lld-link.exe"
+      - "C:/Program Files (x86)/Microsoft Visual Studio/18/BuildTools/VC/Tools/MSVC/14.51.36231/bin/Hostx64/x64/lld-link"
+      - "C:/Users/jackw/AppData/Local/cforge/installed/ap2-project/bin/lld-link.com"
+      - "C:/Users/jackw/AppData/Local/cforge/installed/ap2-project/bin/lld-link.exe"
+      - "C:/Users/jackw/AppData/Local/cforge/installed/ap2-project/bin/lld-link"
+    found: false
+    search_context:
+      ENV{PATH}:
+        - "C:\\Program Files (x86)\\Microsoft\\Edge\\Application"
+        - "C:\\Python314\\Scripts\\"
+        - "C:\\Python314\\"
+        - "C:\\WINDOWS\\system32"
+        - "C:\\WINDOWS"
+        - "C:\\WINDOWS\\System32\\Wbem"
+        - "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\WINDOWS\\System32\\OpenSSH\\"
+        - "C:\\Program Files\\Intel\\WiFi\\bin\\"
+        - "C:\\Program Files\\Common Files\\Intel\\WirelessCommon\\"
+        - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\CMake\\bin"
+        - "C:\\Users\\jackw\\.rokit\\bin"
+        - "C:\\Program Files\\nodejs\\"
+        - "C:\\ProgramData\\chocolatey\\bin"
+        - "C:\\Program Files\\GitHub CLI\\"
+        - "C:\\Program Files\\Neovim\\bin"
+        - "C:\\msys64\\ucrt64\\bin"
+        - "C:\\Users\\jackw\\AppData\\Local\\cforge\\installed\\cforge\\bin"
+        - "C:\\Python314\\Scripts\\"
+        - "C:\\Python314\\"
+        - "C:\\WINDOWS\\system32"
+        - "C:\\WINDOWS"
+        - "C:\\WINDOWS\\System32\\Wbem"
+        - "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\WINDOWS\\System32\\OpenSSH\\"
+        - "C:\\Program Files\\Intel\\WiFi\\bin\\"
+        - "C:\\Program Files\\Common Files\\Intel\\WirelessCommon\\"
+        - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\CMake\\bin"
+        - "C:\\Users\\jackw\\.rokit\\bin"
+        - "C:\\Program Files\\nodejs\\"
+        - "C:\\ProgramData\\chocolatey\\bin"
+        - "C:\\Program Files\\GitHub CLI\\"
+        - "C:\\Program Files\\Neovim\\bin"
+        - "C:\\Users\\jackw\\AppData\\Local\\Programs\\Sere\\bin"
+        - "c:\\Users\\jackw\\AppData\\Local\\Programs\\cursor\\resources\\app\\codeBin"
+        - "C:\\Users\\jackw\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "C:\\Users\\jackw\\AppData\\Local\\Python\\bin"
+        - "C:\\Users\\jackw\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\Users\\jackw\\AppData\\Local\\Microsoft\\WinGet\\Links"
+        - "C:\\msys64\\ucrt64\\bin\\"
+        - "C:\\Users\\jackw\\.rokit\\bin"
+        - "C:\\Users\\jackw\\AppData\\Roaming\\npm"
+        - "C:\\Users\\jackw\\AppData\\Local\\Programs\\cursor\\resources\\app\\bin"
+        - "C:\\Users\\jackw\\OneDrive\\Desktop\\git-projects\\C\\vcpkg"
+        - "C:\\Program Files (x86)\\Microsoft Visual Studio\\18\\BuildTools\\VC\\Tools\\MSVC\\14.51.36231\\bin\\Hostx64\\x64"
+        - "C:\\Users\\jackw\\AppData\\Local\\cforge\\installed\\ap2-project\\bin"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
+      - "CMakeLists.txt:7 (project)"
+    mode: "program"
+    variable: "CMAKE_LINKER"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "link"
+    candidate_directories:
+      - "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/VC/Tools/MSVC/14.44.35207/bin/Hostx64/x64/"
+      - "C:/Program Files (x86)/Microsoft/Edge/Application/"
+      - "C:/Python314/Scripts/"
+      - "C:/Python314/"
+      - "C:/Windows/System32/"
+      - "C:/Windows/"
+      - "C:/Windows/System32/wbem/"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/"
+      - "C:/Windows/System32/OpenSSH/"
+      - "C:/Program Files/Intel/WiFi/bin/"
+      - "C:/Program Files/Common Files/Intel/WirelessCommon/"
+      - "C:/Program Files/Git/cmd/"
+      - "C:/Program Files/CMake/bin/"
+      - "C:/Users/jackw/.rokit/bin/"
+      - "C:/Program Files/nodejs/"
+      - "C:/ProgramData/chocolatey/bin/"
+      - "C:/Program Files/GitHub CLI/"
+      - "C:/Program Files/Neovim/bin/"
+      - "C:/msys64/ucrt64/bin/"
+      - "C:/Users/jackw/AppData/Local/cforge/installed/cforge/bin/"
+      - "C:/Users/jackw/AppData/Local/Programs/Sere/bin/"
+      - "C:/Users/jackw/AppData/Local/Programs/cursor/resources/app/codeBin/"
+      - "C:/Users/jackw/AppData/Local/Microsoft/WindowsApps/"
+      - "C:/Users/jackw/AppData/Local/Python/bin/"
+      - "C:/Users/jackw/AppData/Local/Programs/Microsoft VS Code/bin/"
+      - "C:/Users/jackw/AppData/Local/Microsoft/WinGet/Links/"
+      - "C:/Users/jackw/AppData/Roaming/npm/"
+      - "C:/Users/jackw/AppData/Local/Programs/cursor/resources/app/bin/"
+      - "C:/Users/jackw/OneDrive/Desktop/git-projects/C/vcpkg/"
+      - "C:/Program Files (x86)/Microsoft Visual Studio/18/BuildTools/VC/Tools/MSVC/14.51.36231/bin/Hostx64/x64/"
+      - "C:/Users/jackw/AppData/Local/cforge/installed/ap2-project/bin/"
+    searched_directories:
+      - "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/VC/Tools/MSVC/14.44.35207/bin/Hostx64/x64/link.com"
+    found: "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/VC/Tools/MSVC/14.44.35207/bin/Hostx64/x64/link.exe"
+    search_context:
+      ENV{PATH}:
+        - "C:\\Program Files (x86)\\Microsoft\\Edge\\Application"
+        - "C:\\Python314\\Scripts\\"
+        - "C:\\Python314\\"
+        - "C:\\WINDOWS\\system32"
+        - "C:\\WINDOWS"
+        - "C:\\WINDOWS\\System32\\Wbem"
+        - "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\WINDOWS\\System32\\OpenSSH\\"
+        - "C:\\Program Files\\Intel\\WiFi\\bin\\"
+        - "C:\\Program Files\\Common Files\\Intel\\WirelessCommon\\"
+        - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\CMake\\bin"
+        - "C:\\Users\\jackw\\.rokit\\bin"
+        - "C:\\Program Files\\nodejs\\"
+        - "C:\\ProgramData\\chocolatey\\bin"
+        - "C:\\Program Files\\GitHub CLI\\"
+        - "C:\\Program Files\\Neovim\\bin"
+        - "C:\\msys64\\ucrt64\\bin"
+        - "C:\\Users\\jackw\\AppData\\Local\\cforge\\installed\\cforge\\bin"
+        - "C:\\Python314\\Scripts\\"
+        - "C:\\Python314\\"
+        - "C:\\WINDOWS\\system32"
+        - "C:\\WINDOWS"
+        - "C:\\WINDOWS\\System32\\Wbem"
+        - "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\WINDOWS\\System32\\OpenSSH\\"
+        - "C:\\Program Files\\Intel\\WiFi\\bin\\"
+        - "C:\\Program Files\\Common Files\\Intel\\WirelessCommon\\"
+        - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\CMake\\bin"
+        - "C:\\Users\\jackw\\.rokit\\bin"
+        - "C:\\Program Files\\nodejs\\"
+        - "C:\\ProgramData\\chocolatey\\bin"
+        - "C:\\Program Files\\GitHub CLI\\"
+        - "C:\\Program Files\\Neovim\\bin"
+        - "C:\\Users\\jackw\\AppData\\Local\\Programs\\Sere\\bin"
+        - "c:\\Users\\jackw\\AppData\\Local\\Programs\\cursor\\resources\\app\\codeBin"
+        - "C:\\Users\\jackw\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "C:\\Users\\jackw\\AppData\\Local\\Python\\bin"
+        - "C:\\Users\\jackw\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\Users\\jackw\\AppData\\Local\\Microsoft\\WinGet\\Links"
+        - "C:\\msys64\\ucrt64\\bin\\"
+        - "C:\\Users\\jackw\\.rokit\\bin"
+        - "C:\\Users\\jackw\\AppData\\Roaming\\npm"
+        - "C:\\Users\\jackw\\AppData\\Local\\Programs\\cursor\\resources\\app\\bin"
+        - "C:\\Users\\jackw\\OneDrive\\Desktop\\git-projects\\C\\vcpkg"
+        - "C:\\Program Files (x86)\\Microsoft Visual Studio\\18\\BuildTools\\VC\\Tools\\MSVC\\14.51.36231\\bin\\Hostx64\\x64"
+        - "C:\\Users\\jackw\\AppData\\Local\\cforge\\installed\\ap2-project\\bin"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
+      - "CMakeLists.txt:7 (project)"
+    mode: "program"
+    variable: "CMAKE_MT"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "mt"
+    candidate_directories:
+      - "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/VC/Tools/MSVC/14.44.35207/bin/Hostx64/x64/"
+      - "C:/Program Files (x86)/Microsoft/Edge/Application/"
+      - "C:/Python314/Scripts/"
+      - "C:/Python314/"
+      - "C:/Windows/System32/"
+      - "C:/Windows/"
+      - "C:/Windows/System32/wbem/"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/"
+      - "C:/Windows/System32/OpenSSH/"
+      - "C:/Program Files/Intel/WiFi/bin/"
+      - "C:/Program Files/Common Files/Intel/WirelessCommon/"
+      - "C:/Program Files/Git/cmd/"
+      - "C:/Program Files/CMake/bin/"
+      - "C:/Users/jackw/.rokit/bin/"
+      - "C:/Program Files/nodejs/"
+      - "C:/ProgramData/chocolatey/bin/"
+      - "C:/Program Files/GitHub CLI/"
+      - "C:/Program Files/Neovim/bin/"
+      - "C:/msys64/ucrt64/bin/"
+      - "C:/Users/jackw/AppData/Local/cforge/installed/cforge/bin/"
+      - "C:/Users/jackw/AppData/Local/Programs/Sere/bin/"
+      - "C:/Users/jackw/AppData/Local/Programs/cursor/resources/app/codeBin/"
+      - "C:/Users/jackw/AppData/Local/Microsoft/WindowsApps/"
+      - "C:/Users/jackw/AppData/Local/Python/bin/"
+      - "C:/Users/jackw/AppData/Local/Programs/Microsoft VS Code/bin/"
+      - "C:/Users/jackw/AppData/Local/Microsoft/WinGet/Links/"
+      - "C:/Users/jackw/AppData/Roaming/npm/"
+      - "C:/Users/jackw/AppData/Local/Programs/cursor/resources/app/bin/"
+      - "C:/Users/jackw/OneDrive/Desktop/git-projects/C/vcpkg/"
+      - "C:/Program Files (x86)/Microsoft Visual Studio/18/BuildTools/VC/Tools/MSVC/14.51.36231/bin/Hostx64/x64/"
+      - "C:/Users/jackw/AppData/Local/cforge/installed/ap2-project/bin/"
+    searched_directories:
+      - "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/VC/Tools/MSVC/14.44.35207/bin/Hostx64/x64/mt.com"
+      - "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/VC/Tools/MSVC/14.44.35207/bin/Hostx64/x64/mt.exe"
+      - "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/VC/Tools/MSVC/14.44.35207/bin/Hostx64/x64/mt"
+      - "C:/Program Files (x86)/Microsoft/Edge/Application/mt.com"
+      - "C:/Program Files (x86)/Microsoft/Edge/Application/mt.exe"
+      - "C:/Program Files (x86)/Microsoft/Edge/Application/mt"
+      - "C:/Python314/Scripts/mt.com"
+      - "C:/Python314/Scripts/mt.exe"
+      - "C:/Python314/Scripts/mt"
+      - "C:/Python314/mt.com"
+      - "C:/Python314/mt.exe"
+      - "C:/Python314/mt"
+      - "C:/Windows/System32/mt.com"
+      - "C:/Windows/System32/mt.exe"
+      - "C:/Windows/System32/mt"
+      - "C:/Windows/mt.com"
+      - "C:/Windows/mt.exe"
+      - "C:/Windows/mt"
+      - "C:/Windows/System32/wbem/mt.com"
+      - "C:/Windows/System32/wbem/mt.exe"
+      - "C:/Windows/System32/wbem/mt"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/mt.com"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/mt.exe"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/mt"
+      - "C:/Windows/System32/OpenSSH/mt.com"
+      - "C:/Windows/System32/OpenSSH/mt.exe"
+      - "C:/Windows/System32/OpenSSH/mt"
+      - "C:/Program Files/Intel/WiFi/bin/mt.com"
+      - "C:/Program Files/Intel/WiFi/bin/mt.exe"
+      - "C:/Program Files/Intel/WiFi/bin/mt"
+      - "C:/Program Files/Common Files/Intel/WirelessCommon/mt.com"
+      - "C:/Program Files/Common Files/Intel/WirelessCommon/mt.exe"
+      - "C:/Program Files/Common Files/Intel/WirelessCommon/mt"
+      - "C:/Program Files/Git/cmd/mt.com"
+      - "C:/Program Files/Git/cmd/mt.exe"
+      - "C:/Program Files/Git/cmd/mt"
+      - "C:/Program Files/CMake/bin/mt.com"
+      - "C:/Program Files/CMake/bin/mt.exe"
+      - "C:/Program Files/CMake/bin/mt"
+      - "C:/Users/jackw/.rokit/bin/mt.com"
+      - "C:/Users/jackw/.rokit/bin/mt.exe"
+      - "C:/Users/jackw/.rokit/bin/mt"
+      - "C:/Program Files/nodejs/mt.com"
+      - "C:/Program Files/nodejs/mt.exe"
+      - "C:/Program Files/nodejs/mt"
+      - "C:/ProgramData/chocolatey/bin/mt.com"
+      - "C:/ProgramData/chocolatey/bin/mt.exe"
+      - "C:/ProgramData/chocolatey/bin/mt"
+      - "C:/Program Files/GitHub CLI/mt.com"
+      - "C:/Program Files/GitHub CLI/mt.exe"
+      - "C:/Program Files/GitHub CLI/mt"
+      - "C:/Program Files/Neovim/bin/mt.com"
+      - "C:/Program Files/Neovim/bin/mt.exe"
+      - "C:/Program Files/Neovim/bin/mt"
+      - "C:/msys64/ucrt64/bin/mt.com"
+      - "C:/msys64/ucrt64/bin/mt.exe"
+      - "C:/msys64/ucrt64/bin/mt"
+      - "C:/Users/jackw/AppData/Local/cforge/installed/cforge/bin/mt.com"
+      - "C:/Users/jackw/AppData/Local/cforge/installed/cforge/bin/mt.exe"
+      - "C:/Users/jackw/AppData/Local/cforge/installed/cforge/bin/mt"
+      - "C:/Users/jackw/AppData/Local/Programs/Sere/bin/mt.com"
+      - "C:/Users/jackw/AppData/Local/Programs/Sere/bin/mt.exe"
+      - "C:/Users/jackw/AppData/Local/Programs/Sere/bin/mt"
+      - "C:/Users/jackw/AppData/Local/Programs/cursor/resources/app/codeBin/mt.com"
+      - "C:/Users/jackw/AppData/Local/Programs/cursor/resources/app/codeBin/mt.exe"
+      - "C:/Users/jackw/AppData/Local/Programs/cursor/resources/app/codeBin/mt"
+      - "C:/Users/jackw/AppData/Local/Microsoft/WindowsApps/mt.com"
+      - "C:/Users/jackw/AppData/Local/Microsoft/WindowsApps/mt.exe"
+      - "C:/Users/jackw/AppData/Local/Microsoft/WindowsApps/mt"
+      - "C:/Users/jackw/AppData/Local/Python/bin/mt.com"
+      - "C:/Users/jackw/AppData/Local/Python/bin/mt.exe"
+      - "C:/Users/jackw/AppData/Local/Python/bin/mt"
+      - "C:/Users/jackw/AppData/Local/Programs/Microsoft VS Code/bin/mt.com"
+      - "C:/Users/jackw/AppData/Local/Programs/Microsoft VS Code/bin/mt.exe"
+      - "C:/Users/jackw/AppData/Local/Programs/Microsoft VS Code/bin/mt"
+      - "C:/Users/jackw/AppData/Local/Microsoft/WinGet/Links/mt.com"
+      - "C:/Users/jackw/AppData/Local/Microsoft/WinGet/Links/mt.exe"
+      - "C:/Users/jackw/AppData/Local/Microsoft/WinGet/Links/mt"
+      - "C:/Users/jackw/AppData/Roaming/npm/mt.com"
+      - "C:/Users/jackw/AppData/Roaming/npm/mt.exe"
+      - "C:/Users/jackw/AppData/Roaming/npm/mt"
+      - "C:/Users/jackw/AppData/Local/Programs/cursor/resources/app/bin/mt.com"
+      - "C:/Users/jackw/AppData/Local/Programs/cursor/resources/app/bin/mt.exe"
+      - "C:/Users/jackw/AppData/Local/Programs/cursor/resources/app/bin/mt"
+      - "C:/Users/jackw/OneDrive/Desktop/git-projects/C/vcpkg/mt.com"
+      - "C:/Users/jackw/OneDrive/Desktop/git-projects/C/vcpkg/mt.exe"
+      - "C:/Users/jackw/OneDrive/Desktop/git-projects/C/vcpkg/mt"
+      - "C:/Program Files (x86)/Microsoft Visual Studio/18/BuildTools/VC/Tools/MSVC/14.51.36231/bin/Hostx64/x64/mt.com"
+      - "C:/Program Files (x86)/Microsoft Visual Studio/18/BuildTools/VC/Tools/MSVC/14.51.36231/bin/Hostx64/x64/mt.exe"
+      - "C:/Program Files (x86)/Microsoft Visual Studio/18/BuildTools/VC/Tools/MSVC/14.51.36231/bin/Hostx64/x64/mt"
+      - "C:/Users/jackw/AppData/Local/cforge/installed/ap2-project/bin/mt.com"
+      - "C:/Users/jackw/AppData/Local/cforge/installed/ap2-project/bin/mt.exe"
+      - "C:/Users/jackw/AppData/Local/cforge/installed/ap2-project/bin/mt"
+    found: false
+    search_context:
+      ENV{PATH}:
+        - "C:\\Program Files (x86)\\Microsoft\\Edge\\Application"
+        - "C:\\Python314\\Scripts\\"
+        - "C:\\Python314\\"
+        - "C:\\WINDOWS\\system32"
+        - "C:\\WINDOWS"
+        - "C:\\WINDOWS\\System32\\Wbem"
+        - "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\WINDOWS\\System32\\OpenSSH\\"
+        - "C:\\Program Files\\Intel\\WiFi\\bin\\"
+        - "C:\\Program Files\\Common Files\\Intel\\WirelessCommon\\"
+        - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\CMake\\bin"
+        - "C:\\Users\\jackw\\.rokit\\bin"
+        - "C:\\Program Files\\nodejs\\"
+        - "C:\\ProgramData\\chocolatey\\bin"
+        - "C:\\Program Files\\GitHub CLI\\"
+        - "C:\\Program Files\\Neovim\\bin"
+        - "C:\\msys64\\ucrt64\\bin"
+        - "C:\\Users\\jackw\\AppData\\Local\\cforge\\installed\\cforge\\bin"
+        - "C:\\Python314\\Scripts\\"
+        - "C:\\Python314\\"
+        - "C:\\WINDOWS\\system32"
+        - "C:\\WINDOWS"
+        - "C:\\WINDOWS\\System32\\Wbem"
+        - "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\WINDOWS\\System32\\OpenSSH\\"
+        - "C:\\Program Files\\Intel\\WiFi\\bin\\"
+        - "C:\\Program Files\\Common Files\\Intel\\WirelessCommon\\"
+        - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\CMake\\bin"
+        - "C:\\Users\\jackw\\.rokit\\bin"
+        - "C:\\Program Files\\nodejs\\"
+        - "C:\\ProgramData\\chocolatey\\bin"
+        - "C:\\Program Files\\GitHub CLI\\"
+        - "C:\\Program Files\\Neovim\\bin"
+        - "C:\\Users\\jackw\\AppData\\Local\\Programs\\Sere\\bin"
+        - "c:\\Users\\jackw\\AppData\\Local\\Programs\\cursor\\resources\\app\\codeBin"
+        - "C:\\Users\\jackw\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "C:\\Users\\jackw\\AppData\\Local\\Python\\bin"
+        - "C:\\Users\\jackw\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\Users\\jackw\\AppData\\Local\\Microsoft\\WinGet\\Links"
+        - "C:\\msys64\\ucrt64\\bin\\"
+        - "C:\\Users\\jackw\\.rokit\\bin"
+        - "C:\\Users\\jackw\\AppData\\Roaming\\npm"
+        - "C:\\Users\\jackw\\AppData\\Local\\Programs\\cursor\\resources\\app\\bin"
+        - "C:\\Users\\jackw\\OneDrive\\Desktop\\git-projects\\C\\vcpkg"
+        - "C:\\Program Files (x86)\\Microsoft Visual Studio\\18\\BuildTools\\VC\\Tools\\MSVC\\14.51.36231\\bin\\Hostx64\\x64"
+        - "C:\\Users\\jackw\\AppData\\Local\\cforge\\installed\\ap2-project\\bin"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
+      - "CMakeLists.txt:7 (project)"
+    mode: "program"
+    variable: "CMAKE_AR"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "lib"
+    candidate_directories:
+      - "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/VC/Tools/MSVC/14.44.35207/bin/Hostx64/x64/"
+      - "C:/Program Files (x86)/Microsoft/Edge/Application/"
+      - "C:/Python314/Scripts/"
+      - "C:/Python314/"
+      - "C:/Windows/System32/"
+      - "C:/Windows/"
+      - "C:/Windows/System32/wbem/"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/"
+      - "C:/Windows/System32/OpenSSH/"
+      - "C:/Program Files/Intel/WiFi/bin/"
+      - "C:/Program Files/Common Files/Intel/WirelessCommon/"
+      - "C:/Program Files/Git/cmd/"
+      - "C:/Program Files/CMake/bin/"
+      - "C:/Users/jackw/.rokit/bin/"
+      - "C:/Program Files/nodejs/"
+      - "C:/ProgramData/chocolatey/bin/"
+      - "C:/Program Files/GitHub CLI/"
+      - "C:/Program Files/Neovim/bin/"
+      - "C:/msys64/ucrt64/bin/"
+      - "C:/Users/jackw/AppData/Local/cforge/installed/cforge/bin/"
+      - "C:/Users/jackw/AppData/Local/Programs/Sere/bin/"
+      - "C:/Users/jackw/AppData/Local/Programs/cursor/resources/app/codeBin/"
+      - "C:/Users/jackw/AppData/Local/Microsoft/WindowsApps/"
+      - "C:/Users/jackw/AppData/Local/Python/bin/"
+      - "C:/Users/jackw/AppData/Local/Programs/Microsoft VS Code/bin/"
+      - "C:/Users/jackw/AppData/Local/Microsoft/WinGet/Links/"
+      - "C:/Users/jackw/AppData/Roaming/npm/"
+      - "C:/Users/jackw/AppData/Local/Programs/cursor/resources/app/bin/"
+      - "C:/Users/jackw/OneDrive/Desktop/git-projects/C/vcpkg/"
+      - "C:/Program Files (x86)/Microsoft Visual Studio/18/BuildTools/VC/Tools/MSVC/14.51.36231/bin/Hostx64/x64/"
+      - "C:/Users/jackw/AppData/Local/cforge/installed/ap2-project/bin/"
+    searched_directories:
+      - "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/VC/Tools/MSVC/14.44.35207/bin/Hostx64/x64/lib.com"
+    found: "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/VC/Tools/MSVC/14.44.35207/bin/Hostx64/x64/lib.exe"
+    search_context:
+      ENV{PATH}:
+        - "C:\\Program Files (x86)\\Microsoft\\Edge\\Application"
+        - "C:\\Python314\\Scripts\\"
+        - "C:\\Python314\\"
+        - "C:\\WINDOWS\\system32"
+        - "C:\\WINDOWS"
+        - "C:\\WINDOWS\\System32\\Wbem"
+        - "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\WINDOWS\\System32\\OpenSSH\\"
+        - "C:\\Program Files\\Intel\\WiFi\\bin\\"
+        - "C:\\Program Files\\Common Files\\Intel\\WirelessCommon\\"
+        - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\CMake\\bin"
+        - "C:\\Users\\jackw\\.rokit\\bin"
+        - "C:\\Program Files\\nodejs\\"
+        - "C:\\ProgramData\\chocolatey\\bin"
+        - "C:\\Program Files\\GitHub CLI\\"
+        - "C:\\Program Files\\Neovim\\bin"
+        - "C:\\msys64\\ucrt64\\bin"
+        - "C:\\Users\\jackw\\AppData\\Local\\cforge\\installed\\cforge\\bin"
+        - "C:\\Python314\\Scripts\\"
+        - "C:\\Python314\\"
+        - "C:\\WINDOWS\\system32"
+        - "C:\\WINDOWS"
+        - "C:\\WINDOWS\\System32\\Wbem"
+        - "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\WINDOWS\\System32\\OpenSSH\\"
+        - "C:\\Program Files\\Intel\\WiFi\\bin\\"
+        - "C:\\Program Files\\Common Files\\Intel\\WirelessCommon\\"
+        - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\CMake\\bin"
+        - "C:\\Users\\jackw\\.rokit\\bin"
+        - "C:\\Program Files\\nodejs\\"
+        - "C:\\ProgramData\\chocolatey\\bin"
+        - "C:\\Program Files\\GitHub CLI\\"
+        - "C:\\Program Files\\Neovim\\bin"
+        - "C:\\Users\\jackw\\AppData\\Local\\Programs\\Sere\\bin"
+        - "c:\\Users\\jackw\\AppData\\Local\\Programs\\cursor\\resources\\app\\codeBin"
+        - "C:\\Users\\jackw\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "C:\\Users\\jackw\\AppData\\Local\\Python\\bin"
+        - "C:\\Users\\jackw\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\Users\\jackw\\AppData\\Local\\Microsoft\\WinGet\\Links"
+        - "C:\\msys64\\ucrt64\\bin\\"
+        - "C:\\Users\\jackw\\.rokit\\bin"
+        - "C:\\Users\\jackw\\AppData\\Roaming\\npm"
+        - "C:\\Users\\jackw\\AppData\\Local\\Programs\\cursor\\resources\\app\\bin"
+        - "C:\\Users\\jackw\\OneDrive\\Desktop\\git-projects\\C\\vcpkg"
+        - "C:\\Program Files (x86)\\Microsoft Visual Studio\\18\\BuildTools\\VC\\Tools\\MSVC\\14.51.36231\\bin\\Hostx64\\x64"
+        - "C:\\Users\\jackw\\AppData\\Local\\cforge\\installed\\ap2-project\\bin"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:468 (find_file)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:506 (CMAKE_DETERMINE_COMPILER_ID_WRITE)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:8 (CMAKE_DETERMINE_COMPILER_ID_BUILD)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCXXCompiler.cmake:125 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:7 (project)"
+    mode: "file"
+    variable: "src_in"
+    description: "Path to a file."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "CMakeCXXCompilerId.cpp.in"
+    candidate_directories:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/"
+    found: "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeCXXCompilerId.cpp.in"
+    search_context:
+      ENV{PATH}:
+        - "C:\\Program Files (x86)\\Microsoft\\Edge\\Application"
+        - "C:\\Python314\\Scripts\\"
+        - "C:\\Python314\\"
+        - "C:\\WINDOWS\\system32"
+        - "C:\\WINDOWS"
+        - "C:\\WINDOWS\\System32\\Wbem"
+        - "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\WINDOWS\\System32\\OpenSSH\\"
+        - "C:\\Program Files\\Intel\\WiFi\\bin\\"
+        - "C:\\Program Files\\Common Files\\Intel\\WirelessCommon\\"
+        - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\CMake\\bin"
+        - "C:\\Users\\jackw\\.rokit\\bin"
+        - "C:\\Program Files\\nodejs\\"
+        - "C:\\ProgramData\\chocolatey\\bin"
+        - "C:\\Program Files\\GitHub CLI\\"
+        - "C:\\Program Files\\Neovim\\bin"
+        - "C:\\msys64\\ucrt64\\bin"
+        - "C:\\Users\\jackw\\AppData\\Local\\cforge\\installed\\cforge\\bin"
+        - "C:\\Python314\\Scripts\\"
+        - "C:\\Python314\\"
+        - "C:\\WINDOWS\\system32"
+        - "C:\\WINDOWS"
+        - "C:\\WINDOWS\\System32\\Wbem"
+        - "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\WINDOWS\\System32\\OpenSSH\\"
+        - "C:\\Program Files\\Intel\\WiFi\\bin\\"
+        - "C:\\Program Files\\Common Files\\Intel\\WirelessCommon\\"
+        - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\CMake\\bin"
+        - "C:\\Users\\jackw\\.rokit\\bin"
+        - "C:\\Program Files\\nodejs\\"
+        - "C:\\ProgramData\\chocolatey\\bin"
+        - "C:\\Program Files\\GitHub CLI\\"
+        - "C:\\Program Files\\Neovim\\bin"
+        - "C:\\Users\\jackw\\AppData\\Local\\Programs\\Sere\\bin"
+        - "c:\\Users\\jackw\\AppData\\Local\\Programs\\cursor\\resources\\app\\codeBin"
+        - "C:\\Users\\jackw\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "C:\\Users\\jackw\\AppData\\Local\\Python\\bin"
+        - "C:\\Users\\jackw\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\Users\\jackw\\AppData\\Local\\Microsoft\\WinGet\\Links"
+        - "C:\\msys64\\ucrt64\\bin\\"
+        - "C:\\Users\\jackw\\.rokit\\bin"
+        - "C:\\Users\\jackw\\AppData\\Roaming\\npm"
+        - "C:\\Users\\jackw\\AppData\\Local\\Programs\\cursor\\resources\\app\\bin"
+        - "C:\\Users\\jackw\\OneDrive\\Desktop\\git-projects\\C\\vcpkg"
+        - "C:\\Program Files (x86)\\Microsoft Visual Studio\\18\\BuildTools\\VC\\Tools\\MSVC\\14.51.36231\\bin\\Hostx64\\x64"
+        - "C:\\Users\\jackw\\AppData\\Local\\cforge\\installed\\ap2-project\\bin"
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCXXCompiler.cmake:125 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:7 (project)"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+      Compiler:  
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      0
+      MSBuild version 17.14.51+25f168cee for .NET Framework
+      Build started 8/31/2026 11:35:12 PM.
+      
+      Project "C:\\Users\\jackw\\OneDrive\\Desktop\\git-projects\\aphelion-engine\\ap2\\build-release\\CMakeFiles\\4.3.3\\CompilerIdCXX\\CompilerIdCXX.vcxproj" on node 1 (default targets).
+      PrepareForBuild:
+        Creating directory "Debug\\".
+        Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
+        Creating directory "Debug\\CompilerIdCXX.tlog\\".
+      InitializeBuildStatus:
+        Creating "Debug\\CompilerIdCXX.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
+        Touching "Debug\\CompilerIdCXX.tlog\\unsuccessfulbuild".
+      VcpkgTripletSelection:
+        Using triplet "x64-windows" from "C:\\Users\\jackw\\OneDrive\\Desktop\\git-projects\\C\\vcpkg\\installed\\x64-windows\\"
+        Using normalized configuration "Release"
+      ClCompile:
+        C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\CL.exe /c /I"C:\\Users\\jackw\\OneDrive\\Desktop\\git-projects\\C\\vcpkg\\installed\\x64-windows\\include" /nologo /W0 /WX- /diagnostics:column /Od /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\\\" /Fd"Debug\\vc143.pdb" /external:W0 /Gd /TP /FC /errorReport:queue CMakeCXXCompilerId.cpp
+        CMakeCXXCompilerId.cpp
+      Link:
+        C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:".\\CompilerIdCXX.exe" /INCREMENTAL:NO /NOLOGO /LIBPATH:"C:\\Users\\jackw\\OneDrive\\Desktop\\git-projects\\C\\vcpkg\\installed\\x64-windows\\lib" /LIBPATH:"C:\\Users\\jackw\\OneDrive\\Desktop\\git-projects\\C\\vcpkg\\installed\\x64-windows\\lib\\manual-link" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib "C:\\Users\\jackw\\OneDrive\\Desktop\\git-projects\\C\\vcpkg\\installed\\x64-windows\\lib\\*.lib" /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /PDB:".\\CompilerIdCXX.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:".\\CompilerIdCXX.lib" /MACHINE:X64 Debug\\CMakeCXXCompilerId.obj
+        CompilerIdCXX.vcxproj -> C:\\Users\\jackw\\OneDrive\\Desktop\\git-projects\\aphelion-engine\\ap2\\build-release\\CMakeFiles\\4.3.3\\CompilerIdCXX\\CompilerIdCXX.exe
+      AppLocalFromInstalled:
+        "C:\\Users\\jackw\\OneDrive\\Desktop\\git-projects\\C\\vcpkg\\vcpkg.exe" z-applocal --target-binary="C:\\Users\\jackw\\OneDrive\\Desktop\\git-projects\\aphelion-engine\\ap2\\build-release\\CMakeFiles\\4.3.3\\CompilerIdCXX\\CompilerIdCXX.exe" --installed-bin-dir="C:\\Users\\jackw\\OneDrive\\Desktop\\git-projects\\C\\vcpkg\\installed\\x64-windows\\bin" --tlog-file="Debug\\CompilerIdCXX.tlog\\CompilerIdCXX.write.1u.tlog" --copied-files-log="Debug\\vcpkg.applocal.log"
+      PostBuildEvent:
+        for %%i in (cl.exe) do @echo CMAKE_CXX_COMPILER=%%~$PATH:i
+        :VCEnd
+        CMAKE_CXX_COMPILER=C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.44.35207\\bin\\Hostx64\\x64\\cl.exe
+      FinalizeBuildStatus:
+        Deleting file "Debug\\CompilerIdCXX.tlog\\unsuccessfulbuild".
+        Touching "Debug\\CompilerIdCXX.tlog\\CompilerIdCXX.lastbuildstate".
+      Done Building Project "C:\\Users\\jackw\\OneDrive\\Desktop\\git-projects\\aphelion-engine\\ap2\\build-release\\CMakeFiles\\4.3.3\\CompilerIdCXX\\CompilerIdCXX.vcxproj" (default targets).
+      
+      Build succeeded.
+          0 Warning(s)
+          0 Error(s)
+      
+      Time Elapsed 00:00:03.61
+      
+      
+      Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CompilerIdCXX.exe"
+      
+      Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CompilerIdCXX.vcxproj"
+      
+      The CXX compiler identification is MSVC, found in:
+        C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build-release/CMakeFiles/4.3.3/CompilerIdCXX/CompilerIdCXX.exe
+      
+  -
+    kind: "find-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeFindBinUtils.cmake:37 (find_program)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeFindBinUtils.cmake:65 (__resolve_tool_path)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeFindBinUtils.cmake:104 (__resolve_linker_path)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCXXCompiler.cmake:206 (include)"
+      - "CMakeLists.txt:7 (project)"
+    mode: "program"
+    variable: "_CMAKE_TOOL_WITH_PATH"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "lld-link"
+    candidate_directories:
+      - "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/VC/Tools/MSVC/14.44.35207/bin/Hostx64/x64/"
+      - "C:/Program Files (x86)/Microsoft/Edge/Application/"
+      - "C:/Python314/Scripts/"
+      - "C:/Python314/"
+      - "C:/Windows/System32/"
+      - "C:/Windows/"
+      - "C:/Windows/System32/wbem/"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/"
+      - "C:/Windows/System32/OpenSSH/"
+      - "C:/Program Files/Intel/WiFi/bin/"
+      - "C:/Program Files/Common Files/Intel/WirelessCommon/"
+      - "C:/Program Files/Git/cmd/"
+      - "C:/Program Files/CMake/bin/"
+      - "C:/Users/jackw/.rokit/bin/"
+      - "C:/Program Files/nodejs/"
+      - "C:/ProgramData/chocolatey/bin/"
+      - "C:/Program Files/GitHub CLI/"
+      - "C:/Program Files/Neovim/bin/"
+      - "C:/msys64/ucrt64/bin/"
+      - "C:/Users/jackw/AppData/Local/cforge/installed/cforge/bin/"
+      - "C:/Users/jackw/AppData/Local/Programs/Sere/bin/"
+      - "C:/Users/jackw/AppData/Local/Programs/cursor/resources/app/codeBin/"
+      - "C:/Users/jackw/AppData/Local/Microsoft/WindowsApps/"
+      - "C:/Users/jackw/AppData/Local/Python/bin/"
+      - "C:/Users/jackw/AppData/Local/Programs/Microsoft VS Code/bin/"
+      - "C:/Users/jackw/AppData/Local/Microsoft/WinGet/Links/"
+      - "C:/Users/jackw/AppData/Roaming/npm/"
+      - "C:/Users/jackw/AppData/Local/Programs/cursor/resources/app/bin/"
+      - "C:/Users/jackw/OneDrive/Desktop/git-projects/C/vcpkg/"
+      - "C:/Program Files (x86)/Microsoft Visual Studio/18/BuildTools/VC/Tools/MSVC/14.51.36231/bin/Hostx64/x64/"
+      - "C:/Users/jackw/AppData/Local/cforge/installed/ap2-project/bin/"
+    searched_directories:
+      - "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/VC/Tools/MSVC/14.44.35207/bin/Hostx64/x64/lld-link.com"
+      - "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/VC/Tools/MSVC/14.44.35207/bin/Hostx64/x64/lld-link.exe"
+      - "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/VC/Tools/MSVC/14.44.35207/bin/Hostx64/x64/lld-link"
+      - "C:/Program Files (x86)/Microsoft/Edge/Application/lld-link.com"
+      - "C:/Program Files (x86)/Microsoft/Edge/Application/lld-link.exe"
+      - "C:/Program Files (x86)/Microsoft/Edge/Application/lld-link"
+      - "C:/Python314/Scripts/lld-link.com"
+      - "C:/Python314/Scripts/lld-link.exe"
+      - "C:/Python314/Scripts/lld-link"
+      - "C:/Python314/lld-link.com"
+      - "C:/Python314/lld-link.exe"
+      - "C:/Python314/lld-link"
+      - "C:/Windows/System32/lld-link.com"
+      - "C:/Windows/System32/lld-link.exe"
+      - "C:/Windows/System32/lld-link"
+      - "C:/Windows/lld-link.com"
+      - "C:/Windows/lld-link.exe"
+      - "C:/Windows/lld-link"
+      - "C:/Windows/System32/wbem/lld-link.com"
+      - "C:/Windows/System32/wbem/lld-link.exe"
+      - "C:/Windows/System32/wbem/lld-link"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/lld-link.com"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/lld-link.exe"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/lld-link"
+      - "C:/Windows/System32/OpenSSH/lld-link.com"
+      - "C:/Windows/System32/OpenSSH/lld-link.exe"
+      - "C:/Windows/System32/OpenSSH/lld-link"
+      - "C:/Program Files/Intel/WiFi/bin/lld-link.com"
+      - "C:/Program Files/Intel/WiFi/bin/lld-link.exe"
+      - "C:/Program Files/Intel/WiFi/bin/lld-link"
+      - "C:/Program Files/Common Files/Intel/WirelessCommon/lld-link.com"
+      - "C:/Program Files/Common Files/Intel/WirelessCommon/lld-link.exe"
+      - "C:/Program Files/Common Files/Intel/WirelessCommon/lld-link"
+      - "C:/Program Files/Git/cmd/lld-link.com"
+      - "C:/Program Files/Git/cmd/lld-link.exe"
+      - "C:/Program Files/Git/cmd/lld-link"
+      - "C:/Program Files/CMake/bin/lld-link.com"
+      - "C:/Program Files/CMake/bin/lld-link.exe"
+      - "C:/Program Files/CMake/bin/lld-link"
+      - "C:/Users/jackw/.rokit/bin/lld-link.com"
+      - "C:/Users/jackw/.rokit/bin/lld-link.exe"
+      - "C:/Users/jackw/.rokit/bin/lld-link"
+      - "C:/Program Files/nodejs/lld-link.com"
+      - "C:/Program Files/nodejs/lld-link.exe"
+      - "C:/Program Files/nodejs/lld-link"
+      - "C:/ProgramData/chocolatey/bin/lld-link.com"
+      - "C:/ProgramData/chocolatey/bin/lld-link.exe"
+      - "C:/ProgramData/chocolatey/bin/lld-link"
+      - "C:/Program Files/GitHub CLI/lld-link.com"
+      - "C:/Program Files/GitHub CLI/lld-link.exe"
+      - "C:/Program Files/GitHub CLI/lld-link"
+      - "C:/Program Files/Neovim/bin/lld-link.com"
+      - "C:/Program Files/Neovim/bin/lld-link.exe"
+      - "C:/Program Files/Neovim/bin/lld-link"
+      - "C:/msys64/ucrt64/bin/lld-link.com"
+      - "C:/msys64/ucrt64/bin/lld-link.exe"
+      - "C:/msys64/ucrt64/bin/lld-link"
+      - "C:/Users/jackw/AppData/Local/cforge/installed/cforge/bin/lld-link.com"
+      - "C:/Users/jackw/AppData/Local/cforge/installed/cforge/bin/lld-link.exe"
+      - "C:/Users/jackw/AppData/Local/cforge/installed/cforge/bin/lld-link"
+      - "C:/Users/jackw/AppData/Local/Programs/Sere/bin/lld-link.com"
+      - "C:/Users/jackw/AppData/Local/Programs/Sere/bin/lld-link.exe"
+      - "C:/Users/jackw/AppData/Local/Programs/Sere/bin/lld-link"
+      - "C:/Users/jackw/AppData/Local/Programs/cursor/resources/app/codeBin/lld-link.com"
+      - "C:/Users/jackw/AppData/Local/Programs/cursor/resources/app/codeBin/lld-link.exe"
+      - "C:/Users/jackw/AppData/Local/Programs/cursor/resources/app/codeBin/lld-link"
+      - "C:/Users/jackw/AppData/Local/Microsoft/WindowsApps/lld-link.com"
+      - "C:/Users/jackw/AppData/Local/Microsoft/WindowsApps/lld-link.exe"
+      - "C:/Users/jackw/AppData/Local/Microsoft/WindowsApps/lld-link"
+      - "C:/Users/jackw/AppData/Local/Python/bin/lld-link.com"
+      - "C:/Users/jackw/AppData/Local/Python/bin/lld-link.exe"
+      - "C:/Users/jackw/AppData/Local/Python/bin/lld-link"
+      - "C:/Users/jackw/AppData/Local/Programs/Microsoft VS Code/bin/lld-link.com"
+      - "C:/Users/jackw/AppData/Local/Programs/Microsoft VS Code/bin/lld-link.exe"
+      - "C:/Users/jackw/AppData/Local/Programs/Microsoft VS Code/bin/lld-link"
+      - "C:/Users/jackw/AppData/Local/Microsoft/WinGet/Links/lld-link.com"
+      - "C:/Users/jackw/AppData/Local/Microsoft/WinGet/Links/lld-link.exe"
+      - "C:/Users/jackw/AppData/Local/Microsoft/WinGet/Links/lld-link"
+      - "C:/Users/jackw/AppData/Roaming/npm/lld-link.com"
+      - "C:/Users/jackw/AppData/Roaming/npm/lld-link.exe"
+      - "C:/Users/jackw/AppData/Roaming/npm/lld-link"
+      - "C:/Users/jackw/AppData/Local/Programs/cursor/resources/app/bin/lld-link.com"
+      - "C:/Users/jackw/AppData/Local/Programs/cursor/resources/app/bin/lld-link.exe"
+      - "C:/Users/jackw/AppData/Local/Programs/cursor/resources/app/bin/lld-link"
+      - "C:/Users/jackw/OneDrive/Desktop/git-projects/C/vcpkg/lld-link.com"
+      - "C:/Users/jackw/OneDrive/Desktop/git-projects/C/vcpkg/lld-link.exe"
+      - "C:/Users/jackw/OneDrive/Desktop/git-projects/C/vcpkg/lld-link"
+      - "C:/Program Files (x86)/Microsoft Visual Studio/18/BuildTools/VC/Tools/MSVC/14.51.36231/bin/Hostx64/x64/lld-link.com"
+      - "C:/Program Files (x86)/Microsoft Visual Studio/18/BuildTools/VC/Tools/MSVC/14.51.36231/bin/Hostx64/x64/lld-link.exe"
+      - "C:/Program Files (x86)/Microsoft Visual Studio/18/BuildTools/VC/Tools/MSVC/14.51.36231/bin/Hostx64/x64/lld-link"
+      - "C:/Users/jackw/AppData/Local/cforge/installed/ap2-project/bin/lld-link.com"
+      - "C:/Users/jackw/AppData/Local/cforge/installed/ap2-project/bin/lld-link.exe"
+      - "C:/Users/jackw/AppData/Local/cforge/installed/ap2-project/bin/lld-link"
+    found: false
+    search_context:
+      ENV{PATH}:
+        - "C:\\Program Files (x86)\\Microsoft\\Edge\\Application"
+        - "C:\\Python314\\Scripts\\"
+        - "C:\\Python314\\"
+        - "C:\\WINDOWS\\system32"
+        - "C:\\WINDOWS"
+        - "C:\\WINDOWS\\System32\\Wbem"
+        - "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\WINDOWS\\System32\\OpenSSH\\"
+        - "C:\\Program Files\\Intel\\WiFi\\bin\\"
+        - "C:\\Program Files\\Common Files\\Intel\\WirelessCommon\\"
+        - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\CMake\\bin"
+        - "C:\\Users\\jackw\\.rokit\\bin"
+        - "C:\\Program Files\\nodejs\\"
+        - "C:\\ProgramData\\chocolatey\\bin"
+        - "C:\\Program Files\\GitHub CLI\\"
+        - "C:\\Program Files\\Neovim\\bin"
+        - "C:\\msys64\\ucrt64\\bin"
+        - "C:\\Users\\jackw\\AppData\\Local\\cforge\\installed\\cforge\\bin"
+        - "C:\\Python314\\Scripts\\"
+        - "C:\\Python314\\"
+        - "C:\\WINDOWS\\system32"
+        - "C:\\WINDOWS"
+        - "C:\\WINDOWS\\System32\\Wbem"
+        - "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\WINDOWS\\System32\\OpenSSH\\"
+        - "C:\\Program Files\\Intel\\WiFi\\bin\\"
+        - "C:\\Program Files\\Common Files\\Intel\\WirelessCommon\\"
+        - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\CMake\\bin"
+        - "C:\\Users\\jackw\\.rokit\\bin"
+        - "C:\\Program Files\\nodejs\\"
+        - "C:\\ProgramData\\chocolatey\\bin"
+        - "C:\\Program Files\\GitHub CLI\\"
+        - "C:\\Program Files\\Neovim\\bin"
+        - "C:\\Users\\jackw\\AppData\\Local\\Programs\\Sere\\bin"
+        - "c:\\Users\\jackw\\AppData\\Local\\Programs\\cursor\\resources\\app\\codeBin"
+        - "C:\\Users\\jackw\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "C:\\Users\\jackw\\AppData\\Local\\Python\\bin"
+        - "C:\\Users\\jackw\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\Users\\jackw\\AppData\\Local\\Microsoft\\WinGet\\Links"
+        - "C:\\msys64\\ucrt64\\bin\\"
+        - "C:\\Users\\jackw\\.rokit\\bin"
+        - "C:\\Users\\jackw\\AppData\\Roaming\\npm"
+        - "C:\\Users\\jackw\\AppData\\Local\\Programs\\cursor\\resources\\app\\bin"
+        - "C:\\Users\\jackw\\OneDrive\\Desktop\\git-projects\\C\\vcpkg"
+        - "C:\\Program Files (x86)\\Microsoft Visual Studio\\18\\BuildTools\\VC\\Tools\\MSVC\\14.51.36231\\bin\\Hostx64\\x64"
+        - "C:\\Users\\jackw\\AppData\\Local\\cforge\\installed\\ap2-project\\bin"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineRCCompiler.cmake:40 (find_program)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/Platform/Windows-MSVC.cmake:592 (enable_language)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/Platform/Windows-MSVC.cmake:565 (__windows_compiler_msvc_enable_rc)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/Platform/Windows-MSVC-C.cmake:5 (__windows_compiler_msvc)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeCInformation.cmake:48 (include)"
+      - "CMakeLists.txt:7 (project)"
+    mode: "program"
+    variable: "CMAKE_RC_COMPILER"
+    description: "RC compiler"
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "rc"
+    candidate_directories:
+      - "C:/Program Files (x86)/Microsoft/Edge/Application/"
+      - "C:/Python314/Scripts/"
+      - "C:/Python314/"
+      - "C:/Windows/System32/"
+      - "C:/Windows/"
+      - "C:/Windows/System32/wbem/"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/"
+      - "C:/Windows/System32/OpenSSH/"
+      - "C:/Program Files/Intel/WiFi/bin/"
+      - "C:/Program Files/Common Files/Intel/WirelessCommon/"
+      - "C:/Program Files/Git/cmd/"
+      - "C:/Program Files/CMake/bin/"
+      - "C:/Users/jackw/.rokit/bin/"
+      - "C:/Program Files/nodejs/"
+      - "C:/ProgramData/chocolatey/bin/"
+      - "C:/Program Files/GitHub CLI/"
+      - "C:/Program Files/Neovim/bin/"
+      - "C:/msys64/ucrt64/bin/"
+      - "C:/Users/jackw/AppData/Local/cforge/installed/cforge/bin/"
+      - "C:/Users/jackw/AppData/Local/Programs/Sere/bin/"
+      - "C:/Users/jackw/AppData/Local/Programs/cursor/resources/app/codeBin/"
+      - "C:/Users/jackw/AppData/Local/Microsoft/WindowsApps/"
+      - "C:/Users/jackw/AppData/Local/Python/bin/"
+      - "C:/Users/jackw/AppData/Local/Programs/Microsoft VS Code/bin/"
+      - "C:/Users/jackw/AppData/Local/Microsoft/WinGet/Links/"
+      - "C:/Users/jackw/AppData/Roaming/npm/"
+      - "C:/Users/jackw/AppData/Local/Programs/cursor/resources/app/bin/"
+      - "C:/Users/jackw/OneDrive/Desktop/git-projects/C/vcpkg/"
+      - "C:/Program Files (x86)/Microsoft Visual Studio/18/BuildTools/VC/Tools/MSVC/14.51.36231/bin/Hostx64/x64/"
+      - "C:/Users/jackw/AppData/Local/cforge/installed/ap2-project/bin/"
+      - "C:/Program Files/bin/"
+      - "C:/Program Files/sbin/"
+      - "C:/Program Files/"
+      - "C:/Program Files (x86)/bin/"
+      - "C:/Program Files (x86)/sbin/"
+      - "C:/Program Files (x86)/"
+      - "C:/Program Files/CMake/bin/"
+      - "C:/Program Files/CMake/sbin/"
+      - "C:/Program Files/CMake/"
+      - "C:/Program Files (x86)/ap2/bin/"
+      - "C:/Program Files (x86)/ap2/sbin/"
+      - "C:/Program Files (x86)/ap2/"
+    searched_directories:
+      - "C:/Program Files (x86)/Microsoft/Edge/Application/rc.com"
+      - "C:/Program Files (x86)/Microsoft/Edge/Application/rc.exe"
+      - "C:/Program Files (x86)/Microsoft/Edge/Application/rc"
+      - "C:/Python314/Scripts/rc.com"
+      - "C:/Python314/Scripts/rc.exe"
+      - "C:/Python314/Scripts/rc"
+      - "C:/Python314/rc.com"
+      - "C:/Python314/rc.exe"
+      - "C:/Python314/rc"
+      - "C:/Windows/System32/rc.com"
+      - "C:/Windows/System32/rc.exe"
+      - "C:/Windows/System32/rc"
+      - "C:/Windows/rc.com"
+      - "C:/Windows/rc.exe"
+      - "C:/Windows/rc"
+      - "C:/Windows/System32/wbem/rc.com"
+      - "C:/Windows/System32/wbem/rc.exe"
+      - "C:/Windows/System32/wbem/rc"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/rc.com"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/rc.exe"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/rc"
+      - "C:/Windows/System32/OpenSSH/rc.com"
+      - "C:/Windows/System32/OpenSSH/rc.exe"
+      - "C:/Windows/System32/OpenSSH/rc"
+      - "C:/Program Files/Intel/WiFi/bin/rc.com"
+      - "C:/Program Files/Intel/WiFi/bin/rc.exe"
+      - "C:/Program Files/Intel/WiFi/bin/rc"
+      - "C:/Program Files/Common Files/Intel/WirelessCommon/rc.com"
+      - "C:/Program Files/Common Files/Intel/WirelessCommon/rc.exe"
+      - "C:/Program Files/Common Files/Intel/WirelessCommon/rc"
+      - "C:/Program Files/Git/cmd/rc.com"
+      - "C:/Program Files/Git/cmd/rc.exe"
+      - "C:/Program Files/Git/cmd/rc"
+      - "C:/Program Files/CMake/bin/rc.com"
+      - "C:/Program Files/CMake/bin/rc.exe"
+      - "C:/Program Files/CMake/bin/rc"
+      - "C:/Users/jackw/.rokit/bin/rc.com"
+      - "C:/Users/jackw/.rokit/bin/rc.exe"
+      - "C:/Users/jackw/.rokit/bin/rc"
+      - "C:/Program Files/nodejs/rc.com"
+      - "C:/Program Files/nodejs/rc.exe"
+      - "C:/Program Files/nodejs/rc"
+      - "C:/ProgramData/chocolatey/bin/rc.com"
+      - "C:/ProgramData/chocolatey/bin/rc.exe"
+      - "C:/ProgramData/chocolatey/bin/rc"
+      - "C:/Program Files/GitHub CLI/rc.com"
+      - "C:/Program Files/GitHub CLI/rc.exe"
+      - "C:/Program Files/GitHub CLI/rc"
+      - "C:/Program Files/Neovim/bin/rc.com"
+      - "C:/Program Files/Neovim/bin/rc.exe"
+      - "C:/Program Files/Neovim/bin/rc"
+      - "C:/msys64/ucrt64/bin/rc.com"
+      - "C:/msys64/ucrt64/bin/rc.exe"
+      - "C:/msys64/ucrt64/bin/rc"
+      - "C:/Users/jackw/AppData/Local/cforge/installed/cforge/bin/rc.com"
+      - "C:/Users/jackw/AppData/Local/cforge/installed/cforge/bin/rc.exe"
+      - "C:/Users/jackw/AppData/Local/cforge/installed/cforge/bin/rc"
+      - "C:/Users/jackw/AppData/Local/Programs/Sere/bin/rc.com"
+      - "C:/Users/jackw/AppData/Local/Programs/Sere/bin/rc.exe"
+      - "C:/Users/jackw/AppData/Local/Programs/Sere/bin/rc"
+      - "C:/Users/jackw/AppData/Local/Programs/cursor/resources/app/codeBin/rc.com"
+      - "C:/Users/jackw/AppData/Local/Programs/cursor/resources/app/codeBin/rc.exe"
+      - "C:/Users/jackw/AppData/Local/Programs/cursor/resources/app/codeBin/rc"
+      - "C:/Users/jackw/AppData/Local/Microsoft/WindowsApps/rc.com"
+      - "C:/Users/jackw/AppData/Local/Microsoft/WindowsApps/rc.exe"
+      - "C:/Users/jackw/AppData/Local/Microsoft/WindowsApps/rc"
+      - "C:/Users/jackw/AppData/Local/Python/bin/rc.com"
+      - "C:/Users/jackw/AppData/Local/Python/bin/rc.exe"
+      - "C:/Users/jackw/AppData/Local/Python/bin/rc"
+      - "C:/Users/jackw/AppData/Local/Programs/Microsoft VS Code/bin/rc.com"
+      - "C:/Users/jackw/AppData/Local/Programs/Microsoft VS Code/bin/rc.exe"
+      - "C:/Users/jackw/AppData/Local/Programs/Microsoft VS Code/bin/rc"
+      - "C:/Users/jackw/AppData/Local/Microsoft/WinGet/Links/rc.com"
+      - "C:/Users/jackw/AppData/Local/Microsoft/WinGet/Links/rc.exe"
+      - "C:/Users/jackw/AppData/Local/Microsoft/WinGet/Links/rc"
+      - "C:/Users/jackw/AppData/Roaming/npm/rc.com"
+      - "C:/Users/jackw/AppData/Roaming/npm/rc.exe"
+      - "C:/Users/jackw/AppData/Roaming/npm/rc"
+      - "C:/Users/jackw/AppData/Local/Programs/cursor/resources/app/bin/rc.com"
+      - "C:/Users/jackw/AppData/Local/Programs/cursor/resources/app/bin/rc.exe"
+      - "C:/Users/jackw/AppData/Local/Programs/cursor/resources/app/bin/rc"
+      - "C:/Users/jackw/OneDrive/Desktop/git-projects/C/vcpkg/rc.com"
+      - "C:/Users/jackw/OneDrive/Desktop/git-projects/C/vcpkg/rc.exe"
+      - "C:/Users/jackw/OneDrive/Desktop/git-projects/C/vcpkg/rc"
+      - "C:/Program Files (x86)/Microsoft Visual Studio/18/BuildTools/VC/Tools/MSVC/14.51.36231/bin/Hostx64/x64/rc.com"
+      - "C:/Program Files (x86)/Microsoft Visual Studio/18/BuildTools/VC/Tools/MSVC/14.51.36231/bin/Hostx64/x64/rc.exe"
+      - "C:/Program Files (x86)/Microsoft Visual Studio/18/BuildTools/VC/Tools/MSVC/14.51.36231/bin/Hostx64/x64/rc"
+      - "C:/Users/jackw/AppData/Local/cforge/installed/ap2-project/bin/rc.com"
+      - "C:/Users/jackw/AppData/Local/cforge/installed/ap2-project/bin/rc.exe"
+      - "C:/Users/jackw/AppData/Local/cforge/installed/ap2-project/bin/rc"
+      - "C:/Program Files/bin/rc.com"
+      - "C:/Program Files/bin/rc.exe"
+      - "C:/Program Files/bin/rc"
+      - "C:/Program Files/sbin/rc.com"
+      - "C:/Program Files/sbin/rc.exe"
+      - "C:/Program Files/sbin/rc"
+      - "C:/Program Files/rc.com"
+      - "C:/Program Files/rc.exe"
+      - "C:/Program Files/rc"
+      - "C:/Program Files (x86)/bin/rc.com"
+      - "C:/Program Files (x86)/bin/rc.exe"
+      - "C:/Program Files (x86)/bin/rc"
+      - "C:/Program Files (x86)/sbin/rc.com"
+      - "C:/Program Files (x86)/sbin/rc.exe"
+      - "C:/Program Files (x86)/sbin/rc"
+      - "C:/Program Files (x86)/rc.com"
+      - "C:/Program Files (x86)/rc.exe"
+      - "C:/Program Files (x86)/rc"
+      - "C:/Program Files/CMake/bin/rc.com"
+      - "C:/Program Files/CMake/bin/rc.exe"
+      - "C:/Program Files/CMake/bin/rc"
+      - "C:/Program Files/CMake/sbin/rc.com"
+      - "C:/Program Files/CMake/sbin/rc.exe"
+      - "C:/Program Files/CMake/sbin/rc"
+      - "C:/Program Files/CMake/rc.com"
+      - "C:/Program Files/CMake/rc.exe"
+      - "C:/Program Files/CMake/rc"
+      - "C:/Program Files (x86)/ap2/bin/rc.com"
+      - "C:/Program Files (x86)/ap2/bin/rc.exe"
+      - "C:/Program Files (x86)/ap2/bin/rc"
+      - "C:/Program Files (x86)/ap2/sbin/rc.com"
+      - "C:/Program Files (x86)/ap2/sbin/rc.exe"
+      - "C:/Program Files (x86)/ap2/sbin/rc"
+      - "C:/Program Files (x86)/ap2/rc.com"
+      - "C:/Program Files (x86)/ap2/rc.exe"
+      - "C:/Program Files (x86)/ap2/rc"
+    found: false
+    search_context:
+      ENV{PATH}:
+        - "C:\\Program Files (x86)\\Microsoft\\Edge\\Application"
+        - "C:\\Python314\\Scripts\\"
+        - "C:\\Python314\\"
+        - "C:\\WINDOWS\\system32"
+        - "C:\\WINDOWS"
+        - "C:\\WINDOWS\\System32\\Wbem"
+        - "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\WINDOWS\\System32\\OpenSSH\\"
+        - "C:\\Program Files\\Intel\\WiFi\\bin\\"
+        - "C:\\Program Files\\Common Files\\Intel\\WirelessCommon\\"
+        - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\CMake\\bin"
+        - "C:\\Users\\jackw\\.rokit\\bin"
+        - "C:\\Program Files\\nodejs\\"
+        - "C:\\ProgramData\\chocolatey\\bin"
+        - "C:\\Program Files\\GitHub CLI\\"
+        - "C:\\Program Files\\Neovim\\bin"
+        - "C:\\msys64\\ucrt64\\bin"
+        - "C:\\Users\\jackw\\AppData\\Local\\cforge\\installed\\cforge\\bin"
+        - "C:\\Python314\\Scripts\\"
+        - "C:\\Python314\\"
+        - "C:\\WINDOWS\\system32"
+        - "C:\\WINDOWS"
+        - "C:\\WINDOWS\\System32\\Wbem"
+        - "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\WINDOWS\\System32\\OpenSSH\\"
+        - "C:\\Program Files\\Intel\\WiFi\\bin\\"
+        - "C:\\Program Files\\Common Files\\Intel\\WirelessCommon\\"
+        - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\CMake\\bin"
+        - "C:\\Users\\jackw\\.rokit\\bin"
+        - "C:\\Program Files\\nodejs\\"
+        - "C:\\ProgramData\\chocolatey\\bin"
+        - "C:\\Program Files\\GitHub CLI\\"
+        - "C:\\Program Files\\Neovim\\bin"
+        - "C:\\Users\\jackw\\AppData\\Local\\Programs\\Sere\\bin"
+        - "c:\\Users\\jackw\\AppData\\Local\\Programs\\cursor\\resources\\app\\codeBin"
+        - "C:\\Users\\jackw\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "C:\\Users\\jackw\\AppData\\Local\\Python\\bin"
+        - "C:\\Users\\jackw\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\Users\\jackw\\AppData\\Local\\Microsoft\\WinGet\\Links"
+        - "C:\\msys64\\ucrt64\\bin\\"
+        - "C:\\Users\\jackw\\.rokit\\bin"
+        - "C:\\Users\\jackw\\AppData\\Roaming\\npm"
+        - "C:\\Users\\jackw\\AppData\\Local\\Programs\\cursor\\resources\\app\\bin"
+        - "C:\\Users\\jackw\\OneDrive\\Desktop\\git-projects\\C\\vcpkg"
+        - "C:\\Program Files (x86)\\Microsoft Visual Studio\\18\\BuildTools\\VC\\Tools\\MSVC\\14.51.36231\\bin\\Hostx64\\x64"
+        - "C:\\Users\\jackw\\AppData\\Local\\cforge\\installed\\ap2-project\\bin"
+      CMAKE_INSTALL_PREFIX: "C:/Program Files (x86)/ap2"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "C:/Program Files"
+        - "C:/Program Files (x86)"
+        - "C:/Program Files/CMake"
+        - "C:/Program Files (x86)/ap2"
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerABI.cmake:83 (try_compile)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:7 (project)"
+    checks:
+      - "Detecting C compiler ABI info"
+    directories:
+      source: "C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build-release/CMakeFiles/CMakeScratch/TryCompile-qrpq1u"
+      binary: "C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build-release/CMakeFiles/CMakeScratch/TryCompile-qrpq1u"
+    cmakeVariables:
+      CMAKE_CXX_STDLIB_MODULES_JSON: ""
+      CMAKE_C_FLAGS: "/DWIN32 /D_WINDOWS"
+      CMAKE_C_FLAGS_DEBUG: "/Zi /Ob0 /Od /RTC1"
+      CMAKE_EXE_LINKER_FLAGS: "/machine:x64"
+    buildResult:
+      variable: "CMAKE_C_ABI_COMPILED"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build-release/CMakeFiles/CMakeScratch/TryCompile-qrpq1u'
+        
+        Run Build Command(s): "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_ac3a1.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
+        MSBuild version 17.14.51+25f168cee for .NET Framework
+        Build started 8/31/2026 11:35:17 PM.
+        
+        Project "C:\\Users\\jackw\\OneDrive\\Desktop\\git-projects\\aphelion-engine\\ap2\\build-release\\CMakeFiles\\CMakeScratch\\TryCompile-qrpq1u\\cmTC_ac3a1.vcxproj" on node 1 (default targets).
+        PrepareForBuild:
+          Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
+          Creating directory "C:\\Users\\jackw\\OneDrive\\Desktop\\git-projects\\aphelion-engine\\ap2\\build-release\\CMakeFiles\\CMakeScratch\\TryCompile-qrpq1u\\Debug\\".
+          Creating directory "cmTC_ac3a1.dir\\Debug\\cmTC_ac3a1.tlog\\".
+        InitializeBuildStatus:
+          Creating "cmTC_ac3a1.dir\\Debug\\cmTC_ac3a1.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
+          Touching "cmTC_ac3a1.dir\\Debug\\cmTC_ac3a1.tlog\\unsuccessfulbuild".
+        VcpkgTripletSelection:
+          Using triplet "x64-windows" from "C:\\Users\\jackw\\OneDrive\\Desktop\\git-projects\\C\\vcpkg\\installed\\x64-windows\\"
+          Using normalized configuration "Debug"
+        ClCompile:
+          C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\CL.exe /c /I"C:\\Users\\jackw\\OneDrive\\Desktop\\git-projects\\C\\vcpkg\\installed\\x64-windows\\include" /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D _MBCS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /Fo"cmTC_ac3a1.dir\\Debug\\\\" /Fd"cmTC_ac3a1.dir\\Debug\\vc143.pdb" /external:W1 /TC /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-4.3\\Modules\\CMakeCCompilerABI.c"
+          Microsoft (R) C/C++ Optimizing Compiler Version 19.44.35228 for x64
+          Copyright (C) Microsoft Corporation.  All rights reserved.
+          cl /c /I"C:\\Users\\jackw\\OneDrive\\Desktop\\git-projects\\C\\vcpkg\\installed\\x64-windows\\include" /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D _MBCS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /Fo"cmTC_ac3a1.dir\\Debug\\\\" /Fd"cmTC_ac3a1.dir\\Debug\\vc143.pdb" /external:W1 /TC /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-4.3\\Modules\\CMakeCCompilerABI.c"
+          CMakeCCompilerABI.c
+        Link:
+          C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\link.exe /OUT:"C:\\Users\\jackw\\OneDrive\\Desktop\\git-projects\\aphelion-engine\\ap2\\build-release\\CMakeFiles\\CMakeScratch\\TryCompile-qrpq1u\\Debug\\cmTC_ac3a1.exe" /INCREMENTAL /ILK:"cmTC_ac3a1.dir\\Debug\\cmTC_ac3a1.ilk" /NOLOGO /LIBPATH:"C:\\Users\\jackw\\OneDrive\\Desktop\\git-projects\\C\\vcpkg\\installed\\x64-windows\\debug\\lib" /LIBPATH:"C:\\Users\\jackw\\OneDrive\\Desktop\\git-projects\\C\\vcpkg\\installed\\x64-windows\\debug\\lib\\manual-link" kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib "C:\\Users\\jackw\\OneDrive\\Desktop\\git-projects\\C\\vcpkg\\installed\\x64-windows\\debug\\lib\\*.lib" /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build-release/CMakeFiles/CMakeScratch/TryCompile-qrpq1u/Debug/cmTC_ac3a1.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /IMPLIB:"C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build-release/CMakeFiles/CMakeScratch/TryCompile-qrpq1u/Debug/cmTC_ac3a1.lib" /MACHINE:X64  /machine:x64 cmTC_ac3a1.dir\\Debug\\CMakeCCompilerABI.obj
+          cmTC_ac3a1.vcxproj -> C:\\Users\\jackw\\OneDrive\\Desktop\\git-projects\\aphelion-engine\\ap2\\build-release\\CMakeFiles\\CMakeScratch\\TryCompile-qrpq1u\\Debug\\cmTC_ac3a1.exe
+        AppLocalFromInstalled:
+          "C:\\Users\\jackw\\OneDrive\\Desktop\\git-projects\\C\\vcpkg\\vcpkg.exe" z-applocal --target-binary="C:\\Users\\jackw\\OneDrive\\Desktop\\git-projects\\aphelion-engine\\ap2\\build-release\\CMakeFiles\\CMakeScratch\\TryCompile-qrpq1u\\Debug\\cmTC_ac3a1.exe" --installed-bin-dir="C:\\Users\\jackw\\OneDrive\\Desktop\\git-projects\\C\\vcpkg\\installed\\x64-windows\\debug\\bin" --tlog-file="cmTC_ac3a1.dir\\Debug\\cmTC_ac3a1.tlog\\cmTC_ac3a1.write.1u.tlog" --copied-files-log="cmTC_ac3a1.dir\\Debug\\vcpkg.applocal.log"
+        FinalizeBuildStatus:
+          Deleting file "cmTC_ac3a1.dir\\Debug\\cmTC_ac3a1.tlog\\unsuccessfulbuild".
+          Touching "cmTC_ac3a1.dir\\Debug\\cmTC_ac3a1.tlog\\cmTC_ac3a1.lastbuildstate".
+        Done Building Project "C:\\Users\\jackw\\OneDrive\\Desktop\\git-projects\\aphelion-engine\\ap2\\build-release\\CMakeFiles\\CMakeScratch\\TryCompile-qrpq1u\\cmTC_ac3a1.vcxproj" (default targets).
+        
+        Build succeeded.
+            0 Warning(s)
+            0 Error(s)
+        
+        Time Elapsed 00:00:03.98
+        
+      exitCode: 0
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerABI.cmake:253 (message)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:7 (project)"
+    message: |
+      Parsed C implicit link information:
+        link line regex: [^( *|.*[/\\])(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)|link\\.exe|lld-link(\\.exe)?|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
+        linker tool regex: [^[ 	]*(->|"|[0-9]+>[ 	-]*Build:[ 	0-9]+ ms[ 	]*)?[ 	]*(([^"]*[/\\])?(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)|link\\.exe|lld-link(\\.exe)?))("|,| |$)]
+        linker tool for 'C': C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/VC/Tools/MSVC/14.44.35207/bin/HostX64/x64/link.exe
+        implicit libs: []
+        implicit objs: []
+        implicit dirs: []
+        implicit fwks: []
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/Internal/CMakeDetermineLinkerId.cmake:38 (message)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerABI.cmake:299 (cmake_determine_linker_id)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:7 (project)"
+    message: |
+      Running the C compiler's linker: "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/VC/Tools/MSVC/14.44.35207/bin/HostX64/x64/link.exe" "-v"
+      Microsoft (R) Incremental Linker Version 14.44.35228.0
+      Copyright (C) Microsoft Corporation.  All rights reserved.
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerABI.cmake:83 (try_compile)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:7 (project)"
+    checks:
+      - "Detecting CXX compiler ABI info"
+    directories:
+      source: "C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build-release/CMakeFiles/CMakeScratch/TryCompile-2rstct"
+      binary: "C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build-release/CMakeFiles/CMakeScratch/TryCompile-2rstct"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: "/DWIN32 /D_WINDOWS /GR /EHsc"
+      CMAKE_CXX_FLAGS_DEBUG: "/Zi /Ob0 /Od /RTC1"
+      CMAKE_CXX_SCAN_FOR_MODULES: "OFF"
+      CMAKE_CXX_STDLIB_MODULES_JSON: ""
+      CMAKE_EXE_LINKER_FLAGS: "/machine:x64"
+    buildResult:
+      variable: "CMAKE_CXX_ABI_COMPILED"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build-release/CMakeFiles/CMakeScratch/TryCompile-2rstct'
+        
+        Run Build Command(s): "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_8ff35.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
+        MSBuild version 17.14.51+25f168cee for .NET Framework
+        Build started 8/31/2026 11:35:24 PM.
+        
+        Project "C:\\Users\\jackw\\OneDrive\\Desktop\\git-projects\\aphelion-engine\\ap2\\build-release\\CMakeFiles\\CMakeScratch\\TryCompile-2rstct\\cmTC_8ff35.vcxproj" on node 1 (default targets).
+        PrepareForBuild:
+          Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
+          Creating directory "C:\\Users\\jackw\\OneDrive\\Desktop\\git-projects\\aphelion-engine\\ap2\\build-release\\CMakeFiles\\CMakeScratch\\TryCompile-2rstct\\Debug\\".
+          Creating directory "cmTC_8ff35.dir\\Debug\\cmTC_8ff35.tlog\\".
+        InitializeBuildStatus:
+          Creating "cmTC_8ff35.dir\\Debug\\cmTC_8ff35.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
+          Touching "cmTC_8ff35.dir\\Debug\\cmTC_8ff35.tlog\\unsuccessfulbuild".
+        VcpkgTripletSelection:
+          Using triplet "x64-windows" from "C:\\Users\\jackw\\OneDrive\\Desktop\\git-projects\\C\\vcpkg\\installed\\x64-windows\\"
+          Using normalized configuration "Debug"
+        ClCompile:
+          C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\CL.exe /c /I"C:\\Users\\jackw\\OneDrive\\Desktop\\git-projects\\C\\vcpkg\\installed\\x64-windows\\include" /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D _MBCS /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /GR /Fo"cmTC_8ff35.dir\\Debug\\\\" /Fd"cmTC_8ff35.dir\\Debug\\vc143.pdb" /external:W1 /TP /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-4.3\\Modules\\CMakeCXXCompilerABI.cpp"
+          Microsoft (R) C/C++ Optimizing Compiler Version 19.44.35228 for x64
+          Copyright (C) Microsoft Corporation.  All rights reserved.
+          cl /c /I"C:\\Users\\jackw\\OneDrive\\Desktop\\git-projects\\C\\vcpkg\\installed\\x64-windows\\include" /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D _MBCS /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /GR /Fo"cmTC_8ff35.dir\\Debug\\\\" /Fd"cmTC_8ff35.dir\\Debug\\vc143.pdb" /external:W1 /TP /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-4.3\\Modules\\CMakeCXXCompilerABI.cpp"
+          CMakeCXXCompilerABI.cpp
+        Link:
+          C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\link.exe /OUT:"C:\\Users\\jackw\\OneDrive\\Desktop\\git-projects\\aphelion-engine\\ap2\\build-release\\CMakeFiles\\CMakeScratch\\TryCompile-2rstct\\Debug\\cmTC_8ff35.exe" /INCREMENTAL /ILK:"cmTC_8ff35.dir\\Debug\\cmTC_8ff35.ilk" /NOLOGO /LIBPATH:"C:\\Users\\jackw\\OneDrive\\Desktop\\git-projects\\C\\vcpkg\\installed\\x64-windows\\debug\\lib" /LIBPATH:"C:\\Users\\jackw\\OneDrive\\Desktop\\git-projects\\C\\vcpkg\\installed\\x64-windows\\debug\\lib\\manual-link" kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib "C:\\Users\\jackw\\OneDrive\\Desktop\\git-projects\\C\\vcpkg\\installed\\x64-windows\\debug\\lib\\*.lib" /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build-release/CMakeFiles/CMakeScratch/TryCompile-2rstct/Debug/cmTC_8ff35.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /IMPLIB:"C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build-release/CMakeFiles/CMakeScratch/TryCompile-2rstct/Debug/cmTC_8ff35.lib" /MACHINE:X64  /machine:x64 cmTC_8ff35.dir\\Debug\\CMakeCXXCompilerABI.obj
+          cmTC_8ff35.vcxproj -> C:\\Users\\jackw\\OneDrive\\Desktop\\git-projects\\aphelion-engine\\ap2\\build-release\\CMakeFiles\\CMakeScratch\\TryCompile-2rstct\\Debug\\cmTC_8ff35.exe
+        AppLocalFromInstalled:
+          "C:\\Users\\jackw\\OneDrive\\Desktop\\git-projects\\C\\vcpkg\\vcpkg.exe" z-applocal --target-binary="C:\\Users\\jackw\\OneDrive\\Desktop\\git-projects\\aphelion-engine\\ap2\\build-release\\CMakeFiles\\CMakeScratch\\TryCompile-2rstct\\Debug\\cmTC_8ff35.exe" --installed-bin-dir="C:\\Users\\jackw\\OneDrive\\Desktop\\git-projects\\C\\vcpkg\\installed\\x64-windows\\debug\\bin" --tlog-file="cmTC_8ff35.dir\\Debug\\cmTC_8ff35.tlog\\cmTC_8ff35.write.1u.tlog" --copied-files-log="cmTC_8ff35.dir\\Debug\\vcpkg.applocal.log"
+        FinalizeBuildStatus:
+          Deleting file "cmTC_8ff35.dir\\Debug\\cmTC_8ff35.tlog\\unsuccessfulbuild".
+          Touching "cmTC_8ff35.dir\\Debug\\cmTC_8ff35.tlog\\cmTC_8ff35.lastbuildstate".
+        Done Building Project "C:\\Users\\jackw\\OneDrive\\Desktop\\git-projects\\aphelion-engine\\ap2\\build-release\\CMakeFiles\\CMakeScratch\\TryCompile-2rstct\\cmTC_8ff35.vcxproj" (default targets).
+        
+        Build succeeded.
+            0 Warning(s)
+            0 Error(s)
+        
+        Time Elapsed 00:00:03.24
+        
+      exitCode: 0
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerABI.cmake:253 (message)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:7 (project)"
+    message: |
+      Parsed CXX implicit link information:
+        link line regex: [^( *|.*[/\\])(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)|link\\.exe|lld-link(\\.exe)?|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
+        linker tool regex: [^[ 	]*(->|"|[0-9]+>[ 	-]*Build:[ 	0-9]+ ms[ 	]*)?[ 	]*(([^"]*[/\\])?(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)|link\\.exe|lld-link(\\.exe)?))("|,| |$)]
+        linker tool for 'CXX': C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/VC/Tools/MSVC/14.44.35207/bin/HostX64/x64/link.exe
+        implicit libs: []
+        implicit objs: []
+        implicit dirs: []
+        implicit fwks: []
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/Internal/CMakeDetermineLinkerId.cmake:38 (message)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerABI.cmake:299 (cmake_determine_linker_id)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:7 (project)"
+    message: |
+      Running the CXX compiler's linker: "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/VC/Tools/MSVC/14.44.35207/bin/HostX64/x64/link.exe" "-v"
+      Microsoft (R) Incremental Linker Version 14.44.35228.0
+      Copyright (C) Microsoft Corporation.  All rights reserved.
+  -
+    kind: "find-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/FindGit.cmake:111 (find_program)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/FetchContent.cmake:1887 (find_package)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/FetchContent.cmake:1622 (__FetchContent_populateSubbuild)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/FetchContent.cmake:2158:EVAL:2 (__FetchContent_doPopulation)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/FetchContent.cmake:2158 (cmake_language)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/FetchContent.cmake:2399 (__FetchContent_Populate)"
+      - "CMakeLists.txt:112 (FetchContent_MakeAvailable)"
+    mode: "program"
+    variable: "GIT_EXECUTABLE"
+    description: "Git command line client"
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "git.cmd"
+      - "git"
+    candidate_directories:
+      - "C:/Program Files (x86)/Microsoft/Edge/Application/"
+      - "C:/Python314/Scripts/"
+      - "C:/Python314/"
+      - "C:/Windows/System32/"
+      - "C:/Windows/"
+      - "C:/Windows/System32/wbem/"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/"
+      - "C:/Windows/System32/OpenSSH/"
+      - "C:/Program Files/Intel/WiFi/bin/"
+      - "C:/Program Files/Common Files/Intel/WirelessCommon/"
+      - "C:/Program Files/Git/cmd/"
+      - "C:/Program Files/CMake/bin/"
+      - "C:/Users/jackw/.rokit/bin/"
+      - "C:/Program Files/nodejs/"
+      - "C:/ProgramData/chocolatey/bin/"
+      - "C:/Program Files/GitHub CLI/"
+      - "C:/Program Files/Neovim/bin/"
+      - "C:/msys64/ucrt64/bin/"
+      - "C:/Users/jackw/AppData/Local/cforge/installed/cforge/bin/"
+      - "C:/Users/jackw/AppData/Local/Programs/Sere/bin/"
+      - "C:/Users/jackw/AppData/Local/Programs/cursor/resources/app/codeBin/"
+      - "C:/Users/jackw/AppData/Local/Microsoft/WindowsApps/"
+      - "C:/Users/jackw/AppData/Local/Python/bin/"
+      - "C:/Users/jackw/AppData/Local/Programs/Microsoft VS Code/bin/"
+      - "C:/Users/jackw/AppData/Local/Microsoft/WinGet/Links/"
+      - "C:/Users/jackw/AppData/Roaming/npm/"
+      - "C:/Users/jackw/AppData/Local/Programs/cursor/resources/app/bin/"
+      - "C:/Users/jackw/OneDrive/Desktop/git-projects/C/vcpkg/"
+      - "C:/Program Files (x86)/Microsoft Visual Studio/18/BuildTools/VC/Tools/MSVC/14.51.36231/bin/Hostx64/x64/"
+      - "C:/Users/jackw/AppData/Local/cforge/installed/ap2-project/bin/"
+      - "C:/Program Files/bin/"
+      - "C:/Program Files/sbin/"
+      - "C:/Program Files/"
+      - "C:/Program Files (x86)/bin/"
+      - "C:/Program Files (x86)/sbin/"
+      - "C:/Program Files (x86)/"
+      - "C:/Program Files/CMake/bin/"
+      - "C:/Program Files/CMake/sbin/"
+      - "C:/Program Files/CMake/"
+      - "C:/Program Files (x86)/ap2/bin/"
+      - "C:/Program Files (x86)/ap2/sbin/"
+      - "C:/Program Files (x86)/ap2/"
+      - "C:/Users/jackw/AppData/Local/Atlassian/SourceTree/git_local/bin/"
+    searched_directories:
+      - "C:/Program Files (x86)/Microsoft/Edge/Application/git.cmd.com"
+      - "C:/Program Files (x86)/Microsoft/Edge/Application/git.cmd.exe"
+      - "C:/Program Files (x86)/Microsoft/Edge/Application/git.cmd"
+      - "C:/Python314/Scripts/git.cmd.com"
+      - "C:/Python314/Scripts/git.cmd.exe"
+      - "C:/Python314/Scripts/git.cmd"
+      - "C:/Python314/git.cmd.com"
+      - "C:/Python314/git.cmd.exe"
+      - "C:/Python314/git.cmd"
+      - "C:/Windows/System32/git.cmd.com"
+      - "C:/Windows/System32/git.cmd.exe"
+      - "C:/Windows/System32/git.cmd"
+      - "C:/Windows/git.cmd.com"
+      - "C:/Windows/git.cmd.exe"
+      - "C:/Windows/git.cmd"
+      - "C:/Windows/System32/wbem/git.cmd.com"
+      - "C:/Windows/System32/wbem/git.cmd.exe"
+      - "C:/Windows/System32/wbem/git.cmd"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/git.cmd.com"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/git.cmd.exe"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/git.cmd"
+      - "C:/Windows/System32/OpenSSH/git.cmd.com"
+      - "C:/Windows/System32/OpenSSH/git.cmd.exe"
+      - "C:/Windows/System32/OpenSSH/git.cmd"
+      - "C:/Program Files/Intel/WiFi/bin/git.cmd.com"
+      - "C:/Program Files/Intel/WiFi/bin/git.cmd.exe"
+      - "C:/Program Files/Intel/WiFi/bin/git.cmd"
+      - "C:/Program Files/Common Files/Intel/WirelessCommon/git.cmd.com"
+      - "C:/Program Files/Common Files/Intel/WirelessCommon/git.cmd.exe"
+      - "C:/Program Files/Common Files/Intel/WirelessCommon/git.cmd"
+      - "C:/Program Files/Git/cmd/git.cmd.com"
+      - "C:/Program Files/Git/cmd/git.cmd.exe"
+      - "C:/Program Files/Git/cmd/git.cmd"
+      - "C:/Program Files/CMake/bin/git.cmd.com"
+      - "C:/Program Files/CMake/bin/git.cmd.exe"
+      - "C:/Program Files/CMake/bin/git.cmd"
+      - "C:/Users/jackw/.rokit/bin/git.cmd.com"
+      - "C:/Users/jackw/.rokit/bin/git.cmd.exe"
+      - "C:/Users/jackw/.rokit/bin/git.cmd"
+      - "C:/Program Files/nodejs/git.cmd.com"
+      - "C:/Program Files/nodejs/git.cmd.exe"
+      - "C:/Program Files/nodejs/git.cmd"
+      - "C:/ProgramData/chocolatey/bin/git.cmd.com"
+      - "C:/ProgramData/chocolatey/bin/git.cmd.exe"
+      - "C:/ProgramData/chocolatey/bin/git.cmd"
+      - "C:/Program Files/GitHub CLI/git.cmd.com"
+      - "C:/Program Files/GitHub CLI/git.cmd.exe"
+      - "C:/Program Files/GitHub CLI/git.cmd"
+      - "C:/Program Files/Neovim/bin/git.cmd.com"
+      - "C:/Program Files/Neovim/bin/git.cmd.exe"
+      - "C:/Program Files/Neovim/bin/git.cmd"
+      - "C:/msys64/ucrt64/bin/git.cmd.com"
+      - "C:/msys64/ucrt64/bin/git.cmd.exe"
+      - "C:/msys64/ucrt64/bin/git.cmd"
+      - "C:/Users/jackw/AppData/Local/cforge/installed/cforge/bin/git.cmd.com"
+      - "C:/Users/jackw/AppData/Local/cforge/installed/cforge/bin/git.cmd.exe"
+      - "C:/Users/jackw/AppData/Local/cforge/installed/cforge/bin/git.cmd"
+      - "C:/Users/jackw/AppData/Local/Programs/Sere/bin/git.cmd.com"
+      - "C:/Users/jackw/AppData/Local/Programs/Sere/bin/git.cmd.exe"
+      - "C:/Users/jackw/AppData/Local/Programs/Sere/bin/git.cmd"
+      - "C:/Users/jackw/AppData/Local/Programs/cursor/resources/app/codeBin/git.cmd.com"
+      - "C:/Users/jackw/AppData/Local/Programs/cursor/resources/app/codeBin/git.cmd.exe"
+      - "C:/Users/jackw/AppData/Local/Programs/cursor/resources/app/codeBin/git.cmd"
+      - "C:/Users/jackw/AppData/Local/Microsoft/WindowsApps/git.cmd.com"
+      - "C:/Users/jackw/AppData/Local/Microsoft/WindowsApps/git.cmd.exe"
+      - "C:/Users/jackw/AppData/Local/Microsoft/WindowsApps/git.cmd"
+      - "C:/Users/jackw/AppData/Local/Python/bin/git.cmd.com"
+      - "C:/Users/jackw/AppData/Local/Python/bin/git.cmd.exe"
+      - "C:/Users/jackw/AppData/Local/Python/bin/git.cmd"
+      - "C:/Users/jackw/AppData/Local/Programs/Microsoft VS Code/bin/git.cmd.com"
+      - "C:/Users/jackw/AppData/Local/Programs/Microsoft VS Code/bin/git.cmd.exe"
+      - "C:/Users/jackw/AppData/Local/Programs/Microsoft VS Code/bin/git.cmd"
+      - "C:/Users/jackw/AppData/Local/Microsoft/WinGet/Links/git.cmd.com"
+      - "C:/Users/jackw/AppData/Local/Microsoft/WinGet/Links/git.cmd.exe"
+      - "C:/Users/jackw/AppData/Local/Microsoft/WinGet/Links/git.cmd"
+      - "C:/Users/jackw/AppData/Roaming/npm/git.cmd.com"
+      - "C:/Users/jackw/AppData/Roaming/npm/git.cmd.exe"
+      - "C:/Users/jackw/AppData/Roaming/npm/git.cmd"
+      - "C:/Users/jackw/AppData/Local/Programs/cursor/resources/app/bin/git.cmd.com"
+      - "C:/Users/jackw/AppData/Local/Programs/cursor/resources/app/bin/git.cmd.exe"
+      - "C:/Users/jackw/AppData/Local/Programs/cursor/resources/app/bin/git.cmd"
+      - "C:/Users/jackw/OneDrive/Desktop/git-projects/C/vcpkg/git.cmd.com"
+      - "C:/Users/jackw/OneDrive/Desktop/git-projects/C/vcpkg/git.cmd.exe"
+      - "C:/Users/jackw/OneDrive/Desktop/git-projects/C/vcpkg/git.cmd"
+      - "C:/Program Files (x86)/Microsoft Visual Studio/18/BuildTools/VC/Tools/MSVC/14.51.36231/bin/Hostx64/x64/git.cmd.com"
+      - "C:/Program Files (x86)/Microsoft Visual Studio/18/BuildTools/VC/Tools/MSVC/14.51.36231/bin/Hostx64/x64/git.cmd.exe"
+      - "C:/Program Files (x86)/Microsoft Visual Studio/18/BuildTools/VC/Tools/MSVC/14.51.36231/bin/Hostx64/x64/git.cmd"
+      - "C:/Users/jackw/AppData/Local/cforge/installed/ap2-project/bin/git.cmd.com"
+      - "C:/Users/jackw/AppData/Local/cforge/installed/ap2-project/bin/git.cmd.exe"
+      - "C:/Users/jackw/AppData/Local/cforge/installed/ap2-project/bin/git.cmd"
+      - "C:/Program Files/bin/git.cmd.com"
+      - "C:/Program Files/bin/git.cmd.exe"
+      - "C:/Program Files/bin/git.cmd"
+      - "C:/Program Files/sbin/git.cmd.com"
+      - "C:/Program Files/sbin/git.cmd.exe"
+      - "C:/Program Files/sbin/git.cmd"
+      - "C:/Program Files/git.cmd.com"
+      - "C:/Program Files/git.cmd.exe"
+      - "C:/Program Files/git.cmd"
+      - "C:/Program Files (x86)/bin/git.cmd.com"
+      - "C:/Program Files (x86)/bin/git.cmd.exe"
+      - "C:/Program Files (x86)/bin/git.cmd"
+      - "C:/Program Files (x86)/sbin/git.cmd.com"
+      - "C:/Program Files (x86)/sbin/git.cmd.exe"
+      - "C:/Program Files (x86)/sbin/git.cmd"
+      - "C:/Program Files (x86)/git.cmd.com"
+      - "C:/Program Files (x86)/git.cmd.exe"
+      - "C:/Program Files (x86)/git.cmd"
+      - "C:/Program Files/CMake/bin/git.cmd.com"
+      - "C:/Program Files/CMake/bin/git.cmd.exe"
+      - "C:/Program Files/CMake/bin/git.cmd"
+      - "C:/Program Files/CMake/sbin/git.cmd.com"
+      - "C:/Program Files/CMake/sbin/git.cmd.exe"
+      - "C:/Program Files/CMake/sbin/git.cmd"
+      - "C:/Program Files/CMake/git.cmd.com"
+      - "C:/Program Files/CMake/git.cmd.exe"
+      - "C:/Program Files/CMake/git.cmd"
+      - "C:/Program Files (x86)/ap2/bin/git.cmd.com"
+      - "C:/Program Files (x86)/ap2/bin/git.cmd.exe"
+      - "C:/Program Files (x86)/ap2/bin/git.cmd"
+      - "C:/Program Files (x86)/ap2/sbin/git.cmd.com"
+      - "C:/Program Files (x86)/ap2/sbin/git.cmd.exe"
+      - "C:/Program Files (x86)/ap2/sbin/git.cmd"
+      - "C:/Program Files (x86)/ap2/git.cmd.com"
+      - "C:/Program Files (x86)/ap2/git.cmd.exe"
+      - "C:/Program Files (x86)/ap2/git.cmd"
+      - "C:/Users/jackw/AppData/Local/Atlassian/SourceTree/git_local/bin/git.cmd.com"
+      - "C:/Users/jackw/AppData/Local/Atlassian/SourceTree/git_local/bin/git.cmd.exe"
+      - "C:/Users/jackw/AppData/Local/Atlassian/SourceTree/git_local/bin/git.cmd"
+      - "C:/Program Files (x86)/Microsoft/Edge/Application/git.com"
+      - "C:/Program Files (x86)/Microsoft/Edge/Application/git.exe"
+      - "C:/Program Files (x86)/Microsoft/Edge/Application/git"
+      - "C:/Python314/Scripts/git.com"
+      - "C:/Python314/Scripts/git.exe"
+      - "C:/Python314/Scripts/git"
+      - "C:/Python314/git.com"
+      - "C:/Python314/git.exe"
+      - "C:/Python314/git"
+      - "C:/Windows/System32/git.com"
+      - "C:/Windows/System32/git.exe"
+      - "C:/Windows/System32/git"
+      - "C:/Windows/git.com"
+      - "C:/Windows/git.exe"
+      - "C:/Windows/git"
+      - "C:/Windows/System32/wbem/git.com"
+      - "C:/Windows/System32/wbem/git.exe"
+      - "C:/Windows/System32/wbem/git"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/git.com"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/git.exe"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/git"
+      - "C:/Windows/System32/OpenSSH/git.com"
+      - "C:/Windows/System32/OpenSSH/git.exe"
+      - "C:/Windows/System32/OpenSSH/git"
+      - "C:/Program Files/Intel/WiFi/bin/git.com"
+      - "C:/Program Files/Intel/WiFi/bin/git.exe"
+      - "C:/Program Files/Intel/WiFi/bin/git"
+      - "C:/Program Files/Common Files/Intel/WirelessCommon/git.com"
+      - "C:/Program Files/Common Files/Intel/WirelessCommon/git.exe"
+      - "C:/Program Files/Common Files/Intel/WirelessCommon/git"
+      - "C:/Program Files/Git/cmd/git.com"
+    found: "C:/Program Files/Git/cmd/git.exe"
+    search_context:
+      ENV{PATH}:
+        - "C:\\Program Files (x86)\\Microsoft\\Edge\\Application"
+        - "C:\\Python314\\Scripts\\"
+        - "C:\\Python314\\"
+        - "C:\\WINDOWS\\system32"
+        - "C:\\WINDOWS"
+        - "C:\\WINDOWS\\System32\\Wbem"
+        - "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\WINDOWS\\System32\\OpenSSH\\"
+        - "C:\\Program Files\\Intel\\WiFi\\bin\\"
+        - "C:\\Program Files\\Common Files\\Intel\\WirelessCommon\\"
+        - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\CMake\\bin"
+        - "C:\\Users\\jackw\\.rokit\\bin"
+        - "C:\\Program Files\\nodejs\\"
+        - "C:\\ProgramData\\chocolatey\\bin"
+        - "C:\\Program Files\\GitHub CLI\\"
+        - "C:\\Program Files\\Neovim\\bin"
+        - "C:\\msys64\\ucrt64\\bin"
+        - "C:\\Users\\jackw\\AppData\\Local\\cforge\\installed\\cforge\\bin"
+        - "C:\\Python314\\Scripts\\"
+        - "C:\\Python314\\"
+        - "C:\\WINDOWS\\system32"
+        - "C:\\WINDOWS"
+        - "C:\\WINDOWS\\System32\\Wbem"
+        - "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\WINDOWS\\System32\\OpenSSH\\"
+        - "C:\\Program Files\\Intel\\WiFi\\bin\\"
+        - "C:\\Program Files\\Common Files\\Intel\\WirelessCommon\\"
+        - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\CMake\\bin"
+        - "C:\\Users\\jackw\\.rokit\\bin"
+        - "C:\\Program Files\\nodejs\\"
+        - "C:\\ProgramData\\chocolatey\\bin"
+        - "C:\\Program Files\\GitHub CLI\\"
+        - "C:\\Program Files\\Neovim\\bin"
+        - "C:\\Users\\jackw\\AppData\\Local\\Programs\\Sere\\bin"
+        - "c:\\Users\\jackw\\AppData\\Local\\Programs\\cursor\\resources\\app\\codeBin"
+        - "C:\\Users\\jackw\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "C:\\Users\\jackw\\AppData\\Local\\Python\\bin"
+        - "C:\\Users\\jackw\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\Users\\jackw\\AppData\\Local\\Microsoft\\WinGet\\Links"
+        - "C:\\msys64\\ucrt64\\bin\\"
+        - "C:\\Users\\jackw\\.rokit\\bin"
+        - "C:\\Users\\jackw\\AppData\\Roaming\\npm"
+        - "C:\\Users\\jackw\\AppData\\Local\\Programs\\cursor\\resources\\app\\bin"
+        - "C:\\Users\\jackw\\OneDrive\\Desktop\\git-projects\\C\\vcpkg"
+        - "C:\\Program Files (x86)\\Microsoft Visual Studio\\18\\BuildTools\\VC\\Tools\\MSVC\\14.51.36231\\bin\\Hostx64\\x64"
+        - "C:\\Users\\jackw\\AppData\\Local\\cforge\\installed\\ap2-project\\bin"
+      CMAKE_INSTALL_PREFIX: "C:/Program Files (x86)/ap2"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "C:/Program Files"
+        - "C:/Program Files (x86)"
+        - "C:/Program Files/CMake"
+        - "C:/Program Files (x86)/ap2"
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/Internal/CheckSourceCompiles.cmake:104 (try_compile)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CheckCSourceCompiles.cmake:103 (cmake_check_source_compiles)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/FindThreads.cmake:160 (check_c_source_compiles)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/FindThreads.cmake:226 (_threads_check_libc)"
+      - "build-release/_deps/glfw-src/CMakeLists.txt:48 (find_package)"
+    checks:
+      - "Performing Test CMAKE_HAVE_LIBC_PTHREAD"
+    directories:
+      source: "C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build-release/CMakeFiles/CMakeScratch/TryCompile-qqr1ec"
+      binary: "C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build-release/CMakeFiles/CMakeScratch/TryCompile-qqr1ec"
+    cmakeVariables:
+      CMAKE_CXX_STDLIB_MODULES_JSON: ""
+      CMAKE_C_FLAGS: "-B C:/msys64/ucrt64/bin"
+      CMAKE_C_FLAGS_DEBUG: "/Zi /Ob0 /Od /RTC1"
+      CMAKE_EXE_LINKER_FLAGS: "/machine:x64"
+      CMAKE_MODULE_PATH: "C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build-release/_deps/glfw-src/CMake/modules"
+    buildResult:
+      variable: "CMAKE_HAVE_LIBC_PTHREAD"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build-release/CMakeFiles/CMakeScratch/TryCompile-qqr1ec'
+        
+        Run Build Command(s): "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_05b2f.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
+        MSBuild version 17.14.51+25f168cee for .NET Framework
+        Build started 8/31/2026 11:35:53 PM.
+        
+        Project "C:\\Users\\jackw\\OneDrive\\Desktop\\git-projects\\aphelion-engine\\ap2\\build-release\\CMakeFiles\\CMakeScratch\\TryCompile-qqr1ec\\cmTC_05b2f.vcxproj" on node 1 (default targets).
+        PrepareForBuild:
+          Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
+          Creating directory "C:\\Users\\jackw\\OneDrive\\Desktop\\git-projects\\aphelion-engine\\ap2\\build-release\\CMakeFiles\\CMakeScratch\\TryCompile-qqr1ec\\Debug\\".
+          Creating directory "cmTC_05b2f.dir\\Debug\\cmTC_05b2f.tlog\\".
+        InitializeBuildStatus:
+          Creating "cmTC_05b2f.dir\\Debug\\cmTC_05b2f.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
+          Touching "cmTC_05b2f.dir\\Debug\\cmTC_05b2f.tlog\\unsuccessfulbuild".
+        VcpkgTripletSelection:
+          Using triplet "x64-windows" from "C:\\Users\\jackw\\OneDrive\\Desktop\\git-projects\\C\\vcpkg\\installed\\x64-windows\\"
+          Using normalized configuration "Debug"
+        ClCompile:
+          C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\CL.exe /c /I"C:\\Users\\jackw\\OneDrive\\Desktop\\git-projects\\C\\vcpkg\\installed\\x64-windows\\include" /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D CMAKE_HAVE_LIBC_PTHREAD /D _MBCS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /std:c17 /Fo"cmTC_05b2f.dir\\Debug\\\\" /Fd"cmTC_05b2f.dir\\Debug\\vc143.pdb" /external:W1 /TC /errorReport:queue  -B C:/msys64/ucrt64/bin "C:\\Users\\jackw\\OneDrive\\Desktop\\git-projects\\aphelion-engine\\ap2\\build-release\\CMakeFiles\\CMakeScratch\\TryCompile-qqr1ec\\src.c"
+          Microsoft (R) C/C++ Optimizing Compiler Version 19.44.35228 for x64
+          Copyright (C) Microsoft Corporation.  All rights reserved.
+          cl /c /I"C:\\Users\\jackw\\OneDrive\\Desktop\\git-projects\\C\\vcpkg\\installed\\x64-windows\\include" /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D CMAKE_HAVE_LIBC_PTHREAD /D _MBCS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /std:c17 /Fo"cmTC_05b2f.dir\\Debug\\\\" /Fd"cmTC_05b2f.dir\\Debug\\vc143.pdb" /external:W1 /TC /errorReport:queue  -B C:/msys64/ucrt64/bin "C:\\Users\\jackw\\OneDrive\\Desktop\\git-projects\\aphelion-engine\\ap2\\build-release\\CMakeFiles\\CMakeScratch\\TryCompile-qqr1ec\\src.c"
+        cl : command line  warning D9002: ignoring unknown option '-B' [C:\\Users\\jackw\\OneDrive\\Desktop\\git-projects\\aphelion-engine\\ap2\\build-release\\CMakeFiles\\CMakeScratch\\TryCompile-qqr1ec\\cmTC_05b2f.vcxproj]
+          bin
+          src.c
+          Generating Code...
+        C:\\msys64\\ucrt64\\bin(1,1): error C1083: Cannot open source file: 'C:/msys64/ucrt64/bin': No such file or directory [C:\\Users\\jackw\\OneDrive\\Desktop\\git-projects\\aphelion-engine\\ap2\\build-release\\CMakeFiles\\CMakeScratch\\TryCompile-qqr1ec\\cmTC_05b2f.vcxproj]
+          (compiling source file '../../../../../../../../../../../msys64/ucrt64/bin')
+          
+        C:\\Users\\jackw\\OneDrive\\Desktop\\git-projects\\aphelion-engine\\ap2\\build-release\\CMakeFiles\\CMakeScratch\\TryCompile-qqr1ec\\src.c(1,1): error C1083: Cannot open include file: 'pthread.h': No such file or directory [C:\\Users\\jackw\\OneDrive\\Desktop\\git-projects\\aphelion-engine\\ap2\\build-release\\CMakeFiles\\CMakeScratch\\TryCompile-qqr1ec\\cmTC_05b2f.vcxproj]
+        Done Building Project "C:\\Users\\jackw\\OneDrive\\Desktop\\git-projects\\aphelion-engine\\ap2\\build-release\\CMakeFiles\\CMakeScratch\\TryCompile-qqr1ec\\cmTC_05b2f.vcxproj" (default targets) -- FAILED.
+        
+        Build FAILED.
+        
+        "C:\\Users\\jackw\\OneDrive\\Desktop\\git-projects\\aphelion-engine\\ap2\\build-release\\CMakeFiles\\CMakeScratch\\TryCompile-qqr1ec\\cmTC_05b2f.vcxproj" (default target) (1) ->
+        (ClCompile target) -> 
+          cl : command line  warning D9002: ignoring unknown option '-B' [C:\\Users\\jackw\\OneDrive\\Desktop\\git-projects\\aphelion-engine\\ap2\\build-release\\CMakeFiles\\CMakeScratch\\TryCompile-qqr1ec\\cmTC_05b2f.vcxproj]
+        
+        
+        "C:\\Users\\jackw\\OneDrive\\Desktop\\git-projects\\aphelion-engine\\ap2\\build-release\\CMakeFiles\\CMakeScratch\\TryCompile-qqr1ec\\cmTC_05b2f.vcxproj" (default target) (1) ->
+        (ClCompile target) -> 
+          C:\\msys64\\ucrt64\\bin(1,1): error C1083: Cannot open source file: 'C:/msys64/ucrt64/bin': No such file or directory [C:\\Users\\jackw\\OneDrive\\Desktop\\git-projects\\aphelion-engine\\ap2\\build-release\\CMakeFiles\\CMakeScratch\\TryCompile-qqr1ec\\cmTC_05b2f.vcxproj]
+          C:\\Users\\jackw\\OneDrive\\Desktop\\git-projects\\aphelion-engine\\ap2\\build-release\\CMakeFiles\\CMakeScratch\\TryCompile-qqr1ec\\src.c(1,1): error C1083: Cannot open include file: 'pthread.h': No such file or directory [C:\\Users\\jackw\\OneDrive\\Desktop\\git-projects\\aphelion-engine\\ap2\\build-release\\CMakeFiles\\CMakeScratch\\TryCompile-qqr1ec\\cmTC_05b2f.vcxproj]
+        
+            1 Warning(s)
+            2 Error(s)
+        
+        Time Elapsed 00:00:02.50
+        
+      exitCode: 1
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CheckLibraryExists.cmake:154 (try_compile)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/FindThreads.cmake:175 (check_library_exists)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/FindThreads.cmake:238 (_threads_check_lib)"
+      - "build-release/_deps/glfw-src/CMakeLists.txt:48 (find_package)"
+    checks:
+      - "Looking for pthread_create in pthreads"
+    directories:
+      source: "C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build-release/CMakeFiles/CMakeScratch/TryCompile-1xz5uz"
+      binary: "C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build-release/CMakeFiles/CMakeScratch/TryCompile-1xz5uz"
+    cmakeVariables:
+      CMAKE_CXX_STDLIB_MODULES_JSON: ""
+      CMAKE_C_FLAGS: "-B C:/msys64/ucrt64/bin"
+      CMAKE_C_FLAGS_DEBUG: "/Zi /Ob0 /Od /RTC1"
+      CMAKE_EXE_LINKER_FLAGS: "/machine:x64"
+      CMAKE_MODULE_PATH: "C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build-release/_deps/glfw-src/CMake/modules"
+    buildResult:
+      variable: "CMAKE_HAVE_PTHREADS_CREATE"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build-release/CMakeFiles/CMakeScratch/TryCompile-1xz5uz'
+        
+        Run Build Command(s): "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_a851c.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
+        MSBuild version 17.14.51+25f168cee for .NET Framework
+        Build started 8/31/2026 11:35:56 PM.
+        
+        Project "C:\\Users\\jackw\\OneDrive\\Desktop\\git-projects\\aphelion-engine\\ap2\\build-release\\CMakeFiles\\CMakeScratch\\TryCompile-1xz5uz\\cmTC_a851c.vcxproj" on node 1 (default targets).
+        PrepareForBuild:
+          Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
+          Creating directory "C:\\Users\\jackw\\OneDrive\\Desktop\\git-projects\\aphelion-engine\\ap2\\build-release\\CMakeFiles\\CMakeScratch\\TryCompile-1xz5uz\\Debug\\".
+          Creating directory "cmTC_a851c.dir\\Debug\\cmTC_a851c.tlog\\".
+        InitializeBuildStatus:
+          Creating "cmTC_a851c.dir\\Debug\\cmTC_a851c.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
+          Touching "cmTC_a851c.dir\\Debug\\cmTC_a851c.tlog\\unsuccessfulbuild".
+        VcpkgTripletSelection:
+          Using triplet "x64-windows" from "C:\\Users\\jackw\\OneDrive\\Desktop\\git-projects\\C\\vcpkg\\installed\\x64-windows\\"
+          Using normalized configuration "Debug"
+        ClCompile:
+          C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\CL.exe /c /I"C:\\Users\\jackw\\OneDrive\\Desktop\\git-projects\\C\\vcpkg\\installed\\x64-windows\\include" /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D CHECK_FUNCTION_EXISTS=pthread_create /D _MBCS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /std:c17 /Fo"cmTC_a851c.dir\\Debug\\\\" /Fd"cmTC_a851c.dir\\Debug\\vc143.pdb" /external:W1 /TC /errorReport:queue  -B C:/msys64/ucrt64/bin "C:\\Users\\jackw\\OneDrive\\Desktop\\git-projects\\aphelion-engine\\ap2\\build-release\\CMakeFiles\\CMakeScratch\\TryCompile-1xz5uz\\CheckFunctionExists.c"
+          Microsoft (R) C/C++ Optimizing Compiler Version 19.44.35228 for x64
+          Copyright (C) Microsoft Corporation.  All rights reserved.
+          cl /c /I"C:\\Users\\jackw\\OneDrive\\Desktop\\git-projects\\C\\vcpkg\\installed\\x64-windows\\include" /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D CHECK_FUNCTION_EXISTS=pthread_create /D _MBCS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /std:c17 /Fo"cmTC_a851c.dir\\Debug\\\\" /Fd"cmTC_a851c.dir\\Debug\\vc143.pdb" /external:W1 /TC /errorReport:queue  -B C:/msys64/ucrt64/bin "C:\\Users\\jackw\\OneDrive\\Desktop\\git-projects\\aphelion-engine\\ap2\\build-release\\CMakeFiles\\CMakeScratch\\TryCompile-1xz5uz\\CheckFunctionExists.c"
+        cl : command line  warning D9002: ignoring unknown option '-B' [C:\\Users\\jackw\\OneDrive\\Desktop\\git-projects\\aphelion-engine\\ap2\\build-release\\CMakeFiles\\CMakeScratch\\TryCompile-1xz5uz\\cmTC_a851c.vcxproj]
+          bin
+          CheckFunctionExists.c
+          Generating Code...
+        C:\\msys64\\ucrt64\\bin(1,1): error C1083: Cannot open source file: 'C:/msys64/ucrt64/bin': No such file or directory [C:\\Users\\jackw\\OneDrive\\Desktop\\git-projects\\aphelion-engine\\ap2\\build-release\\CMakeFiles\\CMakeScratch\\TryCompile-1xz5uz\\cmTC_a851c.vcxproj]
+          (compiling source file '../../../../../../../../../../../msys64/ucrt64/bin')
+          
+        Done Building Project "C:\\Users\\jackw\\OneDrive\\Desktop\\git-projects\\aphelion-engine\\ap2\\build-release\\CMakeFiles\\CMakeScratch\\TryCompile-1xz5uz\\cmTC_a851c.vcxproj" (default targets) -- FAILED.
+        
+        Build FAILED.
+        
+        "C:\\Users\\jackw\\OneDrive\\Desktop\\git-projects\\aphelion-engine\\ap2\\build-release\\CMakeFiles\\CMakeScratch\\TryCompile-1xz5uz\\cmTC_a851c.vcxproj" (default target) (1) ->
+        (ClCompile target) -> 
+          cl : command line  warning D9002: ignoring unknown option '-B' [C:\\Users\\jackw\\OneDrive\\Desktop\\git-projects\\aphelion-engine\\ap2\\build-release\\CMakeFiles\\CMakeScratch\\TryCompile-1xz5uz\\cmTC_a851c.vcxproj]
+        
+        
+        "C:\\Users\\jackw\\OneDrive\\Desktop\\git-projects\\aphelion-engine\\ap2\\build-release\\CMakeFiles\\CMakeScratch\\TryCompile-1xz5uz\\cmTC_a851c.vcxproj" (default target) (1) ->
+        (ClCompile target) -> 
+          C:\\msys64\\ucrt64\\bin(1,1): error C1083: Cannot open source file: 'C:/msys64/ucrt64/bin': No such file or directory [C:\\Users\\jackw\\OneDrive\\Desktop\\git-projects\\aphelion-engine\\ap2\\build-release\\CMakeFiles\\CMakeScratch\\TryCompile-1xz5uz\\cmTC_a851c.vcxproj]
+        
+            1 Warning(s)
+            1 Error(s)
+        
+        Time Elapsed 00:00:02.65
+        
+      exitCode: 1
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CheckLibraryExists.cmake:154 (try_compile)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/FindThreads.cmake:175 (check_library_exists)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/FindThreads.cmake:239 (_threads_check_lib)"
+      - "build-release/_deps/glfw-src/CMakeLists.txt:48 (find_package)"
+    checks:
+      - "Looking for pthread_create in pthread"
+    directories:
+      source: "C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build-release/CMakeFiles/CMakeScratch/TryCompile-rvzk44"
+      binary: "C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build-release/CMakeFiles/CMakeScratch/TryCompile-rvzk44"
+    cmakeVariables:
+      CMAKE_CXX_STDLIB_MODULES_JSON: ""
+      CMAKE_C_FLAGS: "-B C:/msys64/ucrt64/bin"
+      CMAKE_C_FLAGS_DEBUG: "/Zi /Ob0 /Od /RTC1"
+      CMAKE_EXE_LINKER_FLAGS: "/machine:x64"
+      CMAKE_MODULE_PATH: "C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build-release/_deps/glfw-src/CMake/modules"
+    buildResult:
+      variable: "CMAKE_HAVE_PTHREAD_CREATE"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build-release/CMakeFiles/CMakeScratch/TryCompile-rvzk44'
+        
+        Run Build Command(s): "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_c1733.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
+        MSBuild version 17.14.51+25f168cee for .NET Framework
+        Build started 8/31/2026 11:36:00 PM.
+        
+        Project "C:\\Users\\jackw\\OneDrive\\Desktop\\git-projects\\aphelion-engine\\ap2\\build-release\\CMakeFiles\\CMakeScratch\\TryCompile-rvzk44\\cmTC_c1733.vcxproj" on node 1 (default targets).
+        PrepareForBuild:
+          Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
+          Creating directory "C:\\Users\\jackw\\OneDrive\\Desktop\\git-projects\\aphelion-engine\\ap2\\build-release\\CMakeFiles\\CMakeScratch\\TryCompile-rvzk44\\Debug\\".
+          Creating directory "cmTC_c1733.dir\\Debug\\cmTC_c1733.tlog\\".
+        InitializeBuildStatus:
+          Creating "cmTC_c1733.dir\\Debug\\cmTC_c1733.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
+          Touching "cmTC_c1733.dir\\Debug\\cmTC_c1733.tlog\\unsuccessfulbuild".
+        VcpkgTripletSelection:
+          Using triplet "x64-windows" from "C:\\Users\\jackw\\OneDrive\\Desktop\\git-projects\\C\\vcpkg\\installed\\x64-windows\\"
+          Using normalized configuration "Debug"
+        ClCompile:
+          C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\CL.exe /c /I"C:\\Users\\jackw\\OneDrive\\Desktop\\git-projects\\C\\vcpkg\\installed\\x64-windows\\include" /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D CHECK_FUNCTION_EXISTS=pthread_create /D _MBCS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /std:c17 /Fo"cmTC_c1733.dir\\Debug\\\\" /Fd"cmTC_c1733.dir\\Debug\\vc143.pdb" /external:W1 /TC /errorReport:queue  -B C:/msys64/ucrt64/bin "C:\\Users\\jackw\\OneDrive\\Desktop\\git-projects\\aphelion-engine\\ap2\\build-release\\CMakeFiles\\CMakeScratch\\TryCompile-rvzk44\\CheckFunctionExists.c"
+          Microsoft (R) C/C++ Optimizing Compiler Version 19.44.35228 for x64
+          Copyright (C) Microsoft Corporation.  All rights reserved.
+          cl /c /I"C:\\Users\\jackw\\OneDrive\\Desktop\\git-projects\\C\\vcpkg\\installed\\x64-windows\\include" /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D CHECK_FUNCTION_EXISTS=pthread_create /D _MBCS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /std:c17 /Fo"cmTC_c1733.dir\\Debug\\\\" /Fd"cmTC_c1733.dir\\Debug\\vc143.pdb" /external:W1 /TC /errorReport:queue  -B C:/msys64/ucrt64/bin "C:\\Users\\jackw\\OneDrive\\Desktop\\git-projects\\aphelion-engine\\ap2\\build-release\\CMakeFiles\\CMakeScratch\\TryCompile-rvzk44\\CheckFunctionExists.c"
+        cl : command line  warning D9002: ignoring unknown option '-B' [C:\\Users\\jackw\\OneDrive\\Desktop\\git-projects\\aphelion-engine\\ap2\\build-release\\CMakeFiles\\CMakeScratch\\TryCompile-rvzk44\\cmTC_c1733.vcxproj]
+          bin
+          CheckFunctionExists.c
+          Generating Code...
+        C:\\msys64\\ucrt64\\bin(1,1): error C1083: Cannot open source file: 'C:/msys64/ucrt64/bin': No such file or directory [C:\\Users\\jackw\\OneDrive\\Desktop\\git-projects\\aphelion-engine\\ap2\\build-release\\CMakeFiles\\CMakeScratch\\TryCompile-rvzk44\\cmTC_c1733.vcxproj]
+          (compiling source file '../../../../../../../../../../../msys64/ucrt64/bin')
+          
+        Done Building Project "C:\\Users\\jackw\\OneDrive\\Desktop\\git-projects\\aphelion-engine\\ap2\\build-release\\CMakeFiles\\CMakeScratch\\TryCompile-rvzk44\\cmTC_c1733.vcxproj" (default targets) -- FAILED.
+        
+        Build FAILED.
+        
+        "C:\\Users\\jackw\\OneDrive\\Desktop\\git-projects\\aphelion-engine\\ap2\\build-release\\CMakeFiles\\CMakeScratch\\TryCompile-rvzk44\\cmTC_c1733.vcxproj" (default target) (1) ->
+        (ClCompile target) -> 
+          cl : command line  warning D9002: ignoring unknown option '-B' [C:\\Users\\jackw\\OneDrive\\Desktop\\git-projects\\aphelion-engine\\ap2\\build-release\\CMakeFiles\\CMakeScratch\\TryCompile-rvzk44\\cmTC_c1733.vcxproj]
+        
+        
+        "C:\\Users\\jackw\\OneDrive\\Desktop\\git-projects\\aphelion-engine\\ap2\\build-release\\CMakeFiles\\CMakeScratch\\TryCompile-rvzk44\\cmTC_c1733.vcxproj" (default target) (1) ->
+        (ClCompile target) -> 
+          C:\\msys64\\ucrt64\\bin(1,1): error C1083: Cannot open source file: 'C:/msys64/ucrt64/bin': No such file or directory [C:\\Users\\jackw\\OneDrive\\Desktop\\git-projects\\aphelion-engine\\ap2\\build-release\\CMakeFiles\\CMakeScratch\\TryCompile-rvzk44\\cmTC_c1733.vcxproj]
+        
+            1 Warning(s)
+            1 Error(s)
+        
+        Time Elapsed 00:00:01.98
+        
+      exitCode: 1
+  -
+    kind: "find-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/FindDoxygen.cmake:770 (find_program)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/FindDoxygen.cmake:955 (_Doxygen_find_doxygen)"
+      - "build-release/_deps/glfw-src/docs/CMakeLists.txt:39 (find_package)"
+    mode: "program"
+    variable: "DOXYGEN_EXECUTABLE"
+    description: "Doxygen documentation generation tool (https://www.doxygen.nl)"
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "doxygen"
+    candidate_directories:
+      - "C:/Program Files (x86)/Microsoft/Edge/Application/"
+      - "C:/Python314/Scripts/"
+      - "C:/Python314/"
+      - "C:/Windows/System32/"
+      - "C:/Windows/"
+      - "C:/Windows/System32/wbem/"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/"
+      - "C:/Windows/System32/OpenSSH/"
+      - "C:/Program Files/Intel/WiFi/bin/"
+      - "C:/Program Files/Common Files/Intel/WirelessCommon/"
+      - "C:/Program Files/Git/cmd/"
+      - "C:/Program Files/CMake/bin/"
+      - "C:/Users/jackw/.rokit/bin/"
+      - "C:/Program Files/nodejs/"
+      - "C:/ProgramData/chocolatey/bin/"
+      - "C:/Program Files/GitHub CLI/"
+      - "C:/Program Files/Neovim/bin/"
+      - "C:/msys64/ucrt64/bin/"
+      - "C:/Users/jackw/AppData/Local/cforge/installed/cforge/bin/"
+      - "C:/Users/jackw/AppData/Local/Programs/Sere/bin/"
+      - "C:/Users/jackw/AppData/Local/Programs/cursor/resources/app/codeBin/"
+      - "C:/Users/jackw/AppData/Local/Microsoft/WindowsApps/"
+      - "C:/Users/jackw/AppData/Local/Python/bin/"
+      - "C:/Users/jackw/AppData/Local/Programs/Microsoft VS Code/bin/"
+      - "C:/Users/jackw/AppData/Local/Microsoft/WinGet/Links/"
+      - "C:/Users/jackw/AppData/Roaming/npm/"
+      - "C:/Users/jackw/AppData/Local/Programs/cursor/resources/app/bin/"
+      - "C:/Users/jackw/OneDrive/Desktop/git-projects/C/vcpkg/"
+      - "C:/Program Files (x86)/Microsoft Visual Studio/18/BuildTools/VC/Tools/MSVC/14.51.36231/bin/Hostx64/x64/"
+      - "C:/Users/jackw/AppData/Local/cforge/installed/ap2-project/bin/"
+      - "C:/Program Files/bin/"
+      - "C:/Program Files/sbin/"
+      - "C:/Program Files/"
+      - "C:/Program Files (x86)/bin/"
+      - "C:/Program Files (x86)/sbin/"
+      - "C:/Program Files (x86)/"
+      - "C:/Program Files/CMake/bin/"
+      - "C:/Program Files/CMake/sbin/"
+      - "C:/Program Files/CMake/"
+      - "C:/Program Files (x86)/ap2/bin/"
+      - "C:/Program Files (x86)/ap2/sbin/"
+      - "C:/Program Files (x86)/ap2/"
+      - "/REGISTRY-NOTFOUND/bin/"
+      - "/Applications/Doxygen.app/Contents/Resources/"
+      - "/Applications/Doxygen.app/Contents/MacOS/"
+      - "/Applications/Utilities/Doxygen.app/Contents/Resources/"
+      - "/Applications/Utilities/Doxygen.app/Contents/MacOS/"
+    searched_directories:
+      - "C:/Program Files (x86)/Microsoft/Edge/Application/doxygen.com"
+      - "C:/Program Files (x86)/Microsoft/Edge/Application/doxygen.exe"
+      - "C:/Program Files (x86)/Microsoft/Edge/Application/doxygen"
+      - "C:/Python314/Scripts/doxygen.com"
+      - "C:/Python314/Scripts/doxygen.exe"
+      - "C:/Python314/Scripts/doxygen"
+      - "C:/Python314/doxygen.com"
+      - "C:/Python314/doxygen.exe"
+      - "C:/Python314/doxygen"
+      - "C:/Windows/System32/doxygen.com"
+      - "C:/Windows/System32/doxygen.exe"
+      - "C:/Windows/System32/doxygen"
+      - "C:/Windows/doxygen.com"
+      - "C:/Windows/doxygen.exe"
+      - "C:/Windows/doxygen"
+      - "C:/Windows/System32/wbem/doxygen.com"
+      - "C:/Windows/System32/wbem/doxygen.exe"
+      - "C:/Windows/System32/wbem/doxygen"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/doxygen.com"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/doxygen.exe"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/doxygen"
+      - "C:/Windows/System32/OpenSSH/doxygen.com"
+      - "C:/Windows/System32/OpenSSH/doxygen.exe"
+      - "C:/Windows/System32/OpenSSH/doxygen"
+      - "C:/Program Files/Intel/WiFi/bin/doxygen.com"
+      - "C:/Program Files/Intel/WiFi/bin/doxygen.exe"
+      - "C:/Program Files/Intel/WiFi/bin/doxygen"
+      - "C:/Program Files/Common Files/Intel/WirelessCommon/doxygen.com"
+      - "C:/Program Files/Common Files/Intel/WirelessCommon/doxygen.exe"
+      - "C:/Program Files/Common Files/Intel/WirelessCommon/doxygen"
+      - "C:/Program Files/Git/cmd/doxygen.com"
+      - "C:/Program Files/Git/cmd/doxygen.exe"
+      - "C:/Program Files/Git/cmd/doxygen"
+      - "C:/Program Files/CMake/bin/doxygen.com"
+      - "C:/Program Files/CMake/bin/doxygen.exe"
+      - "C:/Program Files/CMake/bin/doxygen"
+      - "C:/Users/jackw/.rokit/bin/doxygen.com"
+      - "C:/Users/jackw/.rokit/bin/doxygen.exe"
+      - "C:/Users/jackw/.rokit/bin/doxygen"
+      - "C:/Program Files/nodejs/doxygen.com"
+      - "C:/Program Files/nodejs/doxygen.exe"
+      - "C:/Program Files/nodejs/doxygen"
+      - "C:/ProgramData/chocolatey/bin/doxygen.com"
+      - "C:/ProgramData/chocolatey/bin/doxygen.exe"
+      - "C:/ProgramData/chocolatey/bin/doxygen"
+      - "C:/Program Files/GitHub CLI/doxygen.com"
+      - "C:/Program Files/GitHub CLI/doxygen.exe"
+      - "C:/Program Files/GitHub CLI/doxygen"
+      - "C:/Program Files/Neovim/bin/doxygen.com"
+      - "C:/Program Files/Neovim/bin/doxygen.exe"
+      - "C:/Program Files/Neovim/bin/doxygen"
+      - "C:/msys64/ucrt64/bin/doxygen.com"
+      - "C:/msys64/ucrt64/bin/doxygen.exe"
+      - "C:/msys64/ucrt64/bin/doxygen"
+      - "C:/Users/jackw/AppData/Local/cforge/installed/cforge/bin/doxygen.com"
+      - "C:/Users/jackw/AppData/Local/cforge/installed/cforge/bin/doxygen.exe"
+      - "C:/Users/jackw/AppData/Local/cforge/installed/cforge/bin/doxygen"
+      - "C:/Users/jackw/AppData/Local/Programs/Sere/bin/doxygen.com"
+      - "C:/Users/jackw/AppData/Local/Programs/Sere/bin/doxygen.exe"
+      - "C:/Users/jackw/AppData/Local/Programs/Sere/bin/doxygen"
+      - "C:/Users/jackw/AppData/Local/Programs/cursor/resources/app/codeBin/doxygen.com"
+      - "C:/Users/jackw/AppData/Local/Programs/cursor/resources/app/codeBin/doxygen.exe"
+      - "C:/Users/jackw/AppData/Local/Programs/cursor/resources/app/codeBin/doxygen"
+      - "C:/Users/jackw/AppData/Local/Microsoft/WindowsApps/doxygen.com"
+      - "C:/Users/jackw/AppData/Local/Microsoft/WindowsApps/doxygen.exe"
+      - "C:/Users/jackw/AppData/Local/Microsoft/WindowsApps/doxygen"
+      - "C:/Users/jackw/AppData/Local/Python/bin/doxygen.com"
+      - "C:/Users/jackw/AppData/Local/Python/bin/doxygen.exe"
+      - "C:/Users/jackw/AppData/Local/Python/bin/doxygen"
+      - "C:/Users/jackw/AppData/Local/Programs/Microsoft VS Code/bin/doxygen.com"
+      - "C:/Users/jackw/AppData/Local/Programs/Microsoft VS Code/bin/doxygen.exe"
+      - "C:/Users/jackw/AppData/Local/Programs/Microsoft VS Code/bin/doxygen"
+      - "C:/Users/jackw/AppData/Local/Microsoft/WinGet/Links/doxygen.com"
+      - "C:/Users/jackw/AppData/Local/Microsoft/WinGet/Links/doxygen.exe"
+      - "C:/Users/jackw/AppData/Local/Microsoft/WinGet/Links/doxygen"
+      - "C:/Users/jackw/AppData/Roaming/npm/doxygen.com"
+      - "C:/Users/jackw/AppData/Roaming/npm/doxygen.exe"
+      - "C:/Users/jackw/AppData/Roaming/npm/doxygen"
+      - "C:/Users/jackw/AppData/Local/Programs/cursor/resources/app/bin/doxygen.com"
+      - "C:/Users/jackw/AppData/Local/Programs/cursor/resources/app/bin/doxygen.exe"
+      - "C:/Users/jackw/AppData/Local/Programs/cursor/resources/app/bin/doxygen"
+      - "C:/Users/jackw/OneDrive/Desktop/git-projects/C/vcpkg/doxygen.com"
+      - "C:/Users/jackw/OneDrive/Desktop/git-projects/C/vcpkg/doxygen.exe"
+      - "C:/Users/jackw/OneDrive/Desktop/git-projects/C/vcpkg/doxygen"
+      - "C:/Program Files (x86)/Microsoft Visual Studio/18/BuildTools/VC/Tools/MSVC/14.51.36231/bin/Hostx64/x64/doxygen.com"
+      - "C:/Program Files (x86)/Microsoft Visual Studio/18/BuildTools/VC/Tools/MSVC/14.51.36231/bin/Hostx64/x64/doxygen.exe"
+      - "C:/Program Files (x86)/Microsoft Visual Studio/18/BuildTools/VC/Tools/MSVC/14.51.36231/bin/Hostx64/x64/doxygen"
+      - "C:/Users/jackw/AppData/Local/cforge/installed/ap2-project/bin/doxygen.com"
+      - "C:/Users/jackw/AppData/Local/cforge/installed/ap2-project/bin/doxygen.exe"
+      - "C:/Users/jackw/AppData/Local/cforge/installed/ap2-project/bin/doxygen"
+      - "C:/Program Files/bin/doxygen.com"
+      - "C:/Program Files/bin/doxygen.exe"
+      - "C:/Program Files/bin/doxygen"
+      - "C:/Program Files/sbin/doxygen.com"
+      - "C:/Program Files/sbin/doxygen.exe"
+      - "C:/Program Files/sbin/doxygen"
+      - "C:/Program Files/doxygen.com"
+      - "C:/Program Files/doxygen.exe"
+      - "C:/Program Files/doxygen"
+      - "C:/Program Files (x86)/bin/doxygen.com"
+      - "C:/Program Files (x86)/bin/doxygen.exe"
+      - "C:/Program Files (x86)/bin/doxygen"
+      - "C:/Program Files (x86)/sbin/doxygen.com"
+      - "C:/Program Files (x86)/sbin/doxygen.exe"
+      - "C:/Program Files (x86)/sbin/doxygen"
+      - "C:/Program Files (x86)/doxygen.com"
+      - "C:/Program Files (x86)/doxygen.exe"
+      - "C:/Program Files (x86)/doxygen"
+      - "C:/Program Files/CMake/bin/doxygen.com"
+      - "C:/Program Files/CMake/bin/doxygen.exe"
+      - "C:/Program Files/CMake/bin/doxygen"
+      - "C:/Program Files/CMake/sbin/doxygen.com"
+      - "C:/Program Files/CMake/sbin/doxygen.exe"
+      - "C:/Program Files/CMake/sbin/doxygen"
+      - "C:/Program Files/CMake/doxygen.com"
+      - "C:/Program Files/CMake/doxygen.exe"
+      - "C:/Program Files/CMake/doxygen"
+      - "C:/Program Files (x86)/ap2/bin/doxygen.com"
+      - "C:/Program Files (x86)/ap2/bin/doxygen.exe"
+      - "C:/Program Files (x86)/ap2/bin/doxygen"
+      - "C:/Program Files (x86)/ap2/sbin/doxygen.com"
+      - "C:/Program Files (x86)/ap2/sbin/doxygen.exe"
+      - "C:/Program Files (x86)/ap2/sbin/doxygen"
+      - "C:/Program Files (x86)/ap2/doxygen.com"
+      - "C:/Program Files (x86)/ap2/doxygen.exe"
+      - "C:/Program Files (x86)/ap2/doxygen"
+      - "/REGISTRY-NOTFOUND/bin/doxygen.com"
+      - "/REGISTRY-NOTFOUND/bin/doxygen.exe"
+      - "/REGISTRY-NOTFOUND/bin/doxygen"
+      - "/Applications/Doxygen.app/Contents/Resources/doxygen.com"
+      - "/Applications/Doxygen.app/Contents/Resources/doxygen.exe"
+      - "/Applications/Doxygen.app/Contents/Resources/doxygen"
+      - "/Applications/Doxygen.app/Contents/MacOS/doxygen.com"
+      - "/Applications/Doxygen.app/Contents/MacOS/doxygen.exe"
+      - "/Applications/Doxygen.app/Contents/MacOS/doxygen"
+      - "/Applications/Utilities/Doxygen.app/Contents/Resources/doxygen.com"
+      - "/Applications/Utilities/Doxygen.app/Contents/Resources/doxygen.exe"
+      - "/Applications/Utilities/Doxygen.app/Contents/Resources/doxygen"
+      - "/Applications/Utilities/Doxygen.app/Contents/MacOS/doxygen.com"
+      - "/Applications/Utilities/Doxygen.app/Contents/MacOS/doxygen.exe"
+      - "/Applications/Utilities/Doxygen.app/Contents/MacOS/doxygen"
+    found: false
+    search_context:
+      ENV{PATH}:
+        - "C:\\Program Files (x86)\\Microsoft\\Edge\\Application"
+        - "C:\\Python314\\Scripts\\"
+        - "C:\\Python314\\"
+        - "C:\\WINDOWS\\system32"
+        - "C:\\WINDOWS"
+        - "C:\\WINDOWS\\System32\\Wbem"
+        - "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\WINDOWS\\System32\\OpenSSH\\"
+        - "C:\\Program Files\\Intel\\WiFi\\bin\\"
+        - "C:\\Program Files\\Common Files\\Intel\\WirelessCommon\\"
+        - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\CMake\\bin"
+        - "C:\\Users\\jackw\\.rokit\\bin"
+        - "C:\\Program Files\\nodejs\\"
+        - "C:\\ProgramData\\chocolatey\\bin"
+        - "C:\\Program Files\\GitHub CLI\\"
+        - "C:\\Program Files\\Neovim\\bin"
+        - "C:\\msys64\\ucrt64\\bin"
+        - "C:\\Users\\jackw\\AppData\\Local\\cforge\\installed\\cforge\\bin"
+        - "C:\\Python314\\Scripts\\"
+        - "C:\\Python314\\"
+        - "C:\\WINDOWS\\system32"
+        - "C:\\WINDOWS"
+        - "C:\\WINDOWS\\System32\\Wbem"
+        - "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\WINDOWS\\System32\\OpenSSH\\"
+        - "C:\\Program Files\\Intel\\WiFi\\bin\\"
+        - "C:\\Program Files\\Common Files\\Intel\\WirelessCommon\\"
+        - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\CMake\\bin"
+        - "C:\\Users\\jackw\\.rokit\\bin"
+        - "C:\\Program Files\\nodejs\\"
+        - "C:\\ProgramData\\chocolatey\\bin"
+        - "C:\\Program Files\\GitHub CLI\\"
+        - "C:\\Program Files\\Neovim\\bin"
+        - "C:\\Users\\jackw\\AppData\\Local\\Programs\\Sere\\bin"
+        - "c:\\Users\\jackw\\AppData\\Local\\Programs\\cursor\\resources\\app\\codeBin"
+        - "C:\\Users\\jackw\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "C:\\Users\\jackw\\AppData\\Local\\Python\\bin"
+        - "C:\\Users\\jackw\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\Users\\jackw\\AppData\\Local\\Microsoft\\WinGet\\Links"
+        - "C:\\msys64\\ucrt64\\bin\\"
+        - "C:\\Users\\jackw\\.rokit\\bin"
+        - "C:\\Users\\jackw\\AppData\\Roaming\\npm"
+        - "C:\\Users\\jackw\\AppData\\Local\\Programs\\cursor\\resources\\app\\bin"
+        - "C:\\Users\\jackw\\OneDrive\\Desktop\\git-projects\\C\\vcpkg"
+        - "C:\\Program Files (x86)\\Microsoft Visual Studio\\18\\BuildTools\\VC\\Tools\\MSVC\\14.51.36231\\bin\\Hostx64\\x64"
+        - "C:\\Users\\jackw\\AppData\\Local\\cforge\\installed\\ap2-project\\bin"
+      CMAKE_INSTALL_PREFIX: "C:/Program Files (x86)/ap2"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "C:/Program Files"
+        - "C:/Program Files (x86)"
+        - "C:/Program Files/CMake"
+        - "C:/Program Files (x86)/ap2"
+...

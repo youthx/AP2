@@ -7,8 +7,8 @@
  */
 
 #include "AP2/AP2_Post.h"
-#include "AP2/AP2_Post_extra.h"
 #include "AP2/AP2_Gui.h"
+#include "AP2/AP2_Post_extra.h"
 
 #include "AP2_Internal.h"
 
@@ -24,8 +24,7 @@
 
 #include <string.h>
 
-typedef struct AP_PostState
-{
+typedef struct AP_PostState {
   AP_PostConfig config;
   AP_Texture *scene;
   AP_Texture *gui;
@@ -41,8 +40,7 @@ typedef struct AP_PostState
 static AP_PostState g_post;
 static bool g_config_ready = false;
 
-typedef struct AP_PostExtra
-{
+typedef struct AP_PostExtra {
   /* Master */
   float intensity;
 
@@ -115,10 +113,8 @@ typedef struct AP_PostExtra
 static AP_PostExtra g_post_extra;
 static bool g_post_extra_ready = false;
 
-static void AP_PostEnsureExtra(void)
-{
-  if (g_post_extra_ready)
-  {
+static void AP_PostEnsureExtra(void) {
+  if (g_post_extra_ready) {
     return;
   }
 
@@ -256,88 +252,166 @@ static const char *AP_POST_FRAGMENT =
     "uniform float u_dof_aperture;\n"
     "uniform float u_motion_blur;\n"
     "out vec4 frag_color;\n"
-    "float hash(vec2 p) { return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453); }\n"
+    "float hash(vec2 p) { return fract(sin(dot(p, vec2(127.1, 311.7))) * "
+    "43758.5453); }\n"
     "float luminance(vec3 c) { return dot(c, vec3(0.2126, 0.7152, 0.0722)); }\n"
-    "vec3 filmic_tonemap(vec3 x) { vec3 a=x*(2.51*x+0.03); vec3 b=x*(2.43*x+0.59)+0.14; return clamp(a/b,0.0,1.0); }\n"
-    "vec3 hsv2rgb(vec3 c) { vec3 p=abs(fract(c.xxx+vec3(0.0,0.6666667,0.3333333))*6.0-3.0); return c.z*mix(vec3(1.0),clamp(p-1.0,0.0,1.0),c.y); }\n"
-    "vec3 sample_rgb(vec2 uv, vec2 shift) { return vec3(texture(u_texture, uv+shift).r, texture(u_texture, uv).g, texture(u_texture, uv-shift).b); }\n"
-    "vec3 blur9(vec2 uv, vec2 d) { vec3 c=texture(u_texture,uv).rgb*0.20; c+=texture(u_texture,uv+d).rgb*0.12; c+=texture(u_texture,uv-d).rgb*0.12; c+=texture(u_texture,uv+d*2.0).rgb*0.10; c+=texture(u_texture,uv-d*2.0).rgb*0.10; c+=texture(u_texture,uv+vec2(d.x,-d.y)).rgb*0.09; c+=texture(u_texture,uv-vec2(d.x,-d.y)).rgb*0.09; c+=texture(u_texture,uv+vec2(-d.x,d.y)).rgb*0.09; c+=texture(u_texture,uv-vec2(-d.x,d.y)).rgb*0.09; return c; }\n"
+    "vec3 filmic_tonemap(vec3 x) { vec3 a=x*(2.51*x+0.03); vec3 "
+    "b=x*(2.43*x+0.59)+0.14; return clamp(a/b,0.0,1.0); }\n"
+    "vec3 hsv2rgb(vec3 c) { vec3 "
+    "p=abs(fract(c.xxx+vec3(0.0,0.6666667,0.3333333))*6.0-3.0); return "
+    "c.z*mix(vec3(1.0),clamp(p-1.0,0.0,1.0),c.y); }\n"
+    "vec3 sample_rgb(vec2 uv, vec2 shift) { return vec3(texture(u_texture, "
+    "uv+shift).r, texture(u_texture, uv).g, texture(u_texture, uv-shift).b); "
+    "}\n"
+    "vec3 blur9(vec2 uv, vec2 d) { vec3 c=texture(u_texture,uv).rgb*0.20; "
+    "c+=texture(u_texture,uv+d).rgb*0.12; c+=texture(u_texture,uv-d).rgb*0.12; "
+    "c+=texture(u_texture,uv+d*2.0).rgb*0.10; "
+    "c+=texture(u_texture,uv-d*2.0).rgb*0.10; "
+    "c+=texture(u_texture,uv+vec2(d.x,-d.y)).rgb*0.09; "
+    "c+=texture(u_texture,uv-vec2(d.x,-d.y)).rgb*0.09; "
+    "c+=texture(u_texture,uv+vec2(-d.x,d.y)).rgb*0.09; "
+    "c+=texture(u_texture,uv-vec2(-d.x,d.y)).rgb*0.09; return c; }\n"
     "void main() {\n"
-    "  vec2 uv=vec2(v_uv.x,1.0-v_uv.y); vec2 original_uv=uv; vec2 texel=1.0/max(u_resolution,vec2(1.0)); vec2 c=uv-0.5;\n"
+    "  vec2 uv=vec2(v_uv.x,1.0-v_uv.y); vec2 original_uv=uv; vec2 "
+    "texel=1.0/max(u_resolution,vec2(1.0)); vec2 c=uv-0.5;\n"
     "  if(u_wave>0.0) uv.y += sin(uv.x*24.0+u_time*3.0)*0.008*u_wave;\n"
-    "  if(u_ripple>0.0) { float r=length(c); uv += normalize(c+vec2(0.0001))*sin(r*45.0-u_time*4.0)*0.008*u_ripple*(1.0-r); }\n"
-    "  if(u_displacement>0.0) { vec2 n=vec2(hash(uv*91.7+u_time)-0.5,hash(uv*43.1-u_time)-0.5); uv += n*texel*18.0*u_displacement; }\n"
-    "  if(u_glitch>0.0) { float band=floor(uv.y*80.0); float g=hash(vec2(band,floor(u_time*8.0))); if(g<u_glitch*0.35) uv.x += (g-0.5)*0.12*u_glitch; }\n"
+    "  if(u_ripple>0.0) { float r=length(c); uv += "
+    "normalize(c+vec2(0.0001))*sin(r*45.0-u_time*4.0)*0.008*u_ripple*(1.0-r); "
+    "}\n"
+    "  if(u_displacement>0.0) { vec2 "
+    "n=vec2(hash(uv*91.7+u_time)-0.5,hash(uv*43.1-u_time)-0.5); uv += "
+    "n*texel*18.0*u_displacement; }\n"
+    "  if(u_glitch>0.0) { float band=floor(uv.y*80.0); float "
+    "g=hash(vec2(band,floor(u_time*8.0))); if(g<u_glitch*0.35) uv.x += "
+    "(g-0.5)*0.12*u_glitch; }\n"
     "  if(u_vhs>0.0) uv.x += sin(uv.y*500.0+u_time*20.0)*0.0015*u_vhs;\n"
-    "  if(u_kaleidoscope>0.0) { float segments=max(2.0,floor(u_kaleidoscope)); float r=length(c); float a=atan(c.y,c.x); float sector=6.2831853/segments; a=mod(a+sector*0.5,sector)-sector*0.5; a=abs(a); uv=0.5+vec2(cos(a),sin(a))*r; }\n"
-    "  if(u_fisheye>0.0) { float r=length(c); float k=1.0+u_fisheye*r*r; uv=0.5+c*k; }\n"
-    "  float distortion=u_barrel+u_lens_distortion; if(abs(distortion)>0.0001) { float r2=dot(c,c); uv=0.5+c*(1.0+distortion*r2); }\n"
-    "  if(u_pixelate>1.0) { vec2 grid=max(u_resolution/u_pixelate,vec2(1.0)); uv=(floor(uv*grid)+0.5)/grid; }\n"
-    "  vec2 chroma_c=uv-0.5; vec2 chroma_shift=chroma_c*(u_chromatic+u_rgb_split*0.01);\n"
+    "  if(u_kaleidoscope>0.0) { float segments=max(2.0,floor(u_kaleidoscope)); "
+    "float r=length(c); float a=atan(c.y,c.x); float "
+    "sector=6.2831853/segments; a=mod(a+sector*0.5,sector)-sector*0.5; "
+    "a=abs(a); uv=0.5+vec2(cos(a),sin(a))*r; }\n"
+    "  if(u_fisheye>0.0) { float r=length(c); float k=1.0+u_fisheye*r*r; "
+    "uv=0.5+c*k; }\n"
+    "  float distortion=u_barrel+u_lens_distortion; if(abs(distortion)>0.0001) "
+    "{ float r2=dot(c,c); uv=0.5+c*(1.0+distortion*r2); }\n"
+    "  if(u_pixelate>1.0) { vec2 grid=max(u_resolution/u_pixelate,vec2(1.0)); "
+    "uv=(floor(uv*grid)+0.5)/grid; }\n"
+    "  vec2 chroma_c=uv-0.5; vec2 "
+    "chroma_shift=chroma_c*(u_chromatic+u_rgb_split*0.01);\n"
     "  vec3 color=sample_rgb(uv,chroma_shift);\n"
-    "  if(u_motion_blur>0.0) { vec2 d=vec2(texel.x*4.0,texel.y*2.0)*u_motion_blur; color=mix(color,(texture(u_texture,uv+d).rgb+texture(u_texture,uv-d).rgb)*0.5,u_motion_blur); }\n"
-    "  if(u_depth_of_field>0.0) { float focus=max(u_dof_focus,0.001); float radial=abs(length(chroma_c)-focus); float blur=clamp(radial*u_dof_aperture*4.0,0.0,1.0)*u_depth_of_field; color=mix(color,blur9(uv,texel*max(1.0,u_dof_aperture*3.0)),blur); }\n"
-    "  if(u_sharpen>0.0 || u_clarity>0.0 || u_detail>0.0) { vec3 n=texture(u_texture,uv+vec2(0,-texel.y)).rgb; vec3 s=texture(u_texture,uv+vec2(0,texel.y)).rgb; vec3 e=texture(u_texture,uv+vec2(texel.x,0)).rgb; vec3 w=texture(u_texture,uv-vec2(texel.x,0)).rgb; vec3 avg=(n+s+e+w)*0.25; float strength=u_sharpen+u_clarity*0.5+u_detail*0.35; color+= (color-avg)*strength; }\n"
-    "  if(u_bloom_intensity>0.0) { float radius=max(1.0,u_bloom_radius); vec3 bloom=blur9(uv,texel*radius); float lum=luminance(bloom); float knee=max(0.001,u_bloom_softness); float mask=smoothstep(u_bloom_threshold-knee,u_bloom_threshold+knee,lum); color+=bloom*mask*u_bloom_intensity; }\n"
-    "  if(u_lens_dirt>0.0) { float dirt=hash(floor(uv*u_resolution/3.0)); float lum=luminance(color); color+=color*dirt*lum*0.08*u_lens_dirt; }\n"
-    "  color*=max(u_exposure,0.0); if(u_filmic>0.0) color=mix(color,filmic_tonemap(color),clamp(u_filmic,0.0,1.0));\n"
-    "  float gray=luminance(color); color=mix(vec3(gray),color,u_saturation); color=(color-0.5)*u_contrast+0.5; color+=u_brightness;\n"
-    "  color.r += u_temperature*0.06; color.b -= u_temperature*0.06; color.g += u_tint*0.025; color.r -= u_tint*0.015;\n"
-    "  if(u_grayscale>0.0) color=mix(color,vec3(luminance(color)),clamp(u_grayscale,0.0,1.0));\n"
-    "  if(u_sepia>0.0) { vec3 sep=vec3(dot(color,vec3(0.393,0.769,0.189)),dot(color,vec3(0.349,0.686,0.168)),dot(color,vec3(0.272,0.534,0.131))); color=mix(color,sep,u_sepia); }\n"
+    "  if(u_motion_blur>0.0) { vec2 "
+    "d=vec2(texel.x*4.0,texel.y*2.0)*u_motion_blur; "
+    "color=mix(color,(texture(u_texture,uv+d).rgb+texture(u_texture,uv-d).rgb)*"
+    "0.5,u_motion_blur); }\n"
+    "  if(u_depth_of_field>0.0) { float focus=max(u_dof_focus,0.001); float "
+    "radial=abs(length(chroma_c)-focus); float "
+    "blur=clamp(radial*u_dof_aperture*4.0,0.0,1.0)*u_depth_of_field; "
+    "color=mix(color,blur9(uv,texel*max(1.0,u_dof_aperture*3.0)),blur); }\n"
+    "  if(u_sharpen>0.0 || u_clarity>0.0 || u_detail>0.0) { vec3 "
+    "n=texture(u_texture,uv+vec2(0,-texel.y)).rgb; vec3 "
+    "s=texture(u_texture,uv+vec2(0,texel.y)).rgb; vec3 "
+    "e=texture(u_texture,uv+vec2(texel.x,0)).rgb; vec3 "
+    "w=texture(u_texture,uv-vec2(texel.x,0)).rgb; vec3 avg=(n+s+e+w)*0.25; "
+    "float strength=u_sharpen+u_clarity*0.5+u_detail*0.35; color+= "
+    "(color-avg)*strength; }\n"
+    "  if(u_bloom_intensity>0.0) { float radius=max(1.0,u_bloom_radius); vec3 "
+    "bloom=blur9(uv,texel*radius); float lum=luminance(bloom); float "
+    "knee=max(0.001,u_bloom_softness); float "
+    "mask=smoothstep(u_bloom_threshold-knee,u_bloom_threshold+knee,lum); "
+    "color+=bloom*mask*u_bloom_intensity; }\n"
+    "  if(u_lens_dirt>0.0) { float dirt=hash(floor(uv*u_resolution/3.0)); "
+    "float lum=luminance(color); color+=color*dirt*lum*0.08*u_lens_dirt; }\n"
+    "  color*=max(u_exposure,0.0); if(u_filmic>0.0) "
+    "color=mix(color,filmic_tonemap(color),clamp(u_filmic,0.0,1.0));\n"
+    "  float gray=luminance(color); color=mix(vec3(gray),color,u_saturation); "
+    "color=(color-0.5)*u_contrast+0.5; color+=u_brightness;\n"
+    "  color.r += u_temperature*0.06; color.b -= u_temperature*0.06; color.g "
+    "+= u_tint*0.025; color.r -= u_tint*0.015;\n"
+    "  if(u_grayscale>0.0) "
+    "color=mix(color,vec3(luminance(color)),clamp(u_grayscale,0.0,1.0));\n"
+    "  if(u_sepia>0.0) { vec3 "
+    "sep=vec3(dot(color,vec3(0.393,0.769,0.189)),dot(color,vec3(0.349,0.686,0."
+    "168)),dot(color,vec3(0.272,0.534,0.131))); color=mix(color,sep,u_sepia); "
+    "}\n"
     "  if(u_invert>0.0) color=mix(color,vec3(1.0)-color,u_invert);\n"
     "  if(u_solarize>0.0) color=mix(color,1.0-abs(1.0-2.0*color),u_solarize);\n"
-    "  if(u_colorize>0.0) color=mix(color,hsv2rgb(vec3(u_colorize_hue,0.65,gray)),u_colorize);\n"
+    "  if(u_colorize>0.0) "
+    "color=mix(color,hsv2rgb(vec3(u_colorize_hue,0.65,gray)),u_colorize);\n"
     "  if(u_posterize>1.0) color=floor(color*u_posterize+0.5)/u_posterize;\n"
-    "  if(u_cel_shade>0.0) { float bands=4.0; float q=floor(gray*bands)/bands; color=mix(color,color*(0.55+0.45*q/max(gray,0.05)),u_cel_shade); }\n"
-    "  if(u_edge>0.0 || u_outline>0.0) { vec3 n=texture(u_texture,uv+vec2(0,-texel.y)).rgb; vec3 s=texture(u_texture,uv+vec2(0,texel.y)).rgb; vec3 e=texture(u_texture,uv+vec2(texel.x,0)).rgb; vec3 w=texture(u_texture,uv-vec2(texel.x,0)).rgb; float edge=length(e-w)+length(n-s); vec3 edgec=vec3(edge*0.8); color=mix(color,edgec,u_edge); color*=1.0-u_outline*clamp(edge*2.0,0.0,1.0); }\n"
-    "  if(u_halftone>0.0) { float p=0.5+0.5*sin(uv.x*u_resolution.x*0.12)*sin(uv.y*u_resolution.y*0.12); color=mix(color,vec3(step(0.5,p)),u_halftone*0.35); }\n"
-    "  if(u_dither>0.0) { float d=hash(floor(uv*u_resolution))*0.00390625; color+=((d-0.001953125)*u_dither); }\n"
-    "  if(u_scanlines>0.0) { float line=0.5+0.5*sin(uv.y*u_resolution.y*3.14159265); color*=1.0-u_scanlines*0.25*line; }\n"
-    "  if(u_crt>0.0) { float r2=dot(chroma_c,chroma_c); color*=1.0-u_crt*r2*1.8; float mask=0.94+0.06*sin(uv.x*u_resolution.x*3.14159); color*=mix(1.0,mask,u_crt); }\n"
-    "  if(u_halation>0.0) { vec3 red=texture(u_texture,uv+texel*2.0).rgb; float bright=smoothstep(0.6,1.0,luminance(red)); color+=red*vec3(1.0,0.25,0.12)*bright*u_halation*0.12; }\n"
-    "  if(u_film_response>0.0) { color+=vec3(0.02,0.0,-0.01)*gray*u_film_response; color=pow(max(color,vec3(0.0)),vec3(1.0-0.08*u_film_response)); }\n"
-    "  if(u_fog>0.0) { float f=clamp(length(original_uv-0.5)*2.0*u_fog_density+u_fog_height,0.0,1.0)*u_fog; color=mix(color,vec3(0.58,0.64,0.72),f); }\n"
-    "  float vig=1.0-u_vignette*dot(chroma_c,chroma_c)*1.8; color*=max(vig,0.0);\n"
-    "  if(u_noise>0.0) { float nn=hash(uv*u_resolution+u_time*31.0)-0.5; color+=nn*0.08*u_noise; }\n"
-    "  if(u_glitch>0.0) { float g=hash(vec2(floor(uv.y*120.0),floor(u_time*12.0))); color=mix(color,color.bgr,g*u_glitch*0.12); }\n"
-    "  if(u_vhs>0.0) { float n=hash(vec2(floor(uv.y*u_resolution.y),floor(u_time*6.0))); color.rg+=vec2(n-0.5,0.5-n)*u_vhs*0.025; }\n"
-    "  float grain_amount=u_grain+u_film_grain; if(grain_amount>0.0) { float n=hash(uv*u_resolution+u_time*12.0); float n2=hash(uv*u_resolution*1.7-u_time*7.0); color+=(n+n2-1.0)*0.5*grain_amount; }\n"
-    "  color=clamp(color,0.0,1.0); color=pow(max(color,vec3(0.0)),vec3(1.0/max(u_gamma,0.01)));\n"
-    "  frag_color=vec4(mix(texture(u_texture,original_uv).rgb,color,clamp(u_intensity,0.0,1.0)),1.0)*v_color;\n"
+    "  if(u_cel_shade>0.0) { float bands=4.0; float q=floor(gray*bands)/bands; "
+    "color=mix(color,color*(0.55+0.45*q/max(gray,0.05)),u_cel_shade); }\n"
+    "  if(u_edge>0.0 || u_outline>0.0) { vec3 "
+    "n=texture(u_texture,uv+vec2(0,-texel.y)).rgb; vec3 "
+    "s=texture(u_texture,uv+vec2(0,texel.y)).rgb; vec3 "
+    "e=texture(u_texture,uv+vec2(texel.x,0)).rgb; vec3 "
+    "w=texture(u_texture,uv-vec2(texel.x,0)).rgb; float "
+    "edge=length(e-w)+length(n-s); vec3 edgec=vec3(edge*0.8); "
+    "color=mix(color,edgec,u_edge); "
+    "color*=1.0-u_outline*clamp(edge*2.0,0.0,1.0); }\n"
+    "  if(u_halftone>0.0) { float "
+    "p=0.5+0.5*sin(uv.x*u_resolution.x*0.12)*sin(uv.y*u_resolution.y*0.12); "
+    "color=mix(color,vec3(step(0.5,p)),u_halftone*0.35); }\n"
+    "  if(u_dither>0.0) { float d=hash(floor(uv*u_resolution))*0.00390625; "
+    "color+=((d-0.001953125)*u_dither); }\n"
+    "  if(u_scanlines>0.0) { float "
+    "line=0.5+0.5*sin(uv.y*u_resolution.y*3.14159265); "
+    "color*=1.0-u_scanlines*0.25*line; }\n"
+    "  if(u_crt>0.0) { float r2=dot(chroma_c,chroma_c); "
+    "color*=1.0-u_crt*r2*1.8; float "
+    "mask=0.94+0.06*sin(uv.x*u_resolution.x*3.14159); "
+    "color*=mix(1.0,mask,u_crt); }\n"
+    "  if(u_halation>0.0) { vec3 red=texture(u_texture,uv+texel*2.0).rgb; "
+    "float bright=smoothstep(0.6,1.0,luminance(red)); "
+    "color+=red*vec3(1.0,0.25,0.12)*bright*u_halation*0.12; }\n"
+    "  if(u_film_response>0.0) { "
+    "color+=vec3(0.02,0.0,-0.01)*gray*u_film_response; "
+    "color=pow(max(color,vec3(0.0)),vec3(1.0-0.08*u_film_response)); }\n"
+    "  if(u_fog>0.0) { float "
+    "f=clamp(length(original_uv-0.5)*2.0*u_fog_density+u_fog_height,0.0,1.0)*u_"
+    "fog; color=mix(color,vec3(0.58,0.64,0.72),f); }\n"
+    "  float vig=1.0-u_vignette*dot(chroma_c,chroma_c)*1.8; "
+    "color*=max(vig,0.0);\n"
+    "  if(u_noise>0.0) { float nn=hash(uv*u_resolution+u_time*31.0)-0.5; "
+    "color+=nn*0.08*u_noise; }\n"
+    "  if(u_glitch>0.0) { float "
+    "g=hash(vec2(floor(uv.y*120.0),floor(u_time*12.0))); "
+    "color=mix(color,color.bgr,g*u_glitch*0.12); }\n"
+    "  if(u_vhs>0.0) { float "
+    "n=hash(vec2(floor(uv.y*u_resolution.y),floor(u_time*6.0))); "
+    "color.rg+=vec2(n-0.5,0.5-n)*u_vhs*0.025; }\n"
+    "  float grain_amount=u_grain+u_film_grain; if(grain_amount>0.0) { float "
+    "n=hash(uv*u_resolution+u_time*12.0); float "
+    "n2=hash(uv*u_resolution*1.7-u_time*7.0); "
+    "color+=(n+n2-1.0)*0.5*grain_amount; }\n"
+    "  color=clamp(color,0.0,1.0); "
+    "color=pow(max(color,vec3(0.0)),vec3(1.0/max(u_gamma,0.01)));\n"
+    "  "
+    "frag_color=vec4(mix(texture(u_texture,original_uv).rgb,color,clamp(u_"
+    "intensity,0.0,1.0)),1.0)*v_color;\n"
     "}\n";
 
-static void AP_PostEnsureConfig(void)
-{
-  if (!g_config_ready)
-  {
+static void AP_PostEnsureConfig(void) {
+  if (!g_config_ready) {
     g_post.config = AP_PostDefaultConfig();
     g_config_ready = true;
   }
 }
 
-static float AP_PostClampf(float value, float minimum, float maximum)
-{
-  if (value < minimum)
-  {
+static float AP_PostClampf(float value, float minimum, float maximum) {
+  if (value < minimum) {
     return minimum;
   }
-  if (value > maximum)
-  {
+  if (value > maximum) {
     return maximum;
   }
   return value;
 }
 
-static void AP_PostDestroyTarget(AP_Texture **texture)
-{
-  if (texture == NULL || *texture == NULL)
-  {
+static void AP_PostDestroyTarget(AP_Texture **texture) {
+  if (texture == NULL || *texture == NULL) {
     return;
   }
 
-  if (AP_GetRenderTarget() == *texture)
-  {
+  if (AP_GetRenderTarget() == *texture) {
     AP_SetRenderTarget(NULL);
   }
 
@@ -345,8 +419,7 @@ static void AP_PostDestroyTarget(AP_Texture **texture)
   *texture = NULL;
 }
 
-static void AP_PostDestroyTargets(void)
-{
+static void AP_PostDestroyTargets(void) {
   AP_PostDestroyTarget(&g_post.scene);
   AP_PostDestroyTarget(&g_post.gui);
   AP_PostDestroyTarget(&g_post.scratch);
@@ -354,12 +427,10 @@ static void AP_PostDestroyTargets(void)
   g_post.height = 0;
 }
 
-static AP_Texture *AP_PostMakeTarget(int width, int height)
-{
+static AP_Texture *AP_PostMakeTarget(int width, int height) {
   AP_Texture *texture =
       AP_CreateTextureWithAccess(width, height, AP_TEXTUREACCESS_TARGET);
-  if (texture == NULL)
-  {
+  if (texture == NULL) {
     return NULL;
   }
 
@@ -369,16 +440,13 @@ static AP_Texture *AP_PostMakeTarget(int width, int height)
   return texture;
 }
 
-static bool AP_PostEnsureTargets(int width, int height)
-{
-  if (width <= 0 || height <= 0)
-  {
+static bool AP_PostEnsureTargets(int width, int height) {
+  if (width <= 0 || height <= 0) {
     return false;
   }
 
   if (g_post.scene != NULL && g_post.gui != NULL && g_post.scratch != NULL &&
-      g_post.width == width && g_post.height == height)
-  {
+      g_post.width == width && g_post.height == height) {
     return true;
   }
 
@@ -386,8 +454,7 @@ static bool AP_PostEnsureTargets(int width, int height)
   g_post.scene = AP_PostMakeTarget(width, height);
   g_post.gui = AP_PostMakeTarget(width, height);
   g_post.scratch = AP_PostMakeTarget(width, height);
-  if (g_post.scene == NULL || g_post.gui == NULL || g_post.scratch == NULL)
-  {
+  if (g_post.scene == NULL || g_post.gui == NULL || g_post.scratch == NULL) {
     AP_PostDestroyTargets();
     return false;
   }
@@ -400,16 +467,13 @@ static bool AP_PostEnsureTargets(int width, int height)
   return true;
 }
 
-static bool AP_PostEnsureShader(void)
-{
-  if (g_post.builtin != NULL)
-  {
+static bool AP_PostEnsureShader(void) {
+  if (g_post.builtin != NULL) {
     return true;
   }
 
   g_post.builtin = AP_CreateShader(NULL, AP_POST_FRAGMENT);
-  if (g_post.builtin == NULL)
-  {
+  if (g_post.builtin == NULL) {
     AP_WARN("Post shader failed to compile; post-processing disabled");
     return false;
   }
@@ -417,27 +481,23 @@ static bool AP_PostEnsureShader(void)
   return true;
 }
 
-static uint32_t AP_PostActiveFlags(void)
-{
+static uint32_t AP_PostActiveFlags(void) {
   uint32_t flags;
 
   AP_PostEnsureConfig();
   flags = g_post.config.flags;
-  if (g_post.config.custom == NULL)
-  {
+  if (g_post.config.custom == NULL) {
     flags &= ~(uint32_t)AP_POST_CUSTOM;
   }
   return flags;
 }
 
-static bool AP_PostBlit(AP_Texture *source, AP_Shader *shader)
-{
+static bool AP_PostBlit(AP_Texture *source, AP_Shader *shader) {
   AP_Shader *previous;
   AP_BlendMode blend;
   bool ok;
 
-  if (source == NULL)
-  {
+  if (source == NULL) {
     return false;
   }
 
@@ -446,8 +506,7 @@ static bool AP_PostBlit(AP_Texture *source, AP_Shader *shader)
   AP_SetTextureBlendMode(source, AP_BLENDMODE_NONE);
   AP_UseShader(shader);
 
-  if (shader != NULL)
-  {
+  if (shader != NULL) {
     uint32_t flags = AP_PostActiveFlags();
     AP_SetUniformF("u_time", (float)AP_GetTime());
     AP_SetUniformF("u_vignette", (flags & (uint32_t)AP_POST_VIGNETTE) != 0
@@ -464,12 +523,20 @@ static bool AP_PostBlit(AP_Texture *source, AP_Shader *shader)
     AP_SetUniformF("u_exposure", g_post_extra.exposure);
     AP_SetUniformF("u_gamma", g_post_extra.gamma);
     AP_SetUniformF("u_filmic", g_post_extra.filmic);
-    AP_SetUniformF("u_saturation", (flags & (uint32_t)AP_POST_COLOR_GRADE) != 0 ? g_post.config.saturation : g_post_extra.saturation);
-    AP_SetUniformF("u_contrast", (flags & (uint32_t)AP_POST_COLOR_GRADE) != 0 ? g_post.config.contrast : g_post_extra.contrast);
-    AP_SetUniformF("u_brightness", (flags & (uint32_t)AP_POST_COLOR_GRADE) != 0 ? g_post.config.brightness : g_post_extra.brightness);
+    AP_SetUniformF("u_saturation", (flags & (uint32_t)AP_POST_COLOR_GRADE) != 0
+                                       ? g_post.config.saturation
+                                       : g_post_extra.saturation);
+    AP_SetUniformF("u_contrast", (flags & (uint32_t)AP_POST_COLOR_GRADE) != 0
+                                     ? g_post.config.contrast
+                                     : g_post_extra.contrast);
+    AP_SetUniformF("u_brightness", (flags & (uint32_t)AP_POST_COLOR_GRADE) != 0
+                                       ? g_post.config.brightness
+                                       : g_post_extra.brightness);
     AP_SetUniformF("u_temperature", g_post_extra.temperature);
     AP_SetUniformF("u_tint", g_post_extra.tint);
-    AP_SetUniformF("u_sharpen", (flags & (uint32_t)AP_POST_SHARPEN) != 0 ? g_post.config.sharpen : g_post_extra.sharpen);
+    AP_SetUniformF("u_sharpen", (flags & (uint32_t)AP_POST_SHARPEN) != 0
+                                    ? g_post.config.sharpen
+                                    : g_post_extra.sharpen);
     AP_SetUniformF("u_clarity", g_post_extra.clarity);
     AP_SetUniformF("u_detail", g_post_extra.detail);
     AP_SetUniformF("u_bloom_radius", g_post_extra.bloom_radius);
@@ -501,8 +568,12 @@ static bool AP_PostBlit(AP_Texture *source, AP_Shader *shader)
     AP_SetUniformF("u_wave", g_post_extra.wave);
     AP_SetUniformF("u_ripple", g_post_extra.ripple);
     AP_SetUniformF("u_fisheye", g_post_extra.fisheye);
-    AP_SetUniformF("u_chromatic", (flags & (uint32_t)AP_POST_CHROMATIC) != 0 ? g_post.config.chromatic : g_post_extra.chromatic);
-    AP_SetUniformF("u_grain", (flags & (uint32_t)AP_POST_GRAIN) != 0 ? g_post.config.grain : g_post_extra.grain);
+    AP_SetUniformF("u_chromatic", (flags & (uint32_t)AP_POST_CHROMATIC) != 0
+                                      ? g_post.config.chromatic
+                                      : g_post_extra.chromatic);
+    AP_SetUniformF("u_grain", (flags & (uint32_t)AP_POST_GRAIN) != 0
+                                  ? g_post.config.grain
+                                  : g_post_extra.grain);
     AP_SetUniformF("u_film_grain", g_post_extra.film_grain);
     AP_SetUniformF("u_film_response", g_post_extra.film_response);
     AP_SetUniformF("u_halation", g_post_extra.halation);
@@ -521,16 +592,13 @@ static bool AP_PostBlit(AP_Texture *source, AP_Shader *shader)
   return ok;
 }
 
-static void AP_PostApplyEffects(void)
-{
+static void AP_PostApplyEffects(void) {
   uint32_t flags = AP_PostActiveFlags();
   AP_Texture *source = g_post.scene;
   bool used_builtin = false;
 
-  if ((flags & (uint32_t)AP_POST_CUSTOM) != 0 && g_post.config.custom != NULL)
-  {
-    if (!AP_SetRenderTarget(g_post.scratch))
-    {
+  if ((flags & (uint32_t)AP_POST_CUSTOM) != 0 && g_post.config.custom != NULL) {
+    if (!AP_SetRenderTarget(g_post.scratch)) {
       AP_SetRenderTarget(NULL);
       AP_PostBlit(source, NULL);
       return;
@@ -538,8 +606,7 @@ static void AP_PostApplyEffects(void)
 
     AP_OpenGLSetClearColor(0.0f, 0.0f, 0.0f, 1.0f);
     AP_OpenGLClear(true, false, false);
-    if (AP_PostEnsureShader() && (flags & ~(uint32_t)AP_POST_CUSTOM) != 0)
-    {
+    if (AP_PostEnsureShader() && (flags & ~(uint32_t)AP_POST_CUSTOM) != 0) {
       AP_PostBlit(source, g_post.builtin);
       source = g_post.scratch;
       used_builtin = true;
@@ -551,18 +618,14 @@ static void AP_PostApplyEffects(void)
   }
 
   AP_SetRenderTarget(NULL);
-  if (AP_PostEnsureShader() && flags != 0)
-  {
+  if (AP_PostEnsureShader() && flags != 0) {
     AP_PostBlit(source, g_post.builtin);
-  }
-  else
-  {
+  } else {
     AP_PostBlit(source, NULL);
   }
 }
 
-AP_PostConfig AP_PostDefaultConfig(void)
-{
+AP_PostConfig AP_PostDefaultConfig(void) {
   AP_PostConfig config;
   memset(&config, 0, sizeof(config));
   config.enabled = false;
@@ -581,11 +644,9 @@ AP_PostConfig AP_PostDefaultConfig(void)
   return config;
 }
 
-bool AP_SetPostConfig(const AP_PostConfig *config)
-{
+bool AP_SetPostConfig(const AP_PostConfig *config) {
   AP_PostEnsureConfig();
-  if (config == NULL)
-  {
+  if (config == NULL) {
     g_post.config = AP_PostDefaultConfig();
     return true;
   }
@@ -604,25 +665,21 @@ bool AP_SetPostConfig(const AP_PostConfig *config)
   g_post.config.chromatic = AP_PostClampf(g_post.config.chromatic, 0.0f, 0.05f);
   g_post.config.grain = AP_PostClampf(g_post.config.grain, 0.0f, 0.5f);
   g_post.config.sharpen = AP_PostClampf(g_post.config.sharpen, 0.0f, 1.0f);
-  if (g_post.config.msaa_samples < 0)
-  {
+  if (g_post.config.msaa_samples < 0) {
     g_post.config.msaa_samples = 0;
   }
   return true;
 }
 
-AP_PostConfig *AP_GetPostConfig(void)
-{
+AP_PostConfig *AP_GetPostConfig(void) {
   AP_PostEnsureConfig();
   return &g_post.config;
 }
 
-bool AP_SetPostEnabled(bool enabled)
-{
+bool AP_SetPostEnabled(bool enabled) {
   AP_PostEnsureConfig();
   g_post.config.enabled = enabled;
-  if (!enabled && g_post.capturing)
-  {
+  if (!enabled && g_post.capturing) {
     AP_SetRenderTarget(NULL);
     g_post.capturing = false;
     g_post.gui_active = false;
@@ -630,72 +687,61 @@ bool AP_SetPostEnabled(bool enabled)
   return true;
 }
 
-bool AP_PostEnabled(void)
-{
+bool AP_PostEnabled(void) {
   AP_PostEnsureConfig();
   return g_post.config.enabled;
 }
 
-bool AP_SetPostFlags(uint32_t flags)
-{
+bool AP_SetPostFlags(uint32_t flags) {
   AP_PostEnsureConfig();
   g_post.config.flags = flags;
   return true;
 }
 
-uint32_t AP_GetPostFlags(void)
-{
+uint32_t AP_GetPostFlags(void) {
   AP_PostEnsureConfig();
   return g_post.config.flags;
 }
 
-bool AP_EnablePostFlag(AP_PostFlags flag)
-{
+bool AP_EnablePostFlag(AP_PostFlags flag) {
   AP_PostEnsureConfig();
   g_post.config.flags |= (uint32_t)flag;
   return true;
 }
 
-bool AP_DisablePostFlag(AP_PostFlags flag)
-{
+bool AP_DisablePostFlag(AP_PostFlags flag) {
   AP_PostEnsureConfig();
   g_post.config.flags &= ~(uint32_t)flag;
   return true;
 }
 
-bool AP_PostFlagEnabled(AP_PostFlags flag)
-{
+bool AP_PostFlagEnabled(AP_PostFlags flag) {
   AP_PostEnsureConfig();
   return (g_post.config.flags & (uint32_t)flag) != 0;
 }
 
-bool AP_SetPostVignette(float amount)
-{
+bool AP_SetPostVignette(float amount) {
   AP_PostEnsureConfig();
   AP_PostEnsureExtra();
   g_post.config.vignette = AP_PostClampf(amount, 0.0f, 2.0f);
   g_post_extra.vignette = g_post.config.vignette;
-  if (amount > 0.0f)
-  {
+  if (amount > 0.0f) {
     AP_EnablePostFlag(AP_POST_VIGNETTE);
   }
   return true;
 }
 
-bool AP_SetPostBloom(float threshold, float intensity)
-{
+bool AP_SetPostBloom(float threshold, float intensity) {
   AP_PostEnsureConfig();
   g_post.config.bloom_threshold = AP_PostClampf(threshold, 0.0f, 1.0f);
   g_post.config.bloom_intensity = AP_PostClampf(intensity, 0.0f, 4.0f);
-  if (intensity > 0.0f)
-  {
+  if (intensity > 0.0f) {
     AP_EnablePostFlag(AP_POST_BLOOM);
   }
   return true;
 }
 
-bool AP_SetPostColorGrade(float saturation, float contrast, float brightness)
-{
+bool AP_SetPostColorGrade(float saturation, float contrast, float brightness) {
   AP_PostEnsureConfig();
   g_post.config.saturation = AP_PostClampf(saturation, 0.0f, 2.0f);
   g_post.config.contrast = AP_PostClampf(contrast, 0.0f, 3.0f);
@@ -704,81 +750,66 @@ bool AP_SetPostColorGrade(float saturation, float contrast, float brightness)
   return true;
 }
 
-bool AP_SetPostChromatic(float amount)
-{
+bool AP_SetPostChromatic(float amount) {
   AP_PostEnsureConfig();
   g_post.config.chromatic = AP_PostClampf(amount, 0.0f, 0.05f);
-  if (amount > 0.0f)
-  {
+  if (amount > 0.0f) {
     AP_EnablePostFlag(AP_POST_CHROMATIC);
   }
   return true;
 }
 
-bool AP_SetPostGrain(float amount)
-{
+bool AP_SetPostGrain(float amount) {
   AP_PostEnsureConfig();
   g_post.config.grain = AP_PostClampf(amount, 0.0f, 0.5f);
-  if (amount > 0.0f)
-  {
+  if (amount > 0.0f) {
     AP_EnablePostFlag(AP_POST_GRAIN);
   }
   return true;
 }
 
-bool AP_SetPostSharpen(float amount)
-{
+bool AP_SetPostSharpen(float amount) {
   AP_PostEnsureConfig();
   g_post.config.sharpen = AP_PostClampf(amount, 0.0f, 1.0f);
-  if (amount > 0.0f)
-  {
+  if (amount > 0.0f) {
     AP_EnablePostFlag(AP_POST_SHARPEN);
   }
   return true;
 }
 
-bool AP_SetPostMSAA(int samples)
-{
+bool AP_SetPostMSAA(int samples) {
   AP_PostEnsureConfig();
   g_post.config.msaa_samples = samples < 0 ? 0 : samples;
-  if (g_post.scene != NULL)
-  {
+  if (g_post.scene != NULL) {
     AP_TextureSetMSAA(g_post.scene, g_post.config.msaa_samples);
   }
-  if (g_post.gui != NULL)
-  {
+  if (g_post.gui != NULL) {
     AP_TextureSetMSAA(g_post.gui, g_post.config.msaa_samples);
   }
   return true;
 }
 
-int AP_GetPostMSAA(void)
-{
+int AP_GetPostMSAA(void) {
   AP_PostEnsureConfig();
   return g_post.config.msaa_samples;
 }
 
-bool AP_SetPostShader(AP_Shader *shader)
-{
+bool AP_SetPostShader(AP_Shader *shader) {
   AP_PostEnsureConfig();
   g_post.config.custom = shader;
-  if (shader != NULL)
-  {
+  if (shader != NULL) {
     AP_EnablePostFlag(AP_POST_CUSTOM);
-  }
-  else
-  {
+  } else {
     AP_DisablePostFlag(AP_POST_CUSTOM);
   }
   return true;
 }
 
-#define AP_POST_EXTRA_SETTER(name, field, lo, hi)      \
-  bool name(float value)                               \
-  {                                                    \
-    AP_PostEnsureExtra();                              \
-    g_post_extra.field = AP_PostClampf(value, lo, hi); \
-    return true;                                       \
+#define AP_POST_EXTRA_SETTER(name, field, lo, hi)                              \
+  bool name(float value) {                                                     \
+    AP_PostEnsureExtra();                                                      \
+    g_post_extra.field = AP_PostClampf(value, lo, hi);                         \
+    return true;                                                               \
   }
 
 AP_POST_EXTRA_SETTER(AP_SetPostIntensity, intensity, 0.0f, 1.0f)
@@ -835,16 +866,13 @@ AP_POST_EXTRA_SETTER(AP_SetPostFisheye, fisheye, 0.0f, 1.0f)
 
 #undef AP_POST_EXTRA_SETTER
 
-AP_Shader *AP_GetPostShader(void)
-{
+AP_Shader *AP_GetPostShader(void) {
   AP_PostEnsureConfig();
   return g_post.config.custom;
 }
 
-void AP_SetPostIncludeGui(bool include)
-{
-  if (AP_GetGuiLayer() == AP_GUI_LAYER_OFF)
-  {
+void AP_SetPostIncludeGui(bool include) {
+  if (AP_GetGuiLayer() == AP_GUI_LAYER_OFF) {
     return;
   }
 
@@ -853,80 +881,65 @@ void AP_SetPostIncludeGui(bool include)
 
 bool AP_PostIncludeGui(void) { return AP_GetGuiLayer() == AP_GUI_LAYER_SCENE; }
 
-void AP_PostBeginFrame(void)
-{
+void AP_PostBeginFrame(void) {
   AP_Texture *current;
   int width = 0;
   int height = 0;
 
   AP_PostEnsureConfig();
-  if (g_post.applying)
-  {
+  if (g_post.applying) {
     return;
   }
 
   g_post.gui_active = false;
 
-  if (!g_post.config.enabled)
-  {
+  if (!g_post.config.enabled) {
     g_post.capturing = false;
     return;
   }
 
   current = AP_GetRenderTarget();
-  if (current != NULL && current != g_post.scene && current != g_post.gui)
-  {
+  if (current != NULL && current != g_post.scene && current != g_post.gui) {
     g_post.capturing = false;
     return;
   }
 
   AP_GetWindowSizeInPixels(&width, &height);
-  if (!AP_PostEnsureTargets(width, height))
-  {
+  if (!AP_PostEnsureTargets(width, height)) {
     g_post.capturing = false;
     return;
   }
 
-  if (!AP_SetRenderTarget(g_post.scene))
-  {
+  if (!AP_SetRenderTarget(g_post.scene)) {
     g_post.capturing = false;
     return;
   }
 
   g_post.capturing = true;
-  if (AP_PostIncludeGui())
-  {
+  if (AP_PostIncludeGui()) {
     AP_SetGuiLayer(AP_GUI_LAYER_SCENE);
-  }
-  else
-  {
+  } else {
     AP_SetGuiLayer(AP_GUI_LAYER_OVERLAY);
   }
 }
 
-bool AP_PostBeginGuiLayer(void)
-{
+bool AP_PostBeginGuiLayer(void) {
   AP_GuiLayer layer = AP_GetGuiLayer();
 
-  if (layer == AP_GUI_LAYER_OFF)
-  {
+  if (layer == AP_GUI_LAYER_OFF) {
     return false;
   }
 
-  if (!g_post.capturing || layer == AP_GUI_LAYER_SCENE)
-  {
+  if (!g_post.capturing || layer == AP_GUI_LAYER_SCENE) {
     return true;
   }
 
-  if (g_post.gui == NULL)
-  {
+  if (g_post.gui == NULL) {
     return true;
   }
 
-  if (!g_post.gui_active)
-  {
-    if (!AP_SetRenderTarget(g_post.gui))
-    {
+  if (!g_post.gui_active) {
+    if (!AP_SetRenderTarget(g_post.gui)) {
       return true;
     }
 
@@ -939,10 +952,8 @@ bool AP_PostBeginGuiLayer(void)
   return true;
 }
 
-void AP_PostPresent(void)
-{
-  if (!g_post.capturing)
-  {
+void AP_PostPresent(void) {
+  if (!g_post.capturing) {
     return;
   }
 
@@ -951,8 +962,7 @@ void AP_PostPresent(void)
   AP_TextureResolveMSAA(g_post.scene);
   AP_PostApplyEffects();
 
-  if (g_post.gui_active && g_post.gui != NULL)
-  {
+  if (g_post.gui_active && g_post.gui != NULL) {
     AP_TextureResolveMSAA(g_post.gui);
     AP_BlendMode blend = AP_GetTextureBlendMode(g_post.gui);
     AP_SetTextureBlendMode(g_post.gui, AP_BLENDMODE_PREMULTIPLIED);
@@ -966,20 +976,16 @@ void AP_PostPresent(void)
   g_post.gui_active = false;
 }
 
-void AP_PostNotifyResize(int width, int height)
-{
+void AP_PostNotifyResize(int width, int height) {
   (void)width;
   (void)height;
-  if (g_post.scene != NULL)
-  {
+  if (g_post.scene != NULL) {
     AP_PostDestroyTargets();
   }
 }
 
-void AP_PostShutdown(void)
-{
-  if (g_post.builtin != NULL)
-  {
+void AP_PostShutdown(void) {
+  if (g_post.builtin != NULL) {
     AP_ShaderDestroyInternal(g_post.builtin);
     g_post.builtin = NULL;
   }

@@ -233,8 +233,7 @@ bool AP_VideoInit(const AP_VideoConfig *config) {
 
   AP_INFO("Video subsystem initialized: %s %u.%u (%s/%s)",
           AP_VideoAPIName(g_video_config.api), g_video_config.major_version,
-          g_video_config.minor_version,
-          AP_PlatformOSName(AP_PlatformGetOS()),
+          g_video_config.minor_version, AP_PlatformOSName(AP_PlatformGetOS()),
           AP_PlatformWindowSystemName(AP_PlatformGetWindowSystem()));
 
   return true;

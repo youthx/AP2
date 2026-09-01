@@ -132,7 +132,8 @@ static char *AP_AudioStrDup(const char *text) {
 
 static bool AP_AudioRequire(void) {
   if (!g_audio_initialized) {
-    AP_SET_ERROR(AP_ERROR_NOT_INITIALIZED, "Audio subsystem is not initialized");
+    AP_SET_ERROR(AP_ERROR_NOT_INITIALIZED,
+                 "Audio subsystem is not initialized");
     return false;
   }
   return true;
@@ -266,8 +267,8 @@ static bool AP_AudioDecodeDecoder(ma_decoder *decoder, float **out_pcm,
         pcm = grown;
       }
 
-      result = ma_decoder_read_pcm_frames(
-          decoder, pcm + count * channels, 4096, &got);
+      result = ma_decoder_read_pcm_frames(decoder, pcm + count * channels, 4096,
+                                          &got);
       count += got;
       if (got == 0 || result == MA_AT_END) {
         break;
@@ -388,10 +389,10 @@ static bool AP_AudioEnsureLowPass(AP_Voice *voice, float cutoff_hz) {
   voice->lowpass_hz = cutoff_hz;
 
   if (voice->has_lpf) {
-    ma_lpf_config config = ma_lpf_config_init(
-        ma_format_f32, ma_engine_get_channels(&g_engine),
-        ma_engine_get_sample_rate(&g_engine), (double)cutoff_hz,
-        AP_AUDIO_LPF_ORDER);
+    ma_lpf_config config =
+        ma_lpf_config_init(ma_format_f32, ma_engine_get_channels(&g_engine),
+                           ma_engine_get_sample_rate(&g_engine),
+                           (double)cutoff_hz, AP_AUDIO_LPF_ORDER);
     return ma_lpf_node_reinit(&config, &voice->lpf) == MA_SUCCESS;
   }
 
@@ -401,8 +402,8 @@ static bool AP_AudioEnsureLowPass(AP_Voice *voice, float cutoff_hz) {
   cutoff = cutoff_hz > 0.0f ? cutoff_hz : nyquist;
 
   {
-    ma_lpf_node_config config =
-        ma_lpf_node_config_init(channels, rate, (double)cutoff, AP_AUDIO_LPF_ORDER);
+    ma_lpf_node_config config = ma_lpf_node_config_init(
+        channels, rate, (double)cutoff, AP_AUDIO_LPF_ORDER);
     if (ma_lpf_node_init(ma_engine_get_node_graph(&g_engine), &config, NULL,
                          &voice->lpf) != MA_SUCCESS) {
       AP_SET_ERROR(AP_ERROR_OPERATION_FAILED, "Failed to create low-pass node");
@@ -492,7 +493,8 @@ static bool AP_AudioInitVoiceSource(AP_Voice *voice, AP_Sound *sound) {
   return true;
 }
 
-static AP_Voice *AP_AudioSpawnVoice(AP_Sound *sound, const AP_PlaySoundDesc *desc) {
+static AP_Voice *AP_AudioSpawnVoice(AP_Sound *sound,
+                                    const AP_PlaySoundDesc *desc) {
   AP_Voice *voice;
   ma_sound_config config;
   ma_uint32 flags;
@@ -543,9 +545,8 @@ static AP_Voice *AP_AudioSpawnVoice(AP_Sound *sound, const AP_PlaySoundDesc *des
 
   attachment = (ma_node *)AP_AudioGroup(desc->bus);
   config = ma_sound_config_init_2(&g_engine);
-  config.pDataSource =
-      voice->has_decoder ? (ma_data_source *)&voice->decoder
-                         : (ma_data_source *)&voice->buffer;
+  config.pDataSource = voice->has_decoder ? (ma_data_source *)&voice->decoder
+                                          : (ma_data_source *)&voice->buffer;
   config.pInitialAttachment = attachment;
   config.flags = flags;
   config.isLooping = desc->loop ? MA_TRUE : MA_FALSE;
@@ -577,7 +578,8 @@ static AP_Voice *AP_AudioSpawnVoice(AP_Sound *sound, const AP_PlaySoundDesc *des
                           desc->velocity.z);
     ma_sound_set_min_distance(&voice->ma, voice->min_distance);
     ma_sound_set_max_distance(&voice->ma, voice->max_distance);
-    ma_sound_set_rolloff(&voice->ma, desc->rolloff > 0.0f ? desc->rolloff : 1.0f);
+    ma_sound_set_rolloff(&voice->ma,
+                         desc->rolloff > 0.0f ? desc->rolloff : 1.0f);
     ma_sound_set_attenuation_model(&voice->ma,
                                    AP_AudioToMaAttenuation(desc->attenuation));
   }
@@ -744,12 +746,14 @@ bool AP_AudioInit(const AP_AudioConfig *config) {
 
   g_audio_config = config != NULL ? *config : AP_AudioDefaultConfig();
   engine_config = ma_engine_config_init();
-  engine_config.sampleRate =
-      g_audio_config.sample_rate > 0 ? (ma_uint32)g_audio_config.sample_rate : 0;
+  engine_config.sampleRate = g_audio_config.sample_rate > 0
+                                 ? (ma_uint32)g_audio_config.sample_rate
+                                 : 0;
   engine_config.channels =
       g_audio_config.channels > 0 ? (ma_uint32)g_audio_config.channels : 0;
   if (g_audio_config.period_ms > 0) {
-    engine_config.periodSizeInMilliseconds = (ma_uint32)g_audio_config.period_ms;
+    engine_config.periodSizeInMilliseconds =
+        (ma_uint32)g_audio_config.period_ms;
   }
 
   if (ma_engine_init(&engine_config, &g_engine) != MA_SUCCESS) {
@@ -763,7 +767,8 @@ bool AP_AudioInit(const AP_AudioConfig *config) {
     if (ma_sound_group_init(&g_engine, MA_SOUND_FLAG_NO_SPATIALIZATION, NULL,
                             &g_groups[bus]) != MA_SUCCESS) {
       ma_engine_uninit(&g_engine);
-      AP_SET_ERROR(AP_ERROR_INITIALIZATION_FAILED, "Failed to create audio bus");
+      AP_SET_ERROR(AP_ERROR_INITIALIZATION_FAILED,
+                   "Failed to create audio bus");
       return false;
     }
     g_group_ready[bus] = true;
@@ -1214,7 +1219,8 @@ AP_Sound *AP_LoadStreamFromMemory(const void *data, AP_Size size) {
 
   config = ma_decoder_config_init(ma_format_f32, 0, 0);
   if (ma_decoder_init_memory(data, size, &config, &decoder) != MA_SUCCESS) {
-    AP_SET_ERROR(AP_ERROR_OPERATION_FAILED, "Failed to open audio stream memory");
+    AP_SET_ERROR(AP_ERROR_OPERATION_FAILED,
+                 "Failed to open audio stream memory");
     return NULL;
   }
 
@@ -1560,9 +1566,9 @@ bool AP_FadeVoice(AP_Voice *voice, float to_volume, float duration_ms) {
     return false;
   }
   to_volume = AP_AudioClampf(to_volume, 0.0f, 4.0f);
-  ma_sound_set_fade_in_milliseconds(&voice->ma, -1.0f, to_volume,
-                                    (ma_uint64)(duration_ms > 0.0f ? duration_ms
-                                                                   : 1.0f));
+  ma_sound_set_fade_in_milliseconds(
+      &voice->ma, -1.0f, to_volume,
+      (ma_uint64)(duration_ms > 0.0f ? duration_ms : 1.0f));
   voice->volume = to_volume;
   return true;
 }
@@ -1681,7 +1687,8 @@ bool AP_SetListenerOrientation(float forward_x, float forward_y,
   g_listener.world_up.x = up_x;
   g_listener.world_up.y = up_y;
   g_listener.world_up.z = up_z;
-  ma_engine_listener_set_direction(&g_engine, 0, forward_x, forward_y, forward_z);
+  ma_engine_listener_set_direction(&g_engine, 0, forward_x, forward_y,
+                                   forward_z);
   ma_engine_listener_set_world_up(&g_engine, 0, up_x, up_y, up_z);
   return true;
 }
@@ -1690,9 +1697,9 @@ bool AP_SetListenerCone(AP_AudioCone cone) {
   if (!AP_AudioRequire()) {
     return false;
   }
-  ma_engine_listener_set_cone(&g_engine, 0, cone.inner_degrees * AP_AUDIO_DEG2RAD,
-                              cone.outer_degrees * AP_AUDIO_DEG2RAD,
-                              cone.outer_gain);
+  ma_engine_listener_set_cone(
+      &g_engine, 0, cone.inner_degrees * AP_AUDIO_DEG2RAD,
+      cone.outer_degrees * AP_AUDIO_DEG2RAD, cone.outer_gain);
   return true;
 }
 

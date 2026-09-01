@@ -307,8 +307,7 @@ int AP_PlatformEnumerateOpenGLVersions(uint32_t requested_major,
 #if !AP_PLATFORM_MACOS
       {4, 6}, {4, 5}, {4, 4}, {4, 3}, {4, 2},
 #endif
-      {4, 1},
-      {3, 3},
+      {4, 1}, {3, 3},
   };
   size_t index;
   int count = 0;
@@ -345,8 +344,7 @@ int AP_PlatformEnumerateOpenGLVersions(uint32_t requested_major,
     uint32_t major = fallbacks[index][0];
     uint32_t minor = fallbacks[index][1];
 
-    if (AP_PlatformCompareVersion(major, minor, start_major, start_minor) >
-            0 ||
+    if (AP_PlatformCompareVersion(major, minor, start_major, start_minor) > 0 ||
         !AP_PlatformVersionInRange(major, minor, max_major, max_minor)) {
       continue;
     }
@@ -415,7 +413,6 @@ void AP_PlatformRefreshWindowSystem(void) {
     g_window_system = AP_PlatformCompileTimeWindowSystem();
     break;
   }
-
 }
 
 void *AP_PlatformGetNativeWindow(void *glfw_window) {
@@ -470,8 +467,8 @@ void *AP_PlatformGetNativeDisplay(void) {
 }
 
 void AP_PlatformSetWindowChrome(void *glfw_window, bool title, bool minimize,
-                                 bool maximize, bool close,
-                                 const char *title_text) {
+                                bool maximize, bool close,
+                                const char *title_text) {
   GLFWwindow *handle = (GLFWwindow *)glfw_window;
 
   if (handle == NULL) {
@@ -527,8 +524,8 @@ void AP_PlatformSetWindowChrome(void *glfw_window, bool title, bool minimize,
     system_menu = GetSystemMenu(hwnd, FALSE);
     if (system_menu != NULL) {
       EnableMenuItem(system_menu, SC_CLOSE,
-                     MF_BYCOMMAND | (close ? MF_ENABLED
-                                           : (MF_GRAYED | MF_DISABLED)));
+                     MF_BYCOMMAND |
+                         (close ? MF_ENABLED : (MF_GRAYED | MF_DISABLED)));
       DrawMenuBar(hwnd);
     }
   }
@@ -544,8 +541,7 @@ void AP_PlatformSetWindowChrome(void *glfw_window, bool title, bool minimize,
     }
 
     ((void (*)(id, SEL, unsigned long))objc_msgSend)(
-        ns_window, sel_registerName("setTitleVisibility:"),
-        title ? 0ul : 1ul);
+        ns_window, sel_registerName("setTitleVisibility:"), title ? 0ul : 1ul);
 
     if (title) {
       glfwSetWindowTitle(handle, title_text);
@@ -597,8 +593,8 @@ void AP_PlatformSetWindowChrome(void *glfw_window, bool title, bool minimize,
       return;
     }
 
-    intern_atom = (unsigned long (*)(void *, const char *, int))dlsym(
-        x11, "XInternAtom");
+    intern_atom =
+        (unsigned long (*)(void *, const char *, int))dlsym(x11, "XInternAtom");
     change_property =
         (int (*)(void *, unsigned long, unsigned long, unsigned long, int, int,
                  const unsigned char *, int))dlsym(x11, "XChangeProperty");
@@ -655,6 +651,40 @@ void AP_PlatformSetWindowChrome(void *glfw_window, bool title, bool minimize,
   if (title) {
     glfwSetWindowTitle(handle, title_text);
   }
+#endif
+}
+
+void AP_PlatformSetWindowTaskbarVisible(void *glfw_window, bool visible) {
+  GLFWwindow *handle = (GLFWwindow *)glfw_window;
+
+  if (handle == NULL) {
+    return;
+  }
+
+#if AP_PLATFORM_WINDOWS
+  {
+    HWND hwnd = glfwGetWin32Window(handle);
+    LONG_PTR ex_style;
+
+    if (hwnd == NULL) {
+      return;
+    }
+
+    ex_style = GetWindowLongPtr(hwnd, GWL_EXSTYLE);
+    if (visible) {
+      ex_style &= ~(LONG_PTR)WS_EX_TOOLWINDOW;
+    } else {
+      ex_style |= WS_EX_TOOLWINDOW;
+    }
+    SetWindowLongPtr(hwnd, GWL_EXSTYLE, ex_style);
+    /* Re-assert the style change; Windows only re-evaluates taskbar
+     * membership when the window's ownership or visibility changes. */
+    SetWindowPos(hwnd, NULL, 0, 0, 0, 0,
+                 SWP_NOMOVE | SWP_NOSIZE | SWP_NOZORDER | SWP_NOACTIVATE |
+                     SWP_FRAMECHANGED);
+  }
+#else
+  (void)visible;
 #endif
 }
 
@@ -723,8 +753,7 @@ void AP_PlatformSleep(double seconds) {
     struct timespec request;
 
     request.tv_sec = (time_t)seconds;
-    request.tv_nsec =
-        (long)((seconds - (double)request.tv_sec) * 1000000000.0);
+    request.tv_nsec = (long)((seconds - (double)request.tv_sec) * 1000000000.0);
     if (request.tv_nsec < 0) {
       request.tv_nsec = 0;
     } else if (request.tv_nsec > 999999999L) {

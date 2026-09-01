@@ -24,13 +24,13 @@
 #pragma GCC diagnostic pop
 #endif
 
-#if defined (_WIN32) || defined (_WIN64)
+#if defined(_WIN32) || defined(_WIN64)
 #include <direct.h>
 #define GETCWD(buffer, size) _getcwd(buffer, size)
-#else 
+#else
 #include <unistd.h>
 #define GETCWD(buffer, size) getcwd(buffer, size)
-#endif 
+#endif
 
 #include <stdlib.h>
 #include <string.h>
@@ -88,8 +88,8 @@ static AP_Image *AP_ImageAlloc(int width, int height) {
   image->width = width;
   image->height = height;
   image->pitch = width * 4;
-  image->pixels = (unsigned char *)calloc((size_t)image->pitch * (size_t)height,
-                                          1u);
+  image->pixels =
+      (unsigned char *)calloc((size_t)image->pitch * (size_t)height, 1u);
   if (image->pixels == NULL) {
     free(image);
     AP_SET_ERROR(AP_ERROR_OUT_OF_MEMORY, "Failed to allocate image pixels");
@@ -299,8 +299,10 @@ static void AP_ImageSample(const AP_Image *image, float u, float v,
   c01 = AP_ImageAtConst(image, x0, y1);
   c11 = AP_ImageAtConst(image, x1, y1);
   for (channel = 0; channel < 4; ++channel) {
-    float top = (float)c00[channel] + ((float)c10[channel] - (float)c00[channel]) * fx;
-    float bot = (float)c01[channel] + ((float)c11[channel] - (float)c01[channel]) * fx;
+    float top =
+        (float)c00[channel] + ((float)c10[channel] - (float)c00[channel]) * fx;
+    float bot =
+        (float)c01[channel] + ((float)c11[channel] - (float)c01[channel]) * fx;
     out[channel] = AP_ImageClampByte((int)(top + (bot - top) * fy + 0.5f));
   }
 }
@@ -314,7 +316,7 @@ static const char *AP_ImageExtension(const char *path) {
   }
 
   for (cursor = path; *cursor != '\0'; ++cursor) {
-    if (*cursor == '.' ) {
+    if (*cursor == '.') {
       dot = cursor;
     } else if (*cursor == '/' || *cursor == '\\') {
       dot = NULL;
@@ -650,7 +652,8 @@ bool AP_BlitImage(const AP_Image *src, const AP_Rect *src_rect, AP_Image *dst,
 }
 
 bool AP_BlitImageBlend(const AP_Image *src, const AP_Rect *src_rect,
-                       AP_Image *dst, int dst_x, int dst_y, AP_BlendMode blend) {
+                       AP_Image *dst, int dst_x, int dst_y,
+                       AP_BlendMode blend) {
   int src_x = 0;
   int src_y = 0;
   int width = 0;
@@ -969,8 +972,7 @@ bool AP_ImageGrayscale(AP_Image *image) {
   count = image->width * image->height;
   pixel = image->pixels;
   for (i = 0; i < count; ++i) {
-    unsigned luma =
-        (77u * pixel[0] + 150u * pixel[1] + 29u * pixel[2]) / 256u;
+    unsigned luma = (77u * pixel[0] + 150u * pixel[1] + 29u * pixel[2]) / 256u;
     AP_U8 gray = AP_ImageClampByte((int)luma);
     pixel[0] = gray;
     pixel[1] = gray;

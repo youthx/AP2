@@ -1,0 +1,10 @@
+^C:\USERS\JACKW\ONEDRIVE\DESKTOP\GIT-PROJECTS\APHELION-ENGINE\AP2\BUILD-RELEASE\_DEPS\GLAD-SUBBUILD\CMAKEFILES\4B7134C258F03C837AFD6F45E3EE5C30\GENERATE.STAMP.RULE
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build-release/_deps/glad-subbuild -BC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build-release/_deps/glad-subbuild --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build-release/_deps/glad-subbuild/glad-populate.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

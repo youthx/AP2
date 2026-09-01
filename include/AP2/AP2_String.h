@@ -9,10 +9,10 @@
 #ifndef AP2_STRING_H
 #define AP2_STRING_H
 
+#include <stdarg.h>
 #include <stdbool.h>
 #include <stddef.h>
 #include <stdint.h>
-#include <stdarg.h>
 
 #ifdef __cplusplus
 extern "C" {

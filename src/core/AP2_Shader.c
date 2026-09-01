@@ -303,8 +303,8 @@ static const char *AP_ShaderResolveStage(const AP_ShaderStage *stage,
     return NULL;
   }
 
-  processed = AP_ShaderBuildDefinedSource(source, defines, define_count,
-                                          &define_error);
+  processed =
+      AP_ShaderBuildDefinedSource(source, defines, define_count, &define_error);
   if (define_error) {
     *ok = false;
     return NULL;
@@ -463,7 +463,8 @@ AP_Shader *AP_CreateShaderEx(const AP_ShaderConfig *config) {
   bool ok;
 
   if (config == NULL) {
-    AP_SET_ERROR(AP_ERROR_INVALID_ARGUMENT, "Shader configuration cannot be NULL");
+    AP_SET_ERROR(AP_ERROR_INVALID_ARGUMENT,
+                 "Shader configuration cannot be NULL");
     return NULL;
   }
 
@@ -487,20 +488,17 @@ AP_Shader *AP_CreateShaderEx(const AP_ShaderConfig *config) {
 
   AP_ShaderScratchInit(&scratch);
 
-  vertex = AP_ShaderResolveStage(&config->vertex,
-                                 has_compute ? NULL : AP_SHADER_BUILTIN_VERTEX,
-                                 &scratch, config->defines, config->define_count,
-                                 &ok);
+  vertex = AP_ShaderResolveStage(
+      &config->vertex, has_compute ? NULL : AP_SHADER_BUILTIN_VERTEX, &scratch,
+      config->defines, config->define_count, &ok);
   if (!ok) {
     AP_ShaderScratchFree(&scratch);
     return NULL;
   }
 
-  fragment =
-      AP_ShaderResolveStage(&config->fragment,
-                            has_compute ? NULL : AP_SHADER_BUILTIN_FRAGMENT,
-                            &scratch, config->defines, config->define_count,
-                            &ok);
+  fragment = AP_ShaderResolveStage(
+      &config->fragment, has_compute ? NULL : AP_SHADER_BUILTIN_FRAGMENT,
+      &scratch, config->defines, config->define_count, &ok);
   if (!ok) {
     AP_ShaderScratchFree(&scratch);
     return NULL;
@@ -513,9 +511,9 @@ AP_Shader *AP_CreateShaderEx(const AP_ShaderConfig *config) {
     return NULL;
   }
 
-  tess_control = AP_ShaderResolveStage(&config->tess_control, NULL, &scratch,
-                                       config->defines, config->define_count,
-                                       &ok);
+  tess_control =
+      AP_ShaderResolveStage(&config->tess_control, NULL, &scratch,
+                            config->defines, config->define_count, &ok);
   if (!ok) {
     AP_ShaderScratchFree(&scratch);
     return NULL;
@@ -685,7 +683,8 @@ bool AP_DispatchCompute(AP_UInt groups_x, AP_UInt groups_y, AP_UInt groups_z) {
   GLint program = 0;
 
   if (groups_x == 0 || groups_y == 0 || groups_z == 0) {
-    AP_SET_ERROR(AP_ERROR_INVALID_ARGUMENT, "Compute group counts must be positive");
+    AP_SET_ERROR(AP_ERROR_INVALID_ARGUMENT,
+                 "Compute group counts must be positive");
     return false;
   }
 
@@ -1038,12 +1037,14 @@ bool AP_ShaderSetUniformVec3(AP_Shader *shader, const char *name,
 
 bool AP_ShaderSetUniformVec4(AP_Shader *shader, const char *name,
                              AP_Vec4 value) {
-  return AP_ShaderSetUniformF4(shader, name, value.x, value.y, value.z, value.w);
+  return AP_ShaderSetUniformF4(shader, name, value.x, value.y, value.z,
+                               value.w);
 }
 
 bool AP_ShaderSetUniformColor(AP_Shader *shader, const char *name,
                               AP_Color value) {
-  return AP_ShaderSetUniformF4(shader, name, value.r, value.g, value.b, value.a);
+  return AP_ShaderSetUniformF4(shader, name, value.r, value.g, value.b,
+                               value.a);
 }
 
 bool AP_ShaderSetUniformMat3(AP_Shader *shader, const char *name,

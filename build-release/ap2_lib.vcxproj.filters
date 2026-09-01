@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\src\core\AP2_3D.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\src\core\AP2_Audio.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\src\core\AP2_Camera.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\src\core\AP2_Device.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\src\core\AP2_Error.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\src\core\AP2_Font.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\src\core\AP2_Gui.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\src\core\AP2_GuiAdvanced.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\src\core\AP2_Image.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\src\core\AP2_Init.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\src\core\AP2_Input.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\src\core\AP2_List.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\src\core\AP2_Logger.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\src\core\AP2_Material.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\src\core\AP2_Math.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\src\core\AP2_Miniaudio.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\src\core\AP2_Opengl.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\src\core\AP2_Platform.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\src\core\AP2_Post.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\src\core\AP2_Renderer.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\src\core\AP2_Shader.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\src\core\AP2_Sprite.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\src\core\AP2_String.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\src\core\AP2_Texture.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\src\core\AP2_Tilemap.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\src\core\AP2_Video.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\src\core\AP2_Window.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{0B7535D0-9B71-33CB-A324-8FAC729359D2}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

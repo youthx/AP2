@@ -1,0 +1,10 @@
+^C:\USERS\JACKW\ONEDRIVE\DESKTOP\GIT-PROJECTS\APHELION-ENGINE\AP2\BUILD-RELEASE\_DEPS\GLFW-SUBBUILD\CMAKELISTS.TXT
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build-release/_deps/glfw-subbuild -BC:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build-release/_deps/glfw-subbuild --check-stamp-file C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build-release/_deps/glfw-subbuild/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

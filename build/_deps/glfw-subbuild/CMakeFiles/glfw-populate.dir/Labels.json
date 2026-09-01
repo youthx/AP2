@@ -2,37 +2,37 @@
 	"sources" : 
 	[
 		{
-			"file" : "C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-subbuild/CMakeFiles/glfw-populate-Debug"
+			"file" : "C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-subbuild/CMakeFiles/glfw-populate"
 		},
 		{
-			"file" : "C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-subbuild/CMakeFiles/glfw-populate-(CONFIG).rule"
+			"file" : "C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-subbuild/CMakeFiles/glfw-populate.rule"
 		},
 		{
-			"file" : "C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-subbuild/CMakeFiles/(CONFIG)/glfw-populate-complete.rule"
+			"file" : "C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-subbuild/CMakeFiles/glfw-populate-complete.rule"
 		},
 		{
-			"file" : "C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-subbuild/glfw-populate-prefix/src/glfw-populate-stamp/(CONFIG)/glfw-populate-build.rule"
+			"file" : "C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-subbuild/glfw-populate-prefix/src/glfw-populate-stamp/glfw-populate-build.rule"
 		},
 		{
-			"file" : "C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-subbuild/glfw-populate-prefix/src/glfw-populate-stamp/(CONFIG)/glfw-populate-configure.rule"
+			"file" : "C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-subbuild/glfw-populate-prefix/src/glfw-populate-stamp/glfw-populate-configure.rule"
 		},
 		{
-			"file" : "C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-subbuild/glfw-populate-prefix/src/glfw-populate-stamp/(CONFIG)/glfw-populate-download.rule"
+			"file" : "C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-subbuild/glfw-populate-prefix/src/glfw-populate-stamp/glfw-populate-download.rule"
 		},
 		{
-			"file" : "C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-subbuild/glfw-populate-prefix/src/glfw-populate-stamp/(CONFIG)/glfw-populate-install.rule"
+			"file" : "C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-subbuild/glfw-populate-prefix/src/glfw-populate-stamp/glfw-populate-install.rule"
 		},
 		{
-			"file" : "C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-subbuild/glfw-populate-prefix/src/glfw-populate-stamp/(CONFIG)/glfw-populate-mkdir.rule"
+			"file" : "C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-subbuild/glfw-populate-prefix/src/glfw-populate-stamp/glfw-populate-mkdir.rule"
 		},
 		{
-			"file" : "C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-subbuild/glfw-populate-prefix/src/glfw-populate-stamp/(CONFIG)/glfw-populate-patch.rule"
+			"file" : "C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-subbuild/glfw-populate-prefix/src/glfw-populate-stamp/glfw-populate-patch.rule"
 		},
 		{
-			"file" : "C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-subbuild/glfw-populate-prefix/src/glfw-populate-stamp/(CONFIG)/glfw-populate-test.rule"
+			"file" : "C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-subbuild/glfw-populate-prefix/src/glfw-populate-stamp/glfw-populate-test.rule"
 		},
 		{
-			"file" : "C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-subbuild/glfw-populate-prefix/src/glfw-populate-stamp/(CONFIG)/glfw-populate-update.rule"
+			"file" : "C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/_deps/glfw-subbuild/glfw-populate-prefix/src/glfw-populate-stamp/glfw-populate-update.rule"
 		}
 	],
 	"target" : 
