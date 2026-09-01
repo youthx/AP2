@@ -242,6 +242,8 @@ file(GLOB_RECURSE SOURCES
     "${SOURCE_DIR}/src/*.c"
     "${SOURCE_DIR}/src/core/*.cpp"
     "${SOURCE_DIR}/src/core/*.c"
+    "${SOURCE_DIR}/src/examples/*.cpp"
+    "${SOURCE_DIR}/src/examples/*.c"
 )
 
 # Custom CMake code (inject_before_target)

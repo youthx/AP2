@@ -69,6 +69,26 @@ AP_SetPostChromatic(0.004f);
 
 Flags: vignette, bloom, color grade, chromatic, grain, sharpen, custom shader.
 
+## Antialiasing
+
+Two independent knobs, since they cover different rendering paths:
+
+- `AP_WINDOW_MSAA` (window creation flag, `msaa_samples` in `AP_WindowConfig`) —
+  antialiases direct-to-backbuffer rendering, i.e. everything drawn while
+  post-processing is **disabled**.
+- `AP_SetPostMSAA(samples)` — real multisampling for the offscreen scene
+  and GUI capture used while post-processing is **enabled**. Without it,
+  the scene/GUI textures behind the post stack are single-sample and every
+  mesh edge, rounded rect, and glyph will look jagged no matter what
+  `AP_WINDOW_MSAA` is set to.
+
+```c
+AP_SetPostEnabled(true);
+AP_SetPostMSAA(4); /* 0 disables; otherwise clamped to GL_MAX_SAMPLES */
+```
+
+`AP_GetPostMSAA()` reads back the clamped value actually in use.
+
 ## Custom post shader
 
 ```c
@@ -95,4 +115,4 @@ AP_Present               /* post, then swap */
 
 ## Next
 
-Build something: [Breakout](10-breakout.md), [Top-down walker](11-top-down.md), or [Desktop tool](12-desktop-tool.md).
+Build something: [Breakout](10-breakout.md), [Top-down walker](11-top-down.md), or [Desktop tool](12-desktop-tool.md). For a deeper dive, see [Camera rigs and cinematic post](16-camera-rigs-and-post.md).

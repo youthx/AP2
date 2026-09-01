@@ -28,6 +28,15 @@ struct AP_Texture
   GLuint id;
   GLuint fbo;
   GLuint depth_rbo;
+
+  /* Optional multisample resolve path (see AP_TextureSetMSAA). ms_fbo is
+     the draw target when active; its contents are blitted into fbo/id
+     (single-sample) by AP_TextureResolveMSAA before either is sampled. */
+  GLuint ms_fbo;
+  GLuint ms_color_rbo;
+  GLuint ms_depth_rbo;
+  int ms_samples;
+
   int width;
   int height;
   AP_TextureAccess access;
@@ -144,6 +153,133 @@ static bool AP_TextureEnsureFbo(AP_Texture *texture)
      invert when uploading pixel data. Only textures created from image
      pixels (stb_image) are marked inverted. */
   texture->invert_v = false;
+  return true;
+}
+
+static void AP_TextureDestroyMSAA(AP_Texture *texture)
+{
+  if (texture->ms_fbo != 0)
+  {
+    glDeleteFramebuffers(1, &texture->ms_fbo);
+    texture->ms_fbo = 0;
+  }
+  if (texture->ms_color_rbo != 0)
+  {
+    glDeleteRenderbuffers(1, &texture->ms_color_rbo);
+    texture->ms_color_rbo = 0;
+  }
+  if (texture->ms_depth_rbo != 0)
+  {
+    glDeleteRenderbuffers(1, &texture->ms_depth_rbo);
+    texture->ms_depth_rbo = 0;
+  }
+  texture->ms_samples = 0;
+}
+
+bool AP_TextureSetMSAA(AP_Texture *texture, int samples)
+{
+  const AP_OpenGLLimits *limits;
+  int clamped;
+
+  if (!AP_TextureIsValid(texture) || texture->access != AP_TEXTUREACCESS_TARGET)
+  {
+    return false;
+  }
+
+  if (samples <= 1)
+  {
+    AP_TextureDestroyMSAA(texture);
+    return true;
+  }
+
+  if (!AP_TextureEnsureFbo(texture))
+  {
+    return false;
+  }
+
+  limits = AP_OpenGLGetLimits();
+  clamped = samples;
+  if (limits != NULL && limits->max_samples > 0 && clamped > limits->max_samples)
+  {
+    clamped = limits->max_samples;
+  }
+
+  if (clamped <= 1)
+  {
+    AP_TextureDestroyMSAA(texture);
+    return true;
+  }
+
+  if (texture->ms_fbo != 0 && texture->ms_samples == clamped)
+  {
+    return true;
+  }
+
+  AP_TextureDestroyMSAA(texture);
+
+  glGenFramebuffers(1, &texture->ms_fbo);
+  glGenRenderbuffers(1, &texture->ms_color_rbo);
+  glGenRenderbuffers(1, &texture->ms_depth_rbo);
+
+  glBindRenderbuffer(GL_RENDERBUFFER, texture->ms_color_rbo);
+  glRenderbufferStorageMultisample(GL_RENDERBUFFER, clamped, GL_RGBA8,
+                                   texture->width, texture->height);
+  glBindRenderbuffer(GL_RENDERBUFFER, texture->ms_depth_rbo);
+  glRenderbufferStorageMultisample(GL_RENDERBUFFER, clamped,
+                                   GL_DEPTH24_STENCIL8, texture->width,
+                                   texture->height);
+  glBindRenderbuffer(GL_RENDERBUFFER, 0);
+
+  glBindFramebuffer(GL_FRAMEBUFFER, texture->ms_fbo);
+  glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0,
+                            GL_RENDERBUFFER, texture->ms_color_rbo);
+  glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_STENCIL_ATTACHMENT,
+                            GL_RENDERBUFFER, texture->ms_depth_rbo);
+
+  if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
+  {
+    glBindFramebuffer(GL_FRAMEBUFFER, 0);
+    AP_TextureDestroyMSAA(texture);
+    AP_SET_ERROR(AP_ERROR_OPERATION_FAILED,
+                 "Multisample framebuffer is incomplete");
+    return false;
+  }
+
+  glBindFramebuffer(GL_FRAMEBUFFER, 0);
+  texture->ms_samples = clamped;
+
+  if (g_render_target == texture)
+  {
+    /* Re-bind so already-in-progress capture goes to the MSAA buffer
+       instead of the (now stale) single-sample resolve target. */
+    AP_RendererBindTarget((AP_UInt)texture->ms_fbo, texture->width,
+                          texture->height);
+  }
+
+  return true;
+}
+
+bool AP_TextureResolveMSAA(AP_Texture *texture)
+{
+  GLint previous_draw = 0;
+  GLint previous_read = 0;
+
+  if (!AP_TextureIsValid(texture) || texture->ms_fbo == 0)
+  {
+    return false;
+  }
+
+  glGetIntegerv(GL_DRAW_FRAMEBUFFER_BINDING, &previous_draw);
+  glGetIntegerv(GL_READ_FRAMEBUFFER_BINDING, &previous_read);
+
+  glBindFramebuffer(GL_READ_FRAMEBUFFER, texture->ms_fbo);
+  glBindFramebuffer(GL_DRAW_FRAMEBUFFER, texture->fbo);
+  glBlitFramebuffer(0, 0, texture->width, texture->height, 0, 0,
+                    texture->width, texture->height, GL_COLOR_BUFFER_BIT,
+                    GL_NEAREST);
+
+  glBindFramebuffer(GL_DRAW_FRAMEBUFFER, (GLuint)previous_draw);
+  glBindFramebuffer(GL_READ_FRAMEBUFFER, (GLuint)previous_read);
   return true;
 }
 
@@ -318,9 +454,11 @@ static void AP_TextureBuildUVs(const AP_Texture *texture, const AP_FRect *source
 
   if (texture->invert_v)
   {
-    float tmp = v0;
-    v0 = 1.0f - v1;
-    v1 = 1.0f - tmp;
+    /* Upload already reversed row order for invert_v textures, so each edge
+       inverts independently here — swapping v0/v1 instead would mirror the
+       sampled content vertically within its own quad (e.g. upside-down glyphs). */
+    v0 = 1.0f - v0;
+    v1 = 1.0f - v1;
   }
 
   if ((flip & AP_FLIP_HORIZONTAL) != 0)
@@ -646,6 +784,7 @@ void AP_DestroyTexture(AP_Texture *texture)
 
   if (AP_OpenGLHasContext())
   {
+    AP_TextureDestroyMSAA(texture);
     if (texture->depth_rbo != 0)
     {
       glDeleteRenderbuffers(1, &texture->depth_rbo);
@@ -1111,6 +1250,11 @@ bool AP_SetRenderTarget(AP_Texture *texture)
   }
 
   g_render_target = texture;
+  if (texture->ms_fbo != 0)
+  {
+    return AP_RendererBindTarget((AP_UInt)texture->ms_fbo, texture->width,
+                                 texture->height);
+  }
   return AP_RendererBindTarget((AP_UInt)texture->fbo, texture->width,
                                texture->height);
 }

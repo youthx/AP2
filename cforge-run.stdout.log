@@ -1,0 +1,73 @@
+[1m[38;2;000;255;255mcforge - C/C++ Build System beta-3.1.0
+[0m[1m[38;2;000;128;000m     Running[0m in single project context
+[1m[38;2;000;128;000m     Project[0m ap2
+[1m[38;2;000;128;000mConfiguration[0m Debug
+[1m[38;2;000;128;000m Configuring[0m project with CMake
+[1m[38;2;000;128;000m    Building[0m ap2
+[1m[38;2;255;255;000mwarning[0m[1m[38;2;255;255;000m[-Wunused-but-set-variable=][0m[1m[38;2;255;255;255m: variable 'data' set but not used (3 occurrences)
+[0m[38;2;070;130;180m   --> [0m/Users/jackw/OneDrive/Des...e/ap2/src/core/AP2_GuiAdvanced.c:223:23
+[38;2;070;130;180m   |
+[0m[38;2;070;130;180m223 | [0m    AP_GuiWidgetData *data;
+[38;2;070;130;180m    | [0m                      [1m[38;2;255;000;000m^^^^
+[0m[38;2;070;130;180m   = [0m[1m[38;2;255;000;255mfix[0m[38;2;211;211;211m: Add [[maybe_unused]] attribute[0m[38;2;128;128;128m -> [0m[38;2;050;205;050m`[[maybe_unused]] `[0m
+[38;2;070;130;180m   = [0m[1m[38;2;255;000;255mfix[0m[38;2;211;211;211m: Cast to void to suppress warning[0m[38;2;128;128;128m -> [0m[38;2;050;205;050m`(void)data;`[0m
+
+[1m[38;2;255;255;000mwarning[0m[1m[38;2;255;255;000m[-Wunused-parameter][0m[1m[38;2;255;255;255m: unused parameter 'max_val' (3 occurrences)
+[0m[38;2;070;130;180m   --> [0m/Users/jackw/OneDrive/Des...e/ap2/src/core/AP2_GuiAdvanced.c:639:49
+[38;2;070;130;180m   |
+[0m[38;2;070;130;180m639 | [0mAP_GuiWidget *AP_GuiSpinnerNew(int min_val, int max_val)
+[38;2;070;130;180m    | [0m                                                [1m[38;2;255;000;000m^^^^^^^
+[0m[38;2;070;130;180m   = [0m[1m[38;2;255;000;255mfix[0m[38;2;211;211;211m: Add [[maybe_unused]] attribute[0m[38;2;128;128;128m -> [0m[38;2;050;205;050m`[[maybe_unused]] `[0m
+[38;2;070;130;180m   = [0m[1m[38;2;255;000;255mfix[0m[38;2;211;211;211m: Cast to void to suppress warning[0m[38;2;128;128;128m -> [0m[38;2;050;205;050m`(void)max_val;`[0m
+[38;2;070;130;180m   = [0m[1m[38;2;255;000;255mfix[0m[38;2;211;211;211m: Comment out parameter name[0m[38;2;128;128;128m -> [0m[38;2;050;205;050m`/*max_val*/`[0m
+
+[1m[38;2;255;255;000mwarning[0m[1m[38;2;255;255;000m[-Wunused-parameter][0m[1m[38;2;255;255;255m: unused parameter 'rows' (3 occurrences)
+[0m[38;2;070;130;180m   --> [0m/Users/jackw/OneDrive/Des...e/ap2/src/core/AP2_GuiAdvanced.c:852:33
+[38;2;070;130;180m   |
+[0m[38;2;070;130;180m852 | [0mAP_GuiWidget *AP_GuiGridNew(int rows, int cols)
+[38;2;070;130;180m    | [0m                                [1m[38;2;255;000;000m^^^^
+[0m[38;2;070;130;180m   = [0m[1m[38;2;255;000;255mfix[0m[38;2;211;211;211m: Add [[maybe_unused]] attribute[0m[38;2;128;128;128m -> [0m[38;2;050;205;050m`[[maybe_unused]] `[0m
+[38;2;070;130;180m   = [0m[1m[38;2;255;000;255mfix[0m[38;2;211;211;211m: Cast to void to suppress warning[0m[38;2;128;128;128m -> [0m[38;2;050;205;050m`(void)rows;`[0m
+[38;2;070;130;180m   = [0m[1m[38;2;255;000;255mfix[0m[38;2;211;211;211m: Comment out parameter name[0m[38;2;128;128;128m -> [0m[38;2;050;205;050m`/*rows*/`[0m
+
+[1m[38;2;255;255;000mwarning[0m[1m[38;2;255;255;000m[-Wunused-parameter][0m[1m[38;2;255;255;255m: unused parameter 'cols' (3 occurrences)
+[0m[38;2;070;130;180m   --> [0m/Users/jackw/OneDrive/Des...e/ap2/src/core/AP2_GuiAdvanced.c:852:43
+[38;2;070;130;180m   |
+[0m[38;2;070;130;180m852 | [0mAP_GuiWidget *AP_GuiGridNew(int rows, int cols)
+[38;2;070;130;180m    | [0m                                          [1m[38;2;255;000;000m^^^^
+[0m[38;2;070;130;180m   = [0m[1m[38;2;255;000;255mfix[0m[38;2;211;211;211m: Add [[maybe_unused]] attribute[0m[38;2;128;128;128m -> [0m[38;2;050;205;050m`[[maybe_unused]] `[0m
+[38;2;070;130;180m   = [0m[1m[38;2;255;000;255mfix[0m[38;2;211;211;211m: Cast to void to suppress warning[0m[38;2;128;128;128m -> [0m[38;2;050;205;050m`(void)cols;`[0m
+[38;2;070;130;180m   = [0m[1m[38;2;255;000;255mfix[0m[38;2;211;211;211m: Comment out parameter name[0m[38;2;128;128;128m -> [0m[38;2;050;205;050m`/*cols*/`[0m
+
+
+[38;2;070;130;180m   |
+[0m[38;2;070;130;180m   |  [0m[38;2;255;255;000m12 warnings
+[0m
+[1m[38;2;000;128;000m    Finished[0m Debug target(s)
+[1m[38;2;000;128;000m     Running[0m C:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build\bin\Debug\ap2.exe
+
+[21:29:41] [INFO] Initializing AP2
+[21:29:41] [INFO] Initializing subsystem: Windowing
+[21:29:41] [INFO] Input initialized
+[21:29:41] [INFO] Windowing ready: Windows x64 (Win32)
+[21:29:41] [INFO] Initialized subsystem: Windowing
+[21:29:41] [INFO] Initializing subsystem: Video
+[21:29:41] [INFO] Video subsystem initialized: OpenGL 4.6 (Windows/Win32)
+[21:29:41] [INFO] Initialized subsystem: Video
+[21:29:41] [INFO] AP2 initialized successfully
+[21:29:42] [INFO] Created OpenGL 4.6 context
+[21:29:42] [INFO] OpenGL initialized: Intel / Intel(R) UHD Graphics 620 / 4.6.0 - Build 26.20.100.7926
+[21:29:42] [INFO] Graphics device initialized: Intel(R) UHD Graphics 620
+[21:29:42] [INFO] Graphics vendor: Intel
+[21:29:42] [INFO] Graphics API: 4.6.0 - Build 26.20.100.7926 (4.6)
+[21:29:42] [INFO] Shader compiled
+[21:29:42] [INFO] Renderer ready (960x700)
+[21:29:42] [INFO] Window created: AP2 - GUI App (960x700)
+[21:29:52] [INFO] Destroying window: AP2 - GUI App
+[21:29:52] [INFO] Closing graphics device: OpenGL
+[21:29:52] [INFO] Closing OpenGL backend
+[21:29:52] [INFO] Closing video subsystem
+[21:29:52] [INFO] AP2 shutdown complete
+
+[1m[38;2;000;128;000m    Finished[0m Debug target(s)
+[1m[38;2;000;128;000m    Finished[0m Command completed successfully

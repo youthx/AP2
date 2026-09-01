@@ -108,4 +108,4 @@ Exclude the module with `#define AP2_NO_TILEMAP` before `<AP2/AP2.h>`.
 
 ## Next
 
-[Breakout](10-breakout.md) · [Top-down walker](11-top-down.md)
+[Breakout](10-breakout.md) · [Top-down walker](11-top-down.md) · [Capstone: a complete application](17-capstone-app.md)

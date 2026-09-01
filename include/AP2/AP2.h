@@ -885,6 +885,9 @@
 
 #if AP2_HAS_GUI
 #include "AP2/AP2_Gui.h"
+#ifndef AP2_NO_GUI_ADVANCED
+#include "AP2/AP2_GuiAdvanced.h"
+#endif
 #endif
 
 #if AP2_HAS_OPENGL

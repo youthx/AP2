@@ -392,6 +392,9 @@ static bool AP_PostEnsureTargets(int width, int height)
     return false;
   }
 
+  AP_TextureSetMSAA(g_post.scene, g_post.config.msaa_samples);
+  AP_TextureSetMSAA(g_post.gui, g_post.config.msaa_samples);
+
   g_post.width = width;
   g_post.height = height;
   return true;
@@ -573,6 +576,7 @@ AP_PostConfig AP_PostDefaultConfig(void)
   config.chromatic = 0.0025f;
   config.grain = 0.04f;
   config.sharpen = 0.15f;
+  config.msaa_samples = 0;
   config.custom = NULL;
   return config;
 }
@@ -600,6 +604,10 @@ bool AP_SetPostConfig(const AP_PostConfig *config)
   g_post.config.chromatic = AP_PostClampf(g_post.config.chromatic, 0.0f, 0.05f);
   g_post.config.grain = AP_PostClampf(g_post.config.grain, 0.0f, 0.5f);
   g_post.config.sharpen = AP_PostClampf(g_post.config.sharpen, 0.0f, 1.0f);
+  if (g_post.config.msaa_samples < 0)
+  {
+    g_post.config.msaa_samples = 0;
+  }
   return true;
 }
 
@@ -727,6 +735,27 @@ bool AP_SetPostSharpen(float amount)
     AP_EnablePostFlag(AP_POST_SHARPEN);
   }
   return true;
+}
+
+bool AP_SetPostMSAA(int samples)
+{
+  AP_PostEnsureConfig();
+  g_post.config.msaa_samples = samples < 0 ? 0 : samples;
+  if (g_post.scene != NULL)
+  {
+    AP_TextureSetMSAA(g_post.scene, g_post.config.msaa_samples);
+  }
+  if (g_post.gui != NULL)
+  {
+    AP_TextureSetMSAA(g_post.gui, g_post.config.msaa_samples);
+  }
+  return true;
+}
+
+int AP_GetPostMSAA(void)
+{
+  AP_PostEnsureConfig();
+  return g_post.config.msaa_samples;
 }
 
 bool AP_SetPostShader(AP_Shader *shader)
@@ -919,10 +948,12 @@ void AP_PostPresent(void)
 
   g_post.applying = true;
   AP_FlushRenderer();
+  AP_TextureResolveMSAA(g_post.scene);
   AP_PostApplyEffects();
 
   if (g_post.gui_active && g_post.gui != NULL)
   {
+    AP_TextureResolveMSAA(g_post.gui);
     AP_BlendMode blend = AP_GetTextureBlendMode(g_post.gui);
     AP_SetTextureBlendMode(g_post.gui, AP_BLENDMODE_PREMULTIPLIED);
     AP_RenderTexture(g_post.gui, NULL, NULL);

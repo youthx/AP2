@@ -11,6 +11,11 @@ Draw with the short names (`AP_Clear`, `AP_FillRect`, `AP_Present`, `AP_DrawText
 - [Getting started](getting-started.md) — install, build, first window
 - [Architecture](architecture.md) — subsystems, modules, coordinate spaces
 - [API overview](api-overview.md) — map of every public header
+- [Materials and textures](14-materials-textures.md) — PBR, specular-glossiness, unlit, custom
+- [glTF models](15-gltf-models.md) — loading `.glb` / `.gltf` (single-file and folder-based)
+- [Advanced PBR](16-pbr-advanced.md) — Cook-Torrance BRDF, normal/metallic-roughness/emissive maps
+- [Best practices](17-best-practices.md) — code organization, memory, performance, debugging
+- [Material & 3D API reference](18-api-reference.md) — full signatures with examples
 
 ## Tutorials
 
@@ -32,6 +37,13 @@ Draw with the short names (`AP_Clear`, `AP_FillRect`, `AP_Present`, `AP_DrawText
 10. [Breakout](tutorials/10-breakout.md) — bricks, paddle, collision, score
 11. [Top-down walker](tutorials/11-top-down.md) — WASD/gamepad, camera, spatial SFX
 12. [Desktop tool](tutorials/12-desktop-tool.md) — inspector-style GUI app
+
+### Advanced, step-by-step
+
+14. [3D: a PBR product scene](tutorials/14-advanced-3d-scene.md) — glTF/GLB loading (incl. folder-based models), studio lighting, orbit camera, per-mesh material overrides, post-processing
+15. [Retained-mode GUI](tutorials/15-retained-gui.md) — `AP2_GuiAdvanced`: windows, layouts, theming, signals, CSS-like styling, embedded canvas widgets
+16. [Camera rigs and cinematic post](tutorials/16-camera-rigs-and-post.md) — first-person/orbit rigs, screen-space picking, the full post-processing effect catalog
+17. [Capstone: a complete application](tutorials/17-capstone-app.md) — 3D + tilemap HUD + retained GUI + spatial audio + post, wired into one app
 
 Headers under `include/AP2/` win if a tutorial and a signature disagree.
 

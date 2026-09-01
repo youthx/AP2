@@ -15,6 +15,7 @@ set(_AP2_LIB_SOURCES
   ${CMAKE_CURRENT_SOURCE_DIR}/src/core/AP2_Error.c
   ${CMAKE_CURRENT_SOURCE_DIR}/src/core/AP2_Font.c
   ${CMAKE_CURRENT_SOURCE_DIR}/src/core/AP2_Gui.c
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/core/AP2_GuiAdvanced.c
   ${CMAKE_CURRENT_SOURCE_DIR}/src/core/AP2_Image.c
   ${CMAKE_CURRENT_SOURCE_DIR}/src/core/AP2_Init.c
   ${CMAKE_CURRENT_SOURCE_DIR}/src/core/AP2_Input.c

@@ -34,6 +34,12 @@ nav:
   - Getting started: getting-started.md
   - Architecture: architecture.md
   - API overview: api-overview.md
+  - Guides:
+      - Materials and textures: 14-materials-textures.md
+      - glTF models: 15-gltf-models.md
+      - Advanced PBR: 16-pbr-advanced.md
+      - Best practices: 17-best-practices.md
+      - Material & 3D API reference: 18-api-reference.md
   - Tutorials:
       - Hello window: tutorials/01-hello-window.md
       - Drawing 2D: tutorials/02-drawing-2d.md
@@ -47,6 +53,11 @@ nav:
       - Breakout: tutorials/10-breakout.md
       - Top-down walker: tutorials/11-top-down.md
       - Desktop tool: tutorials/12-desktop-tool.md
+      - Tilemaps: tutorials/13-tilemaps.md
+      - "Advanced: 3D PBR scene": tutorials/14-advanced-3d-scene.md
+      - "Advanced: retained-mode GUI": tutorials/15-retained-gui.md
+      - "Advanced: camera rigs and post": tutorials/16-camera-rigs-and-post.md
+      - "Advanced: capstone application": tutorials/17-capstone-app.md
 
 not_in_nav: |
   README.md

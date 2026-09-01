@@ -11,7 +11,6 @@
 #include "AP2_Internal.h"
 
 #include "AP2/AP2_Error.h"
-#include "AP2/AP2_Image.h"
 #include "AP2/AP2_Logger.h"
 #include "AP2/AP2_Material.h"
 #include "AP2/AP2_Opengl.h"
@@ -260,6 +259,7 @@ static const char *AP_3D_FRAGMENT_SHADER =
     "    frag_color = vec4(albedo, alpha);\n"
     "    return;\n"
     "  }\n"
+    "  frag_color = vec4(albedo, 1.0); return;\n"
     "  /* Normal mapping */\n"
     "  vec3 normal = normalize(v_normal);\n"
     "  if (u_has_normal_texture) {\n"
@@ -1006,11 +1006,6 @@ static bool AP_3DSubmit(const AP_Mesh *mesh, const AP_Mat4 *model,
 
   mat = AP_3DResolveMaterial(mesh);
 
-  if (getenv("AP2_DEBUG_UNLIT") != NULL)
-  {
-    unlit = true;
-  }
-
   /* Start from caller tint, then multiply by material base color if present */
   final_tint = tint;
   tex_id = g_3d.texture != 0 ? g_3d.texture : g_3d.white_texture;
@@ -1566,18 +1561,6 @@ static AP_Texture *AP_3DLoadGltfTexture(const cgltf_texture *tex,
         image->buffer_view->offset;
     int size = (int)image->buffer_view->size;
     out = AP_LoadTextureFromMemory(bytes, size);
-    {
-      static int dbg_count = 0;
-      char dbg_path[64];
-      AP_Image *dbg_img = AP_LoadImageFromMemory(bytes, size);
-      snprintf(dbg_path, sizeof(dbg_path), "debug_tex_%d.png", dbg_count++);
-      if (dbg_img != NULL)
-      {
-        AP_SaveImagePNG(dbg_img, dbg_path);
-        AP_DestroyImage(dbg_img);
-        AP_INFO("Dumped glTF embedded texture to %s (size=%d)", dbg_path, size);
-      }
-    }
   }
   else if (image->uri != NULL)
   {

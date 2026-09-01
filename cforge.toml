@@ -30,7 +30,7 @@ cpp_standard = "17"
 build_type = "Debug"
 directory = "build"
 
-source_dirs = ["src", "src/core"]
+source_dirs = ["src", "src/core", "src/examples"]
 
 include_dirs = [
     "include",

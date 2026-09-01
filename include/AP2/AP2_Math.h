@@ -94,6 +94,19 @@ typedef struct AP_Plane {
  * Scalar
  * ========================================================= */
 
+AP_F32 AP_Abs(AP_F32 value);
+AP_F32 AP_Sin(AP_F32 radians);
+AP_F32 AP_Cos(AP_F32 radians);
+
+AP_F32 AP_Sign(AP_F32 value);
+AP_F32 AP_Min(AP_F32 a, AP_F32 b);
+AP_F32 AP_Max(AP_F32 a, AP_F32 b);
+AP_F32 AP_Clamp(AP_F32 value, AP_F32 minimum, AP_F32 maximum);
+
+AP_I32 AP_MinI(AP_I32 a, AP_I32 b);
+AP_I32 AP_MaxI(AP_I32 a, AP_I32 b);
+AP_I32 AP_ClampI(AP_I32 value, AP_I32 minimum, AP_I32 maximum);
+
 /* =========================================================
  * Angle / Radian Helpers
  * ========================================================= */

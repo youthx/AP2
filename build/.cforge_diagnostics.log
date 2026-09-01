@@ -1,10 +1,20 @@
-[1/6] Building C object CMakeFiles/ap2_app.dir/Debug/src/main.c.obj
-C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/src/main.c: In function 'main':
-C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/src/main.c:33:16: warning: unused variable 'meshes' [-Wunused-variable]
-   33 |       AP_Mesh *meshes[1] = {cubeMesh};
-      |                ^~~~~~
-[2/6] Building C object CMakeFiles/ap2_lib.dir/Debug/src/core/AP2_Post.c.obj
-[3/6] Building C object CMakeFiles/ap2_app.dir/Debug/src/core/AP2_Post.c.obj
-[4/6] Linking C static library lib\Debug\libap2.a
-[5/6] Linking C executable bin\Debug\ap2.exe
-[6/6] AP2 Debug product
+[1/5] Building C object CMakeFiles/ap2_app.dir/Debug/src/core/AP2_GuiAdvanced.c.obj
+C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/src/core/AP2_GuiAdvanced.c: In function 'AP_GuiFreeWidget':
+C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/src/core/AP2_GuiAdvanced.c:224:23: warning: variable 'data' set but not used [-Wunused-but-set-variable=]
+  224 |     AP_GuiWidgetData *data;
+      |                       ^~~~
+C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/src/core/AP2_GuiAdvanced.c: In function 'AP_GuiSpinnerNew':
+C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/src/core/AP2_GuiAdvanced.c:640:49: warning: unused parameter 'max_val' [-Wunused-parameter]
+  640 | AP_GuiWidget *AP_GuiSpinnerNew(int min_val, int max_val)
+      |                                             ~~~~^~~~~~~
+C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/src/core/AP2_GuiAdvanced.c: In function 'AP_GuiGridNew':
+C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/src/core/AP2_GuiAdvanced.c:853:33: warning: unused parameter 'rows' [-Wunused-parameter]
+  853 | AP_GuiWidget *AP_GuiGridNew(int rows, int cols)
+      |                             ~~~~^~~~
+C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/src/core/AP2_GuiAdvanced.c:853:43: warning: unused parameter 'cols' [-Wunused-parameter]
+  853 | AP_GuiWidget *AP_GuiGridNew(int rows, int cols)
+      |                                       ~~~~^~~~
+[2/5] Building C object CMakeFiles/ap2_lib.dir/Debug/src/core/AP2_GuiAdvanced.c.obj
+[3/5] Linking C static library lib\Debug\libap2.a
+[4/5] Linking C executable bin\Debug\ap2.exe
+[5/5] AP2 Debug product

@@ -109,4 +109,4 @@ Or `AP_GuiPushId("row0")` / `AP_GuiPopId()`.
 
 ## Next
 
-[3D](08-3d.md) · [Desktop tool](12-desktop-tool.md)
+[3D](08-3d.md) · [Desktop tool](12-desktop-tool.md) · [Advanced: retained-mode GUI](15-retained-gui.md)
