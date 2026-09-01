@@ -1,133 +1,125 @@
-# AP2 — Application Primitives
+# AP2
 
-**A small C17 library of window, draw, input, audio, and GUI primitives for games and tools.**
+AP2 is a work‑in‑progress graphics engine written in C17. I develop it in my spare time, and the goal is to build a fully supported engine with a clear, consistent API and a straightforward codebase. It’s still early in development, but the core systems are mainly functional and the project is actively growing.
 
-Copyright (c) 2024-2026 [Jack Waechter](LICENSE). MIT licensed.
+---
 
-**AP2** stands for **Application Primitives**. Work started in 2024 under a previous name and was rebranded here. The kit is a set of primitives you assemble into games and desktop tools — window, immediate draw, input, mixer, text, GUI, plus an optional 3D pass.
+## Overview
 
-```c
-#include <AP2/AP2.h>
+AP2 currently includes:
 
-int main(void) {
-  AP_Init(AP_INIT_VIDEO);
-  AP_CreateWindow("Hello AP2", 1280, 720, AP_WINDOW_RESIZABLE);
+- Window creation and event handling
+- 2D rendering (rectangles, lines, textures, sprites)
+- 3D rendering (camera, meshes, lights, custom shaders)
+- Keyboard, mouse, and gamepad input
+- Audio/Mixer
+- Text rendering (bitmap font + TTF)
+- Immediate‑mode UI
+- (in-dev) Further advanced UI support with customizable styling for desktop applications
+- A post-processing pipeline
 
-  while (AP_IsRunning()) {
-    AP_PumpEvents();
-    AP_SetDrawColor(0.08f, 0.09f, 0.11f, 1.0f);
-    AP_Clear();
-    AP_SetDrawColor(0.95f, 0.35f, 0.35f, 1.0f);
-    AP_FillRect(&(AP_FRect){80.0f, 80.0f, 240.0f, 140.0f});
-    AP_Present();
-  }
+The engine is designed to stay readable and approachable. Most of the API uses simple structs and `AP_*` functions, and the internal layout is meant to be easy to follow for contributors.
 
-  AP_DestroyWindow(NULL);
-  AP_Quit();
-  return 0;
-}
-```
+---
 
-Prefer the short names (`AP_Clear`, `AP_FillRect`, `AP_Present`, `AP_DrawTexture`) in application code. They map onto the `AP_Render*` functions.
+## Guides
 
-One include, opaque handles, no renderer pointer on every call. GLFW and OpenGL stay behind the public API.
+- [Getting started](getting-started.md) — install, build, first window
+- [Architecture](architecture.md) — subsystems, modules, coordinate spaces
+- [API overview](api-overview.md) — map of every public header
+- [Materials and textures](14-materials-textures.md) — PBR, specular-glossiness, unlit, custom
+- [glTF models](15-gltf-models.md) — loading `.glb` / `.gltf` (single-file and folder-based)
+- [Advanced PBR](16-pbr-advanced.md) — Cook-Torrance BRDF, normal/metallic-roughness/emissive maps
+- [Best practices](17-best-practices.md) — code organization, memory, performance, debugging
+- [Material & 3D API reference](18-api-reference.md) — full signatures with examples
 
-## Features
+## Tutorials
 
-| Area | What you get |
-|---|---|
-| Windowing | Resizable, HiDPI, MSAA, vsync, fullscreen |
-| 2D | Rects, polygons, curves, gradients, textures, sprites |
-| 3D | Cameras, lights, cubes / planes / spheres, custom meshes, PBR materials |
-| Materials | Metallic-roughness PBR, normal mapping, textures, material properties |
-| Model Loading | glTF 2.0 and glB formats, embedded materials and textures, mesh transforms |
-| Audio | WAV / FLAC / MP3, streams, buses, 3D spatialization, waveforms |
-| Input | Keyboard, mouse, gamepads; down / pressed / released |
-| GUI | Immediate windows, menus, sliders, text fields |
-| Text | Built-in 8×8 font plus TrueType |
-| Shaders & post | Custom GLSL, vignette, bloom, color grade, grain |
-| Language | C17, `extern "C"` on every public header |
+### Subjects
 
-## Build
+1. [Hello window](tutorials/01-hello-window.md)
+2. [Drawing in 2D](tutorials/02-drawing-2d.md)
+3. [Textures and sprites](tutorials/03-sprites-and-textures.md)
+4. [Input](tutorials/04-input.md)
+5. [Audio](tutorials/05-audio.md)
+6. [Text and fonts](tutorials/06-text-and-fonts.md)
+7. [Immediate GUI](tutorials/07-immediate-gui.md)
+8. [3D](tutorials/08-3d.md)
+9. [Shaders and post-processing](tutorials/09-shaders-and-post.md)
+13. [Tilemaps](tutorials/13-tilemaps.md)
 
-Needs CMake 3.15+, a C17 compiler, and Python once (to generate GLAD).
+### Apps and games
 
-```bash
-python ap2_product.py                # Debug sample app (src/main.c)
-python ap2_product.py --config Release  # static library (src/core)
+10. [Breakout](tutorials/10-breakout.md) — bricks, paddle, collision, score
+11. [Top-down walker](tutorials/11-top-down.md) — WASD/gamepad, camera, spatial SFX
+12. [Desktop tool](tutorials/12-desktop-tool.md) — inspector-style GUI app
 
-cforge build                         # same Debug app
-cforge run
-cforge build --config Release        # same static library
-```
+### Advanced, step-by-step
 
-Or CMake:
+14. [3D: a PBR product scene](tutorials/14-advanced-3d-scene.md) — glTF/GLB loading (incl. folder-based models), studio lighting, orbit camera, per-mesh material overrides, post-processing
+15. [Retained-mode GUI](tutorials/15-retained-gui.md) — `AP2_GuiAdvanced`: windows, layouts, theming, signals, CSS-like styling, embedded canvas widgets
+16. [Camera rigs and cinematic post](tutorials/16-camera-rigs-and-post.md) — first-person/orbit rigs, screen-space picking, the full post-processing effect catalog
+17. [Capstone: a complete application](tutorials/17-capstone-app.md) — 3D + tilemap HUD + retained GUI + spatial audio + post, wired into one app
 
-```bash
-cmake -B build -G "Ninja Multi-Config"
-cmake --build build --config Debug
-./build/bin/Debug/ap2
-```
+Headers under `include/AP2/` win if a tutorial and a signature disagree.
 
-On Windows with MSYS2 UCRT, `cforge.toml` already points at `gcc` / `g++`.
+The [GitHub Pages site](https://youthx.github.io/AP2/) and the [wiki](https://github.com/youthx/AP2/wiki) are published from this folder on each push.
 
-| Dependency | Role |
-|---|---|
-| [GLFW](https://www.glfw.org/) 3.5 | Window and input |
-| [GLAD](https://github.com/Dav1dde/glad) 2 | OpenGL 4.6 loader |
-| [stb](https://github.com/nothings/stb) | Images and TrueType |
-| [miniaudio](https://miniaud.io/) | Device, decode, mix |
+---
 
-## Documentation
+## Building
 
-Start with the [docs index](docs/README.md). Pushes to `main` / `master` publish [GitHub Pages](https://youthx.github.io/AP2/) and the [wiki](https://github.com/youthx/AP2/wiki).
+AP2 supports both CMake and cforge.
 
-1. [Getting started](docs/getting-started.md)
-2. [Architecture](docs/architecture.md)
-3. [API overview](docs/api-overview.md)
+### CMake
 
-| Tutorial | Subject |
-|---|---|
-| [01 Hello window](docs/tutorials/01-hello-window.md) | Init, loop, clear, present |
-| [02 Drawing 2D](docs/tutorials/02-drawing-2d.md) | Color, shapes, transforms |
-| [03 Sprites and textures](docs/tutorials/03-sprites-and-textures.md) | Images, atlases, animation |
-| [04 Input](docs/tutorials/04-input.md) | Keys, mouse, gamepad |
-| [05 Audio](docs/tutorials/05-audio.md) | Waves, buses, spatial SFX |
-| [06 Text and fonts](docs/tutorials/06-text-and-fonts.md) | Built-in font and TTF |
-| [07 Immediate GUI](docs/tutorials/07-immediate-gui.md) | Panels and widgets |
-| [08 3D](docs/tutorials/08-3d.md) | Camera, lights, meshes |
-| [09 Shaders and post](docs/tutorials/09-shaders-and-post.md) | GLSL and the post stack |
-| [10 Breakout](docs/tutorials/10-breakout.md) | Game: bricks, paddle, score |
-| [11 Top-down walker](docs/tutorials/11-top-down.md) | Game: WASD, camera, spatial audio |
-| [12 Desktop tool](docs/tutorials/12-desktop-tool.md) | App: inspector-style GUI |
-| [13 Tilemaps](docs/tutorials/13-tilemaps.md) | 2D tilemaps and collision |
+cmake -B build cmake --build build ./build/bin/ap2
 
-**Advanced Materials & 3D Graphics:**
 
-| Guide | Subject |
-|---|---|
-| [14 Materials and Textures](docs/14-materials-textures.md) | Material types, creation, texture mapping |
-| [15 3D Models and glTF](docs/15-gltf-models.md) | Loading, manipulating, and rendering 3D models |
-| [16 Advanced PBR Workflows](docs/16-pbr-advanced.md) | Physically-based rendering techniques |
-| [17 Best Practices](docs/17-best-practices.md) | Code organization, memory management, optimization |
-| [18 API Reference](docs/18-api-reference.md) | Complete material and 3D API documentation |
+### cforge
 
-`src/main.c` is a sample 3D program demonstrating materials, model loading, and advanced rendering (orbit camera, dynamic materials, procedural meshes, full glTF support with textures).
+cforge build cforge run
 
-## Layout
 
-```
-include/AP2/     Public headers. Applications include <AP2/AP2.h>
-src/core/        Library implementation
-src/main.c       Demo executable
-third_party/     stb, miniaudio (vendored)
-docs/            Guides and tutorials
-```
+Dependencies are included in the repository and handled automatically.
 
-`AP2_Internal.h` is private. Do not include it from application code.
+---
+
+## Current State
+
+AP2 is usable for small projects, experiments, and learning. The engine is still under active development, and systems will continue to evolve. Expect breaking changes as things improve.
+
+---
+
+## Planned Improvements
+
+Some of the work planned for future versions:
+
+- More complete text rendering
+- Additional post‑processing effects
+- Improved material/shader system
+- More examples and documentation
+- Expansion of 3D features
+- General engine tooling and workflow improvements
+
+If you have ideas or find issues, feel free to open them.
+
+---
+
+## Contributing
+
+Contributions are welcome. The project is still growing, so even small improvements help — bug fixes, cleanup, documentation, examples, or focused feature work.
+
+If you’re interested in contributing:
+
+- Open an issue to discuss changes
+- Submit a PR when ready
+- Keep things simple and consistent with the existing style
+
+I review and merge changes when I have time.
+
+---
 
 ## License
 
-MIT. See [LICENSE](LICENSE).
-
-Copyright (c) 2024-2026 Jack Waechter.
+MIT License.
