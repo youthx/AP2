@@ -292,6 +292,8 @@ if(CFORGE_PLATFORM STREQUAL "windows")
     target_link_libraries(${PROJECT_NAME} PUBLIC kernel32)
     target_link_libraries(${PROJECT_NAME} PUBLIC opengl32)
     target_link_libraries(${PROJECT_NAME} PUBLIC gdi32)
+    target_link_libraries(${PROJECT_NAME} PUBLIC advapi32)
+    target_link_libraries(${PROJECT_NAME} PUBLIC shell32)
 endif()
 if(CFORGE_PLATFORM STREQUAL "linux")
     target_link_libraries(${PROJECT_NAME} PUBLIC GL)
@@ -388,6 +390,8 @@ target_link_libraries(${PROJECT_NAME} PUBLIC
     kernel32
     opengl32
     gdi32
+    advapi32
+    shell32
 )
 # Tests
 # No tests directory found

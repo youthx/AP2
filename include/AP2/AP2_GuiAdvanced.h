@@ -101,8 +101,20 @@ extern "C"
         AP_GUI_WIDGET_GRID,
         AP_GUI_WIDGET_FLEX,
         AP_GUI_WIDGET_SPACER,
-        AP_GUI_WIDGET_SEPARATOR
+        AP_GUI_WIDGET_SEPARATOR,
+        AP_GUI_WIDGET_POPUP
     } AP_GuiWidgetType;
+
+    /* Where a popup opens relative to its anchor widget. AP_GUI_POPUP_CURSOR
+     * ignores the anchor and opens at the current mouse position instead. */
+    typedef enum AP_GuiPopupPlacement
+    {
+        AP_GUI_POPUP_BELOW = 0,
+        AP_GUI_POPUP_ABOVE,
+        AP_GUI_POPUP_LEFT,
+        AP_GUI_POPUP_RIGHT,
+        AP_GUI_POPUP_CURSOR
+    } AP_GuiPopupPlacement;
 
     typedef enum AP_GuiLayoutType
     {
@@ -626,6 +638,45 @@ extern "C"
     /* Mouse/input event positions within canvas */
     bool AP_GuiCanvasGetMousePos(AP_GuiWidget *canvas, float *x, float *y);
     bool AP_GuiCanvasIsMouseInside(AP_GuiWidget *canvas);
+
+    /* =========================================================
+     * Popups (context menus, dropdowns, modal dialogs)
+     *
+     * A popup is a freestanding widget (it has no parent) that floats
+     * above the rest of the tree, positioned in absolute screen space.
+     * Build its contents the same way as any other container:
+     *
+     *     AP_GuiWidget *menu = AP_GuiPopupNew();
+     *     AP_GuiWidgetSetSize(menu, 160.0f, 120.0f);
+     *     AP_GuiWidgetAddChild(menu, AP_GuiButtonNew("Copy"));
+     *     AP_GuiWidgetAddChild(menu, AP_GuiButtonNew("Paste"));
+     *
+     *     // in the trigger button's "clicked" callback:
+     *     AP_GuiPopupOpenNear(menu, trigger_button, AP_GUI_POPUP_BELOW);
+     *
+     * Non-modal popups (the default) close themselves the frame a click
+     * lands outside their bounds. Modal popups block input to the rest
+     * of the tree until explicitly closed with AP_GuiPopupClose.
+     *
+     * Call AP_GuiWidgetUpdate / AP_GuiWidgetRender on the root as usual;
+     * open popups are updated and rendered on top automatically.
+     * ========================================================= */
+
+    AP_GuiWidget *AP_GuiPopupNew(void);
+
+    void AP_GuiPopupOpenAt(AP_GuiWidget *popup, float x, float y);
+    void AP_GuiPopupOpenNear(AP_GuiWidget *popup, AP_GuiWidget *anchor,
+                             AP_GuiPopupPlacement placement);
+    void AP_GuiPopupClose(AP_GuiWidget *popup);
+    bool AP_GuiPopupIsOpen(AP_GuiWidget *popup);
+
+    /* Modal popups suppress update/input on the rest of the tree while open. */
+    void AP_GuiPopupSetModal(AP_GuiWidget *popup, bool modal);
+    bool AP_GuiPopupIsModal(AP_GuiWidget *popup);
+
+    /* Default true: a click outside the popup's bounds closes it. */
+    void AP_GuiPopupSetCloseOnOutsideClick(AP_GuiWidget *popup, bool close_on_outside_click);
+    bool AP_GuiPopupCloseOnOutsideClick(AP_GuiWidget *popup);
 
     /* =========================================================
      * Utility Functions

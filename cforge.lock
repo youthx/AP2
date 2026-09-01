@@ -16,6 +16,6 @@ resolved = "3.5.1"
 
 [buildcache]
 # Auto-generated. Tracks change detection for incremental builds.
-generated = "2026-09-01T02:50:37Z"
-config_hash = "980775b67eb4cdf9"
+generated = "2026-09-01T03:17:37Z"
+config_hash = "817bbe319a3c5768"
 

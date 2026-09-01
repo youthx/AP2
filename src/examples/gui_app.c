@@ -21,6 +21,10 @@ typedef struct AppState
     AP_GuiWidget *volume_slider;
     AP_GuiWidget *progress_bar;
     AP_GuiWidget *animate_checkbox;
+    AP_GuiWidget *font_label;
+    AP_GuiTheme *theme;
+    AP_Font *loaded_font;
+    int font_index;
     int click_count;
 } AppState;
 
@@ -43,6 +47,44 @@ static bool OnResetClicked(AP_GuiEvent *event)
     app->click_count = 0;
     AP_GuiWidgetSetText(app->click_button, "Click Me (0)");
     AP_GuiWidgetSetValue(app->volume_slider, 50.0f);
+
+    return true;
+}
+
+/* Cycles through every system font found on this machine, applying each
+   pick to the shared theme so the whole UI re-renders with the new font. */
+static bool OnNextFontClicked(AP_GuiEvent *event)
+{
+    AppState *app = (AppState *)event->user_data;
+    int count = AP_GetSystemFontCount();
+    const char *name;
+    AP_Font *font;
+    char buf[128];
+
+    if (count <= 0)
+    {
+        AP_GuiWidgetSetText(app->font_label, "Font: (no system fonts found)");
+        return true;
+    }
+
+    app->font_index = (app->font_index + 1) % count;
+    name = AP_GetSystemFontName(app->font_index);
+
+    font = AP_LoadSystemFont(name, 16.0f);
+    if (font == NULL)
+    {
+        return true;
+    }
+
+    if (app->loaded_font != NULL)
+    {
+        AP_DestroyFont(app->loaded_font);
+    }
+    app->loaded_font = font;
+    app->theme->font_default = font;
+
+    snprintf(buf, sizeof(buf), "Font: %s (%d/%d)", name, app->font_index + 1, count);
+    AP_GuiWidgetSetText(app->font_label, buf);
 
     return true;
 }
@@ -77,11 +119,13 @@ static void PaintCanvas(AP_GuiWidget *canvas, AP_FRect bounds, void *user_data)
 int Example_GuiApp(void)
 {
     AppState app = {0};
-    AP_GuiWidget *window;
+    AP_GuiWidget *root_panel;
     AP_GuiWidget *root;
     AP_GuiWidget *title;
     AP_GuiWidget *row;
     AP_GuiWidget *reset_button;
+    AP_GuiWidget *font_row;
+    AP_GuiWidget *font_button;
     AP_GuiWidget *checkbox;
     AP_GuiWidget *separator;
     AP_GuiWidget *canvas;
@@ -90,15 +134,18 @@ int Example_GuiApp(void)
     AP_CreateWindow("AP2 - GUI App", 960, 700,
                     AP_WINDOW_CENTERED | AP_WINDOW_RESIZABLE | AP_WINDOW_MSAA);
 
-    AP_GuiSetGlobalTheme(AP_GuiThemeDarkNew());
+    app.theme = AP_GuiThemeDarkNew();
+    app.font_index = -1;
+    AP_GuiSetGlobalTheme(app.theme);
 
-    /* Window + root vertical layout */
-    window = AP_GuiWindowNew("Widgets Showcase", 900, 660);
-    AP_GuiWidgetSetGeometry(window, 30.0f, 20.0f, 900.0f, 660.0f);
+    /* Root panel fills the GLFW window directly — no inner decorative window */
+    root_panel = AP_GuiPanelNew();
+    AP_GuiWidgetSetGeometry(root_panel, 0.0f, 0.0f,
+                            (float)AP_GetWindowWidth(), (float)AP_GetWindowHeight());
 
     root = AP_GuiVBoxNew();
     AP_GuiWidgetSetPaddingAll(root, 16.0f);
-    AP_GuiWidgetAddChild(window, root);
+    AP_GuiWidgetAddChild(root_panel, root);
 
     title = AP_GuiLabelNew("AP2 Advanced GUI Demo");
     AP_GuiWidgetSetSize(title, 400.0f, 24.0f);
@@ -120,6 +167,20 @@ int Example_GuiApp(void)
     AP_GuiWidgetSetBorderRadiusCorners(reset_button, 4.0f, 4.0f, 4.0f, 4.0f);
     AP_GuiWidgetConnect(reset_button, "clicked", OnResetClicked, &app);
     AP_GuiWidgetAddChild(row, reset_button);
+
+    /* System font picker: cycles AP_GetSystemFontCount() fonts found on this machine */
+    font_row = AP_GuiHBoxNew();
+    AP_GuiWidgetSetSize(font_row, 400.0f, 36.0f);
+    AP_GuiWidgetAddChild(root, font_row);
+
+    font_button = AP_GuiButtonNew("Next Font");
+    AP_GuiWidgetSetSize(font_button, 140.0f, 32.0f);
+    AP_GuiWidgetConnect(font_button, "clicked", OnNextFontClicked, &app);
+    AP_GuiWidgetAddChild(font_row, font_button);
+
+    app.font_label = AP_GuiLabelNew("Font: (default)");
+    AP_GuiWidgetSetSize(app.font_label, 260.0f, 32.0f);
+    AP_GuiWidgetAddChild(font_row, app.font_label);
 
     /* Checkbox toggles the canvas animation below */
     checkbox = AP_GuiCheckboxNew("Animate canvas");
@@ -168,23 +229,32 @@ int Example_GuiApp(void)
 
         dt = AP_Tick();
 
+        /* Track the real GLFW window size so the GUI always fills it exactly */
+        AP_GuiWidgetSetGeometry(root_panel, 0.0f, 0.0f,
+                                (float)AP_GetWindowWidth(), (float)AP_GetWindowHeight());
+
         /* Keep dependent widgets in sync with the slider each frame */
         snprintf(buf, sizeof(buf), "Volume: %.0f", AP_GuiWidgetValue(app.volume_slider));
         AP_GuiWidgetSetText(app.volume_label, buf);
         AP_GuiWidgetSetValue(app.progress_bar, AP_GuiWidgetValue(app.volume_slider) / 100.0f);
 
-        AP_GuiWidgetRecalculateLayout(window);
-        AP_GuiWidgetUpdate(window, (float)dt);
+        AP_GuiWidgetRecalculateLayout(root_panel);
+        AP_GuiWidgetUpdate(root_panel, (float)dt);
 
         AP_SetDrawColor(0.04f, 0.05f, 0.07f, 1.0f);
         AP_Clear();
 
-        AP_GuiWidgetRender(window);
+        AP_GuiWidgetRender(root_panel);
 
         AP_Present();
     }
 
-    AP_GuiWidgetDestroy(window);
+    AP_GuiWidgetDestroy(root_panel);
+    if (app.loaded_font != NULL)
+    {
+        AP_DestroyFont(app.loaded_font);
+    }
+    AP_GuiThemeDestroy(app.theme);
     AP_DestroyWindow(NULL);
     AP_Quit();
     return 0;

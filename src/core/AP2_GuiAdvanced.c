@@ -75,6 +75,11 @@ typedef struct AP_GuiWidgetData
     bool hovered;
     bool pressed;
 
+    /* Popup state */
+    bool popup_open;
+    bool popup_modal;
+    bool popup_close_on_outside_click;
+
     /* Style */
     AP_FColor bg_color;
     AP_FColor text_color;
@@ -153,6 +158,12 @@ static AP_Font *g_global_font = NULL;
 static AP_GuiWidget *g_focused_widget = NULL;
 static AP_GuiWidget *g_hovered_widget = NULL;
 
+/* Open popups, oldest first. The last entry is topmost for input and
+ * render order (whichever popup opened last wins on overlap). */
+#define AP_GUI_MAX_OPEN_POPUPS 16
+static AP_GuiWidget *g_open_popups[AP_GUI_MAX_OPEN_POPUPS];
+static int g_open_popup_count = 0;
+
 /* =========================================================
  * Utility Functions
  * ========================================================= */
@@ -180,6 +191,19 @@ static float AP_GuiMinf(float a, float b)
 static float AP_GuiClampf(float x, float lo, float hi)
 {
     return AP_GuiMaxf(lo, AP_GuiMinf(x, hi));
+}
+
+static AP_Font *AP_GuiDefaultUIFont(void)
+{
+    static AP_Font *cached = NULL;
+    static bool tried = false;
+
+    if (!tried)
+    {
+        tried = true;
+        cached = AP_LoadSystemDefaultFont(16.0f);
+    }
+    return cached;
 }
 
 static bool AP_GuiRectContains(AP_FRect rect, float x, float y)
@@ -278,6 +302,7 @@ AP_GuiTheme *AP_GuiThemeDarkNew(void)
     theme->colors.info = AP_GuiColorFromFloat(0.2f, 0.8f, 1.0f, 1.0f);
 
     /* Default sizes */
+    theme->font_default = AP_GuiDefaultUIFont();
     theme->font_size = 14.0f;
     theme->font_size_title = 18.0f;
     theme->font_size_small = 11.0f;
@@ -326,6 +351,7 @@ AP_GuiTheme *AP_GuiThemeLightNew(void)
     theme->colors.info = AP_GuiColorFromFloat(0.2f, 0.8f, 1.0f, 1.0f);
 
     /* Default sizes */
+    theme->font_default = AP_GuiDefaultUIFont();
     theme->font_size = 14.0f;
     theme->font_size_title = 18.0f;
     theme->font_size_small = 11.0f;
@@ -1979,11 +2005,45 @@ static void AP_GuiWidgetUpdateInternal(AP_GuiWidget *widget, float dt)
 
 void AP_GuiWidgetUpdate(AP_GuiWidget *widget, float dt)
 {
+    AP_GuiWidget *to_close[AP_GUI_MAX_OPEN_POPUPS];
+    int to_close_count = 0;
+    int popup_count_snapshot;
+    int i;
+    bool modal_open = AP_GuiAnyModalPopupOpen();
+
     /* g_hovered_widget is recomputed fresh every frame starting from the
      * root; otherwise a widget the mouse has since left would stay
      * "hovered" forever (AP_GuiWidgetUnderMouse would never go false). */
     g_hovered_widget = NULL;
-    AP_GuiWidgetUpdateInternal(widget, dt);
+
+    /* A modal popup blocks input to the rest of the tree until closed. */
+    if (!modal_open)
+    {
+        AP_GuiWidgetUpdateInternal(widget, dt);
+    }
+
+    /* Snapshot the count: closing a popup below mutates g_open_popups,
+     * which would otherwise skip/repeat entries mid-iteration. */
+    popup_count_snapshot = g_open_popup_count;
+    for (i = 0; i < popup_count_snapshot; ++i)
+    {
+        AP_GuiWidget *popup = g_open_popups[i];
+        AP_GuiWidgetData *data = (AP_GuiWidgetData *)popup;
+
+        AP_GuiWidgetUpdateInternal(popup, dt);
+
+        if (data != NULL && !data->popup_modal && data->popup_close_on_outside_click &&
+            AP_IsMousePressed(AP_MOUSE_LEFT) && !data->hovered &&
+            to_close_count < AP_GUI_MAX_OPEN_POPUPS)
+        {
+            to_close[to_close_count++] = popup;
+        }
+    }
+
+    for (i = 0; i < to_close_count; ++i)
+    {
+        AP_GuiPopupClose(to_close[i]);
+    }
 }
 
 static AP_FColor AP_GuiResolveBgColor(AP_GuiWidgetData *data, AP_GuiTheme *theme)
@@ -2240,6 +2300,202 @@ void AP_GuiWidgetRecalculateLayout(AP_GuiWidget *widget)
             AP_GuiWidgetRecalculateLayout(data->children[i]);
         }
     }
+}
+
+/* =========================================================
+ * Popups
+ * ========================================================= */
+
+static int AP_GuiPopupStackIndex(AP_GuiWidget *popup)
+{
+    int i;
+    for (i = 0; i < g_open_popup_count; ++i)
+    {
+        if (g_open_popups[i] == popup)
+        {
+            return i;
+        }
+    }
+    return -1;
+}
+
+static void AP_GuiPopupStackRemove(AP_GuiWidget *popup)
+{
+    int index = AP_GuiPopupStackIndex(popup);
+    int i;
+
+    if (index < 0)
+    {
+        return;
+    }
+
+    for (i = index; i < g_open_popup_count - 1; ++i)
+    {
+        g_open_popups[i] = g_open_popups[i + 1];
+    }
+    g_open_popup_count -= 1;
+}
+
+static void AP_GuiPopupStackPush(AP_GuiWidget *popup)
+{
+    if (AP_GuiPopupStackIndex(popup) >= 0)
+    {
+        return; /* already open */
+    }
+    if (g_open_popup_count >= AP_GUI_MAX_OPEN_POPUPS)
+    {
+        AP_WARN("Too many open GUI popups; ignoring open request");
+        return;
+    }
+    g_open_popups[g_open_popup_count++] = popup;
+}
+
+static bool AP_GuiAnyModalPopupOpen(void)
+{
+    int i;
+    for (i = 0; i < g_open_popup_count; ++i)
+    {
+        AP_GuiWidgetData *data = (AP_GuiWidgetData *)g_open_popups[i];
+        if (data != NULL && data->popup_modal)
+        {
+            return true;
+        }
+    }
+    return false;
+}
+
+AP_GuiWidget *AP_GuiPopupNew(void)
+{
+    AP_GuiWidget *widget = AP_GuiAllocateWidget();
+    AP_GuiWidgetData *data;
+
+    if (widget == NULL)
+    {
+        return NULL;
+    }
+
+    data = (AP_GuiWidgetData *)widget;
+    data->type = AP_GUI_WIDGET_POPUP;
+    data->visible = false; /* hidden until AP_GuiPopupOpenAt / OpenNear */
+    data->enabled = true;
+    data->size_policy_x = AP_GUI_SIZE_FIXED;
+    data->size_policy_y = AP_GUI_SIZE_FIXED;
+    data->theme = AP_GuiGlobalTheme();
+    data->popup_close_on_outside_click = true;
+
+    return widget;
+}
+
+void AP_GuiPopupOpenAt(AP_GuiWidget *popup, float x, float y)
+{
+    AP_GuiWidgetData *data = (AP_GuiWidgetData *)popup;
+
+    if (data == NULL || data->type != AP_GUI_WIDGET_POPUP)
+    {
+        return;
+    }
+
+    data->rect.x = x;
+    data->rect.y = y;
+    data->visible = true;
+    data->popup_open = true;
+    AP_GuiPopupStackPush(popup);
+    AP_GuiWidgetRecalculateLayout(popup);
+}
+
+void AP_GuiPopupOpenNear(AP_GuiWidget *popup, AP_GuiWidget *anchor,
+                         AP_GuiPopupPlacement placement)
+{
+    AP_GuiWidgetData *pdata = (AP_GuiWidgetData *)popup;
+    AP_GuiWidgetData *adata = (AP_GuiWidgetData *)anchor;
+    float x = 0.0f;
+    float y = 0.0f;
+
+    if (pdata == NULL || adata == NULL)
+    {
+        return;
+    }
+
+    switch (placement)
+    {
+    case AP_GUI_POPUP_ABOVE:
+        x = adata->rect.x;
+        y = adata->rect.y - pdata->rect.h;
+        break;
+    case AP_GUI_POPUP_LEFT:
+        x = adata->rect.x - pdata->rect.w;
+        y = adata->rect.y;
+        break;
+    case AP_GUI_POPUP_RIGHT:
+        x = adata->rect.x + adata->rect.w;
+        y = adata->rect.y;
+        break;
+    case AP_GUI_POPUP_CURSOR:
+    {
+        double mx = 0.0, my = 0.0;
+        AP_GetMousePosition(&mx, &my);
+        x = (float)mx;
+        y = (float)my;
+    }
+    break;
+    case AP_GUI_POPUP_BELOW:
+    default:
+        x = adata->rect.x;
+        y = adata->rect.y + adata->rect.h;
+        break;
+    }
+
+    AP_GuiPopupOpenAt(popup, x, y);
+}
+
+void AP_GuiPopupClose(AP_GuiWidget *popup)
+{
+    AP_GuiWidgetData *data = (AP_GuiWidgetData *)popup;
+
+    if (data == NULL)
+    {
+        return;
+    }
+
+    data->visible = false;
+    data->popup_open = false;
+    AP_GuiPopupStackRemove(popup);
+}
+
+bool AP_GuiPopupIsOpen(AP_GuiWidget *popup)
+{
+    AP_GuiWidgetData *data = (AP_GuiWidgetData *)popup;
+    return data != NULL && data->popup_open;
+}
+
+void AP_GuiPopupSetModal(AP_GuiWidget *popup, bool modal)
+{
+    AP_GuiWidgetData *data = (AP_GuiWidgetData *)popup;
+    if (data != NULL)
+    {
+        data->popup_modal = modal;
+    }
+}
+
+bool AP_GuiPopupIsModal(AP_GuiWidget *popup)
+{
+    AP_GuiWidgetData *data = (AP_GuiWidgetData *)popup;
+    return data != NULL && data->popup_modal;
+}
+
+void AP_GuiPopupSetCloseOnOutsideClick(AP_GuiWidget *popup, bool close_on_outside_click)
+{
+    AP_GuiWidgetData *data = (AP_GuiWidgetData *)popup;
+    if (data != NULL)
+    {
+        data->popup_close_on_outside_click = close_on_outside_click;
+    }
+}
+
+bool AP_GuiPopupCloseOnOutsideClick(AP_GuiWidget *popup)
+{
+    AP_GuiWidgetData *data = (AP_GuiWidgetData *)popup;
+    return data != NULL && data->popup_close_on_outside_click;
 }
 
 /* =========================================================
