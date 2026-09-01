@@ -86,18 +86,18 @@
 #define AP2_CONCAT_IMPL(a, b) a##b
 #define AP2_CONCAT(a, b) AP2_CONCAT_IMPL(a, b)
 
-#define AP2_VERSION_ENCODE(major, minor, patch)                                \
+#define AP2_VERSION_ENCODE(major, minor, patch) \
   (((major) * 10000) + ((minor) * 100) + (patch))
 
-#define AP2_VERSION_NUMBER                                                       \
+#define AP2_VERSION_NUMBER \
   AP2_VERSION_ENCODE(AP2_VERSION_MAJOR, AP2_VERSION_MINOR, AP2_VERSION_PATCH)
 
-#define AP2_VERSION_ATLEAST(major, minor, patch)                                \
+#define AP2_VERSION_ATLEAST(major, minor, patch) \
   (AP2_VERSION_NUMBER >= AP2_VERSION_ENCODE(major, minor, patch))
 
 #ifndef AP2_VERSION_STRING
-#define AP2_VERSION_STRING                                                      \
-  AP2_STRINGIFY(AP2_VERSION_MAJOR)                                            \
+#define AP2_VERSION_STRING         \
+  AP2_STRINGIFY(AP2_VERSION_MAJOR) \
   "." AP2_STRINGIFY(AP2_VERSION_MINOR) "." AP2_STRINGIFY(AP2_VERSION_PATCH)
 #endif
 
@@ -114,7 +114,9 @@
 #if __cplusplus >= 201703L
 #define AP2_CPLUSPLUS17 1
 #endif
-#define AP2_BEGIN_DECLS extern "C" {
+#define AP2_BEGIN_DECLS \
+  extern "C"            \
+  {
 #define AP2_END_DECLS }
 #else
 #if defined(__STDC_VERSION__) && __STDC_VERSION__ >= 201710L
@@ -150,7 +152,7 @@
 #define AP2_PLATFORM_LINUX 1
 #elif defined(__linux__)
 #define AP2_PLATFORM_LINUX 1
-#elif defined(__FreeBSD__) || defined(__NetBSD__) || defined(__OpenBSD__) ||  \
+#elif defined(__FreeBSD__) || defined(__NetBSD__) || defined(__OpenBSD__) || \
     defined(__DragonFly__)
 #define AP2_PLATFORM_BSD 1
 #elif defined(__EMSCRIPTEN__)
@@ -201,7 +203,7 @@
 #endif
 #endif
 
-#if defined(__BYTE_ORDER__) && defined(__ORDER_BIG_ENDIAN__) &&              \
+#if defined(__BYTE_ORDER__) && defined(__ORDER_BIG_ENDIAN__) && \
     __BYTE_ORDER__ == __ORDER_BIG_ENDIAN__
 #define AP2_BIG_ENDIAN 1
 #else
@@ -272,7 +274,7 @@
 #ifndef AP2_INLINE
 #if defined(AP2_COMPILER_MSVC)
 #define AP2_INLINE __inline
-#elif defined(__cplusplus) ||                                                \
+#elif defined(__cplusplus) || \
     (defined(__STDC_VERSION__) && __STDC_VERSION__ >= 199901L)
 #define AP2_INLINE inline
 #else
@@ -334,7 +336,7 @@
 
 #ifndef AP2_PRINTF_FORMAT
 #if defined(AP2_COMPILER_GCC) || defined(AP2_COMPILER_CLANG)
-#define AP2_PRINTF_FORMAT(fmt_index, arg_index)                                \
+#define AP2_PRINTF_FORMAT(fmt_index, arg_index) \
   __attribute__((format(printf, fmt_index, arg_index)))
 #else
 #define AP2_PRINTF_FORMAT(fmt_index, arg_index)
@@ -391,7 +393,7 @@
 #elif defined(__STDC_VERSION__) && __STDC_VERSION__ >= 201112L
 #define AP2_STATIC_ASSERT(cond, msg) _Static_assert(cond, msg)
 #else
-#define AP2_STATIC_ASSERT(cond, msg)                                          \
+#define AP2_STATIC_ASSERT(cond, msg) \
   typedef char AP2_CONCAT(ap2_static_assert_, __LINE__)[(cond) ? 1 : -1]
 #endif
 #endif
@@ -759,30 +761,30 @@
 #define AP2_MODULE_CAMERA (1u << 23)
 #define AP2_MODULE_IMAGE (1u << 24)
 
-#define AP2_ENABLED_MODULES                                                     \
-  (AP2_MODULE_TYPES | AP2_MODULE_INIT |                                        \
-   (AP2_HAS_ERROR ? AP2_MODULE_ERROR : 0u) |                                   \
-   (AP2_HAS_LOGGER ? AP2_MODULE_LOGGER : 0u) |                                 \
-   (AP2_HAS_PLATFORM ? AP2_MODULE_PLATFORM : 0u) |                             \
-   (AP2_HAS_MATH ? AP2_MODULE_MATH : 0u) |                                     \
-   (AP2_HAS_CAMERA ? AP2_MODULE_CAMERA : 0u) |                                 \
-   (AP2_HAS_LIST ? AP2_MODULE_LIST : 0u) |                                     \
-   (AP2_HAS_STRING ? AP2_MODULE_STRING : 0u) |                                 \
-   (AP2_HAS_DEVICE ? AP2_MODULE_DEVICE : 0u) |                                 \
-   (AP2_HAS_VIDEO ? AP2_MODULE_VIDEO : 0u) |                                   \
-   (AP2_HAS_WINDOW ? AP2_MODULE_WINDOW : 0u) |                                 \
-   (AP2_HAS_INPUT ? AP2_MODULE_INPUT : 0u) |                                   \
-   (AP2_HAS_RENDERER ? AP2_MODULE_RENDERER : 0u) |                             \
-   (AP2_HAS_IMAGE ? AP2_MODULE_IMAGE : 0u) |                                   \
-   (AP2_HAS_TEXTURE ? AP2_MODULE_TEXTURE : 0u) |                               \
-   (AP2_HAS_SPRITE ? AP2_MODULE_SPRITE : 0u) |                                 \
-   (AP2_HAS_TILEMAP ? AP2_MODULE_TILEMAP : 0u) |                               \
-   (AP2_HAS_SHADER ? AP2_MODULE_SHADER : 0u) |                                 \
-   (AP2_HAS_FONT ? AP2_MODULE_FONT : 0u) |                                     \
-   (AP2_HAS_GUI ? AP2_MODULE_GUI : 0u) |                                       \
-   (AP2_HAS_OPENGL ? AP2_MODULE_OPENGL : 0u) |                                  \
-   (AP2_HAS_3D ? AP2_MODULE_3D : 0u) |                                         \
-   (AP2_HAS_AUDIO ? AP2_MODULE_AUDIO : 0u) |                                   \
+#define AP2_ENABLED_MODULES                        \
+  (AP2_MODULE_TYPES | AP2_MODULE_INIT |            \
+   (AP2_HAS_ERROR ? AP2_MODULE_ERROR : 0u) |       \
+   (AP2_HAS_LOGGER ? AP2_MODULE_LOGGER : 0u) |     \
+   (AP2_HAS_PLATFORM ? AP2_MODULE_PLATFORM : 0u) | \
+   (AP2_HAS_MATH ? AP2_MODULE_MATH : 0u) |         \
+   (AP2_HAS_CAMERA ? AP2_MODULE_CAMERA : 0u) |     \
+   (AP2_HAS_LIST ? AP2_MODULE_LIST : 0u) |         \
+   (AP2_HAS_STRING ? AP2_MODULE_STRING : 0u) |     \
+   (AP2_HAS_DEVICE ? AP2_MODULE_DEVICE : 0u) |     \
+   (AP2_HAS_VIDEO ? AP2_MODULE_VIDEO : 0u) |       \
+   (AP2_HAS_WINDOW ? AP2_MODULE_WINDOW : 0u) |     \
+   (AP2_HAS_INPUT ? AP2_MODULE_INPUT : 0u) |       \
+   (AP2_HAS_RENDERER ? AP2_MODULE_RENDERER : 0u) | \
+   (AP2_HAS_IMAGE ? AP2_MODULE_IMAGE : 0u) |       \
+   (AP2_HAS_TEXTURE ? AP2_MODULE_TEXTURE : 0u) |   \
+   (AP2_HAS_SPRITE ? AP2_MODULE_SPRITE : 0u) |     \
+   (AP2_HAS_TILEMAP ? AP2_MODULE_TILEMAP : 0u) |   \
+   (AP2_HAS_SHADER ? AP2_MODULE_SHADER : 0u) |     \
+   (AP2_HAS_FONT ? AP2_MODULE_FONT : 0u) |         \
+   (AP2_HAS_GUI ? AP2_MODULE_GUI : 0u) |           \
+   (AP2_HAS_OPENGL ? AP2_MODULE_OPENGL : 0u) |     \
+   (AP2_HAS_3D ? AP2_MODULE_3D : 0u) |             \
+   (AP2_HAS_AUDIO ? AP2_MODULE_AUDIO : 0u) |       \
    (AP2_HAS_POST ? AP2_MODULE_POST : 0u))
 
 /* =========================================================
@@ -864,6 +866,7 @@
 #endif
 
 #if AP2_HAS_3D
+#include "AP2/AP2_Material.h"
 #include "AP2/AP2_3D.h"
 #endif
 
@@ -873,6 +876,7 @@
 
 #if AP2_HAS_POST
 #include "AP2/AP2_Post.h"
+#include "AP2/AP2_Post_extra.h"
 #endif
 
 #if AP2_HAS_FONT
@@ -893,7 +897,8 @@
 
 AP2_BEGIN_DECLS
 
-AP2_UNUSED static AP2_INLINE AP_Version AP_GetCompiledVersion(void) {
+AP2_UNUSED static AP2_INLINE AP_Version AP_GetCompiledVersion(void)
+{
   AP_Version version;
   version.major = AP2_VERSION_MAJOR;
   version.minor = AP2_VERSION_MINOR;

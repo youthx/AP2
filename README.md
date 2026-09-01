@@ -38,7 +38,9 @@ One include, opaque handles, no renderer pointer on every call. GLFW and OpenGL 
 |---|---|
 | Windowing | Resizable, HiDPI, MSAA, vsync, fullscreen |
 | 2D | Rects, polygons, curves, gradients, textures, sprites |
-| 3D | Cameras, lights, cubes / planes / spheres, custom meshes |
+| 3D | Cameras, lights, cubes / planes / spheres, custom meshes, PBR materials |
+| Materials | Metallic-roughness PBR, normal mapping, textures, material properties |
+| Model Loading | glTF 2.0 and glB formats, embedded materials and textures, mesh transforms |
 | Audio | WAV / FLAC / MP3, streams, buses, 3D spatialization, waveforms |
 | Input | Keyboard, mouse, gamepads; down / pressed / released |
 | GUI | Immediate windows, menus, sliders, text fields |
@@ -98,8 +100,19 @@ Start with the [docs index](docs/README.md). Pushes to `main` / `master` publish
 | [10 Breakout](docs/tutorials/10-breakout.md) | Game: bricks, paddle, score |
 | [11 Top-down walker](docs/tutorials/11-top-down.md) | Game: WASD, camera, spatial audio |
 | [12 Desktop tool](docs/tutorials/12-desktop-tool.md) | App: inspector-style GUI |
+| [13 Tilemaps](docs/tutorials/13-tilemaps.md) | 2D tilemaps and collision |
 
-`src/main.c` is a sample 3D program (orbit camera, lights, cubes, HUD).
+**Advanced Materials & 3D Graphics:**
+
+| Guide | Subject |
+|---|---|
+| [14 Materials and Textures](docs/14-materials-textures.md) | Material types, creation, texture mapping |
+| [15 3D Models and glTF](docs/15-gltf-models.md) | Loading, manipulating, and rendering 3D models |
+| [16 Advanced PBR Workflows](docs/16-pbr-advanced.md) | Physically-based rendering techniques |
+| [17 Best Practices](docs/17-best-practices.md) | Code organization, memory management, optimization |
+| [18 API Reference](docs/18-api-reference.md) | Complete material and 3D API documentation |
+
+`src/main.c` is a sample 3D program demonstrating materials, model loading, and advanced rendering (orbit camera, dynamic materials, procedural meshes, full glTF support with textures).
 
 ## Layout
 

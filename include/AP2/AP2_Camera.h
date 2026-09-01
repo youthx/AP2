@@ -168,6 +168,37 @@ bool AP_Is2D(void);
 
 bool AP_ApplyCamera2D(const AP_Camera *camera);
 
+/* =========================================================
+ * 3D camera helpers (extensions)
+ * ========================================================= */
+
+/* Set camera position directly */
+bool AP_CameraSetPosition(AP_Camera *camera, AP_Vec3 position);
+
+/* Move camera in world space */
+void AP_CameraTranslate(AP_Camera *camera, AP_Vec3 delta);
+
+/* Move camera relative to its orientation (forward/right/up) */
+void AP_CameraMoveLocal(AP_Camera *camera, AP_F32 forward, AP_F32 right,
+                        AP_F32 up);
+
+/* Rotate camera using yaw/pitch (degrees) */
+void AP_CameraRotateYawPitch(AP_Camera *camera, AP_F32 yaw_deg,
+                             AP_F32 pitch_deg);
+
+/* Build a full view-projection matrix */
+AP_Mat4 AP_CameraVP(const AP_Camera *camera, AP_F32 aspect);
+
+/* Get camera yaw/pitch from its forward vector */
+AP_Vec2 AP_CameraYawPitch(const AP_Camera *camera);
+
+/* Rebuild camera target from yaw/pitch */
+void AP_CameraSetYawPitch(AP_Camera *camera, AP_F32 yaw_deg, AP_F32 pitch_deg);
+
+/* Ray from camera through screen point (0..1 normalized) */
+AP_Ray AP_CameraScreenRay(const AP_Camera *camera, AP_F32 aspect,
+                          AP_Vec2 screen01);
+
 #ifdef __cplusplus
 }
 #endif

@@ -380,7 +380,7 @@ build bin/Release/ap2_app.exe: C_EXECUTABLE_LINKER__ap2_app_Release CMakeFiles/a
   FLAGS = -B C:/msys64/ucrt64/bin -O3 -DNDEBUG
   LINK_LIBRARIES = lib/Release/libglad.a  lib/Release/libglfw3.a  -luser32  -lkernel32  -lopengl32  -lgdi32  -luser32  -lkernel32  -lopengl32  -lgdi32  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\ap2_app.dir\Release
-  POST_BUILD = C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build && C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -noprofile -executionpolicy Bypass -file "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/VC/vcpkg/scripts/buildsystems/msbuild/applocal.ps1" -targetBinary C:/Users/jackw/OneDrive/Desktop/git-projects/aphelion-engine/ap2/build/bin/Release/ap2_app.exe -installedDir "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/VC/vcpkg/installed/x64-windows/bin" -OutVariable out"
+  POST_BUILD = cd .
   PRE_LINK = cd .
   TARGET_FILE = bin\Release\ap2_app.exe
   TARGET_IMPLIB = lib\Release\libap2_app.dll.a

@@ -23,7 +23,7 @@ static int g_2d_depth = 0;
  * ========================================================= */
 
 static AP_Camera AP_CameraMake(AP_CameraMode mode, AP_Vec3 position,
-                              AP_Vec3 target) {
+                               AP_Vec3 target) {
   AP_Camera camera;
 
   camera.mode = mode;
@@ -113,7 +113,7 @@ static void AP_CameraResolveViewSize(AP_F32 *view_w, AP_F32 *view_h) {
 }
 
 static AP_Vec2 AP_CameraFocus2D(const AP_Camera *camera, AP_F32 view_w,
-                               AP_F32 view_h) {
+                                AP_F32 view_h) {
   AP_Vec2 offset = camera != NULL ? camera->offset : AP_Vec2Zero();
 
   if (camera != NULL && camera->center) {
@@ -195,8 +195,8 @@ AP_Mat4 AP_CameraView(const AP_Camera *camera) {
   if (camera->mode == AP_CAMERA_2D) {
     AP_Vec3 eye = AP_V3(camera->position.x, camera->position.y, 8.0f);
     AP_Vec3 at = AP_V3(camera->position.x, camera->position.y, 0.0f);
-    AP_Vec3 up = AP_Vec3LengthSq(camera->up) > AP_EPSILON ? camera->up
-                                                          : AP_Vec3Up();
+    AP_Vec3 up =
+        AP_Vec3LengthSq(camera->up) > AP_EPSILON ? camera->up : AP_Vec3Up();
     return AP_Mat4LookAt(eye, at, up);
   }
 
@@ -417,7 +417,8 @@ bool AP_CameraZoomAt2D(AP_Camera *camera, AP_Vec2 world, AP_F32 zoom,
   screen = AP_CameraWorldToScreen2D(camera, world, view_w, view_h);
   AP_CameraSetZoom(camera, zoom);
   shifted = AP_CameraScreenToWorld2D(camera, screen, view_w, view_h);
-  position = AP_Vec2Add(AP_CameraPosition2D(camera), AP_Vec2Sub(world, shifted));
+  position =
+      AP_Vec2Add(AP_CameraPosition2D(camera), AP_Vec2Sub(world, shifted));
   AP_CameraSetXY(&camera->position, position);
   return true;
 }
@@ -537,8 +538,10 @@ bool AP_CameraClamp2D(AP_Camera *camera, AP_F32 view_w, AP_F32 view_h) {
 
   min_pos.x = camera->bounds.x + (position.x - view.x);
   min_pos.y = camera->bounds.y + (position.y - view.y);
-  max_pos.x = camera->bounds.x + camera->bounds.w - (view.x + view.w - position.x);
-  max_pos.y = camera->bounds.y + camera->bounds.h - (view.y + view.h - position.y);
+  max_pos.x =
+      camera->bounds.x + camera->bounds.w - (view.x + view.w - position.x);
+  max_pos.y =
+      camera->bounds.y + camera->bounds.h - (view.y + view.h - position.y);
 
   if (max_pos.x < min_pos.x) {
     position.x = camera->bounds.x + camera->bounds.w * 0.5f;
@@ -607,3 +610,122 @@ void AP_End2D(void) {
 }
 
 bool AP_Is2D(void) { return g_2d_depth > 0; }
+
+#include "AP2/AP2_Camera.h"
+#include "AP2/AP2_Math.h"
+
+/* =========================================================
+ * Basic setters
+ * ========================================================= */
+
+bool AP_CameraSetPosition(AP_Camera *camera, AP_Vec3 position) {
+  if (!camera)
+    return false;
+  camera->position = position;
+  return true;
+}
+
+void AP_CameraTranslate(AP_Camera *camera, AP_Vec3 delta) {
+  if (!camera)
+    return;
+  camera->position = AP_Vec3Add(camera->position, delta);
+  camera->target = AP_Vec3Add(camera->target, delta);
+}
+
+/* =========================================================
+ * Local-space movement
+ * ========================================================= */
+
+void AP_CameraMoveLocal(AP_Camera *camera, AP_F32 forward, AP_F32 right,
+                        AP_F32 up) {
+  if (!camera)
+    return;
+
+  AP_Vec3 f = AP_CameraForward(camera);
+  AP_Vec3 r = AP_CameraRight(camera);
+  AP_Vec3 u = camera->up;
+
+  AP_Vec3 delta = AP_V3(f.x * forward + r.x * right + u.x * up,
+                        f.y * forward + r.y * right + u.y * up,
+                        f.z * forward + r.z * right + u.z * up);
+
+  camera->position = AP_Vec3Add(camera->position, delta);
+  camera->target = AP_Vec3Add(camera->target, delta);
+}
+
+/* =========================================================
+ * Yaw/pitch rotation
+ * ========================================================= */
+
+void AP_CameraRotateYawPitch(AP_Camera *camera, AP_F32 yaw_deg,
+                             AP_F32 pitch_deg) {
+  if (!camera)
+    return;
+
+  AP_F32 yaw = AP_DegToRad(yaw_deg);
+  AP_F32 pitch = AP_DegToRad(pitch_deg);
+
+  AP_Vec3 dir = {cosf(yaw) * cosf(pitch), sinf(pitch), sinf(yaw) * cosf(pitch)};
+
+  camera->target = AP_Vec3Add(camera->position, dir);
+}
+
+AP_Vec2 AP_CameraYawPitch(const AP_Camera *camera) {
+  AP_Vec3 f = AP_CameraForward(camera);
+
+  AP_F32 yaw = atan2f(f.z, f.x);
+  AP_F32 pitch = asinf(f.y);
+
+  return AP_V2(AP_RadToDeg(yaw), AP_RadToDeg(pitch));
+}
+
+void AP_CameraSetYawPitch(AP_Camera *camera, AP_F32 yaw_deg, AP_F32 pitch_deg) {
+  if (!camera)
+    return;
+
+  AP_F32 yaw = AP_DegToRad(yaw_deg);
+  AP_F32 pitch = AP_DegToRad(pitch_deg);
+
+  AP_Vec3 dir = {cosf(yaw) * cosf(pitch), sinf(pitch), sinf(yaw) * cosf(pitch)};
+
+  camera->target = AP_Vec3Add(camera->position, dir);
+}
+
+/* =========================================================
+ * View-projection
+ * ========================================================= */
+
+AP_Mat4 AP_CameraVP(const AP_Camera *camera, AP_F32 aspect) {
+  AP_Mat4 v = AP_CameraView(camera);
+  AP_Mat4 p = AP_CameraProjection(camera, aspect);
+  return AP_Mat4Mul(p, v);
+}
+
+/* =========================================================
+ * Screen ray (for picking)
+ * ========================================================= */
+
+AP_Ray AP_CameraScreenRay(const AP_Camera *camera, AP_F32 aspect,
+                          AP_Vec2 screen01) {
+  AP_Ray ray;
+  ray.origin = camera->position;
+
+  AP_Mat4 proj = AP_CameraProjection(camera, aspect);
+  AP_Mat4 view = AP_CameraView(camera);
+  AP_Mat4 inv;
+  AP_Mat4Inverse(AP_Mat4Mul(proj, view), &inv);
+
+  AP_Vec4 ndc = {screen01.x * 2.0f - 1.0f, 1.0f - screen01.y * 2.0f, 1.0f,
+                 1.0f};
+
+  AP_Vec4 world = AP_Mat4MulVec4(inv, ndc);
+  world.x /= world.w;
+  world.y /= world.w;
+  world.z /= world.w;
+
+  ray.direction = AP_Vec3Normalize(AP_V3(world.x - camera->position.x,
+                                         world.y - camera->position.y,
+                                         world.z - camera->position.z));
+
+  return ray;
+}

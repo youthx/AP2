@@ -4,115 +4,109 @@
 #include <stdbool.h>
 
 #ifdef __cplusplus
-extern "C" {
+extern "C"
+{
 #endif
 
-/* =============================================================
- * REALISM / CINEMATIC
- * ============================================================= */
+    /*
+     * Extended post-processing controls, layered on top of AP2_Post.h.
+     * Every setter clamps internally (see AP2_Post.c for exact ranges)
+     * and the value is retained even if its effect is currently at 0.
+     */
 
-/* Exposure / tone */
-bool AP_SetPostExposure(float *exposure);
-bool AP_SetPostGamma(float *gamma);
-bool AP_SetPostFilmic(float *amount);
+    /* =============================================================
+     * REALISM / CINEMATIC
+     * ============================================================= */
 
-/* Color correction */
-bool AP_SetPostContrast(float *contrast);
-bool AP_SetPostSaturation(float *saturation);
-bool AP_SetPostBrightness(float *brightness);
-bool AP_SetPostTemperature(float *temperature);
-bool AP_SetPostTint(float *tint);
+    /* Exposure / tone */
+    bool AP_SetPostExposure(float exposure);
+    bool AP_SetPostGamma(float gamma);
+    bool AP_SetPostFilmic(float amount);
 
-/* Image enhancement */
-bool AP_SetPostSharpen(float *amount);
-bool AP_SetPostClarity(float *amount);
-bool AP_SetPostDetail(float *amount);
+    /* Color correction (extends AP_SetPostColorGrade in AP2_Post.h) */
+    bool AP_SetPostContrast(float contrast);
+    bool AP_SetPostSaturation(float saturation);
+    bool AP_SetPostBrightness(float brightness);
+    bool AP_SetPostTemperature(float temperature);
+    bool AP_SetPostTint(float tint);
 
-/* Bloom / light */
-bool AP_SetPostBloom(float *threshold, float *intensity);
-bool AP_SetPostBloomRadius(float *radius);
-bool AP_SetPostBloomSoftness(float *softness);
-bool AP_SetPostLensDirt(float *amount);
+    /* Image enhancement */
+    bool AP_SetPostClarity(float amount);
+    bool AP_SetPostDetail(float amount);
 
-/* Lens effects */
-bool AP_SetPostChromatic(float *amount);
-bool AP_SetPostLensDistortion(float *amount);
-bool AP_SetPostBarrel(float *amount);
-bool AP_SetPostVignette(float *amount);
+    /* Bloom / light (AP_SetPostBloom threshold+intensity lives in AP2_Post.h) */
+    bool AP_SetPostBloomRadius(float radius);
+    bool AP_SetPostBloomSoftness(float softness);
+    bool AP_SetPostLensDirt(float amount);
 
-/* Film */
-bool AP_SetPostGrain(float *amount);
-bool AP_SetPostFilmGrain(float *amount);
-bool AP_SetPostFilmResponse(float *amount);
-bool AP_SetPostHalation(float *amount);
+    /* Lens effects (AP_SetPostChromatic / AP_SetPostVignette live in AP2_Post.h) */
+    bool AP_SetPostLensDistortion(float amount);
+    bool AP_SetPostBarrel(float amount);
 
-/* Atmospheric */
-bool AP_SetPostFog(float *amount);
-bool AP_SetPostFogDensity(float *density);
-bool AP_SetPostFogHeight(float *height);
+    /* Film (AP_SetPostGrain lives in AP2_Post.h) */
+    bool AP_SetPostFilmGrain(float amount);
+    bool AP_SetPostFilmResponse(float amount);
+    bool AP_SetPostHalation(float amount);
 
-/* Depth-based effects */
-bool AP_SetPostDepthOfField(float *amount);
-bool AP_SetPostDOFFocus(float *focus);
-bool AP_SetPostDOFAperture(float *aperture);
+    /* Atmospheric */
+    bool AP_SetPostFog(float amount);
+    bool AP_SetPostFogDensity(float density);
+    bool AP_SetPostFogHeight(float height);
 
-/* Motion */
-bool AP_SetPostMotionBlur(float *amount);
+    /* Depth-based effects */
+    bool AP_SetPostDepthOfField(float amount);
+    bool AP_SetPostDOFFocus(float focus);
+    bool AP_SetPostDOFAperture(float aperture);
 
-/* =============================================================
- * CREATIVE / STYLIZED
- * ============================================================= */
+    /* Motion */
+    bool AP_SetPostMotionBlur(float amount);
 
-/* Resolution / geometry-like */
-bool AP_SetPostPixelate(float *pixels);
-bool AP_SetPostPosterize(float *levels);
+    /* =============================================================
+     * CREATIVE / STYLIZED
+     * ============================================================= */
 
-/* Retro */
-bool AP_SetPostScanlines(float *amount);
-bool AP_SetPostCRT(float *amount);
-bool AP_SetPostVHS(float *amount);
-bool AP_SetPostRGBSplit(float *amount);
+    /* Resolution / geometry-like */
+    bool AP_SetPostPixelate(float pixels);
+    bool AP_SetPostPosterize(float levels);
 
-/* Color */
-bool AP_SetPostSepia(float *amount);
-bool AP_SetPostGrayscale(float *amount);
-bool AP_SetPostInvert(float *amount);
-bool AP_SetPostSolarize(float *amount);
-bool AP_SetPostColorize(float *amount, float *hue);
+    /* Retro */
+    bool AP_SetPostScanlines(float amount);
+    bool AP_SetPostCRT(float amount);
+    bool AP_SetPostVHS(float amount);
+    bool AP_SetPostRGBSplit(float amount);
 
-/* Stylization */
-bool AP_SetPostEdge(float *amount);
-bool AP_SetPostOutline(float *amount);
-bool AP_SetPostCelShade(float *amount);
-bool AP_SetPostPosterize(float *levels);
-bool AP_SetPostDither(float *amount);
-bool AP_SetPostHalftone(float *amount);
+    /* Color */
+    bool AP_SetPostSepia(float amount);
+    bool AP_SetPostGrayscale(float amount);
+    bool AP_SetPostInvert(float amount);
+    bool AP_SetPostSolarize(float amount);
+    bool AP_SetPostColorize(float amount);
+    bool AP_SetPostColorizeHue(float hue);
 
-/* Glitch */
-bool AP_SetPostGlitch(float *amount);
-bool AP_SetPostNoise(float *amount);
-bool AP_SetPostDisplacement(float *amount);
+    /* Stylization */
+    bool AP_SetPostEdge(float amount);
+    bool AP_SetPostOutline(float amount);
+    bool AP_SetPostCelShade(float amount);
+    bool AP_SetPostDither(float amount);
+    bool AP_SetPostHalftone(float amount);
 
-/* Distortion */
-bool AP_SetPostKaleidoscope(float *amount);
-bool AP_SetPostWave(float *amount);
-bool AP_SetPostRipple(float *amount);
-bool AP_SetPostFisheye(float *amount);
+    /* Glitch */
+    bool AP_SetPostGlitch(float amount);
+    bool AP_SetPostNoise(float amount);
+    bool AP_SetPostDisplacement(float amount);
 
-/* =============================================================
- * QUALITY / MASTER CONTROLS
- * ============================================================= */
+    /* Distortion */
+    bool AP_SetPostKaleidoscope(float amount);
+    bool AP_SetPostWave(float amount);
+    bool AP_SetPostRipple(float amount);
+    bool AP_SetPostFisheye(float amount);
 
-bool AP_SetPostEnabled(bool enabled);
+    /* =============================================================
+     * QUALITY / MASTER CONTROLS
+     * ============================================================= */
 
-/* Master strength for the complete post stack. */
-bool AP_SetPostIntensity(float *intensity);
-
-/* Enable/disable individual effects. */
-bool AP_SetPostEffectEnabled(
-    const char *effect,
-    bool enabled
-);
+    /* Master strength for the complete post stack. */
+    bool AP_SetPostIntensity(float intensity);
 
 #ifdef __cplusplus
 }

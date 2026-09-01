@@ -34,7 +34,8 @@
  * Internal window
  * ========================================================= */
 
-struct AP_Window {
+struct AP_Window
+{
   GLFWwindow *handle;
 
   char title[AP_WINDOW_TITLE_MAX];
@@ -115,27 +116,33 @@ static double g_fps = 0.0;
  * Helpers
  * ========================================================= */
 
-static AP_Window *AP_WindowActive(void) {
-  if (g_active_window != NULL && g_active_window->handle != NULL) {
+static AP_Window *AP_WindowActive(void)
+{
+  if (g_active_window != NULL && g_active_window->handle != NULL)
+  {
     return g_active_window;
   }
 
   return NULL;
 }
 
-static bool AP_WindowIsPositionSentinel(int value) {
+static bool AP_WindowIsPositionSentinel(int value)
+{
   return value == AP_WINDOW_POS_UNDEFINED || value == AP_WINDOW_POS_CENTERED;
 }
 
-static void AP_WindowCopyTitle(AP_Window *window, const char *title) {
+static void AP_WindowCopyTitle(AP_Window *window, const char *title)
+{
   const char *source = (title != NULL) ? title : "AP2";
 
   memset(window->title, 0, sizeof(window->title));
   strncpy(window->title, source, sizeof(window->title) - 1);
 }
 
-static bool AP_WindowRegister(AP_Window *window) {
-  if (g_window_count >= AP_WINDOW_MAX) {
+static bool AP_WindowRegister(AP_Window *window)
+{
+  if (g_window_count >= AP_WINDOW_MAX)
+  {
     AP_SET_ERROR(AP_ERROR_OPERATION_FAILED, "Maximum window count reached");
     return false;
   }
@@ -144,11 +151,14 @@ static bool AP_WindowRegister(AP_Window *window) {
   return true;
 }
 
-static void AP_WindowUnregister(AP_Window *window) {
+static void AP_WindowUnregister(AP_Window *window)
+{
   int i;
 
-  for (i = 0; i < g_window_count; ++i) {
-    if (g_windows[i] == window) {
+  for (i = 0; i < g_window_count; ++i)
+  {
+    if (g_windows[i] == window)
+    {
       g_windows[i] = g_windows[g_window_count - 1];
       g_windows[g_window_count - 1] = NULL;
       g_window_count -= 1;
@@ -157,32 +167,39 @@ static void AP_WindowUnregister(AP_Window *window) {
   }
 }
 
-static GLFWmonitor *AP_WindowResolveMonitor(int monitor_index) {
+static GLFWmonitor *AP_WindowResolveMonitor(int monitor_index)
+{
   int count = 0;
   GLFWmonitor **monitors = glfwGetMonitors(&count);
 
-  if (monitors == NULL || count <= 0) {
+  if (monitors == NULL || count <= 0)
+  {
     return glfwGetPrimaryMonitor();
   }
 
-  if (monitor_index < 0 || monitor_index >= count) {
+  if (monitor_index < 0 || monitor_index >= count)
+  {
     return glfwGetPrimaryMonitor();
   }
 
   return monitors[monitor_index];
 }
 
-static int AP_WindowFindMonitorIndex(GLFWmonitor *monitor) {
+static int AP_WindowFindMonitorIndex(GLFWmonitor *monitor)
+{
   int count = 0;
   int i;
   GLFWmonitor **monitors = glfwGetMonitors(&count);
 
-  if (monitors == NULL) {
+  if (monitors == NULL)
+  {
     return 0;
   }
 
-  for (i = 0; i < count; ++i) {
-    if (monitors[i] == monitor) {
+  for (i = 0; i < count; ++i)
+  {
+    if (monitors[i] == monitor)
+    {
       return i;
     }
   }
@@ -190,8 +207,10 @@ static int AP_WindowFindMonitorIndex(GLFWmonitor *monitor) {
   return 0;
 }
 
-static void AP_WindowRefresh(AP_Window *window) {
-  if (window == NULL || window->handle == NULL) {
+static void AP_WindowRefresh(AP_Window *window)
+{
+  if (window == NULL || window->handle == NULL)
+  {
     return;
   }
 
@@ -213,12 +232,15 @@ static void AP_WindowRefresh(AP_Window *window) {
   glfwGetCursorPos(window->handle, &window->cursor_x, &window->cursor_y);
 }
 
-static void AP_WindowApplyChrome(AP_Window *window) {
-  if (window == NULL || window->handle == NULL) {
+static void AP_WindowApplyChrome(AP_Window *window)
+{
+  if (window == NULL || window->handle == NULL)
+  {
     return;
   }
 
-  if (!window->decorated || window->borderless || window->fullscreen) {
+  if (!window->decorated || window->borderless || window->fullscreen)
+  {
     return;
   }
 
@@ -227,7 +249,8 @@ static void AP_WindowApplyChrome(AP_Window *window) {
                              window->chrome_close, window->title);
 }
 
-static bool AP_WindowCenterInternal(AP_Window *window) {
+static bool AP_WindowCenterInternal(AP_Window *window)
+{
   GLFWmonitor *monitor;
   const GLFWvidmode *mode;
   int monitor_x = 0;
@@ -235,17 +258,20 @@ static bool AP_WindowCenterInternal(AP_Window *window) {
   int width = 0;
   int height = 0;
 
-  if (window == NULL || window->handle == NULL || window->fullscreen) {
+  if (window == NULL || window->handle == NULL || window->fullscreen)
+  {
     return false;
   }
 
   monitor = AP_WindowResolveMonitor(window->monitor_index);
-  if (monitor == NULL) {
+  if (monitor == NULL)
+  {
     return false;
   }
 
   mode = glfwGetVideoMode(monitor);
-  if (mode == NULL) {
+  if (mode == NULL)
+  {
     return false;
   }
 
@@ -260,10 +286,12 @@ static bool AP_WindowCenterInternal(AP_Window *window) {
 }
 
 static void AP_WindowFramebufferCallback(GLFWwindow *handle, int width,
-                                         int height) {
+                                         int height)
+{
   AP_Window *window = (AP_Window *)glfwGetWindowUserPointer(handle);
 
-  if (window == NULL) {
+  if (window == NULL)
+  {
     return;
   }
 
@@ -271,15 +299,18 @@ static void AP_WindowFramebufferCallback(GLFWwindow *handle, int width,
   window->framebuffer_height = height;
   glfwGetWindowSize(handle, &window->width, &window->height);
 
-  if (window == g_active_window) {
+  if (window == g_active_window)
+  {
     AP_RendererNotifyResize(width, height);
   }
 }
 
-static void AP_WindowPositionCallback(GLFWwindow *handle, int x, int y) {
+static void AP_WindowPositionCallback(GLFWwindow *handle, int x, int y)
+{
   AP_Window *window = (AP_Window *)glfwGetWindowUserPointer(handle);
 
-  if (window == NULL) {
+  if (window == NULL)
+  {
     return;
   }
 
@@ -287,10 +318,12 @@ static void AP_WindowPositionCallback(GLFWwindow *handle, int x, int y) {
   window->y = y;
 }
 
-static void AP_WindowSizeCallback(GLFWwindow *handle, int width, int height) {
+static void AP_WindowSizeCallback(GLFWwindow *handle, int width, int height)
+{
   AP_Window *window = (AP_Window *)glfwGetWindowUserPointer(handle);
 
-  if (window == NULL) {
+  if (window == NULL)
+  {
     return;
   }
 
@@ -298,10 +331,12 @@ static void AP_WindowSizeCallback(GLFWwindow *handle, int width, int height) {
   window->height = height;
 }
 
-static void AP_WindowFocusCallback(GLFWwindow *handle, int focused) {
+static void AP_WindowFocusCallback(GLFWwindow *handle, int focused)
+{
   AP_Window *window = (AP_Window *)glfwGetWindowUserPointer(handle);
 
-  if (window == NULL) {
+  if (window == NULL)
+  {
     return;
   }
 
@@ -309,34 +344,41 @@ static void AP_WindowFocusCallback(GLFWwindow *handle, int focused) {
   AP_InputOnFocusChanged(window->focused);
 }
 
-static void AP_WindowIconifyCallback(GLFWwindow *handle, int iconified) {
+static void AP_WindowIconifyCallback(GLFWwindow *handle, int iconified)
+{
   AP_Window *window = (AP_Window *)glfwGetWindowUserPointer(handle);
 
-  if (window == NULL) {
+  if (window == NULL)
+  {
     return;
   }
 
   window->minimized = iconified != 0;
 }
 
-static void AP_WindowMaximizeCallback(GLFWwindow *handle, int maximized) {
+static void AP_WindowMaximizeCallback(GLFWwindow *handle, int maximized)
+{
   AP_Window *window = (AP_Window *)glfwGetWindowUserPointer(handle);
 
-  if (window == NULL) {
+  if (window == NULL)
+  {
     return;
   }
 
   window->maximized = maximized != 0;
 }
 
-static void AP_WindowCloseCallback(GLFWwindow *handle) {
+static void AP_WindowCloseCallback(GLFWwindow *handle)
+{
   AP_Window *window = (AP_Window *)glfwGetWindowUserPointer(handle);
 
-  if (window == NULL) {
+  if (window == NULL)
+  {
     return;
   }
 
-  if (!window->chrome_close) {
+  if (!window->chrome_close)
+  {
     glfwSetWindowShouldClose(handle, GLFW_FALSE);
     window->open = true;
     return;
@@ -346,10 +388,12 @@ static void AP_WindowCloseCallback(GLFWwindow *handle) {
 }
 
 static void AP_WindowContentScaleCallback(GLFWwindow *handle, float x,
-                                          float y) {
+                                          float y)
+{
   AP_Window *window = (AP_Window *)glfwGetWindowUserPointer(handle);
 
-  if (window == NULL) {
+  if (window == NULL)
+  {
     return;
   }
 
@@ -357,22 +401,26 @@ static void AP_WindowContentScaleCallback(GLFWwindow *handle, float x,
   window->content_scale_y = y;
 }
 
-static void AP_WindowCursorPosCallback(GLFWwindow *handle, double x, double y) {
+static void AP_WindowCursorPosCallback(GLFWwindow *handle, double x, double y)
+{
   AP_Window *window = (AP_Window *)glfwGetWindowUserPointer(handle);
 
-  if (window == NULL) {
+  if (window == NULL)
+  {
     return;
   }
 
   window->cursor_x = x;
   window->cursor_y = y;
 
-  if (window == g_active_window) {
+  if (window == g_active_window)
+  {
     AP_InputOnCursorMove(x, y);
   }
 }
 
-static void AP_WindowInstallCallbacks(AP_Window *window) {
+static void AP_WindowInstallCallbacks(AP_Window *window)
+{
   glfwSetFramebufferSizeCallback(window->handle, AP_WindowFramebufferCallback);
   glfwSetWindowPosCallback(window->handle, AP_WindowPositionCallback);
   glfwSetWindowSizeCallback(window->handle, AP_WindowSizeCallback);
@@ -387,16 +435,19 @@ static void AP_WindowInstallCallbacks(AP_Window *window) {
 }
 
 static void AP_WindowApplyHints(const AP_WindowConfig *config, int major,
-                                int minor) {
+                                int minor)
+{
   const AP_VideoConfig *video = AP_VideoGetConfig();
   bool debug = (config->flags & AP_WINDOW_DEBUG) != 0;
   int context_api = GLFW_NATIVE_CONTEXT_API;
 
-  if (video != NULL && (video->debug || video->validation)) {
+  if (video != NULL && (video->debug || video->validation))
+  {
     debug = true;
   }
 
-  switch (AP_PlatformGetContextAPI()) {
+  switch (AP_PlatformGetContextAPI())
+  {
   case AP_PLATFORM_CONTEXT_EGL:
     context_api = GLFW_EGL_CONTEXT_API;
     break;
@@ -473,27 +524,32 @@ static void AP_WindowApplyHints(const AP_WindowConfig *config, int major,
 
   {
     int samples = 0;
-    if (config->flags & AP_WINDOW_MSAA) {
+    if (config->flags & AP_WINDOW_MSAA)
+    {
       samples = config->msaa_samples > 0 ? config->msaa_samples : 4;
     }
     glfwWindowHint(GLFW_SAMPLES, samples);
   }
 }
 
-static void AP_GLFWErrorCallback(int error, const char *description) {
+static void AP_GLFWErrorCallback(int error, const char *description)
+{
   AP_ERROR("GLFW error %d: %s", error,
            description != NULL ? description : "unknown");
 }
 
-static bool AP_WindowEnsureGLFW(void) {
-  if (g_glfw_initialized) {
+static bool AP_WindowEnsureGLFW(void)
+{
+  if (g_glfw_initialized)
+  {
     return true;
   }
 
   glfwSetErrorCallback(AP_GLFWErrorCallback);
   AP_PlatformPrepareWindowing();
 
-  if (!glfwInit()) {
+  if (!glfwInit())
+  {
     AP_SET_ERROR(AP_ERROR_INITIALIZATION_FAILED, "Failed to initialize GLFW");
     return false;
   }
@@ -509,18 +565,21 @@ static bool AP_WindowEnsureGLFW(void) {
   return true;
 }
 
-static bool AP_WindowAttachGraphics(AP_Window *window) {
+static bool AP_WindowAttachGraphics(AP_Window *window)
+{
   AP_DeviceConfig device_config;
   AP_OpenGLConfig gl_config;
   const AP_VideoConfig *video;
 
-  if (!AP_OpenGLMakeContextCurrent(window->handle)) {
+  if (!AP_OpenGLMakeContextCurrent(window->handle))
+  {
     return false;
   }
 
   gl_config = AP_OpenGLDefaultConfig();
   video = AP_VideoGetConfig();
-  if (video != NULL) {
+  if (video != NULL)
+  {
     gl_config.major_version = video->major_version;
     gl_config.minor_version = video->minor_version;
     gl_config.debug =
@@ -533,50 +592,60 @@ static bool AP_WindowAttachGraphics(AP_Window *window) {
   gl_config.multisample_samples =
       window->msaa_samples > 0 ? (AP_UInt)window->msaa_samples : 4;
 
-  if (!AP_OpenGLInit(&gl_config)) {
+  if (!AP_OpenGLInit(&gl_config))
+  {
     return false;
   }
 
-  if (!AP_DeviceIsInitialized()) {
+  if (!AP_DeviceIsInitialized())
+  {
     device_config = AP_DeviceDefaultConfig();
     device_config.backend = AP_GRAPHICS_BACKEND_OPENGL;
     device_config.validation = gl_config.debug;
     device_config.vsync = window->vsync;
 
-    if (!AP_DeviceInit(&device_config)) {
+    if (!AP_DeviceInit(&device_config))
+    {
       AP_OpenGLClose();
       return false;
     }
   }
 
-  if (AP_VideoIsInitialized()) {
+  if (AP_VideoIsInitialized())
+  {
     AP_VideoUpdateDeviceInfo();
   }
 
-  if (!AP_RendererBindWindow(window)) {
+  if (!AP_RendererBindWindow(window))
+  {
     return false;
   }
 
   return true;
 }
 
-static void AP_WindowDestroyInternal(AP_Window *window) {
-  if (window == NULL) {
+static void AP_WindowDestroyInternal(AP_Window *window)
+{
+  if (window == NULL)
+  {
     return;
   }
 
   AP_RendererUnbindWindow(window);
 
-  if (g_active_window == window) {
+  if (g_active_window == window)
+  {
     g_active_window = NULL;
   }
 
   AP_WindowUnregister(window);
 
-  if (window->handle != NULL) {
+  if (window->handle != NULL)
+  {
     AP_InputDetachWindow(window->handle);
 
-    if (glfwGetCurrentContext() == window->handle) {
+    if (glfwGetCurrentContext() == window->handle)
+    {
       glfwMakeContextCurrent(NULL);
     }
 
@@ -584,12 +653,15 @@ static void AP_WindowDestroyInternal(AP_Window *window) {
     window->handle = NULL;
   }
 
-  if (g_window_count == 0) {
-    if (AP_DeviceIsInitialized()) {
+  if (g_window_count == 0)
+  {
+    if (AP_DeviceIsInitialized())
+    {
       AP_DeviceClose();
     }
 
-    if (AP_OpenGLIsInitialized()) {
+    if (AP_OpenGLIsInitialized())
+    {
       AP_OpenGLClose();
     }
   }
@@ -598,8 +670,10 @@ static void AP_WindowDestroyInternal(AP_Window *window) {
   free(window);
 }
 
-GLFWwindow *AP_WindowGetGLFW(const AP_Window *window) {
-  if (window == NULL) {
+GLFWwindow *AP_WindowGetGLFW(const AP_Window *window)
+{
+  if (window == NULL)
+  {
     return NULL;
   }
 
@@ -607,19 +681,23 @@ GLFWwindow *AP_WindowGetGLFW(const AP_Window *window) {
 }
 
 void AP_WindowGetFramebufferPixels(const AP_Window *window, int *width,
-                                   int *height) {
+                                   int *height)
+{
   int fb_width = 0;
   int fb_height = 0;
 
-  if (window != NULL && window->handle != NULL) {
+  if (window != NULL && window->handle != NULL)
+  {
     glfwGetFramebufferSize(window->handle, &fb_width, &fb_height);
   }
 
-  if (width != NULL) {
+  if (width != NULL)
+  {
     *width = fb_width;
   }
 
-  if (height != NULL) {
+  if (height != NULL)
+  {
     *height = fb_height;
   }
 }
@@ -628,7 +706,8 @@ void AP_WindowGetFramebufferPixels(const AP_Window *window, int *width,
  * Configuration
  * ========================================================= */
 
-AP_WindowConfig AP_WindowDefaultConfig(void) {
+AP_WindowConfig AP_WindowDefaultConfig(void)
+{
   AP_WindowConfig config;
 
   memset(&config, 0, sizeof(config));
@@ -654,14 +733,17 @@ AP_WindowConfig AP_WindowDefaultConfig(void) {
   return config;
 }
 
-bool AP_WindowValidateConfig(const AP_WindowConfig *config) {
-  if (config == NULL) {
+bool AP_WindowValidateConfig(const AP_WindowConfig *config)
+{
+  if (config == NULL)
+  {
     AP_SET_ERROR(AP_ERROR_INVALID_ARGUMENT,
                  "Window configuration cannot be NULL");
     return false;
   }
 
-  if (config->width <= 0 || config->height <= 0) {
+  if (config->width <= 0 || config->height <= 0)
+  {
     AP_SET_ERROR(AP_ERROR_INVALID_ARGUMENT, "Window size must be positive");
     return false;
   }
@@ -674,29 +756,35 @@ bool AP_WindowValidateConfig(const AP_WindowConfig *config) {
  * ========================================================= */
 
 AP_Window *AP_CreateWindow(const char *title, int width, int height,
-                           AP_WindowFlags flags) {
+                           AP_WindowFlags flags)
+{
   AP_WindowConfig config = AP_WindowDefaultConfig();
 
-  if (title != NULL) {
+  if (title != NULL)
+  {
     config.title = title;
   }
 
-  if (width > 0) {
+  if (width > 0)
+  {
     config.width = width;
   }
 
-  if (height > 0) {
+  if (height > 0)
+  {
     config.height = height;
   }
 
-  if (flags != AP_WINDOW_NONE) {
+  if (flags != AP_WINDOW_NONE)
+  {
     config.flags = (uint32_t)flags;
   }
 
   return AP_CreateWindowEx(&config);
 }
 
-AP_Window *AP_CreateWindowEx(const AP_WindowConfig *config) {
+AP_Window *AP_CreateWindowEx(const AP_WindowConfig *config)
+{
   AP_WindowConfig actual;
   AP_Window *window;
   GLFWwindow *handle = NULL;
@@ -710,48 +798,62 @@ AP_Window *AP_CreateWindowEx(const AP_WindowConfig *config) {
   int minor = 0;
   bool centered;
 
-  if (config == NULL) {
+  if (config == NULL)
+  {
     actual = AP_WindowDefaultConfig();
-  } else {
+  }
+  else
+  {
     actual = *config;
   }
 
-  if (actual.title == NULL) {
+  if (actual.title == NULL)
+  {
     actual.title = "AP2";
   }
 
-  if (actual.width <= 0) {
+  if (actual.width <= 0)
+  {
     actual.width = AP_WINDOW_DEFAULT_WIDTH;
   }
 
-  if (actual.height <= 0) {
+  if (actual.height <= 0)
+  {
     actual.height = AP_WINDOW_DEFAULT_HEIGHT;
   }
 
-  if ((actual.flags & AP_WINDOW_VSYNC) && actual.swap_interval == 0) {
+  if ((actual.flags & AP_WINDOW_VSYNC) && actual.swap_interval == 0)
+  {
     actual.swap_interval = 1;
   }
 
-  if ((actual.flags & AP_WINDOW_BORDERLESS) != 0) {
+  if ((actual.flags & AP_WINDOW_BORDERLESS) != 0)
+  {
     actual.flags &= ~AP_WINDOW_DECORATED;
-  } else {
+  }
+  else
+  {
     actual.flags |= AP_WINDOW_DECORATED;
   }
 
-  if (!AP_WindowEnsureGLFW()) {
+  if (!AP_WindowEnsureGLFW())
+  {
     return NULL;
   }
 
   if (AP_VideoIsInitialized() && AP_VideoGetAPI() != AP_VIDEO_API_NONE &&
-      AP_VideoGetAPI() != AP_VIDEO_API_OPENGL) {
+      AP_VideoGetAPI() != AP_VIDEO_API_OPENGL)
+  {
     AP_SET_ERROR(AP_ERROR_UNSUPPORTED,
                  "Window creation currently requires the OpenGL video API");
     return NULL;
   }
 
-  if (actual.flags & AP_WINDOW_FULLSCREEN) {
+  if (actual.flags & AP_WINDOW_FULLSCREEN)
+  {
     monitor = AP_WindowResolveMonitor(actual.monitor_index);
-    if (monitor == NULL) {
+    if (monitor == NULL)
+    {
       AP_SET_ERROR(AP_ERROR_OPERATION_FAILED,
                    "Failed to acquire fullscreen monitor");
       return NULL;
@@ -763,18 +865,21 @@ AP_Window *AP_CreateWindowEx(const AP_WindowConfig *config) {
       video != NULL ? video->major_version : 0,
       video != NULL ? video->minor_version : 0, majors, minors, 8);
 
-  if (version_count <= 0) {
+  if (version_count <= 0)
+  {
     AP_SET_ERROR(AP_ERROR_UNSUPPORTED, "No supported OpenGL versions");
     return NULL;
   }
 
-  for (version_index = 0; version_index < version_count; ++version_index) {
+  for (version_index = 0; version_index < version_count; ++version_index)
+  {
     major = (int)majors[version_index];
     minor = (int)minors[version_index];
     AP_WindowApplyHints(&actual, major, minor);
     handle = glfwCreateWindow(actual.width, actual.height, actual.title,
                               monitor, NULL);
-    if (handle != NULL) {
+    if (handle != NULL)
+    {
       AP_INFO("Created OpenGL %d.%d context", major, minor);
       break;
     }
@@ -782,19 +887,22 @@ AP_Window *AP_CreateWindowEx(const AP_WindowConfig *config) {
     AP_WARN("Failed to create OpenGL %d.%d context", major, minor);
   }
 
-  if (handle == NULL) {
+  if (handle == NULL)
+  {
     AP_SET_ERROR(AP_ERROR_INITIALIZATION_FAILED, "Failed to create window");
     return NULL;
   }
 
   window = (AP_Window *)calloc(1, sizeof(AP_Window));
-  if (window == NULL) {
+  if (window == NULL)
+  {
     glfwDestroyWindow(handle);
     AP_SET_ERROR(AP_ERROR_OUT_OF_MEMORY, "Failed to allocate window");
     return NULL;
   }
 
-  if (!AP_WindowRegister(window)) {
+  if (!AP_WindowRegister(window))
+  {
     glfwDestroyWindow(handle);
     free(window);
     return NULL;
@@ -841,12 +949,14 @@ AP_Window *AP_CreateWindowEx(const AP_WindowConfig *config) {
   glfwMakeContextCurrent(handle);
   glfwSwapInterval(window->swap_interval);
 
-  if (window->opacity < 1.0f) {
+  if (window->opacity < 1.0f)
+  {
     glfwSetWindowOpacity(handle, window->opacity);
   }
 
   if (actual.min_width > 0 || actual.min_height > 0 || actual.max_width > 0 ||
-      actual.max_height > 0) {
+      actual.max_height > 0)
+  {
     glfwSetWindowSizeLimits(
         handle, actual.min_width > 0 ? actual.min_width : GLFW_DONT_CARE,
         actual.min_height > 0 ? actual.min_height : GLFW_DONT_CARE,
@@ -855,7 +965,8 @@ AP_Window *AP_CreateWindowEx(const AP_WindowConfig *config) {
   }
 
   if ((actual.flags & AP_WINDOW_MINIMIZED) != 0 &&
-      (actual.flags & AP_WINDOW_FULLSCREEN) == 0) {
+      (actual.flags & AP_WINDOW_FULLSCREEN) == 0)
+  {
     glfwIconifyWindow(handle);
   }
 
@@ -863,18 +974,23 @@ AP_Window *AP_CreateWindowEx(const AP_WindowConfig *config) {
              actual.x == AP_WINDOW_POS_CENTERED ||
              actual.y == AP_WINDOW_POS_CENTERED;
 
-  if (!window->fullscreen) {
+  if (!window->fullscreen)
+  {
     if (!AP_WindowIsPositionSentinel(actual.x) &&
-        !AP_WindowIsPositionSentinel(actual.y)) {
+        !AP_WindowIsPositionSentinel(actual.y))
+    {
       glfwSetWindowPos(handle, actual.x, actual.y);
-    } else if (centered) {
+    }
+    else if (centered)
+    {
       AP_WindowCenterInternal(window);
     }
   }
 
   AP_WindowRefresh(window);
 
-  if (!window->fullscreen) {
+  if (!window->fullscreen)
+  {
     window->windowed_x = window->x;
     window->windowed_y = window->y;
     window->windowed_width = window->width;
@@ -884,7 +1000,8 @@ AP_Window *AP_CreateWindowEx(const AP_WindowConfig *config) {
 
   g_active_window = window;
 
-  if (!AP_WindowAttachGraphics(window)) {
+  if (!AP_WindowAttachGraphics(window))
+  {
     AP_ERROR("Failed to initialize graphics for window");
     AP_WindowDestroyInternal(window);
     return NULL;
@@ -892,7 +1009,8 @@ AP_Window *AP_CreateWindowEx(const AP_WindowConfig *config) {
 
   AP_WindowApplyChrome(window);
 
-  if ((actual.flags & AP_WINDOW_HIDDEN) == 0) {
+  if ((actual.flags & AP_WINDOW_HIDDEN) == 0)
+  {
     glfwShowWindow(handle);
     AP_WindowRefresh(window);
   }
@@ -903,12 +1021,15 @@ AP_Window *AP_CreateWindowEx(const AP_WindowConfig *config) {
   return window;
 }
 
-void AP_DestroyWindow(AP_Window *window) {
-  if (window == NULL) {
+void AP_DestroyWindow(AP_Window *window)
+{
+  if (window == NULL)
+  {
     window = g_active_window;
   }
 
-  if (window == NULL) {
+  if (window == NULL)
+  {
     return;
   }
 
@@ -916,7 +1037,8 @@ void AP_DestroyWindow(AP_Window *window) {
   AP_WindowDestroyInternal(window);
 }
 
-bool AP_WindowIsValid(const AP_Window *window) {
+bool AP_WindowIsValid(const AP_Window *window)
+{
   return window != NULL && window->handle != NULL;
 }
 
@@ -926,8 +1048,10 @@ bool AP_WindowIsValid(const AP_Window *window) {
 
 AP_Window *AP_GetWindow(void) { return g_active_window; }
 
-bool AP_SetActiveWindow(AP_Window *window) {
-  if (window == NULL || window->handle == NULL) {
+bool AP_SetActiveWindow(AP_Window *window)
+{
+  if (window == NULL || window->handle == NULL)
+  {
     AP_SET_ERROR(AP_ERROR_INVALID_ARGUMENT, "Window is not valid");
     return false;
   }
@@ -936,7 +1060,8 @@ bool AP_SetActiveWindow(AP_Window *window) {
   g_active_window = window;
   AP_WindowRefresh(window);
 
-  if (!AP_RendererMakeCurrent(window)) {
+  if (!AP_RendererMakeCurrent(window))
+  {
     return false;
   }
 
@@ -947,51 +1072,60 @@ bool AP_SetActiveWindow(AP_Window *window) {
  * Events
  * ========================================================= */
 
-void AP_PumpEvents(void) {
+void AP_PumpEvents(void)
+{
   AP_AudioPump();
 
-  if (!g_glfw_initialized) {
+  if (!g_glfw_initialized)
+  {
     return;
   }
 
   AP_InputBeginFrame();
   glfwPollEvents();
 
-  if (g_active_window != NULL) {
+  if (g_active_window != NULL)
+  {
     AP_WindowRefresh(g_active_window);
   }
 
   AP_InputEndFrame(g_active_window != NULL ? g_active_window->handle : NULL);
 }
 
-void AP_WaitEvents(void) {
+void AP_WaitEvents(void)
+{
   AP_AudioPump();
 
-  if (!g_glfw_initialized) {
+  if (!g_glfw_initialized)
+  {
     return;
   }
 
   AP_InputBeginFrame();
   glfwWaitEvents();
 
-  if (g_active_window != NULL) {
+  if (g_active_window != NULL)
+  {
     AP_WindowRefresh(g_active_window);
   }
 
   AP_InputEndFrame(g_active_window != NULL ? g_active_window->handle : NULL);
 }
 
-void AP_WaitEventsTimeout(double timeout) {
+void AP_WaitEventsTimeout(double timeout)
+{
   AP_AudioPump();
 
-  if (!g_glfw_initialized) {
+  if (!g_glfw_initialized)
+  {
     return;
   }
 
   AP_InputBeginFrame();
   glfwWaitEventsTimeout(timeout);
 
-  if (g_active_window != NULL) {
+  if (g_active_window != NULL)
+  {
     AP_WindowRefresh(g_active_window);
   }
 
@@ -1002,20 +1136,24 @@ void AP_WaitEventsTimeout(double timeout) {
  * Close / main loop
  * ========================================================= */
 
-bool AP_IsRunning(void) {
+bool AP_IsRunning(void)
+{
   AP_Window *window = AP_WindowActive();
 
-  if (window == NULL) {
+  if (window == NULL)
+  {
     return false;
   }
 
   return glfwWindowShouldClose(window->handle) == 0;
 }
 
-void AP_RequestClose(void) {
+void AP_RequestClose(void)
+{
   AP_Window *window = AP_WindowActive();
 
-  if (window == NULL) {
+  if (window == NULL)
+  {
     return;
   }
 
@@ -1023,10 +1161,12 @@ void AP_RequestClose(void) {
   window->open = false;
 }
 
-void AP_CancelClose(void) {
+void AP_CancelClose(void)
+{
   AP_Window *window = AP_WindowActive();
 
-  if (window == NULL) {
+  if (window == NULL)
+  {
     return;
   }
 
@@ -1034,16 +1174,20 @@ void AP_CancelClose(void) {
   window->open = true;
 }
 
-bool AP_WindowShouldClose(const AP_Window *window) {
-  if (window == NULL || window->handle == NULL) {
+bool AP_WindowShouldClose(const AP_Window *window)
+{
+  if (window == NULL || window->handle == NULL)
+  {
     return true;
   }
 
   return glfwWindowShouldClose(window->handle) != 0;
 }
 
-void AP_WindowSetShouldClose(AP_Window *window, bool should_close) {
-  if (window == NULL || window->handle == NULL) {
+void AP_WindowSetShouldClose(AP_Window *window, bool should_close)
+{
+  if (window == NULL || window->handle == NULL)
+  {
     return;
   }
 
@@ -1056,10 +1200,12 @@ void AP_WindowSetShouldClose(AP_Window *window, bool should_close) {
  * Title
  * ========================================================= */
 
-bool AP_SetWindowTitle(const char *title) {
+bool AP_SetWindowTitle(const char *title)
+{
   AP_Window *window = AP_WindowActive();
 
-  if (window == NULL || title == NULL) {
+  if (window == NULL || title == NULL)
+  {
     AP_SET_ERROR(AP_ERROR_INVALID_ARGUMENT, "Window title cannot be set");
     return false;
   }
@@ -1070,10 +1216,12 @@ bool AP_SetWindowTitle(const char *title) {
   return true;
 }
 
-const char *AP_GetWindowTitle(void) {
+const char *AP_GetWindowTitle(void)
+{
   AP_Window *window = AP_WindowActive();
 
-  if (window == NULL) {
+  if (window == NULL)
+  {
     return NULL;
   }
 
@@ -1084,10 +1232,12 @@ const char *AP_GetWindowTitle(void) {
  * Size
  * ========================================================= */
 
-bool AP_SetWindowSize(int width, int height) {
+bool AP_SetWindowSize(int width, int height)
+{
   AP_Window *window = AP_WindowActive();
 
-  if (window == NULL || width <= 0 || height <= 0) {
+  if (window == NULL || width <= 0 || height <= 0)
+  {
     AP_SET_ERROR(AP_ERROR_INVALID_ARGUMENT, "Invalid window size");
     return false;
   }
@@ -1097,11 +1247,13 @@ bool AP_SetWindowSize(int width, int height) {
   return true;
 }
 
-static AP_WindowSize AP_WindowQuerySize(void) {
+static AP_WindowSize AP_WindowQuerySize(void)
+{
   AP_WindowSize size = {0, 0};
   AP_Window *window = AP_WindowActive();
 
-  if (window == NULL) {
+  if (window == NULL)
+  {
     return size;
   }
 
@@ -1113,29 +1265,35 @@ int AP_GetWindowWidth(void) { return AP_WindowQuerySize().width; }
 
 int AP_GetWindowHeight(void) { return AP_WindowQuerySize().height; }
 
-bool AP_GetWindowSize(int *w, int *h) {
+bool AP_GetWindowSize(int *w, int *h)
+{
   AP_WindowSize size = AP_WindowQuerySize();
 
-  if (AP_WindowActive() == NULL) {
+  if (AP_WindowActive() == NULL)
+  {
     return false;
   }
 
-  if (w != NULL) {
+  if (w != NULL)
+  {
     *w = size.width;
   }
 
-  if (h != NULL) {
+  if (h != NULL)
+  {
     *h = size.height;
   }
 
   return true;
 }
 
-static AP_WindowSize AP_WindowQueryFramebufferSize(void) {
+static AP_WindowSize AP_WindowQueryFramebufferSize(void)
+{
   AP_WindowSize size = {0, 0};
   AP_Window *window = AP_WindowActive();
 
-  if (window == NULL) {
+  if (window == NULL)
+  {
     return size;
   }
 
@@ -1143,26 +1301,32 @@ static AP_WindowSize AP_WindowQueryFramebufferSize(void) {
   return size;
 }
 
-int AP_GetWindowPixelWidth(void) {
+int AP_GetWindowPixelWidth(void)
+{
   return AP_WindowQueryFramebufferSize().width;
 }
 
-int AP_GetWindowPixelHeight(void) {
+int AP_GetWindowPixelHeight(void)
+{
   return AP_WindowQueryFramebufferSize().height;
 }
 
-bool AP_GetWindowSizeInPixels(int *w, int *h) {
+bool AP_GetWindowSizeInPixels(int *w, int *h)
+{
   AP_WindowSize size = AP_WindowQueryFramebufferSize();
 
-  if (AP_WindowActive() == NULL) {
+  if (AP_WindowActive() == NULL)
+  {
     return false;
   }
 
-  if (w != NULL) {
+  if (w != NULL)
+  {
     *w = size.width;
   }
 
-  if (h != NULL) {
+  if (h != NULL)
+  {
     *h = size.height;
   }
 
@@ -1173,10 +1337,12 @@ bool AP_GetWindowSizeInPixels(int *w, int *h) {
  * Position
  * ========================================================= */
 
-bool AP_SetWindowPosition(int x, int y) {
+bool AP_SetWindowPosition(int x, int y)
+{
   AP_Window *window = AP_WindowActive();
 
-  if (window == NULL) {
+  if (window == NULL)
+  {
     AP_SET_ERROR(AP_ERROR_NOT_INITIALIZED, "No active window");
     return false;
   }
@@ -1187,11 +1353,13 @@ bool AP_SetWindowPosition(int x, int y) {
   return true;
 }
 
-static AP_WindowPosition AP_WindowQueryPosition(void) {
+static AP_WindowPosition AP_WindowQueryPosition(void)
+{
   AP_WindowPosition position = {0, 0};
   AP_Window *window = AP_WindowActive();
 
-  if (window == NULL) {
+  if (window == NULL)
+  {
     return position;
   }
 
@@ -1199,25 +1367,30 @@ static AP_WindowPosition AP_WindowQueryPosition(void) {
   return position;
 }
 
-bool AP_GetWindowPosition(int *x, int *y) {
+bool AP_GetWindowPosition(int *x, int *y)
+{
   AP_WindowPosition position = AP_WindowQueryPosition();
 
-  if (AP_WindowActive() == NULL) {
+  if (AP_WindowActive() == NULL)
+  {
     return false;
   }
 
-  if (x != NULL) {
+  if (x != NULL)
+  {
     *x = position.x;
   }
 
-  if (y != NULL) {
+  if (y != NULL)
+  {
     *y = position.y;
   }
 
   return true;
 }
 
-bool AP_CenterWindow(void) {
+bool AP_CenterWindow(void)
+{
   return AP_WindowCenterInternal(AP_WindowActive());
 }
 
@@ -1225,10 +1398,12 @@ bool AP_CenterWindow(void) {
  * Visibility / focus
  * ========================================================= */
 
-void AP_ShowWindow(void) {
+void AP_ShowWindow(void)
+{
   AP_Window *window = AP_WindowActive();
 
-  if (window == NULL) {
+  if (window == NULL)
+  {
     return;
   }
 
@@ -1236,10 +1411,12 @@ void AP_ShowWindow(void) {
   window->visible = true;
 }
 
-void AP_HideWindow(void) {
+void AP_HideWindow(void)
+{
   AP_Window *window = AP_WindowActive();
 
-  if (window == NULL) {
+  if (window == NULL)
+  {
     return;
   }
 
@@ -1247,20 +1424,24 @@ void AP_HideWindow(void) {
   window->visible = false;
 }
 
-bool AP_IsWindowVisible(void) {
+bool AP_IsWindowVisible(void)
+{
   AP_Window *window = AP_WindowActive();
 
-  if (window == NULL) {
+  if (window == NULL)
+  {
     return false;
   }
 
   return glfwGetWindowAttrib(window->handle, GLFW_VISIBLE) != 0;
 }
 
-void AP_RaiseWindow(void) {
+void AP_RaiseWindow(void)
+{
   AP_Window *window = AP_WindowActive();
 
-  if (window == NULL) {
+  if (window == NULL)
+  {
     return;
   }
 
@@ -1268,20 +1449,24 @@ void AP_RaiseWindow(void) {
   window->focused = true;
 }
 
-bool AP_IsWindowFocused(void) {
+bool AP_IsWindowFocused(void)
+{
   AP_Window *window = AP_WindowActive();
 
-  if (window == NULL) {
+  if (window == NULL)
+  {
     return false;
   }
 
   return glfwGetWindowAttrib(window->handle, GLFW_FOCUSED) != 0;
 }
 
-void AP_FlashWindow(void) {
+void AP_FlashWindow(void)
+{
   AP_Window *window = AP_WindowActive();
 
-  if (window == NULL) {
+  if (window == NULL)
+  {
     return;
   }
 
@@ -1292,10 +1477,12 @@ void AP_FlashWindow(void) {
  * Window state
  * ========================================================= */
 
-void AP_MinimizeWindow(void) {
+void AP_MinimizeWindow(void)
+{
   AP_Window *window = AP_WindowActive();
 
-  if (window == NULL) {
+  if (window == NULL)
+  {
     return;
   }
 
@@ -1303,10 +1490,12 @@ void AP_MinimizeWindow(void) {
   window->minimized = true;
 }
 
-void AP_RestoreWindow(void) {
+void AP_RestoreWindow(void)
+{
   AP_Window *window = AP_WindowActive();
 
-  if (window == NULL) {
+  if (window == NULL)
+  {
     return;
   }
 
@@ -1314,10 +1503,12 @@ void AP_RestoreWindow(void) {
   AP_WindowRefresh(window);
 }
 
-void AP_MaximizeWindow(void) {
+void AP_MaximizeWindow(void)
+{
   AP_Window *window = AP_WindowActive();
 
-  if (window == NULL || window->fullscreen) {
+  if (window == NULL || window->fullscreen)
+  {
     return;
   }
 
@@ -1325,27 +1516,32 @@ void AP_MaximizeWindow(void) {
   AP_WindowRefresh(window);
 }
 
-bool AP_IsWindowMinimized(void) {
+bool AP_IsWindowMinimized(void)
+{
   AP_Window *window = AP_WindowActive();
 
-  if (window == NULL) {
+  if (window == NULL)
+  {
     return false;
   }
 
   return glfwGetWindowAttrib(window->handle, GLFW_ICONIFIED) != 0;
 }
 
-bool AP_IsWindowMaximized(void) {
+bool AP_IsWindowMaximized(void)
+{
   AP_Window *window = AP_WindowActive();
 
-  if (window == NULL) {
+  if (window == NULL)
+  {
     return false;
   }
 
   return glfwGetWindowAttrib(window->handle, GLFW_MAXIMIZED) != 0;
 }
 
-bool AP_IsWindowOpen(void) {
+bool AP_IsWindowOpen(void)
+{
   AP_Window *window = AP_WindowActive();
   return window != NULL && window->open;
 }
@@ -1354,34 +1550,40 @@ bool AP_IsWindowOpen(void) {
  * Fullscreen
  * ========================================================= */
 
-bool AP_SetWindowFullscreen(bool fullscreen) {
+bool AP_SetWindowFullscreen(bool fullscreen)
+{
   AP_Window *window = AP_WindowActive();
   GLFWmonitor *monitor;
   const GLFWvidmode *mode;
 
-  if (window == NULL) {
+  if (window == NULL)
+  {
     AP_SET_ERROR(AP_ERROR_NOT_INITIALIZED, "No active window");
     return false;
   }
 
-  if (window->fullscreen == fullscreen) {
+  if (window->fullscreen == fullscreen)
+  {
     return true;
   }
 
-  if (fullscreen) {
+  if (fullscreen)
+  {
     glfwGetWindowPos(window->handle, &window->windowed_x, &window->windowed_y);
     glfwGetWindowSize(window->handle, &window->windowed_width,
                       &window->windowed_height);
     window->windowed_valid = true;
 
     monitor = AP_WindowResolveMonitor(window->monitor_index);
-    if (monitor == NULL) {
+    if (monitor == NULL)
+    {
       AP_SET_ERROR(AP_ERROR_OPERATION_FAILED, "Failed to acquire monitor");
       return false;
     }
 
     mode = glfwGetVideoMode(monitor);
-    if (mode == NULL) {
+    if (mode == NULL)
+    {
       AP_SET_ERROR(AP_ERROR_OPERATION_FAILED, "Failed to query video mode");
       return false;
     }
@@ -1408,7 +1610,8 @@ bool AP_SetWindowFullscreen(bool fullscreen) {
   return true;
 }
 
-bool AP_IsFullscreen(void) {
+bool AP_IsFullscreen(void)
+{
   AP_Window *window = AP_WindowActive();
   return window != NULL && window->fullscreen;
 }
@@ -1419,10 +1622,12 @@ bool AP_ToggleFullscreen(void) { return AP_SetFullscreen(!AP_IsFullscreen()); }
  * Monitor
  * ========================================================= */
 
-int AP_GetMonitorCount(void) {
+int AP_GetMonitorCount(void)
+{
   int count = 0;
 
-  if (!g_glfw_initialized) {
+  if (!g_glfw_initialized)
+  {
     return 0;
   }
 
@@ -1430,37 +1635,44 @@ int AP_GetMonitorCount(void) {
   return count;
 }
 
-int AP_GetWindowMonitor(void) {
+int AP_GetWindowMonitor(void)
+{
   AP_Window *window = AP_WindowActive();
 
-  if (window == NULL) {
+  if (window == NULL)
+  {
     return 0;
   }
 
   return window->monitor_index;
 }
 
-bool AP_SetWindowMonitor(int monitor_index) {
+bool AP_SetWindowMonitor(int monitor_index)
+{
   AP_Window *window = AP_WindowActive();
   GLFWmonitor *monitor;
 
-  if (window == NULL) {
+  if (window == NULL)
+  {
     AP_SET_ERROR(AP_ERROR_NOT_INITIALIZED, "No active window");
     return false;
   }
 
   monitor = AP_WindowResolveMonitor(monitor_index);
-  if (monitor == NULL) {
+  if (monitor == NULL)
+  {
     AP_SET_ERROR(AP_ERROR_INVALID_ARGUMENT, "Invalid monitor index");
     return false;
   }
 
   window->monitor_index = AP_WindowFindMonitorIndex(monitor);
 
-  if (window->fullscreen) {
+  if (window->fullscreen)
+  {
     const GLFWvidmode *mode = glfwGetVideoMode(monitor);
 
-    if (mode == NULL) {
+    if (mode == NULL)
+    {
       AP_SET_ERROR(AP_ERROR_OPERATION_FAILED, "Failed to query video mode");
       return false;
     }
@@ -1479,10 +1691,12 @@ bool AP_SetWindowMonitor(int monitor_index) {
  * Attributes
  * ========================================================= */
 
-bool AP_SetWindowResizable(bool enabled) {
+bool AP_SetWindowResizable(bool enabled)
+{
   AP_Window *window = AP_WindowActive();
 
-  if (window == NULL) {
+  if (window == NULL)
+  {
     return false;
   }
 
@@ -1492,20 +1706,24 @@ bool AP_SetWindowResizable(bool enabled) {
   return true;
 }
 
-bool AP_IsWindowResizable(void) {
+bool AP_IsWindowResizable(void)
+{
   AP_Window *window = AP_WindowActive();
 
-  if (window == NULL) {
+  if (window == NULL)
+  {
     return false;
   }
 
   return glfwGetWindowAttrib(window->handle, GLFW_RESIZABLE) != 0;
 }
 
-bool AP_SetWindowBordered(bool bordered) {
+bool AP_SetWindowBordered(bool bordered)
+{
   AP_Window *window = AP_WindowActive();
 
-  if (window == NULL) {
+  if (window == NULL)
+  {
     return false;
   }
 
@@ -1517,20 +1735,24 @@ bool AP_SetWindowBordered(bool bordered) {
   return true;
 }
 
-bool AP_IsWindowBordered(void) {
+bool AP_IsWindowBordered(void)
+{
   AP_Window *window = AP_WindowActive();
 
-  if (window == NULL) {
+  if (window == NULL)
+  {
     return false;
   }
 
   return glfwGetWindowAttrib(window->handle, GLFW_DECORATED) != 0;
 }
 
-bool AP_SetWindowTitleVisible(bool visible) {
+bool AP_SetWindowTitleVisible(bool visible)
+{
   AP_Window *window = AP_WindowActive();
 
-  if (window == NULL) {
+  if (window == NULL)
+  {
     AP_SET_ERROR(AP_ERROR_NOT_INITIALIZED, "No active window");
     return false;
   }
@@ -1540,15 +1762,18 @@ bool AP_SetWindowTitleVisible(bool visible) {
   return true;
 }
 
-bool AP_IsWindowTitleVisible(void) {
+bool AP_IsWindowTitleVisible(void)
+{
   AP_Window *window = AP_WindowActive();
   return window != NULL && window->chrome_title;
 }
 
-bool AP_SetWindowMinimizeButton(bool visible) {
+bool AP_SetWindowMinimizeButton(bool visible)
+{
   AP_Window *window = AP_WindowActive();
 
-  if (window == NULL) {
+  if (window == NULL)
+  {
     AP_SET_ERROR(AP_ERROR_NOT_INITIALIZED, "No active window");
     return false;
   }
@@ -1558,15 +1783,18 @@ bool AP_SetWindowMinimizeButton(bool visible) {
   return true;
 }
 
-bool AP_IsWindowMinimizeButton(void) {
+bool AP_IsWindowMinimizeButton(void)
+{
   AP_Window *window = AP_WindowActive();
   return window != NULL && window->chrome_minimize;
 }
 
-bool AP_SetWindowMaximizeButton(bool visible) {
+bool AP_SetWindowMaximizeButton(bool visible)
+{
   AP_Window *window = AP_WindowActive();
 
-  if (window == NULL) {
+  if (window == NULL)
+  {
     AP_SET_ERROR(AP_ERROR_NOT_INITIALIZED, "No active window");
     return false;
   }
@@ -1576,15 +1804,18 @@ bool AP_SetWindowMaximizeButton(bool visible) {
   return true;
 }
 
-bool AP_IsWindowMaximizeButton(void) {
+bool AP_IsWindowMaximizeButton(void)
+{
   AP_Window *window = AP_WindowActive();
   return window != NULL && window->chrome_maximize;
 }
 
-bool AP_SetWindowCloseButton(bool visible) {
+bool AP_SetWindowCloseButton(bool visible)
+{
   AP_Window *window = AP_WindowActive();
 
-  if (window == NULL) {
+  if (window == NULL)
+  {
     AP_SET_ERROR(AP_ERROR_NOT_INITIALIZED, "No active window");
     return false;
   }
@@ -1594,15 +1825,18 @@ bool AP_SetWindowCloseButton(bool visible) {
   return true;
 }
 
-bool AP_IsWindowCloseButton(void) {
+bool AP_IsWindowCloseButton(void)
+{
   AP_Window *window = AP_WindowActive();
   return window != NULL && window->chrome_close;
 }
 
-bool AP_SetWindowAlwaysOnTop(bool on_top) {
+bool AP_SetWindowAlwaysOnTop(bool on_top)
+{
   AP_Window *window = AP_WindowActive();
 
-  if (window == NULL) {
+  if (window == NULL)
+  {
     return false;
   }
 
@@ -1612,25 +1846,30 @@ bool AP_SetWindowAlwaysOnTop(bool on_top) {
   return true;
 }
 
-bool AP_IsWindowAlwaysOnTop(void) {
+bool AP_IsWindowAlwaysOnTop(void)
+{
   AP_Window *window = AP_WindowActive();
 
-  if (window == NULL) {
+  if (window == NULL)
+  {
     return false;
   }
 
   return glfwGetWindowAttrib(window->handle, GLFW_FLOATING) != 0;
 }
 
-bool AP_SetWindowOpacity(float opacity) {
+bool AP_SetWindowOpacity(float opacity)
+{
   AP_Window *window = AP_WindowActive();
 
-  if (window == NULL) {
+  if (window == NULL)
+  {
     AP_SET_ERROR(AP_ERROR_NOT_INITIALIZED, "No active window");
     return false;
   }
 
-  if (opacity <= 0.0f || opacity > 1.0f) {
+  if (opacity <= 0.0f || opacity > 1.0f)
+  {
     AP_SET_ERROR(AP_ERROR_INVALID_ARGUMENT,
                  "Opacity must be in the range (0, 1]");
     return false;
@@ -1641,20 +1880,24 @@ bool AP_SetWindowOpacity(float opacity) {
   return true;
 }
 
-float AP_GetWindowOpacity(void) {
+float AP_GetWindowOpacity(void)
+{
   AP_Window *window = AP_WindowActive();
 
-  if (window == NULL) {
+  if (window == NULL)
+  {
     return 1.0f;
   }
 
   return glfwGetWindowOpacity(window->handle);
 }
 
-bool AP_SetWindowMousePassthrough(bool enabled) {
+bool AP_SetWindowMousePassthrough(bool enabled)
+{
   AP_Window *window = AP_WindowActive();
 
-  if (window == NULL) {
+  if (window == NULL)
+  {
     AP_SET_ERROR(AP_ERROR_NOT_INITIALIZED, "No active window");
     return false;
   }
@@ -1665,16 +1908,19 @@ bool AP_SetWindowMousePassthrough(bool enabled) {
   return true;
 }
 
-bool AP_IsWindowMousePassthrough(void) {
+bool AP_IsWindowMousePassthrough(void)
+{
   AP_Window *window = AP_WindowActive();
   return window != NULL && window->mouse_passthrough;
 }
 
 bool AP_SetWindowSizeLimits(int min_width, int min_height, int max_width,
-                            int max_height) {
+                            int max_height)
+{
   AP_Window *window = AP_WindowActive();
 
-  if (window == NULL) {
+  if (window == NULL)
+  {
     AP_SET_ERROR(AP_ERROR_NOT_INITIALIZED, "No active window");
     return false;
   }
@@ -1687,15 +1933,18 @@ bool AP_SetWindowSizeLimits(int min_width, int min_height, int max_width,
   return true;
 }
 
-bool AP_SetWindowAspectRatio(int numerator, int denominator) {
+bool AP_SetWindowAspectRatio(int numerator, int denominator)
+{
   AP_Window *window = AP_WindowActive();
 
-  if (window == NULL) {
+  if (window == NULL)
+  {
     AP_SET_ERROR(AP_ERROR_NOT_INITIALIZED, "No active window");
     return false;
   }
 
-  if (numerator <= 0 || denominator <= 0) {
+  if (numerator <= 0 || denominator <= 0)
+  {
     glfwSetWindowAspectRatio(window->handle, GLFW_DONT_CARE, GLFW_DONT_CARE);
     return true;
   }
@@ -1704,10 +1953,12 @@ bool AP_SetWindowAspectRatio(int numerator, int denominator) {
   return true;
 }
 
-bool AP_SetWindowAutoIconify(bool enabled) {
+bool AP_SetWindowAutoIconify(bool enabled)
+{
   AP_Window *window = AP_WindowActive();
 
-  if (window == NULL) {
+  if (window == NULL)
+  {
     AP_SET_ERROR(AP_ERROR_NOT_INITIALIZED, "No active window");
     return false;
   }
@@ -1718,7 +1969,8 @@ bool AP_SetWindowAutoIconify(bool enabled) {
   return true;
 }
 
-bool AP_GetWindowAutoIconify(void) {
+bool AP_GetWindowAutoIconify(void)
+{
   AP_Window *window = AP_WindowActive();
   return window != NULL && window->auto_iconify;
 }
@@ -1727,10 +1979,12 @@ bool AP_GetWindowAutoIconify(void) {
  * Presentation
  * ========================================================= */
 
-bool AP_SetSwapInterval(int interval) {
+bool AP_SetSwapInterval(int interval)
+{
   AP_Window *window = AP_WindowActive();
 
-  if (window == NULL) {
+  if (window == NULL)
+  {
     AP_SET_ERROR(AP_ERROR_NOT_INITIALIZED, "No active window");
     return false;
   }
@@ -1743,10 +1997,12 @@ bool AP_SetSwapInterval(int interval) {
   return true;
 }
 
-int AP_GetSwapInterval(void) {
+int AP_GetSwapInterval(void)
+{
   AP_Window *window = AP_WindowActive();
 
-  if (window == NULL) {
+  if (window == NULL)
+  {
     return 0;
   }
 
@@ -1755,7 +2011,8 @@ int AP_GetSwapInterval(void) {
 
 bool AP_SetVSync(bool enabled) { return AP_SetSwapInterval(enabled ? 1 : 0); }
 
-bool AP_GetVSync(void) {
+bool AP_GetVSync(void)
+{
   AP_Window *window = AP_WindowActive();
   return window != NULL && window->vsync;
 }
@@ -1764,14 +2021,17 @@ bool AP_GetVSync(void) {
  * Cursor
  * ========================================================= */
 
-void AP_SetCursorVisible(bool visible) {
+void AP_SetCursorVisible(bool visible)
+{
   AP_Window *window = AP_WindowActive();
 
-  if (window == NULL) {
+  if (window == NULL)
+  {
     return;
   }
 
-  if (window->cursor_locked) {
+  if (window->cursor_locked)
+  {
     return;
   }
 
@@ -1780,20 +2040,24 @@ void AP_SetCursorVisible(bool visible) {
   window->cursor_visible = visible;
 }
 
-bool AP_IsCursorVisible(void) {
+bool AP_IsCursorVisible(void)
+{
   AP_Window *window = AP_WindowActive();
 
-  if (window == NULL) {
+  if (window == NULL)
+  {
     return false;
   }
 
   return glfwGetInputMode(window->handle, GLFW_CURSOR) == GLFW_CURSOR_NORMAL;
 }
 
-void AP_SetCursorLocked(bool locked) {
+void AP_SetCursorLocked(bool locked)
+{
   AP_Window *window = AP_WindowActive();
 
-  if (window == NULL) {
+  if (window == NULL)
+  {
     return;
   }
 
@@ -1804,19 +2068,23 @@ void AP_SetCursorLocked(bool locked) {
   window->cursor_locked = locked;
 }
 
-bool AP_IsCursorLocked(void) {
+bool AP_IsCursorLocked(void)
+{
   AP_Window *window = AP_WindowActive();
   return window != NULL && window->cursor_locked;
 }
 
-bool AP_SetRawMouseInput(bool enabled) {
+bool AP_SetRawMouseInput(bool enabled)
+{
   AP_Window *window = AP_WindowActive();
 
-  if (window == NULL) {
+  if (window == NULL)
+  {
     return false;
   }
 
-  if (!glfwRawMouseMotionSupported()) {
+  if (!glfwRawMouseMotionSupported())
+  {
     AP_SET_ERROR(AP_ERROR_UNSUPPORTED, "Raw mouse motion is not supported");
     return false;
   }
@@ -1827,15 +2095,18 @@ bool AP_SetRawMouseInput(bool enabled) {
   return true;
 }
 
-bool AP_IsRawMouseInput(void) {
+bool AP_IsRawMouseInput(void)
+{
   AP_Window *window = AP_WindowActive();
   return window != NULL && window->cursor_raw;
 }
 
-bool AP_GetCursorPosition(double *x, double *y) {
+bool AP_GetCursorPosition(double *x, double *y)
+{
   AP_Window *window = AP_WindowActive();
 
-  if (window == NULL || x == NULL || y == NULL) {
+  if (window == NULL || x == NULL || y == NULL)
+  {
     return false;
   }
 
@@ -1843,10 +2114,12 @@ bool AP_GetCursorPosition(double *x, double *y) {
   return true;
 }
 
-bool AP_SetCursorPosition(double x, double y) {
+bool AP_SetCursorPosition(double x, double y)
+{
   AP_Window *window = AP_WindowActive();
 
-  if (window == NULL) {
+  if (window == NULL)
+  {
     return false;
   }
 
@@ -1857,12 +2130,14 @@ bool AP_SetCursorPosition(double x, double y) {
   return true;
 }
 
-double AP_GetCursorX(void) {
+double AP_GetCursorX(void)
+{
   AP_Window *window = AP_WindowActive();
   return window != NULL ? window->cursor_x : 0.0;
 }
 
-double AP_GetCursorY(void) {
+double AP_GetCursorY(void)
+{
   AP_Window *window = AP_WindowActive();
   return window != NULL ? window->cursor_y : 0.0;
 }
@@ -1871,28 +2146,34 @@ double AP_GetCursorY(void) {
  * Content scale
  * ========================================================= */
 
-float AP_GetContentScaleX(void) {
+float AP_GetContentScaleX(void)
+{
   AP_Window *window = AP_WindowActive();
   return window != NULL ? window->content_scale_x : 1.0f;
 }
 
-float AP_GetContentScaleY(void) {
+float AP_GetContentScaleY(void)
+{
   AP_Window *window = AP_WindowActive();
   return window != NULL ? window->content_scale_y : 1.0f;
 }
 
-bool AP_GetContentScale(float *x, float *y) {
+bool AP_GetContentScale(float *x, float *y)
+{
   AP_Window *window = AP_WindowActive();
 
-  if (window == NULL) {
+  if (window == NULL)
+  {
     return false;
   }
 
-  if (x != NULL) {
+  if (x != NULL)
+  {
     *x = window->content_scale_x;
   }
 
-  if (y != NULL) {
+  if (y != NULL)
+  {
     *y = window->content_scale_y;
   }
 
@@ -1903,158 +2184,195 @@ bool AP_GetContentScale(float *x, float *y) {
  * User data / flags
  * ========================================================= */
 
-void AP_SetWindowUserData(void *user_data) {
+void AP_SetWindowUserData(void *user_data)
+{
   AP_Window *window = AP_WindowActive();
 
-  if (window == NULL) {
+  if (window == NULL)
+  {
     return;
   }
 
   window->user_data = user_data;
 }
 
-void *AP_GetWindowUserData(void) {
+void *AP_GetWindowUserData(void)
+{
   AP_Window *window = AP_WindowActive();
   return window != NULL ? window->user_data : NULL;
 }
 
-uint32_t AP_GetWindowFlags(void) {
+uint32_t AP_GetWindowFlags(void)
+{
   AP_Window *window = AP_WindowActive();
   uint32_t flags = AP_WINDOW_NONE;
 
-  if (window == NULL) {
+  if (window == NULL)
+  {
     return flags;
   }
 
-  if (window->resizable) {
+  if (window->resizable)
+  {
     flags |= AP_WINDOW_RESIZABLE;
   }
 
-  if (window->decorated) {
+  if (window->decorated)
+  {
     flags |= AP_WINDOW_DECORATED;
   }
 
-  if (window->maximized) {
+  if (window->maximized)
+  {
     flags |= AP_WINDOW_MAXIMIZED;
   }
 
-  if (window->fullscreen) {
+  if (window->fullscreen)
+  {
     flags |= AP_WINDOW_FULLSCREEN;
   }
 
-  if (!window->visible) {
+  if (!window->visible)
+  {
     flags |= AP_WINDOW_HIDDEN;
   }
 
-  if (window->floating) {
+  if (window->floating)
+  {
     flags |= AP_WINDOW_FLOATING;
   }
 
-  if (window->transparent) {
+  if (window->transparent)
+  {
     flags |= AP_WINDOW_TRANSPARENT;
   }
 
-  if (window->vsync) {
+  if (window->vsync)
+  {
     flags |= AP_WINDOW_VSYNC;
   }
 
-  if (window->minimized) {
+  if (window->minimized)
+  {
     flags |= AP_WINDOW_MINIMIZED;
   }
 
-  if (window->focused) {
+  if (window->focused)
+  {
     flags |= AP_WINDOW_FOCUSED;
   }
 
-  if (window->high_dpi) {
+  if (window->high_dpi)
+  {
     flags |= AP_WINDOW_HIGH_DPI;
   }
 
-  if (window->mouse_passthrough) {
+  if (window->mouse_passthrough)
+  {
     flags |= AP_WINDOW_MOUSE_PASSTHROUGH;
   }
 
-  if (window->focus_on_show) {
+  if (window->focus_on_show)
+  {
     flags |= AP_WINDOW_FOCUS_ON_SHOW;
   }
 
-  if (window->scale_to_monitor) {
+  if (window->scale_to_monitor)
+  {
     flags |= AP_WINDOW_SCALE_TO_MONITOR;
   }
 
-  if (window->msaa) {
+  if (window->msaa)
+  {
     flags |= AP_WINDOW_MSAA;
   }
 
-  if (window->srgb) {
+  if (window->srgb)
+  {
     flags |= AP_WINDOW_SRGB;
   }
 
-  if (window->debug_context) {
+  if (window->debug_context)
+  {
     flags |= AP_WINDOW_DEBUG;
   }
 
-  if (!window->auto_iconify) {
+  if (!window->auto_iconify)
+  {
     flags |= AP_WINDOW_NO_AUTO_ICONIFY;
   }
 
-  if (window->center_cursor) {
+  if (window->center_cursor)
+  {
     flags |= AP_WINDOW_CENTER_CURSOR;
   }
 
-  if (window->borderless) {
+  if (window->borderless)
+  {
     flags |= AP_WINDOW_BORDERLESS;
   }
 
-  if (!window->chrome_title) {
+  if (!window->chrome_title)
+  {
     flags |= AP_WINDOW_NO_TITLE;
   }
 
-  if (!window->chrome_minimize) {
+  if (!window->chrome_minimize)
+  {
     flags |= AP_WINDOW_NO_MINIMIZE;
   }
 
-  if (!window->chrome_maximize) {
+  if (!window->chrome_maximize)
+  {
     flags |= AP_WINDOW_NO_MAXIMIZE;
   }
 
-  if (!window->chrome_close) {
+  if (!window->chrome_close)
+  {
     flags |= AP_WINDOW_NO_CLOSE;
   }
 
   return flags;
 }
 
-bool AP_WindowHasFlag(AP_WindowFlags flag) {
+bool AP_WindowHasFlag(AP_WindowFlags flag)
+{
   return (AP_GetWindowFlags() & (uint32_t)flag) != 0;
 }
 
-bool AP_SetWindowFlags(uint32_t flags) {
+bool AP_SetWindowFlags(uint32_t flags)
+{
   uint32_t current = AP_GetWindowFlags();
   uint32_t enable = flags & ~current;
   uint32_t disable = current & ~flags;
   AP_WindowFlags known[] = {
-      AP_WINDOW_RESIZABLE,   AP_WINDOW_DECORATED,     AP_WINDOW_MAXIMIZED,
-      AP_WINDOW_FULLSCREEN,  AP_WINDOW_HIDDEN,        AP_WINDOW_FLOATING,
-      AP_WINDOW_VSYNC,       AP_WINDOW_MINIMIZED,     AP_WINDOW_MOUSE_PASSTHROUGH,
-      AP_WINDOW_NO_TITLE,    AP_WINDOW_NO_MINIMIZE,  AP_WINDOW_NO_MAXIMIZE,
+      AP_WINDOW_RESIZABLE, AP_WINDOW_DECORATED, AP_WINDOW_MAXIMIZED,
+      AP_WINDOW_FULLSCREEN, AP_WINDOW_HIDDEN, AP_WINDOW_FLOATING,
+      AP_WINDOW_VSYNC, AP_WINDOW_MINIMIZED, AP_WINDOW_MOUSE_PASSTHROUGH,
+      AP_WINDOW_NO_TITLE, AP_WINDOW_NO_MINIMIZE, AP_WINDOW_NO_MAXIMIZE,
       AP_WINDOW_NO_CLOSE};
   size_t i;
 
-  if (AP_WindowActive() == NULL) {
+  if (AP_WindowActive() == NULL)
+  {
     AP_SET_ERROR(AP_ERROR_NOT_INITIALIZED, "No active window");
     return false;
   }
 
-  for (i = 0; i < sizeof(known) / sizeof(known[0]); ++i) {
+  for (i = 0; i < sizeof(known) / sizeof(known[0]); ++i)
+  {
     uint32_t bit = (uint32_t)known[i];
-    if ((enable & bit) != 0) {
-      if (!AP_EnableWindowFlag(known[i])) {
+    if ((enable & bit) != 0)
+    {
+      if (!AP_EnableWindowFlag(known[i]))
+      {
         return false;
       }
     }
-    if ((disable & bit) != 0) {
-      if (!AP_DisableWindowFlag(known[i])) {
+    if ((disable & bit) != 0)
+    {
+      if (!AP_DisableWindowFlag(known[i]))
+      {
         return false;
       }
     }
@@ -2063,15 +2381,18 @@ bool AP_SetWindowFlags(uint32_t flags) {
   return true;
 }
 
-bool AP_EnableWindowFlag(AP_WindowFlags flag) {
+bool AP_EnableWindowFlag(AP_WindowFlags flag)
+{
   AP_Window *window = AP_WindowActive();
 
-  if (window == NULL) {
+  if (window == NULL)
+  {
     AP_SET_ERROR(AP_ERROR_NOT_INITIALIZED, "No active window");
     return false;
   }
 
-  switch (flag) {
+  switch (flag)
+  {
   case AP_WINDOW_RESIZABLE:
     return AP_SetWindowResizable(true);
   case AP_WINDOW_DECORATED:
@@ -2114,15 +2435,18 @@ bool AP_EnableWindowFlag(AP_WindowFlags flag) {
   }
 }
 
-bool AP_DisableWindowFlag(AP_WindowFlags flag) {
+bool AP_DisableWindowFlag(AP_WindowFlags flag)
+{
   AP_Window *window = AP_WindowActive();
 
-  if (window == NULL) {
+  if (window == NULL)
+  {
     AP_SET_ERROR(AP_ERROR_NOT_INITIALIZED, "No active window");
     return false;
   }
 
-  switch (flag) {
+  switch (flag)
+  {
   case AP_WINDOW_RESIZABLE:
     return AP_SetWindowResizable(false);
   case AP_WINDOW_DECORATED:
@@ -2164,10 +2488,12 @@ bool AP_DisableWindowFlag(AP_WindowFlags flag) {
   }
 }
 
-void *AP_GetNativeHandle(void) {
+void *AP_GetNativeHandle(void)
+{
   AP_Window *window = AP_WindowActive();
 
-  if (window == NULL || window->handle == NULL) {
+  if (window == NULL || window->handle == NULL)
+  {
     return NULL;
   }
 
@@ -2176,29 +2502,27 @@ void *AP_GetNativeHandle(void) {
 
 void *AP_GetNativeDisplay(void) { return AP_PlatformGetNativeDisplay(); }
 
-static double AP_ClockNow(void) {
-  if (g_glfw_initialized) {
+static double AP_ClockNow(void)
+{
+  if (g_glfw_initialized)
+  {
     return glfwGetTime();
   }
 
   {
     uint64_t frequency = AP_PlatformGetTimerFrequency();
-    if (frequency == 0) {
+    if (frequency == 0)
+    {
       return 0.0;
     }
     return (double)AP_PlatformGetTimerValue() / (double)frequency;
   }
 }
 
-static void AP_ClockReset(void) {
-  g_clock_started = false;
-  g_last_tick = 0.0;
-  g_delta_time = 0.0;
-  g_fps = 0.0;
-}
-
-double AP_GetTime(void) {
-  if (!g_glfw_initialized) {
+double AP_GetTime(void)
+{
+  if (!g_glfw_initialized)
+  {
     return 0.0;
   }
 
@@ -2207,8 +2531,10 @@ double AP_GetTime(void) {
 
 uint64_t AP_GetTicks(void) { return (uint64_t)(AP_GetTime() * 1000.0); }
 
-void AP_SetTime(double time) {
-  if (!g_glfw_initialized) {
+void AP_SetTime(double time)
+{
+  if (!g_glfw_initialized)
+  {
     return;
   }
 
@@ -2217,8 +2543,10 @@ void AP_SetTime(double time) {
   g_delta_time = 0.0;
 }
 
-void AP_SetTargetFPS(int fps) {
-  if (fps < 0) {
+void AP_SetTargetFPS(int fps)
+{
+  if (fps < 0)
+  {
     fps = 0;
   }
   g_target_fps = fps;
@@ -2226,42 +2554,50 @@ void AP_SetTargetFPS(int fps) {
 
 int AP_GetTargetFPS(void) { return g_target_fps; }
 
-double AP_Tick(void) {
+double AP_Tick(void)
+{
   double now = AP_ClockNow();
 
-  if (!g_clock_started) {
+  if (!g_clock_started)
+  {
     g_clock_started = true;
     g_last_tick = now;
     g_delta_time = 0.0;
     return 0.0;
   }
 
-  if (g_target_fps > 0) {
+  if (g_target_fps > 0)
+  {
     double frame = 1.0 / (double)g_target_fps;
     double target = g_last_tick + frame;
     double remaining = target - now;
 
-    if (remaining > 0.002) {
+    if (remaining > 0.002)
+    {
       AP_PlatformSleep(remaining - 0.001);
       now = AP_ClockNow();
     }
 
-    while (now < target) {
+    while (now < target)
+    {
       now = AP_ClockNow();
     }
   }
 
   g_delta_time = now - g_last_tick;
-  if (g_delta_time < 0.0) {
+  if (g_delta_time < 0.0)
+  {
     g_delta_time = 0.0;
   }
-  if (g_delta_time > AP_DELTA_TIME_MAX) {
+  if (g_delta_time > AP_DELTA_TIME_MAX)
+  {
     g_delta_time = AP_DELTA_TIME_MAX;
   }
 
   g_last_tick = now;
 
-  if (g_delta_time > 0.0) {
+  if (g_delta_time > 0.0)
+  {
     double instant = 1.0 / g_delta_time;
     g_fps = (g_fps <= 0.0) ? instant : (g_fps * 0.9 + instant * 0.1);
   }
@@ -2269,7 +2605,8 @@ double AP_Tick(void) {
   return g_delta_time;
 }
 
-double AP_TickFPS(int fps) {
+double AP_TickFPS(int fps)
+{
   AP_SetTargetFPS(fps);
   return AP_Tick();
 }
@@ -2282,8 +2619,10 @@ double AP_GetFPS(void) { return g_fps; }
  * Subsystem
  * ========================================================= */
 
-static bool AP_WindowingInit(void) {
-  if (!AP_WindowEnsureGLFW()) {
+static bool AP_WindowingInit(void)
+{
+  if (!AP_WindowEnsureGLFW())
+  {
     return false;
   }
 
@@ -2291,14 +2630,17 @@ static bool AP_WindowingInit(void) {
   return true;
 }
 
-static void AP_WindowingClose(void) {
-  while (g_window_count > 0) {
+static void AP_WindowingClose(void)
+{
+  while (g_window_count > 0)
+  {
     AP_WindowDestroyInternal(g_windows[g_window_count - 1]);
   }
 
   AP_InputShutdown();
 
-  if (g_glfw_initialized) {
+  if (g_glfw_initialized)
+  {
     glfwTerminate();
     g_glfw_initialized = false;
   }

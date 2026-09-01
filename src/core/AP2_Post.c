@@ -6,40 +6,43 @@
  * See LICENSE in the project root for full terms.
  */
 
- #include "AP2/AP2_Post.h"
- #include "AP2/AP2_Gui.h"
- 
- #include "AP2_Internal.h"
- 
- #include "AP2/AP2_Logger.h"
- #include "AP2/AP2_Opengl.h"
- #include "AP2/AP2_Renderer.h"
- #include "AP2/AP2_Shader.h"
- #include "AP2/AP2_Texture.h"
- #include "AP2/AP2_Window.h"
- 
- #define GLFW_INCLUDE_NONE
- #include <glad/gl.h>
- 
- #include <string.h>
- 
- typedef struct AP_PostState {
-   AP_PostConfig config;
-   AP_Texture *scene;
-   AP_Texture *gui;
-   AP_Texture *scratch;
-   AP_Shader *builtin;
-   int width;
-   int height;
-   bool capturing;
-   bool applying;
-   bool gui_active;
- } AP_PostState;
- 
- static AP_PostState g_post;
- static bool g_config_ready = false;
- 
- typedef struct AP_PostExtra {
+#include "AP2/AP2_Post.h"
+#include "AP2/AP2_Post_extra.h"
+#include "AP2/AP2_Gui.h"
+
+#include "AP2_Internal.h"
+
+#include "AP2/AP2_Logger.h"
+#include "AP2/AP2_Opengl.h"
+#include "AP2/AP2_Renderer.h"
+#include "AP2/AP2_Shader.h"
+#include "AP2/AP2_Texture.h"
+#include "AP2/AP2_Window.h"
+
+#define GLFW_INCLUDE_NONE
+#include <glad/gl.h>
+
+#include <string.h>
+
+typedef struct AP_PostState
+{
+  AP_PostConfig config;
+  AP_Texture *scene;
+  AP_Texture *gui;
+  AP_Texture *scratch;
+  AP_Shader *builtin;
+  int width;
+  int height;
+  bool capturing;
+  bool applying;
+  bool gui_active;
+} AP_PostState;
+
+static AP_PostState g_post;
+static bool g_config_ready = false;
+
+typedef struct AP_PostExtra
+{
   /* Master */
   float intensity;
 
@@ -110,10 +113,12 @@
 } AP_PostExtra;
 
 static AP_PostExtra g_post_extra;
- static bool g_post_extra_ready = false;
- 
- static void AP_PostEnsureExtra(void) {
-  if (g_post_extra_ready) {
+static bool g_post_extra_ready = false;
+
+static void AP_PostEnsureExtra(void)
+{
+  if (g_post_extra_ready)
+  {
     return;
   }
 
@@ -302,407 +307,449 @@ static const char *AP_POST_FRAGMENT =
     "  frag_color=vec4(mix(texture(u_texture,original_uv).rgb,color,clamp(u_intensity,0.0,1.0)),1.0)*v_color;\n"
     "}\n";
 
-static void AP_PostEnsureConfig(void) {
-   if (!g_config_ready) {
-     g_post.config = AP_PostDefaultConfig();
-     g_config_ready = true;
-   }
- }
- 
- static float AP_PostClampf(float value, float minimum, float maximum) {
-   if (value < minimum) {
-     return minimum;
-   }
-   if (value > maximum) {
-     return maximum;
-   }
-   return value;
- }
- 
- static void AP_PostDestroyTarget(AP_Texture **texture) {
-   if (texture == NULL || *texture == NULL) {
-     return;
-   }
- 
-   if (AP_GetRenderTarget() == *texture) {
-     AP_SetRenderTarget(NULL);
-   }
- 
-   AP_DestroyTexture(*texture);
-   *texture = NULL;
- }
- 
- static void AP_PostDestroyTargets(void) {
-   AP_PostDestroyTarget(&g_post.scene);
-   AP_PostDestroyTarget(&g_post.gui);
-   AP_PostDestroyTarget(&g_post.scratch);
-   g_post.width = 0;
-   g_post.height = 0;
- }
- 
- static AP_Texture *AP_PostMakeTarget(int width, int height) {
-   AP_Texture *texture =
-       AP_CreateTextureWithAccess(width, height, AP_TEXTUREACCESS_TARGET);
-   if (texture == NULL) {
-     return NULL;
-   }
- 
-   AP_SetTextureScaleMode(texture, AP_SCALEMODE_LINEAR);
-   AP_SetTextureAddressMode(texture, AP_TEXTUREADDRESS_CLAMP);
-   AP_SetTextureBlendMode(texture, AP_BLENDMODE_BLEND);
-   return texture;
- }
- 
- static bool AP_PostEnsureTargets(int width, int height) {
-   if (width <= 0 || height <= 0) {
-     return false;
-   }
- 
-   if (g_post.scene != NULL && g_post.gui != NULL && g_post.scratch != NULL &&
-       g_post.width == width && g_post.height == height) {
-     return true;
-   }
- 
-   AP_PostDestroyTargets();
-   g_post.scene = AP_PostMakeTarget(width, height);
-   g_post.gui = AP_PostMakeTarget(width, height);
-   g_post.scratch = AP_PostMakeTarget(width, height);
-   if (g_post.scene == NULL || g_post.gui == NULL || g_post.scratch == NULL) {
-     AP_PostDestroyTargets();
-     return false;
-   }
- 
-   g_post.width = width;
-   g_post.height = height;
-   return true;
- }
- 
- static bool AP_PostEnsureShader(void) {
-   if (g_post.builtin != NULL) {
-     return true;
-   }
- 
-   g_post.builtin = AP_CreateShader(NULL, AP_POST_FRAGMENT);
-   if (g_post.builtin == NULL) {
-     AP_WARN("Post shader failed to compile; post-processing disabled");
-     return false;
-   }
- 
-   return true;
- }
- 
- static uint32_t AP_PostActiveFlags(void) {
-   uint32_t flags;
- 
-   AP_PostEnsureConfig();
-   flags = g_post.config.flags;
-   if (g_post.config.custom == NULL) {
-     flags &= ~(uint32_t)AP_POST_CUSTOM;
-   }
-   return flags;
- }
- 
- static bool AP_PostBlit(AP_Texture *source, AP_Shader *shader) {
-   AP_Shader *previous;
-   AP_BlendMode blend;
-   bool ok;
- 
-   if (source == NULL) {
-     return false;
-   }
- 
-   previous = AP_GetShader();
-   blend = AP_GetTextureBlendMode(source);
-   AP_SetTextureBlendMode(source, AP_BLENDMODE_NONE);
-   AP_UseShader(shader);
- 
-   if (shader != NULL) {
-     uint32_t flags = AP_PostActiveFlags();
-     AP_SetUniformF("u_time", (float)AP_GetTime());
-     AP_SetUniformF("u_vignette", (flags & (uint32_t)AP_POST_VIGNETTE) != 0
-                                      ? g_post.config.vignette
-                                      : 0.0f);
-     AP_SetUniformF("u_bloom_threshold", g_post.config.bloom_threshold);
-     AP_SetUniformF("u_bloom_intensity", (flags & (uint32_t)AP_POST_BLOOM) != 0
-                                             ? g_post.config.bloom_intensity
-                                             : 0.0f);
-     AP_SetUniformF("u_saturation", (flags & (uint32_t)AP_POST_COLOR_GRADE) != 0
-                                        ? g_post.config.saturation
-                                        : 1.0f);
-     AP_SetUniformF("u_contrast", (flags & (uint32_t)AP_POST_COLOR_GRADE) != 0
-                                      ? g_post.config.contrast
-                                      : 1.0f);
-     AP_SetUniformF("u_brightness", (flags & (uint32_t)AP_POST_COLOR_GRADE) != 0
-                                        ? g_post.config.brightness
-                                        : 0.0f);
-     AP_SetUniformF("u_chromatic", (flags & (uint32_t)AP_POST_CHROMATIC) != 0
-                                       ? g_post.config.chromatic
-                                       : 0.0f);
-     AP_SetUniformF("u_grain", (flags & (uint32_t)AP_POST_GRAIN) != 0
-                                   ? g_post.config.grain
-                                   : 0.0f);
-     AP_SetUniformF("u_sharpen", (flags & (uint32_t)AP_POST_SHARPEN) != 0
-                                     ? g_post.config.sharpen
+static void AP_PostEnsureConfig(void)
+{
+  if (!g_config_ready)
+  {
+    g_post.config = AP_PostDefaultConfig();
+    g_config_ready = true;
+  }
+}
+
+static float AP_PostClampf(float value, float minimum, float maximum)
+{
+  if (value < minimum)
+  {
+    return minimum;
+  }
+  if (value > maximum)
+  {
+    return maximum;
+  }
+  return value;
+}
+
+static void AP_PostDestroyTarget(AP_Texture **texture)
+{
+  if (texture == NULL || *texture == NULL)
+  {
+    return;
+  }
+
+  if (AP_GetRenderTarget() == *texture)
+  {
+    AP_SetRenderTarget(NULL);
+  }
+
+  AP_DestroyTexture(*texture);
+  *texture = NULL;
+}
+
+static void AP_PostDestroyTargets(void)
+{
+  AP_PostDestroyTarget(&g_post.scene);
+  AP_PostDestroyTarget(&g_post.gui);
+  AP_PostDestroyTarget(&g_post.scratch);
+  g_post.width = 0;
+  g_post.height = 0;
+}
+
+static AP_Texture *AP_PostMakeTarget(int width, int height)
+{
+  AP_Texture *texture =
+      AP_CreateTextureWithAccess(width, height, AP_TEXTUREACCESS_TARGET);
+  if (texture == NULL)
+  {
+    return NULL;
+  }
+
+  AP_SetTextureScaleMode(texture, AP_SCALEMODE_LINEAR);
+  AP_SetTextureAddressMode(texture, AP_TEXTUREADDRESS_CLAMP);
+  AP_SetTextureBlendMode(texture, AP_BLENDMODE_BLEND);
+  return texture;
+}
+
+static bool AP_PostEnsureTargets(int width, int height)
+{
+  if (width <= 0 || height <= 0)
+  {
+    return false;
+  }
+
+  if (g_post.scene != NULL && g_post.gui != NULL && g_post.scratch != NULL &&
+      g_post.width == width && g_post.height == height)
+  {
+    return true;
+  }
+
+  AP_PostDestroyTargets();
+  g_post.scene = AP_PostMakeTarget(width, height);
+  g_post.gui = AP_PostMakeTarget(width, height);
+  g_post.scratch = AP_PostMakeTarget(width, height);
+  if (g_post.scene == NULL || g_post.gui == NULL || g_post.scratch == NULL)
+  {
+    AP_PostDestroyTargets();
+    return false;
+  }
+
+  g_post.width = width;
+  g_post.height = height;
+  return true;
+}
+
+static bool AP_PostEnsureShader(void)
+{
+  if (g_post.builtin != NULL)
+  {
+    return true;
+  }
+
+  g_post.builtin = AP_CreateShader(NULL, AP_POST_FRAGMENT);
+  if (g_post.builtin == NULL)
+  {
+    AP_WARN("Post shader failed to compile; post-processing disabled");
+    return false;
+  }
+
+  return true;
+}
+
+static uint32_t AP_PostActiveFlags(void)
+{
+  uint32_t flags;
+
+  AP_PostEnsureConfig();
+  flags = g_post.config.flags;
+  if (g_post.config.custom == NULL)
+  {
+    flags &= ~(uint32_t)AP_POST_CUSTOM;
+  }
+  return flags;
+}
+
+static bool AP_PostBlit(AP_Texture *source, AP_Shader *shader)
+{
+  AP_Shader *previous;
+  AP_BlendMode blend;
+  bool ok;
+
+  if (source == NULL)
+  {
+    return false;
+  }
+
+  previous = AP_GetShader();
+  blend = AP_GetTextureBlendMode(source);
+  AP_SetTextureBlendMode(source, AP_BLENDMODE_NONE);
+  AP_UseShader(shader);
+
+  if (shader != NULL)
+  {
+    uint32_t flags = AP_PostActiveFlags();
+    AP_SetUniformF("u_time", (float)AP_GetTime());
+    AP_SetUniformF("u_vignette", (flags & (uint32_t)AP_POST_VIGNETTE) != 0
+                                     ? g_post.config.vignette
                                      : 0.0f);
-     AP_PostEnsureExtra();
-     AP_SetUniformF("u_intensity", g_post_extra.intensity);
-     AP_SetUniformF("u_exposure", g_post_extra.exposure);
-     AP_SetUniformF("u_gamma", g_post_extra.gamma);
-     AP_SetUniformF("u_filmic", g_post_extra.filmic);
-     AP_SetUniformF("u_saturation", (flags & (uint32_t)AP_POST_COLOR_GRADE) != 0 ? g_post.config.saturation : g_post_extra.saturation);
-     AP_SetUniformF("u_contrast", (flags & (uint32_t)AP_POST_COLOR_GRADE) != 0 ? g_post.config.contrast : g_post_extra.contrast);
-     AP_SetUniformF("u_brightness", (flags & (uint32_t)AP_POST_COLOR_GRADE) != 0 ? g_post.config.brightness : g_post_extra.brightness);
-     AP_SetUniformF("u_temperature", g_post_extra.temperature);
-     AP_SetUniformF("u_tint", g_post_extra.tint);
-     AP_SetUniformF("u_sharpen", (flags & (uint32_t)AP_POST_SHARPEN) != 0 ? g_post.config.sharpen : g_post_extra.sharpen);
-     AP_SetUniformF("u_clarity", g_post_extra.clarity);
-     AP_SetUniformF("u_detail", g_post_extra.detail);
-     AP_SetUniformF("u_bloom_radius", g_post_extra.bloom_radius);
-     AP_SetUniformF("u_bloom_softness", g_post_extra.bloom_softness);
-     AP_SetUniformF("u_lens_dirt", g_post_extra.lens_dirt);
-     AP_SetUniformF("u_pixelate", g_post_extra.pixelate);
-     AP_SetUniformF("u_scanlines", g_post_extra.scanlines);
-     AP_SetUniformF("u_crt", g_post_extra.crt);
-     AP_SetUniformF("u_vhs", g_post_extra.vhs);
-     AP_SetUniformF("u_rgb_split", g_post_extra.rgb_split);
-     AP_SetUniformF("u_barrel", g_post_extra.barrel);
-     AP_SetUniformF("u_lens_distortion", g_post_extra.lens_distortion);
-     AP_SetUniformF("u_sepia", g_post_extra.sepia);
-     AP_SetUniformF("u_grayscale", g_post_extra.grayscale);
-     AP_SetUniformF("u_invert", g_post_extra.invert);
-     AP_SetUniformF("u_solarize", g_post_extra.solarize);
-     AP_SetUniformF("u_colorize", g_post_extra.colorize);
-     AP_SetUniformF("u_colorize_hue", g_post_extra.colorize_hue);
-     AP_SetUniformF("u_posterize", g_post_extra.posterize);
-     AP_SetUniformF("u_edge", g_post_extra.edge);
-     AP_SetUniformF("u_outline", g_post_extra.outline);
-     AP_SetUniformF("u_cel_shade", g_post_extra.cel_shade);
-     AP_SetUniformF("u_dither", g_post_extra.dither);
-     AP_SetUniformF("u_halftone", g_post_extra.halftone);
-     AP_SetUniformF("u_glitch", g_post_extra.glitch);
-     AP_SetUniformF("u_noise", g_post_extra.noise);
-     AP_SetUniformF("u_displacement", g_post_extra.displacement);
-     AP_SetUniformF("u_kaleidoscope", g_post_extra.kaleidoscope);
-     AP_SetUniformF("u_wave", g_post_extra.wave);
-     AP_SetUniformF("u_ripple", g_post_extra.ripple);
-     AP_SetUniformF("u_fisheye", g_post_extra.fisheye);
-     AP_SetUniformF("u_chromatic", (flags & (uint32_t)AP_POST_CHROMATIC) != 0 ? g_post.config.chromatic : g_post_extra.chromatic);
-     AP_SetUniformF("u_grain", (flags & (uint32_t)AP_POST_GRAIN) != 0 ? g_post.config.grain : g_post_extra.grain);
-     AP_SetUniformF("u_film_grain", g_post_extra.film_grain);
-     AP_SetUniformF("u_film_response", g_post_extra.film_response);
-     AP_SetUniformF("u_halation", g_post_extra.halation);
-     AP_SetUniformF("u_fog", g_post_extra.fog);
-     AP_SetUniformF("u_fog_density", g_post_extra.fog_density);
-     AP_SetUniformF("u_fog_height", g_post_extra.fog_height);
-     AP_SetUniformF("u_depth_of_field", g_post_extra.depth_of_field);
-     AP_SetUniformF("u_dof_focus", g_post_extra.dof_focus);
-     AP_SetUniformF("u_dof_aperture", g_post_extra.dof_aperture);
-     AP_SetUniformF("u_motion_blur", g_post_extra.motion_blur);
-   }
- 
-   ok = AP_RenderTexture(source, NULL, NULL);
-   AP_UseShader(previous);
-   AP_SetTextureBlendMode(source, blend);
-   return ok;
- }
- 
- static void AP_PostApplyEffects(void) {
-   uint32_t flags = AP_PostActiveFlags();
-   AP_Texture *source = g_post.scene;
-   bool used_builtin = false;
- 
-   if ((flags & (uint32_t)AP_POST_CUSTOM) != 0 && g_post.config.custom != NULL) {
-     if (!AP_SetRenderTarget(g_post.scratch)) {
-       AP_SetRenderTarget(NULL);
-       AP_PostBlit(source, NULL);
-       return;
-     }
- 
-     AP_OpenGLSetClearColor(0.0f, 0.0f, 0.0f, 1.0f);
-     AP_OpenGLClear(true, false, false);
-     if (AP_PostEnsureShader() && (flags & ~(uint32_t)AP_POST_CUSTOM) != 0) {
-       AP_PostBlit(source, g_post.builtin);
-       source = g_post.scratch;
-       used_builtin = true;
-     }
- 
-     AP_SetRenderTarget(NULL);
-     AP_PostBlit(used_builtin ? g_post.scratch : source, g_post.config.custom);
-     return;
-   }
- 
-   AP_SetRenderTarget(NULL);
-   if (AP_PostEnsureShader() && flags != 0) {
-     AP_PostBlit(source, g_post.builtin);
-   } else {
-     AP_PostBlit(source, NULL);
-   }
- }
- 
- AP_PostConfig AP_PostDefaultConfig(void) {
-   AP_PostConfig config;
-   memset(&config, 0, sizeof(config));
-   config.enabled = false;
-   config.flags = AP_POST_NONE;
-   config.vignette = 0.35f;
-   config.bloom_threshold = 0.7f;
-   config.bloom_intensity = 0.45f;
-   config.saturation = 1.0f;
-   config.contrast = 1.0f;
-   config.brightness = 0.0f;
-   config.chromatic = 0.0025f;
-   config.grain = 0.04f;
-   config.sharpen = 0.15f;
-   config.custom = NULL;
-   return config;
- }
- 
- bool AP_SetPostConfig(const AP_PostConfig *config) {
-   AP_PostEnsureConfig();
-   if (config == NULL) {
-     g_post.config = AP_PostDefaultConfig();
-     return true;
-   }
- 
-   g_post.config = *config;
-   g_post.config.vignette = AP_PostClampf(g_post.config.vignette, 0.0f, 2.0f);
-   g_post.config.bloom_threshold =
-       AP_PostClampf(g_post.config.bloom_threshold, 0.0f, 1.0f);
-   g_post.config.bloom_intensity =
-       AP_PostClampf(g_post.config.bloom_intensity, 0.0f, 4.0f);
-   g_post.config.saturation =
-       AP_PostClampf(g_post.config.saturation, 0.0f, 2.0f);
-   g_post.config.contrast = AP_PostClampf(g_post.config.contrast, 0.0f, 3.0f);
-   g_post.config.brightness =
-       AP_PostClampf(g_post.config.brightness, -1.0f, 1.0f);
-   g_post.config.chromatic = AP_PostClampf(g_post.config.chromatic, 0.0f, 0.05f);
-   g_post.config.grain = AP_PostClampf(g_post.config.grain, 0.0f, 0.5f);
-   g_post.config.sharpen = AP_PostClampf(g_post.config.sharpen, 0.0f, 1.0f);
-   return true;
- }
- 
- AP_PostConfig *AP_GetPostConfig(void) {
-   AP_PostEnsureConfig();
-   return &g_post.config;
- }
- 
- bool AP_SetPostEnabled(bool enabled) {
-   AP_PostEnsureConfig();
-   g_post.config.enabled = enabled;
-   if (!enabled && g_post.capturing) {
-     AP_SetRenderTarget(NULL);
-     g_post.capturing = false;
-     g_post.gui_active = false;
-   }
-   return true;
- }
- 
- bool AP_PostEnabled(void) {
-   AP_PostEnsureConfig();
-   return g_post.config.enabled;
- }
- 
- bool AP_SetPostFlags(uint32_t flags) {
-   AP_PostEnsureConfig();
-   g_post.config.flags = flags;
-   return true;
- }
- 
- uint32_t AP_GetPostFlags(void) {
-   AP_PostEnsureConfig();
-   return g_post.config.flags;
- }
- 
- bool AP_EnablePostFlag(AP_PostFlags flag) {
-   AP_PostEnsureConfig();
-   g_post.config.flags |= (uint32_t)flag;
-   return true;
- }
- 
- bool AP_DisablePostFlag(AP_PostFlags flag) {
-   AP_PostEnsureConfig();
-   g_post.config.flags &= ~(uint32_t)flag;
-   return true;
- }
- 
- bool AP_PostFlagEnabled(AP_PostFlags flag) {
-   AP_PostEnsureConfig();
-   return (g_post.config.flags & (uint32_t)flag) != 0;
- }
- 
- bool AP_SetPostVignette(float amount) {
-   AP_PostEnsureConfig();
-   AP_PostEnsureExtra();
-   g_post.config.vignette = AP_PostClampf(amount, 0.0f, 2.0f);
-   g_post_extra.vignette = g_post.config.vignette;
-   if (amount > 0.0f) {
-     AP_EnablePostFlag(AP_POST_VIGNETTE);
-   }
-   return true;
- }
- 
- bool AP_SetPostBloom(float threshold, float intensity) {
-   AP_PostEnsureConfig();
-   g_post.config.bloom_threshold = AP_PostClampf(threshold, 0.0f, 1.0f);
-   g_post.config.bloom_intensity = AP_PostClampf(intensity, 0.0f, 4.0f);
-   if (intensity > 0.0f) {
-     AP_EnablePostFlag(AP_POST_BLOOM);
-   }
-   return true;
- }
- 
- bool AP_SetPostColorGrade(float saturation, float contrast, float brightness) {
-   AP_PostEnsureConfig();
-   g_post.config.saturation = AP_PostClampf(saturation, 0.0f, 2.0f);
-   g_post.config.contrast = AP_PostClampf(contrast, 0.0f, 3.0f);
-   g_post.config.brightness = AP_PostClampf(brightness, -1.0f, 1.0f);
-   AP_EnablePostFlag(AP_POST_COLOR_GRADE);
-   return true;
- }
- 
- bool AP_SetPostChromatic(float amount) {
-   AP_PostEnsureConfig();
-   g_post.config.chromatic = AP_PostClampf(amount, 0.0f, 0.05f);
-   if (amount > 0.0f) {
-     AP_EnablePostFlag(AP_POST_CHROMATIC);
-   }
-   return true;
- }
- 
- bool AP_SetPostGrain(float amount) {
-   AP_PostEnsureConfig();
-   g_post.config.grain = AP_PostClampf(amount, 0.0f, 0.5f);
-   if (amount > 0.0f) {
-     AP_EnablePostFlag(AP_POST_GRAIN);
-   }
-   return true;
- }
- 
- bool AP_SetPostSharpen(float amount) {
-   AP_PostEnsureConfig();
-   g_post.config.sharpen = AP_PostClampf(amount, 0.0f, 1.0f);
-   if (amount > 0.0f) {
-     AP_EnablePostFlag(AP_POST_SHARPEN);
-   }
-   return true;
- }
- 
- bool AP_SetPostShader(AP_Shader *shader) {
-   AP_PostEnsureConfig();
-   g_post.config.custom = shader;
-   if (shader != NULL) {
-     AP_EnablePostFlag(AP_POST_CUSTOM);
-   } else {
-     AP_DisablePostFlag(AP_POST_CUSTOM);
-   }
-   return true;
- }
- 
- #define AP_POST_EXTRA_SETTER(name, field, lo, hi) \
-  bool name(float value) { \
-    AP_PostEnsureExtra(); \
+    AP_SetUniformF("u_bloom_threshold", g_post.config.bloom_threshold);
+    AP_SetUniformF("u_bloom_intensity", (flags & (uint32_t)AP_POST_BLOOM) != 0
+                                            ? g_post.config.bloom_intensity
+                                            : 0.0f);
+    /* u_saturation/u_contrast/u_brightness/u_chromatic/u_grain/u_sharpen are
+     * set once below, merged with the extra-effects fallback values. */
+    AP_PostEnsureExtra();
+    AP_SetUniformF("u_intensity", g_post_extra.intensity);
+    AP_SetUniformF("u_exposure", g_post_extra.exposure);
+    AP_SetUniformF("u_gamma", g_post_extra.gamma);
+    AP_SetUniformF("u_filmic", g_post_extra.filmic);
+    AP_SetUniformF("u_saturation", (flags & (uint32_t)AP_POST_COLOR_GRADE) != 0 ? g_post.config.saturation : g_post_extra.saturation);
+    AP_SetUniformF("u_contrast", (flags & (uint32_t)AP_POST_COLOR_GRADE) != 0 ? g_post.config.contrast : g_post_extra.contrast);
+    AP_SetUniformF("u_brightness", (flags & (uint32_t)AP_POST_COLOR_GRADE) != 0 ? g_post.config.brightness : g_post_extra.brightness);
+    AP_SetUniformF("u_temperature", g_post_extra.temperature);
+    AP_SetUniformF("u_tint", g_post_extra.tint);
+    AP_SetUniformF("u_sharpen", (flags & (uint32_t)AP_POST_SHARPEN) != 0 ? g_post.config.sharpen : g_post_extra.sharpen);
+    AP_SetUniformF("u_clarity", g_post_extra.clarity);
+    AP_SetUniformF("u_detail", g_post_extra.detail);
+    AP_SetUniformF("u_bloom_radius", g_post_extra.bloom_radius);
+    AP_SetUniformF("u_bloom_softness", g_post_extra.bloom_softness);
+    AP_SetUniformF("u_lens_dirt", g_post_extra.lens_dirt);
+    AP_SetUniformF("u_pixelate", g_post_extra.pixelate);
+    AP_SetUniformF("u_scanlines", g_post_extra.scanlines);
+    AP_SetUniformF("u_crt", g_post_extra.crt);
+    AP_SetUniformF("u_vhs", g_post_extra.vhs);
+    AP_SetUniformF("u_rgb_split", g_post_extra.rgb_split);
+    AP_SetUniformF("u_barrel", g_post_extra.barrel);
+    AP_SetUniformF("u_lens_distortion", g_post_extra.lens_distortion);
+    AP_SetUniformF("u_sepia", g_post_extra.sepia);
+    AP_SetUniformF("u_grayscale", g_post_extra.grayscale);
+    AP_SetUniformF("u_invert", g_post_extra.invert);
+    AP_SetUniformF("u_solarize", g_post_extra.solarize);
+    AP_SetUniformF("u_colorize", g_post_extra.colorize);
+    AP_SetUniformF("u_colorize_hue", g_post_extra.colorize_hue);
+    AP_SetUniformF("u_posterize", g_post_extra.posterize);
+    AP_SetUniformF("u_edge", g_post_extra.edge);
+    AP_SetUniformF("u_outline", g_post_extra.outline);
+    AP_SetUniformF("u_cel_shade", g_post_extra.cel_shade);
+    AP_SetUniformF("u_dither", g_post_extra.dither);
+    AP_SetUniformF("u_halftone", g_post_extra.halftone);
+    AP_SetUniformF("u_glitch", g_post_extra.glitch);
+    AP_SetUniformF("u_noise", g_post_extra.noise);
+    AP_SetUniformF("u_displacement", g_post_extra.displacement);
+    AP_SetUniformF("u_kaleidoscope", g_post_extra.kaleidoscope);
+    AP_SetUniformF("u_wave", g_post_extra.wave);
+    AP_SetUniformF("u_ripple", g_post_extra.ripple);
+    AP_SetUniformF("u_fisheye", g_post_extra.fisheye);
+    AP_SetUniformF("u_chromatic", (flags & (uint32_t)AP_POST_CHROMATIC) != 0 ? g_post.config.chromatic : g_post_extra.chromatic);
+    AP_SetUniformF("u_grain", (flags & (uint32_t)AP_POST_GRAIN) != 0 ? g_post.config.grain : g_post_extra.grain);
+    AP_SetUniformF("u_film_grain", g_post_extra.film_grain);
+    AP_SetUniformF("u_film_response", g_post_extra.film_response);
+    AP_SetUniformF("u_halation", g_post_extra.halation);
+    AP_SetUniformF("u_fog", g_post_extra.fog);
+    AP_SetUniformF("u_fog_density", g_post_extra.fog_density);
+    AP_SetUniformF("u_fog_height", g_post_extra.fog_height);
+    AP_SetUniformF("u_depth_of_field", g_post_extra.depth_of_field);
+    AP_SetUniformF("u_dof_focus", g_post_extra.dof_focus);
+    AP_SetUniformF("u_dof_aperture", g_post_extra.dof_aperture);
+    AP_SetUniformF("u_motion_blur", g_post_extra.motion_blur);
+  }
+
+  ok = AP_RenderTexture(source, NULL, NULL);
+  AP_UseShader(previous);
+  AP_SetTextureBlendMode(source, blend);
+  return ok;
+}
+
+static void AP_PostApplyEffects(void)
+{
+  uint32_t flags = AP_PostActiveFlags();
+  AP_Texture *source = g_post.scene;
+  bool used_builtin = false;
+
+  if ((flags & (uint32_t)AP_POST_CUSTOM) != 0 && g_post.config.custom != NULL)
+  {
+    if (!AP_SetRenderTarget(g_post.scratch))
+    {
+      AP_SetRenderTarget(NULL);
+      AP_PostBlit(source, NULL);
+      return;
+    }
+
+    AP_OpenGLSetClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+    AP_OpenGLClear(true, false, false);
+    if (AP_PostEnsureShader() && (flags & ~(uint32_t)AP_POST_CUSTOM) != 0)
+    {
+      AP_PostBlit(source, g_post.builtin);
+      source = g_post.scratch;
+      used_builtin = true;
+    }
+
+    AP_SetRenderTarget(NULL);
+    AP_PostBlit(used_builtin ? g_post.scratch : source, g_post.config.custom);
+    return;
+  }
+
+  AP_SetRenderTarget(NULL);
+  if (AP_PostEnsureShader() && flags != 0)
+  {
+    AP_PostBlit(source, g_post.builtin);
+  }
+  else
+  {
+    AP_PostBlit(source, NULL);
+  }
+}
+
+AP_PostConfig AP_PostDefaultConfig(void)
+{
+  AP_PostConfig config;
+  memset(&config, 0, sizeof(config));
+  config.enabled = false;
+  config.flags = AP_POST_NONE;
+  config.vignette = 0.35f;
+  config.bloom_threshold = 0.7f;
+  config.bloom_intensity = 0.45f;
+  config.saturation = 1.0f;
+  config.contrast = 1.0f;
+  config.brightness = 0.0f;
+  config.chromatic = 0.0025f;
+  config.grain = 0.04f;
+  config.sharpen = 0.15f;
+  config.custom = NULL;
+  return config;
+}
+
+bool AP_SetPostConfig(const AP_PostConfig *config)
+{
+  AP_PostEnsureConfig();
+  if (config == NULL)
+  {
+    g_post.config = AP_PostDefaultConfig();
+    return true;
+  }
+
+  g_post.config = *config;
+  g_post.config.vignette = AP_PostClampf(g_post.config.vignette, 0.0f, 2.0f);
+  g_post.config.bloom_threshold =
+      AP_PostClampf(g_post.config.bloom_threshold, 0.0f, 1.0f);
+  g_post.config.bloom_intensity =
+      AP_PostClampf(g_post.config.bloom_intensity, 0.0f, 4.0f);
+  g_post.config.saturation =
+      AP_PostClampf(g_post.config.saturation, 0.0f, 2.0f);
+  g_post.config.contrast = AP_PostClampf(g_post.config.contrast, 0.0f, 3.0f);
+  g_post.config.brightness =
+      AP_PostClampf(g_post.config.brightness, -1.0f, 1.0f);
+  g_post.config.chromatic = AP_PostClampf(g_post.config.chromatic, 0.0f, 0.05f);
+  g_post.config.grain = AP_PostClampf(g_post.config.grain, 0.0f, 0.5f);
+  g_post.config.sharpen = AP_PostClampf(g_post.config.sharpen, 0.0f, 1.0f);
+  return true;
+}
+
+AP_PostConfig *AP_GetPostConfig(void)
+{
+  AP_PostEnsureConfig();
+  return &g_post.config;
+}
+
+bool AP_SetPostEnabled(bool enabled)
+{
+  AP_PostEnsureConfig();
+  g_post.config.enabled = enabled;
+  if (!enabled && g_post.capturing)
+  {
+    AP_SetRenderTarget(NULL);
+    g_post.capturing = false;
+    g_post.gui_active = false;
+  }
+  return true;
+}
+
+bool AP_PostEnabled(void)
+{
+  AP_PostEnsureConfig();
+  return g_post.config.enabled;
+}
+
+bool AP_SetPostFlags(uint32_t flags)
+{
+  AP_PostEnsureConfig();
+  g_post.config.flags = flags;
+  return true;
+}
+
+uint32_t AP_GetPostFlags(void)
+{
+  AP_PostEnsureConfig();
+  return g_post.config.flags;
+}
+
+bool AP_EnablePostFlag(AP_PostFlags flag)
+{
+  AP_PostEnsureConfig();
+  g_post.config.flags |= (uint32_t)flag;
+  return true;
+}
+
+bool AP_DisablePostFlag(AP_PostFlags flag)
+{
+  AP_PostEnsureConfig();
+  g_post.config.flags &= ~(uint32_t)flag;
+  return true;
+}
+
+bool AP_PostFlagEnabled(AP_PostFlags flag)
+{
+  AP_PostEnsureConfig();
+  return (g_post.config.flags & (uint32_t)flag) != 0;
+}
+
+bool AP_SetPostVignette(float amount)
+{
+  AP_PostEnsureConfig();
+  AP_PostEnsureExtra();
+  g_post.config.vignette = AP_PostClampf(amount, 0.0f, 2.0f);
+  g_post_extra.vignette = g_post.config.vignette;
+  if (amount > 0.0f)
+  {
+    AP_EnablePostFlag(AP_POST_VIGNETTE);
+  }
+  return true;
+}
+
+bool AP_SetPostBloom(float threshold, float intensity)
+{
+  AP_PostEnsureConfig();
+  g_post.config.bloom_threshold = AP_PostClampf(threshold, 0.0f, 1.0f);
+  g_post.config.bloom_intensity = AP_PostClampf(intensity, 0.0f, 4.0f);
+  if (intensity > 0.0f)
+  {
+    AP_EnablePostFlag(AP_POST_BLOOM);
+  }
+  return true;
+}
+
+bool AP_SetPostColorGrade(float saturation, float contrast, float brightness)
+{
+  AP_PostEnsureConfig();
+  g_post.config.saturation = AP_PostClampf(saturation, 0.0f, 2.0f);
+  g_post.config.contrast = AP_PostClampf(contrast, 0.0f, 3.0f);
+  g_post.config.brightness = AP_PostClampf(brightness, -1.0f, 1.0f);
+  AP_EnablePostFlag(AP_POST_COLOR_GRADE);
+  return true;
+}
+
+bool AP_SetPostChromatic(float amount)
+{
+  AP_PostEnsureConfig();
+  g_post.config.chromatic = AP_PostClampf(amount, 0.0f, 0.05f);
+  if (amount > 0.0f)
+  {
+    AP_EnablePostFlag(AP_POST_CHROMATIC);
+  }
+  return true;
+}
+
+bool AP_SetPostGrain(float amount)
+{
+  AP_PostEnsureConfig();
+  g_post.config.grain = AP_PostClampf(amount, 0.0f, 0.5f);
+  if (amount > 0.0f)
+  {
+    AP_EnablePostFlag(AP_POST_GRAIN);
+  }
+  return true;
+}
+
+bool AP_SetPostSharpen(float amount)
+{
+  AP_PostEnsureConfig();
+  g_post.config.sharpen = AP_PostClampf(amount, 0.0f, 1.0f);
+  if (amount > 0.0f)
+  {
+    AP_EnablePostFlag(AP_POST_SHARPEN);
+  }
+  return true;
+}
+
+bool AP_SetPostShader(AP_Shader *shader)
+{
+  AP_PostEnsureConfig();
+  g_post.config.custom = shader;
+  if (shader != NULL)
+  {
+    AP_EnablePostFlag(AP_POST_CUSTOM);
+  }
+  else
+  {
+    AP_DisablePostFlag(AP_POST_CUSTOM);
+  }
+  return true;
+}
+
+#define AP_POST_EXTRA_SETTER(name, field, lo, hi)      \
+  bool name(float value)                               \
+  {                                                    \
+    AP_PostEnsureExtra();                              \
     g_post_extra.field = AP_PostClampf(value, lo, hi); \
-    return true; \
+    return true;                                       \
   }
 
 AP_POST_EXTRA_SETTER(AP_SetPostIntensity, intensity, 0.0f, 1.0f)
@@ -759,134 +806,159 @@ AP_POST_EXTRA_SETTER(AP_SetPostFisheye, fisheye, 0.0f, 1.0f)
 
 #undef AP_POST_EXTRA_SETTER
 
-AP_Shader *AP_GetPostShader(void) {
-   AP_PostEnsureConfig();
-   return g_post.config.custom;
- }
- 
- void AP_SetPostIncludeGui(bool include) {
-   if (AP_GetGuiLayer() == AP_GUI_LAYER_OFF) {
-     return;
-   }
- 
-   AP_SetGuiLayer(include ? AP_GUI_LAYER_SCENE : AP_GUI_LAYER_OVERLAY);
- }
- 
- bool AP_PostIncludeGui(void) { return AP_GetGuiLayer() == AP_GUI_LAYER_SCENE; }
- 
- void AP_PostBeginFrame(void) {
-   AP_Texture *current;
-   int width = 0;
-   int height = 0;
- 
-   AP_PostEnsureConfig();
-   if (g_post.applying) {
-     return;
-   }
- 
-   g_post.gui_active = false;
- 
-   if (!g_post.config.enabled) {
-     g_post.capturing = false;
-     return;
-   }
- 
-   current = AP_GetRenderTarget();
-   if (current != NULL && current != g_post.scene && current != g_post.gui) {
-     g_post.capturing = false;
-     return;
-   }
- 
-   AP_GetWindowSizeInPixels(&width, &height);
-   if (!AP_PostEnsureTargets(width, height)) {
-     g_post.capturing = false;
-     return;
-   }
- 
-   if (!AP_SetRenderTarget(g_post.scene)) {
-     g_post.capturing = false;
-     return;
-   }
- 
-   g_post.capturing = true;
-   if (AP_PostIncludeGui()) {
-     AP_SetGuiLayer(AP_GUI_LAYER_SCENE);
-   } else {
-     AP_SetGuiLayer(AP_GUI_LAYER_OVERLAY);
-   }
- }
- 
- bool AP_PostBeginGuiLayer(void) {
-   AP_GuiLayer layer = AP_GetGuiLayer();
- 
-   if (layer == AP_GUI_LAYER_OFF) {
-     return false;
-   }
- 
-   if (!g_post.capturing || layer == AP_GUI_LAYER_SCENE) {
-     return true;
-   }
- 
-   if (g_post.gui == NULL) {
-     return true;
-   }
- 
-   if (!g_post.gui_active) {
-     if (!AP_SetRenderTarget(g_post.gui)) {
-       return true;
-     }
- 
-     AP_OpenGLSetClearColor(0.0f, 0.0f, 0.0f, 0.0f);
-     AP_OpenGLClear(true, true, true);
- 
-     g_post.gui_active = true;
-   }
- 
-   return true;
- }
- 
- void AP_PostPresent(void) {
-   if (!g_post.capturing) {
-     return;
-   }
- 
-   g_post.applying = true;
-   AP_FlushRenderer();
-   AP_PostApplyEffects();
- 
-   if (g_post.gui_active && g_post.gui != NULL) {
-     AP_BlendMode blend = AP_GetTextureBlendMode(g_post.gui);
-     AP_SetTextureBlendMode(g_post.gui, AP_BLENDMODE_PREMULTIPLIED);
-     AP_RenderTexture(g_post.gui, NULL, NULL);
-     AP_SetTextureBlendMode(g_post.gui, blend);
-   }
- 
-   AP_FlushRenderer();
-   g_post.applying = false;
-   g_post.capturing = false;
-   g_post.gui_active = false;
- }
- 
- void AP_PostNotifyResize(int width, int height) {
-   (void)width;
-   (void)height;
-   if (g_post.scene != NULL) {
-     AP_PostDestroyTargets();
-   }
- }
- 
- void AP_PostShutdown(void) {
-   if (g_post.builtin != NULL) {
-     AP_ShaderDestroyInternal(g_post.builtin);
-     g_post.builtin = NULL;
-   }
- 
-   AP_PostDestroyTargets();
-   g_post.capturing = false;
-   g_post.applying = false;
-   g_post.gui_active = false;
-   g_config_ready = false;
-   g_post_extra_ready = false;
-   memset(&g_post.config, 0, sizeof(g_post.config));
-   memset(&g_post_extra, 0, sizeof(g_post_extra));
- }
+AP_Shader *AP_GetPostShader(void)
+{
+  AP_PostEnsureConfig();
+  return g_post.config.custom;
+}
+
+void AP_SetPostIncludeGui(bool include)
+{
+  if (AP_GetGuiLayer() == AP_GUI_LAYER_OFF)
+  {
+    return;
+  }
+
+  AP_SetGuiLayer(include ? AP_GUI_LAYER_SCENE : AP_GUI_LAYER_OVERLAY);
+}
+
+bool AP_PostIncludeGui(void) { return AP_GetGuiLayer() == AP_GUI_LAYER_SCENE; }
+
+void AP_PostBeginFrame(void)
+{
+  AP_Texture *current;
+  int width = 0;
+  int height = 0;
+
+  AP_PostEnsureConfig();
+  if (g_post.applying)
+  {
+    return;
+  }
+
+  g_post.gui_active = false;
+
+  if (!g_post.config.enabled)
+  {
+    g_post.capturing = false;
+    return;
+  }
+
+  current = AP_GetRenderTarget();
+  if (current != NULL && current != g_post.scene && current != g_post.gui)
+  {
+    g_post.capturing = false;
+    return;
+  }
+
+  AP_GetWindowSizeInPixels(&width, &height);
+  if (!AP_PostEnsureTargets(width, height))
+  {
+    g_post.capturing = false;
+    return;
+  }
+
+  if (!AP_SetRenderTarget(g_post.scene))
+  {
+    g_post.capturing = false;
+    return;
+  }
+
+  g_post.capturing = true;
+  if (AP_PostIncludeGui())
+  {
+    AP_SetGuiLayer(AP_GUI_LAYER_SCENE);
+  }
+  else
+  {
+    AP_SetGuiLayer(AP_GUI_LAYER_OVERLAY);
+  }
+}
+
+bool AP_PostBeginGuiLayer(void)
+{
+  AP_GuiLayer layer = AP_GetGuiLayer();
+
+  if (layer == AP_GUI_LAYER_OFF)
+  {
+    return false;
+  }
+
+  if (!g_post.capturing || layer == AP_GUI_LAYER_SCENE)
+  {
+    return true;
+  }
+
+  if (g_post.gui == NULL)
+  {
+    return true;
+  }
+
+  if (!g_post.gui_active)
+  {
+    if (!AP_SetRenderTarget(g_post.gui))
+    {
+      return true;
+    }
+
+    AP_OpenGLSetClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+    AP_OpenGLClear(true, true, true);
+
+    g_post.gui_active = true;
+  }
+
+  return true;
+}
+
+void AP_PostPresent(void)
+{
+  if (!g_post.capturing)
+  {
+    return;
+  }
+
+  g_post.applying = true;
+  AP_FlushRenderer();
+  AP_PostApplyEffects();
+
+  if (g_post.gui_active && g_post.gui != NULL)
+  {
+    AP_BlendMode blend = AP_GetTextureBlendMode(g_post.gui);
+    AP_SetTextureBlendMode(g_post.gui, AP_BLENDMODE_PREMULTIPLIED);
+    AP_RenderTexture(g_post.gui, NULL, NULL);
+    AP_SetTextureBlendMode(g_post.gui, blend);
+  }
+
+  AP_FlushRenderer();
+  g_post.applying = false;
+  g_post.capturing = false;
+  g_post.gui_active = false;
+}
+
+void AP_PostNotifyResize(int width, int height)
+{
+  (void)width;
+  (void)height;
+  if (g_post.scene != NULL)
+  {
+    AP_PostDestroyTargets();
+  }
+}
+
+void AP_PostShutdown(void)
+{
+  if (g_post.builtin != NULL)
+  {
+    AP_ShaderDestroyInternal(g_post.builtin);
+    g_post.builtin = NULL;
+  }
+
+  AP_PostDestroyTargets();
+  g_post.capturing = false;
+  g_post.applying = false;
+  g_post.gui_active = false;
+  g_config_ready = false;
+  g_post_extra_ready = false;
+  memset(&g_post.config, 0, sizeof(g_post.config));
+  memset(&g_post_extra, 0, sizeof(g_post_extra));
+}
