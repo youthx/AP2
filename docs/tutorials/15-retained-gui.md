@@ -2,7 +2,7 @@
 
 Copyright (c) 2024-2026 Jack Waechter. MIT licensed.
 
-[Immediate GUI](07-immediate-gui.md) is great for debug panels and in-game HUDs — you submit widgets every frame and there's no tree to manage. `AP2_GuiAdvanced.h` is the other end of the spectrum: a **retained-mode** widget hierarchy (think Qt) for building actual desktop tools — asset browsers, level editors, settings dialogs — with persistent layout, theming, and a signal/event system.
+[Immediate GUI](07-immediate-gui.md) is great for debug panels and in-game HUDs — you submit widgets every frame and there's no tree to manage. `AP2_GuiAdvanced.h` is the other end of the spectrum: a **retained-mode** widget hierarchy (think Qt) for building actual desktop tools, asset browsers, level editors, settings dialogs, all with persistent layout, theming, and a signal/event system.
 
 Exclude both with `AP2_NO_GUI_ADVANCED`.
 
