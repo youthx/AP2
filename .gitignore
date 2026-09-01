@@ -61,7 +61,7 @@ cmake/
 packages/
 wiki-out/
 *.txt
-.lock
+*.lock
 
 # Logs
 *.log
