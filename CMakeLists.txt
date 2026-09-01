@@ -67,6 +67,7 @@ set(CMAKE_C_COMPILER_WORKS "TRUE")
 set(CMAKE_C_FLAGS "-B C:/msys64/ucrt64/bin")
 set(CMAKE_DEPENDS_USE_COMPILER "FALSE")
 set(CMAKE_NINJA_FORCE_RESPONSE_FILE "ON")
+set(CMAKE_RC_COMPILER "C:/msys64/ucrt64/bin/windres.exe")
 
 # Build configurations
 if(NOT CMAKE_BUILD_TYPE)

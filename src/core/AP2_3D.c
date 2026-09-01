@@ -2103,6 +2103,7 @@ bool AP_Begin3D(const AP_Camera *camera) {
   AP_3DEnsureDepthBuffer();
   AP_3DApplyRasterState();
   glDepthMask(GL_TRUE);
+
   glClearDepth(1.0);
   glClear(GL_DEPTH_BUFFER_BIT);
   AP_ShaderBind(g_3d.shader);
@@ -2146,6 +2147,9 @@ bool AP_Set3DTransform(AP_Vec3 position, AP_Quat rotation, AP_Vec3 scale) {
   return true;
 }
 
+// Im not quite sure why I made these methods bools as for instance
+// AP_Set3DPosition has virtually no way of failing, so maybe in the future ill
+// change these to just return nothing, and if any errors occur, handle them via AP_SET_ERROR
 bool AP_Set3DPosition(AP_Vec3 position) {
   g_3d.model.m[12] = position.x;
   g_3d.model.m[13] = position.y;

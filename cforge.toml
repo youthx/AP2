@@ -63,6 +63,7 @@ cmake_language(DEFER CALL include "${CMAKE_CURRENT_SOURCE_DIR}/cmake/ap2-product
 [build.cmake_variables]
 CMAKE_C_COMPILER = "C:/msys64/ucrt64/bin/gcc.exe"
 CMAKE_CXX_COMPILER = "C:/msys64/ucrt64/bin/g++.exe"
+CMAKE_RC_COMPILER = "C:/msys64/ucrt64/bin/windres.exe"
 CMAKE_C_COMPILER_WORKS = "TRUE"
 CMAKE_CXX_COMPILER_WORKS = "TRUE"
 CMAKE_DEPENDS_USE_COMPILER = "FALSE"

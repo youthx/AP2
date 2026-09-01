@@ -13,8 +13,8 @@
 #include <AP2/AP2.h>
 
 int main(void) {
-  return Example_GuiApp();
-  //return Example_MaterialsTextures();
+  //return Example_GuiApp();
+  return Example_MaterialsTextures();
   //return Example_HelloWindow();
   //return Example_Shapes2D();
   //return Example_Scene3D();

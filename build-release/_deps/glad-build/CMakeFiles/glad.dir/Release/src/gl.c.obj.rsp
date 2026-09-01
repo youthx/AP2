@@ -1,0 +1,1 @@
+-DCMAKE_INTDIR=\"Release\" -IC:\Users\jackw\OneDrive\Desktop\git-projects\aphelion-engine\ap2\build-release\_deps\glad-src\generated\include -B C:/msys64/ucrt64/bin
